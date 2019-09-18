@@ -63,85 +63,91 @@ dat2 <- dat %>%
 sum(is.na(dat2$isolate.id))
 length(dat2$isolate.id) - length(unique(dat2$isolate.id))
 
-# group by community type
+# plots within experiments
+dat2 %>%
+  group_by(experiment) %>%
+  summarise(plots = length(unique(plot)),
+            first = unique(plot)[1]) # all have plots
+
+# look at what's in plots
+dat2 %>%
+  group_by(year, experiment, plot) %>%
+  summarise(origins = length(unique(grass.status)), samples = length(isolate.id)) %>%
+  data.frame() # JEF and competition only have one origin per plot
+
+# look at species within experiments
 dat2 %>%
   group_by(year, experiment, host) %>%
+  summarise(samples = length(isolate.id)) %>%
+  data.frame() # JEF only has SP, remove to help make native and non-native numbers more similar
+
+# group by community type
+dat2 %>%
+  filter(experiment != "JEF transect") %>%
+  group_by(year, experiment, plot, host) %>%
   summarise(isolates = length(isolate.id)) %>%
   ggplot(aes(x = isolates, fill = host)) + 
   geom_histogram(binwidth = 1) + 
-  geom_vline(xintercept = 4, color = "red", linetype = "dashed")
+  geom_vline(xintercept = 4, color = "red", linetype = "dashed") # a lot are less than 4, which is minimum for Chao
 
 # counts by origin
 dat2 %>%
-  group_by(year, experiment, host, grass.status) %>%
+  filter(experiment != "JEF transect") %>%
+  group_by(year, experiment, plot, host, grass.status) %>%
   summarise(isolates = length(isolate.id)) %>%
   filter(isolates > 3) %>%
   group_by(grass.status) %>%
   summarise(communities = length(grass.status), samples = sum(isolates))
-# more native samples, but more non-native communities
 
-# look at high sample communities
+# group by community type, origin instead of host
 dat2 %>%
-  group_by(year, experiment, host, grass.status) %>%
+  filter(experiment != "JEF transect") %>%
+  group_by(year, experiment, plot, grass.status) %>%
   summarise(isolates = length(isolate.id)) %>%
-  filter(isolates > 60)
+  ggplot(aes(x = isolates, fill = grass.status)) + 
+  geom_histogram(binwidth = 1) + 
+  geom_vline(xintercept = 4, color = "red", linetype = "dashed") 
 
-# highly sampled groups
+# counts by origin, origin instead of host
 dat2 %>%
-  filter(host %in% c("AB","BD","BH","EG","SP")) %>%
-  group_by(year, experiment, host, grass.status) %>%
+  filter(experiment != "JEF transect") %>%
+  group_by(year, experiment, plot, grass.status) %>%
   summarise(isolates = length(isolate.id)) %>%
   filter(isolates > 3) %>%
   group_by(grass.status) %>%
-  summarise(communities = length(grass.status), samples = sum(isolates))
-# similar community number, but native sampled more
+  summarise(communities = length(grass.status), samples = sum(isolates)) # many more samples are retained and sample numbers are similar, similar when rare communities are included too
 
-# rarefaction curves
+# see if one host type is disproportionately represented in one experiment
 dat2 %>%
-  filter(host %in% c("AB","BD","BH","EG","SP")) %>%
-  group_by(year, experiment, host, grass.status) %>%
+  filter(experiment != "JEF transect") %>%
+  group_by(year, experiment, grass.status) %>%
+  summarise(isolates = length(isolate.id)) %>%
+  data.frame() # yes, but not extreme
+
+# rarefaction curves with host species
+dat2 %>%
+  filter(experiment != "JEF transect") %>%
+  group_by(year, experiment, plot, host, grass.status) %>%
   summarise(isolates = length(isolate.id), richness = length(unique(otu.id))) %>%
-  ggplot(aes(x = isolates, y = richness, color = grass.status, shape = host)) +
+  ggplot(aes(x = isolates, y = richness, color = host, shape = grass.status)) +
   geom_point(size = 2) +
   geom_line()
-# none stabilized, samples over 60 have significantnly higher richness
 
-# remove high isolate samples
+# rarefaction curves with host species
 dat2 %>%
-  filter(host %in% c("AB","BD","BH","EG","SP")) %>%
-  group_by(year, experiment, host, grass.status) %>%
-  summarise(isolates = length(isolate.id)) %>%
-  filter(isolates > 3 & isolates < 60) %>%
-  group_by(grass.status) %>%
-  summarise(communities = length(grass.status), samples = sum(isolates))
-# much more similar and only removes three communities
-
-# put back in rarer plant species
-dat2 %>%
-  group_by(year, experiment, host, grass.status) %>%
-  summarise(isolates = length(isolate.id)) %>%
-  filter(isolates > 3 & isolates < 60) %>%
-  group_by(grass.status) %>%
-  summarise(communities = length(grass.status), samples = sum(isolates))
-# almost exactly the same sample number
+  filter(experiment != "JEF transect") %>%
+  group_by(year, experiment, plot, grass.status) %>%
+  summarise(isolates = length(isolate.id), richness = length(unique(otu.id))) %>%
+  ggplot(aes(x = isolates, y = richness, color = grass.status)) +
+  geom_point(size = 2) +
+  geom_line() # more similar than host species and appear to asymptote
 
 
 #### edit data ####
 
-# remove low and high sample communities
+# remove JEF experiment
 dat3 <- dat2 %>%
-  group_by(year, experiment, host, grass.status) %>%
-  mutate(isolates = length(isolate.id)) %>%
-  filter(isolates > 3 & isolates < 60) %>%
-  ungroup() %>%
-  select(-isolates)
-
-# check that it worked as expected
-dat3 %>%
-  group_by(year, experiment, host, grass.status) %>%
-  summarise(isolates = length(isolate.id)) %>%
-  group_by(grass.status) %>%
-  summarise(communities = length(grass.status), samples = sum(isolates))
+  filter(experiment != "JEF transect")
 
 
 #### save data ####
