@@ -1,10 +1,4 @@
-##### info ####
-
-# file: pathogen-community-analysis.R
-# author: Amy Kendig
-# date last edited: 4/26/19
-# goal: characterize pathogen communities on native and invasive grasses
-# previous file name: JRPBAnalysis_NatIntAccumulation_121218
+## Goal: select data to be used in analyses
 
 
 #### set up ####
@@ -151,4 +145,5 @@ dat3 %>%
 
 
 #### save data ####
+
 write_csv(dat3, "./data/fungal_pathogens_2015_2017.csv")
