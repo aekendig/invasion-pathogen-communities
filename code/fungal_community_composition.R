@@ -19,7 +19,7 @@ dat <- read.csv("./data/fungal_pathogens_2015_2017.csv")
 # function to create wide data
 datw_fun <- function(df, min.iso) {
   dout <- df %>%
-    group_by(year, experiment, plot, host, grass.status, otu.id) %>%
+    group_by(year, year.f, experiment, plot, host, grass.status, otu.id) %>%
     summarise(abundance = length(isolate.id)) %>%
     group_by(year, experiment, plot, host, grass.status) %>%
     mutate(isolates = sum(abundance)) %>%
@@ -85,16 +85,16 @@ edat4 <- datw4 %>% select(c(year:grass.status))
 #### analyze data ####
 
 # PERMANOVA
-pmod1 <- adonis(cdat1 ~ grass.status + host + year + plot, data = edat1, method="chao")
+pmod1 <- adonis(cdat1 ~ grass.status + host + year.f + plot, data = edat1, method="chao")
 pmod1$aov.tab
 
-pmod2 <- adonis(cdat2 ~ grass.status + host + year + plot, data = edat2, method="chao")
+pmod2 <- adonis(cdat2 ~ grass.status + host + year.f + plot, data = edat2, method="chao")
 pmod2$aov.tab
 
-pmod3 <- adonis(cdat3 ~ grass.status + host + year + plot, data = edat3, method="chao")
+pmod3 <- adonis(cdat3 ~ grass.status + host + year.f + plot, data = edat3, method="chao")
 pmod3$aov.tab
 
-pmod4 <- adonis(cdat4 ~ grass.status + host + year + plot, data = edat4, method="chao")
+pmod4 <- adonis(cdat4 ~ grass.status + host + year.f + plot, data = edat4, method="chao")
 pmod4$aov.tab
 
 # NMDS
@@ -102,9 +102,9 @@ pmod4$aov.tab
 
 nmds2 <- metaMDS(cdat2, distance = "chao", halfchange = F, expand = F, trymax = 100)
 
-nmds3 <- metaMDS(cdat3, distance = "bray", halfchange = F, expand = F, trymax = 200) # doesn't converge with chao
+nmds3 <- metaMDS(cdat3, distance = "bray", halfchange = F, expand = F, trymax = 300) # doesn't converge with chao, doesn't consistently converge
 
-nmds4 <- metaMDS(cdat4, distance = "chao", halfchange = F, expand = F, trymax = 200) # doesn't consistently converge
+nmds4 <- metaMDS(cdat4, distance = "chao", halfchange = F, expand = F, trymax = 300) # doesn't consistently converge
 
 # goodness of fit
 gof2 <- goodness(nmds2)
@@ -133,7 +133,7 @@ ell4 <- ndat4 %>%
   group_by(grass.status) %>%
   nest() %>%
   mutate(out = map(data, veganCovEllipse),
-         tidied = map(out, broom::tidy)) %>%
+         tidied = map(out, as_tibble)) %>%
   unnest(tidied, .drop = T)
 
 
@@ -163,7 +163,7 @@ nrow(filter(ndat2, host == "PA")) # 5 PA communities
 # communities with at least 4
 ndat4 %>%
   ggplot(aes(x = NMDS1, y = NMDS2)) +
-  geom_point(aes(color = plot, shape = grass.status)) +
+  geom_point(aes(color = plot, shape = grass.status), size = gof4*75) +
   geom_path(data = ell4, aes(linetype = grass.status), size=1) +  
   scale_color_viridis_d(guide = F)
   

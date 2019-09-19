@@ -48,7 +48,8 @@ dat2 <- dat %>%
   mutate(transect.density = recode(transect.density, "C " = "C"),
          grass.status = ifelse(host %in% c("SP","EG"), "native", "non-native"),
          native = ifelse(grass.status == "native", 1, 0),
-         year.s = year - 2015) %>%
+         year.s = year - 2015,
+         year.f = paste("year", year, sep = "_")) %>%
   filter(!is.na(isolate.id) & 
            (environmental.treatment == "ambient" | is.na(environmental.treatment)) & 
            soil.type == "non-serpentine" & 
@@ -84,9 +85,9 @@ dat2 %>%
 # group by community type
 dat2 %>%
   filter(experiment != "JEF transect") %>%
-  group_by(year, experiment, plot, host) %>%
+  group_by(year, experiment, plot, host, grass.status) %>%
   summarise(isolates = length(isolate.id)) %>%
-  ggplot(aes(x = isolates, fill = host)) + 
+  ggplot(aes(x = isolates, fill = grass.status)) + 
   geom_histogram(binwidth = 1) + 
   geom_vline(xintercept = 4, color = "red", linetype = "dashed") # a lot are less than 4, which is minimum for Chao
 
@@ -133,7 +134,7 @@ dat2 %>%
   geom_point(size = 2) +
   geom_line()
 
-# rarefaction curves with host species
+# rarefaction curves with origin
 dat2 %>%
   filter(experiment != "JEF transect") %>%
   group_by(year, experiment, plot, grass.status) %>%
@@ -141,6 +142,15 @@ dat2 %>%
   ggplot(aes(x = isolates, y = richness, color = grass.status)) +
   geom_point(size = 2) +
   geom_line() # more similar than host species and appear to asymptote
+
+# rarefaction curves with both
+dat2 %>%
+  filter(experiment != "JEF transect") %>%
+  group_by(year, experiment, plot, host, grass.status) %>%
+  summarise(isolates = length(isolate.id), richness = length(unique(otu.id))) %>%
+  ggplot(aes(x = isolates, y = richness, color = grass.status)) +
+  geom_point(size = 2) +
+  geom_line() 
 
 
 #### edit data ####
