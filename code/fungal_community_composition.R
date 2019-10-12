@@ -9,6 +9,7 @@ rm(list = ls())
 # load libraries
 library(tidyverse)
 library(vegan)
+library(bipartite)
 
 # import data
 dat <- read.csv("./data/fungal_pathogens_2015_2017.csv")
@@ -82,9 +83,8 @@ edat3 <- datw3 %>% select(c(year:grass.status))
 edat4 <- datw4 %>% select(c(year:grass.status))
 
 
-#### analyze data ####
+#### PERMANOVA ####
 
-# PERMANOVA
 pmod1 <- adonis(cdat1 ~ grass.status + host + year.f + plot, data = edat1, method="chao")
 pmod1$aov.tab
 
@@ -97,7 +97,8 @@ pmod3$aov.tab
 pmod4 <- adonis(cdat4 ~ grass.status + host + year.f + plot, data = edat4, method="chao")
 pmod4$aov.tab
 
-# NMDS
+
+#### NMDS ####
 # nmds1 <- metaMDS(cdat1, distance = "chao", halfchange = F, expand = F, trymax = 100) # nmds can't converge with cdat using chao or bray
 
 nmds2 <- metaMDS(cdat2, distance = "chao", halfchange = F, expand = F, trymax = 100)
@@ -137,7 +138,7 @@ ell4 <- ndat4 %>%
   unnest(tidied, .drop = T)
 
 
-#### visualize ####
+#### visualize NMDS ####
 
 # communities with at least 2
 ndat2 %>%
@@ -167,3 +168,18 @@ ndat4 %>%
   geom_path(data = ell4, aes(linetype = grass.status), size=1) +  
   scale_color_viridis_d(guide = F)
   
+
+#### visualize bipartite plot - didn't finish this ####
+
+# create web
+web1 <- dat %>%
+  group_by(year, experiment, plot, host, grass.status, otu.id) %>%
+  summarise(abundance = length(isolate.id)) %>%
+  group_by(year, experiment, plot, host, grass.status) %>%
+  mutate(isolates = sum(abundance),
+         site = paste(plot, host, year, sep = "_")) %>%
+  filter(isolates > 1)
+
+# create plot
+plotweb(web1,method = "normal", text.rot = 90, col.high = "white", col.low = "white", col.interaction = "black", labsize = 0.75) 
+

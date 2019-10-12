@@ -1,0 +1,19 @@
+﻿title,damage-april-may-2015-transect
+authors,"Erin Spear, Erin Mordecai"
+location,transect experiment in Jasper Ridge Biological Preserve
+date,20150428 - 20150507
+entered-original,JRBPtransects11to14PathPrcntDam28Apr_7May2015ERS.xls (more info in this file)
+,
+columns,meaning
+date,date of observation
+observer,observer of leaf damage (see authors)
+recorder,recorder of leaf damage (see authors)
+Transect,transect number (11 - 14)
+Species,"grass species ID (AB = Avena barbata, BH = Bromus hordeaceus, SP = Stipa pulchra, PA = Phalaris aquatica, BD = Bromus diandrus, EG = Elymus glaucus)"
+leaf1,percentage of leaf area damaged
+leaf2,percentage of leaf area damaged
+leaf3,percentage of leaf area damaged
+leaf4,percentage of leaf area damaged
+leaf5,percentage of leaf area damaged
+leaf6,percentage of leaf area damaged
+notes,

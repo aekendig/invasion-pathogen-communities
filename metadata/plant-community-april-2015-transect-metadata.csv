@@ -1,0 +1,22 @@
+﻿title,plant-community-april-2015-transect
+authors,"Erin Mordecai, Reuben Brandt"
+location,transect experiment in Jasper Ridge Biological Preserve
+date,20150408 - 20150409
+entered-original,JRBP_plant_count_combined_2015-04-10.csv
+,
+columns,meaning
+Transect,transect ID (1 - 10)
+Date,date of observation
+Recorder,recorder (see authors)
+Plot,plot ID (A - E)
+ELYgla,density (plants per 1 m^2) of Elymus glaucus
+STIpul,density (plants per 1 m^2) of Stipa pulchra
+PHAaqu,density (plants per 1 m^2) of Phalaris aquatica
+AVEbar,density (plants per 1 m^2) of Avena barbata
+BROdia,density (plants per 1 m^2) of Bromus diandrus
+BROhor,density (plants per 1 m^2) of Bromus hordeaceus
+FESper,density (plants per 1 m^2) of Festuca perennis
+BROste,density (plants per 1 m^2) of Bromus sterilis
+FESmyu,density (plants per 1 m^2) of Festuca myuros
+BRAdis,density (plants per 1 m^2) of Brachypodium distachyon
+AVEfat,density (plants per 1 m^2) of Avena fatua

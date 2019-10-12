@@ -1,0 +1,12 @@
+﻿title,experiment-plot-assignments-2016
+authors,Teri Barry (more?)
+location,competition experiment in Jasper Ridge Biological Preserve
+date,20160426
+entered-original,2016 Experimental Plot List 26Apr16.xlsx (more info in this file)
+,
+columns,meaning
+Number,plot ID number
+Plot type code,"competition treatment (L = lambda plot (cleared plots), X = competition plot (cleared and all species added as seeds except focal adults), A, B, C, D, E = adult competition plots (10, 8, 4, 2, 1 plants, repectively). Note that EG adult plots are categorized as X - mistake?"
+Species,"background/competitor species (AB = Avena barbata, BH = Bromus hordeaceus, SP = Stipa pulchra, BD = Bromus diandrus, EG = Elymus glaucus)"
+Density,density of background/competitor species
+Treatment,"fungal control treatment (fungicide, inoculum, ambient)"
