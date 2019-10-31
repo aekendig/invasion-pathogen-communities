@@ -1,5 +1,7 @@
 ## Goal: look at infection prevalence across density gradient
 
+# updated version is infection_density_experiment_analysis.R
+
 
 #### set up ####
 

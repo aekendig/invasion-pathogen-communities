@@ -1,5 +1,7 @@
 ## Goal: relationship between plant density and damage
 
+# updated version is damage_density_experiment_analysis.R
+
 
 #### set up ####
 

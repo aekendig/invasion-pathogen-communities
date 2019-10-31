@@ -1,5 +1,7 @@
 ## Goal: describe differences between pathogens associated with native and non-native plants
 
+# notes: updated version is species_origin_community_differences.R
+
 
 #### set up ####
 
