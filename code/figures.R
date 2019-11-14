@@ -1,5 +1,7 @@
 ## Goal: manuscrpit figures
 
+# updated version: density_figures.R
+
 
 #### set up ####
 

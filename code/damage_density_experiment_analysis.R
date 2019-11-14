@@ -76,11 +76,13 @@ filter(dat16Tleaf, is.na(native.density) | is.na(nonnative.density)) # all plots
 # combine 2015 and 2016 transect
 datTplant <- full_join(dat15plant, dat16Tplant) %>%
   mutate(natdens.s = scale(native.density)[,1],
-         nondens.s = scale(nonnative.density)[,1])
+         nondens.s = scale(nonnative.density)[,1],
+         nonnative.rel = nonnative.density / total.density)
 
 datTleaf <- full_join(dat15leaf, dat16Tleaf) %>%
   mutate(natdens.s = scale(native.density)[,1],
-         nondens.s = scale(nonnative.density)[,1])
+         nondens.s = scale(nonnative.density)[,1],
+         nonnative.rel = nonnative.density / total.density)
 
 # 2016 competition
 bg16C
@@ -93,7 +95,8 @@ datCplant <- dam16Cplant %>%
          origin = ifelse(nonnative == 1, "non-native", "native"),
          total.density = native.density + nonnative.density,
          natdens.s = scale(native.density)[,1],
-         nondens.s = scale(nonnative.density)[,1])
+         nondens.s = scale(nonnative.density)[,1],
+         nonnative.rel = nonnative.density / total.density)
 
 datCleaf <- dam16Cleaf %>%
   left_join(bg16C %>% mutate(bg.species = recode(bg.species, "EG adults" = "EG adult"))) %>%
@@ -101,20 +104,25 @@ datCleaf <- dam16Cleaf %>%
          origin = ifelse(nonnative == 1, "non-native", "native"),
          total.density = native.density + nonnative.density,
          natdens.s = scale(native.density)[,1],
-         nondens.s = scale(nonnative.density)[,1]) %>%
+         nondens.s = scale(nonnative.density)[,1],
+         nonnative.rel = nonnative.density / total.density) %>%
   filter(!is.na(infected))
 
-filter(dat16Cplant, is.na(native.density) | is.na(nonnative.density)) # all plots have info
-filter(dat16Cleaf, is.na(native.density) | is.na(nonnative.density)) # all plots have info
+filter(datCplant, is.na(native.density) | is.na(nonnative.density)) # all plots have info
+filter(datCleaf, is.na(native.density) | is.na(nonnative.density)) # all plots have info
 
 # all plants
 datplant <- full_join(datTplant, datCplant)
 
 datleaf <- full_join(datTleaf, datCleaf)
 
+# sample sizes
+nrow(datplant)
+unique(datplant$host)
+
 # plot-scale dataset
 plotdat <- datplant %>%
-  dplyr::select(year, experiment, plot, subplot, bg.species, competition.density, native.density, nonnative.density, total.density, natdens.s, nondens.s) %>%
+  dplyr::select(year, experiment, plot, subplot, bg.species, competition.density, native.density, nonnative.density, total.density, natdens.s, nondens.s, nonnative.rel) %>%
   unique() %>%
   mutate(year.f = factor(year))
 
@@ -183,26 +191,51 @@ plotdat %>%
   filter(experiment == "competition") %>%
   cor.test(~ natdens.s + nondens.s, data = .) # no cor
 
+# density/relative
+plotdat %>%
+  cor.test(~ nondens.s + nonnative.rel, data = .) # highly sig cor
+
+plotdat %>%
+  filter(experiment == "transect") %>%
+  cor.test(~ nondens.s + nonnative.rel, data = .) # highly sig cor
+
+plotdat %>%
+  filter(experiment == "competition") %>%
+  cor.test(~ nondens.s + nonnative.rel, data = .) # highly sig cor
+
 
 #### prop.dam by density ####
 
-# transect
-pmodT <- glmmTMB(infected ~ nonnative * (natdens.s + nondens.s) + (1|year/subplot/plant), data = datTleaf, family = binomial)
-summary(pmodT) # non-native have lower
-plot(simulateResiduals(pmodT))
-pmodTa <- model.avg(get.models(dredge(pmodT), subset = cumsum(weight) <= .95))
-summary(pmodTa) # origin is the most influential, native and non-native density are similar (both increase)
+# transect, absolute abundance
+pamodT <- glmmTMB(infected ~ nonnative * (natdens.s + nondens.s) + (1|year/subplot/plant), data = datTleaf, family = binomial)
+summary(pamodT) # non-native have lower
+plot(simulateResiduals(pamodT))
+pamodTa <- model.avg(get.models(dredge(pamodT), subset = cumsum(weight) <= .95))
+summary(pamodTa) # origin is the most influential, native and non-native density are similar (both increase)
 
 # alternate form of model
-pmodTb <- glmer(cbind(leaves.dam, leaves.tot) ~ nonnative * (natdens.s + nondens.s) + (1|year/subplot), data = datTplant, family = binomial) # singular fit
+pamodTb <- glmer(cbind(leaves.dam, leaves.tot) ~ nonnative * (natdens.s + nondens.s) + (1|year/subplot), data = datTplant, family = binomial) # singular fit
 
-# competition
-pmodC <- glmmTMB(infected ~ nonnative * (natdens.s + nondens.s) + (1|subplot/plant), data = datCleaf, family = binomial)
-summary(pmodC) # non-native have lower
-plot(simulateResiduals(pmodC))
-pmodCa <- model.avg(get.models(dredge(pmodC), subset = cumsum(weight) <= .95))
-summary(pmodCa) # origin is the most influential, native and non-native are  a third as important (both decrease)
+# transect, relative abundance
+prmodT <- glmmTMB(infected ~ nonnative * nonnative.rel + (1|year/subplot/plant), data = datTleaf, family = binomial)
+summary(prmodT) # none
+plot(simulateResiduals(prmodT))
+prmodTa <- model.avg(get.models(dredge(prmodT), subset = cumsum(weight) <= .95))
+summary(prmodTa) # origin way higher
 
+# competition, absolute abundance
+pamodC <- glmmTMB(infected ~ nonnative * (natdens.s + nondens.s) + (1|subplot/plant), data = datCleaf, family = binomial)
+summary(pamodC) # non-native have lower
+plot(simulateResiduals(pamodC))
+pamodCa <- model.avg(get.models(dredge(pamodC), subset = cumsum(weight) <= .95))
+summary(pamodCa) # origin is the most influential, native and non-native are  a third as important (both decrease)
+
+# competition, relative abundance
+prmodC <- glmmTMB(infected ~ nonnative * nonnative.rel + (1|subplot/plant), data = datCleaf, family = binomial)
+summary(prmodC) # none
+plot(simulateResiduals(prmodC))
+prmodCa <- model.avg(get.models(dredge(prmodC), subset = cumsum(weight) <= .95))
+summary(prmodCa) # origin
 
 #### mean.dam by density ####
 
@@ -210,25 +243,39 @@ summary(pmodCa) # origin is the most influential, native and non-native are  a t
 mdatT <- filter(datTplant, mean.dam > 0)
 mdatC <- filter(datCplant, mean.dam > 0)
 
-# transect
-mmodT <- glmmTMB(mean.dam ~ nonnative * (natdens.s + nondens.s) + (1|year/subplot), data = mdatT, family = beta_family)
-summary(mmodT) # no sig effects
-plot(simulateResiduals(mmodT))
-mmodTa <- model.avg(get.models(dredge(mmodT), subset = cumsum(weight) <= .95))
-summary(mmodTa) # origin is the most influential, followed closely by non-native and then native density (both increase)
+# transect, absolute abundance
+mamodT <- glmmTMB(mean.dam ~ nonnative * (natdens.s + nondens.s) + (1|year/subplot), data = mdatT, family = beta_family)
+summary(mamodT) # no sig effects
+plot(simulateResiduals(mamodT))
+mamodTa <- model.avg(get.models(dredge(mamodT), subset = cumsum(weight) <= .95))
+summary(mamodTa) # origin is the most influential, followed closely by non-native and then native density (both increase)
 
-# competition
-mmodC <- glmmTMB(mean.dam ~ nonnative * (natdens.s + nondens.s) + (1|subplot), data = mdatC, family = beta_family)
-summary(mmodC) # non-native have lower
-plot(simulateResiduals(mmodC))
-mmodCa <- model.avg(get.models(dredge(mmodC), subset = cumsum(weight) <= .95))
-summary(mmodCa) # origin the most important, followed by non-native and native density (both decrease)
+# transect, relative abundance
+mrmodT <- glmmTMB(mean.dam ~ nonnative * nonnative.rel + (1|year/subplot), data = mdatT, family = beta_family)
+summary(mrmodT) # none
+plot(simulateResiduals(mrmodT))
+mrmodTa <- model.avg(get.models(dredge(mrmodT), subset = cumsum(weight) <= .95))
+summary(mrmodTa) # origin most
+
+# competition, absolute abundance
+mamodC <- glmmTMB(mean.dam ~ nonnative * (natdens.s + nondens.s) + (1|subplot), data = mdatC, family = beta_family)
+summary(mamodC) # non-native have lower
+plot(simulateResiduals(mamodC))
+mamodCa <- model.avg(get.models(dredge(mamodC), subset = cumsum(weight) <= .95))
+summary(mamodCa) # origin the most important, followed by non-native and native density (both decrease)
+
+# competition, relative abundance
+mrmodC <- glmmTMB(mean.dam ~ nonnative * nonnative.rel + (1|subplot), data = mdatC, family = beta_family)
+summary(mrmodC) # none
+plot(simulateResiduals(mrmodC))
+mrmodCa <- model.avg(get.models(dredge(mrmodC), subset = cumsum(weight) <= .95))
+summary(mrmodCa) # origin
 
 
 #### outputs ####
-# write_csv(plotdat, "./output/plot_scale_density_data.csv") # same file as in damage_density_analysis
+# write_csv(plotdat, "./output/plot_scale_density_data.csv") # exported this in damage_density_analysis
 
-write_csv(mdatT, "./output/damage_density_experiment_meandam_transect16_data.csv")
+write_csv(mdatT, "./output/damage_density_experiment_meandam_transect_data.csv")
 write_csv(mdatC, "./output/damage_density_experiment_meandam_competition_data.csv")
 
 write_csv(datTleaf, "./output/damage_density_experiment_propdam_transect_data.csv")
@@ -237,14 +284,12 @@ write_csv(datCleaf, "./output/damage_density_experiment_propdam_competition_data
 write_csv(datTplant, "./output/damage_density_experiment_plant_transect_data.csv")
 write_csv(datCplant, "./output/damage_density_experiment_plant_competition_data.csv")
 
-save(mmodT, file = "./output/damage_density_experiment_meandam_transect16_model.rda")
-save(mmodC, file = "./output/damage_density_experiment_meandam_competition_model.rda")
+save(mamodTa, file = "./output/damage_density_experiment_meandam_absolute_transect_avg_amodel.rda")
+save(mamodCa, file = "./output/damage_density_experiment_meandam_absolute_competition_avg_amodel.rda")
+save(mrmodTa, file = "./output/damage_density_experiment_meandam_relative_transect_avg_amodel.rda")
+save(mrmodCa, file = "./output/damage_density_experiment_meandam_relative_competition_avg_amodel.rda")
 
-save(pmodT, file = "./output/damage_density_experiment_propdam_transect16_model.rda")
-save(pmodC, file = "./output/damage_density_experiment_propdam_competition_model.rda")
-
-save(mmodTa, file = "./output/damage_density_experiment_meandam_transect16_avg_model.rda")
-save(mmodCa, file = "./output/damage_density_experiment_meandam_competition_avg_model.rda")
-
-save(pmodTa, file = "./output/damage_density_experiment_propdam_transect16_avg_model.rda")
-save(pmodCa, file = "./output/damage_density_experiment_propdam_competition_avg_model.rda")
+save(pamodTa, file = "./output/damage_density_experiment_propdam_absolute_transect_avg_amodel.rda")
+save(pamodCa, file = "./output/damage_density_experiment_propdam_absolute_competition_avg_amodel.rda")
+save(prmodTa, file = "./output/damage_density_experiment_propdam_relative_transect_avg_amodel.rda")
+save(prmodCa, file = "./output/damage_density_experiment_propdam_relative_competition_avg_amodel.rda")

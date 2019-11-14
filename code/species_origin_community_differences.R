@@ -13,9 +13,12 @@ library(tidyverse)
 library(vegan)
 library(nationalparkcolors)
 library(sjPlot)
+library(rusda)
+library(mgsub)
 
 # figure settings
-pal <- c(park_palette("Everglades")[1:5], "black", "gray", "chartreuse")
+pal <- c(park_palette("Everglades")[1:5], "black", "mediumpurple3", "olivedrab4")
+shapes <- c(0, 1, 2, 5, 19, 13, 14, 15)
 axisText = 12
 axisTitle = 14
 legendText = 12
@@ -69,6 +72,11 @@ veganCovEllipse <- function (df){
 dat1 <- dat %>%
   filter(experiment != "JEF transect")
 
+# sample sizes
+nrow(dat1)
+unique(dat1$experiment)
+unique(dat1$host)
+
 # wide dataset
 (datw <- datw_fun(dat1, 0))
 # create one that excludes BRAD (much lower sampling than others)
@@ -80,6 +88,43 @@ cdat1 <- cdat_fun(datw1)
 # environmental matrix
 edat1 <- datw1 %>% select(c(year:grass.status))
 
+
+#### host specificity data ####
+
+# pathogen data
+pdat <- dat1 %>%
+  group_by(grass.status, otu.id, taxonomy) %>%
+  summarise(abundance = length(isolate.id)) %>%
+  mutate(pathogen = mgsub(as.character(taxonomy), c(" cf.", " sp.", "unknown "), c("", "", "")),
+         species = case_when(sapply(strsplit(pathogen, " "), length) == 2 ~ TRUE,
+                             TRUE ~ FALSE)) %>%
+  ungroup()
+
+# pathogens with specificity data - couldn't get it to work within the case_when statment
+# had to remove pathogens without records
+sdat <- pdat %>%
+  filter(species == T & !(pathogen %in% c("Parastagonospora cumpignensis", "Preussia lignicola"))) %>%
+  select(pathogen) %>%
+  unique() %>%
+  mutate(host.num = NA)
+
+#### start here
+## connection refused after running it multiple times - add manually?
+# add specificity data to pathogens with loop (errors with mutate)
+for(i in 1:nrow(sdat)){
+  hosts <- length(unique(associations(sdat$pathogen[i], database = "FH", spec_type = "fungus")$associations$host))
+  sdat$host.num[i] <- hosts
+}
+
+%>%
+  tail() %>%
+  mutate(host.num = length(unique(associations(pathogen, database = "FH", spec_type = "fungus")$associations$host)))
+            
+
+
+
+
+length(unique(aiass$associations$host))
 
 #### output taxonomy table ####
 
@@ -144,7 +189,8 @@ gof1b <- goodness(nmds1b)
 # extract data scores from nmds
 ndat1 <- as.data.frame(scores(nmds1)) %>%
   cbind(edat1) %>%
-  cbind(gof1)
+  cbind(gof1) %>%
+  mutate(grass.status = recode(grass.status, "non-native" = "exotic"))
 head(ndat1) 
 
 ndat1b <- as.data.frame(scores(nmds1b)) %>%
@@ -165,23 +211,23 @@ ell1 <- ndat1 %>%
 lab1 <- ndat1 %>%
   group_by(grass.status) %>%
   summarise(NMDS1 = mean(NMDS1),
-            NMDS2 = mean(NMDS2)) %>%
-  mutate(grass.status = recode(grass.status, "non-native" = "invasive"))
+            NMDS2 = mean(NMDS2))
 
 
 #### visualize ####
 
 # Chao nmds
+# for presentation
 pdf("./output/species_origin_community_differences.pdf", width = 5.5, height = 4)
 ndat1 %>%
   mutate(host = recode(host, AB = "A. barbata", AF = "A. fatua", BD = "B. diandrus", BH = "B. hordeaceus", EG = "E. glaucus", FP = "F. perennis", PA = "P. aquatica", SP = "S. pulchra"),
-         grass.status = recode(grass.status, "non-native" = "invasive")) %>%
+         grass.status = recode(grass.status, "non-native" = "exotic")) %>%
   ggplot(aes(x = NMDS1, y = NMDS2)) +
   geom_point(aes(fill = host, shape = grass.status, group = year.f), size = 3) +
   geom_path(data = ell1, aes(linetype = grass.status), size=1) +  
   geom_text(data = lab1, aes(label = grass.status)) +
   scale_fill_manual(values = pal, name = "Host species") +
-  scale_shape_manual(values = c(22, 25), name = "Origin") +
+  scale_shape_manual(values = c(22, 25), name = "Host status") +
   guides(fill=guide_legend(override.aes=list(shape=c(rep(25, 4), 22, 25, 25, 22))), linetype = "none") +
   theme_bw() +
   theme(axis.text = element_text(size = axisText, color="black"),
@@ -192,6 +238,26 @@ ndat1 %>%
         legend.text = element_text(size=legendText),
         legend.title = element_text(size=legendTitle))
 dev.off()
+
+# for publication
+nmdsplot <- ndat1 %>%
+  mutate(host = recode(host, AB = "A. barbata", AF = "A. fatua", BD = "B. diandrus", BH = "B. hordeaceus", EG = "E. glaucus", FP = "F. perennis", PA = "P. aquatica", SP = "S. pulchra"),
+         grass.status = recode(grass.status, "non-native" = "exotic")) %>%
+  ggplot(aes(x = NMDS1, y = NMDS2)) +
+  geom_point(aes(fill = grass.status, shape = host, group = year.f), size = 3) +
+  geom_path(data = ell1, aes(linetype = grass.status), size=1) +  
+  geom_text(data = lab1, aes(label = grass.status)) +
+  scale_fill_manual(values = c("black", "white"), name = "Host status") +
+  scale_shape_manual(values = shapes, name = "Host species") +
+  guides(fill = guide_legend(override.aes = list(shape = 21)), linetype = "none") +
+  theme_bw() +
+  theme(axis.text = element_text(size = 10, color="black"),
+        axis.title = element_text(size = 12),
+        panel.background = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        legend.text = element_text(size=10),
+        legend.title = element_text(size=12))
 
 # bray-curtis nmds
 ndat1b %>%

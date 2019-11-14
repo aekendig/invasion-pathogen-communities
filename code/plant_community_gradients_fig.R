@@ -122,7 +122,7 @@ relplot <- ggplot(plots, aes(native.rel, nonnative.rel, color = data.type, shape
 leg <- get_legend(relplot + theme(legend.background = element_blank(), legend.box.background = element_rect(color = "black")))
 
 pdf("./output/plant_community_gradients.pdf", width = 6, height = 6)
-plot_grid(densplot, relplot + theme(legend.position = "none"), leg,
+cowplot::plot_grid(densplot, relplot + theme(legend.position = "none"), leg,
           nrow = 3,
           rel_heights = c(1, 1, 0.15))
 dev.off()
