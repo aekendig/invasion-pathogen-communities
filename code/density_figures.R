@@ -9,6 +9,7 @@
 rm(list=ls())
 
 # load libraries
+library(sjPlot)
 library(tidyverse)
 library(cowplot)
 
@@ -86,6 +87,49 @@ dam_coef_fun <- function(mod, dam.type, exp.type){
     mutate(dam.type = dam.type,
            exp.type = exp.type)
 }
+
+
+#### table of pathogens ####
+
+# combine possible host species across years
+fun2 <- fun %>%
+  group_by(pathogen, otu.id) %>%
+  summarise(observed.host.species = toString(host.species)) %>%
+  ungroup() %>%
+  mutate(observed.host.species = case_when(otu.id == 1 ~ "Ab, Af, Bd, Bh, Eg, Fp, Pa, Sp",
+                                           otu.id == 2 ~ "Ab, Bd, Bh, Eg, Sp",
+                                           otu.id == 7 ~ "Bd, Bh, Eg, Sp",
+                                           otu.id == 4 ~ "Ab, Af, Bd, Bh, Eg, Fp, Sp",
+                                           otu.id == 5 ~ "Ab, Af, Bd, Bh, Eg, Fp, Sp",
+                                           otu.id == 3 ~ "Ab, Bd, Bh, Eg, Fp, Pa, Sp",
+                                           TRUE ~ observed.host.species)) %>% 
+  rename(taxonomy = pathogen)
+
+# otu's and code names
+otus <- tibble(pathogen = c("ainf", "pcha", "plol", "ptri", "dres", "pave", "rpro"),
+               otu.id = c(1, 4, 5, 8, 2, 7, 3),
+               path.abb = c("A. inf.", "P. cha.", "P. lol.", "P. tri.", "Dres.", "P. ave.", "R. pro")) %>%
+  left_join(select(fun2, otu.id, taxonomy, observed.host.species))
+
+
+# edit data
+prevdat <- idatT %>%
+  select(experiment, origin, ainf, pcha, plol, ptri, dres, pave, rpro) %>%
+  full_join(idatC %>% select(experiment, origin, ainf, pcha, plol, ptri, dres, pave, rpro)) %>%
+  gather(key = pathogen, value = present, -c(experiment, origin)) %>%
+  left_join(otus) %>%
+  mutate(status = recode(origin, "non-native" = "exotic") %>% factor(levels = c("native", "exotic")),
+         exp.type = case_when(experiment == "transect" ~ "Observational",
+                              experiment == "competition" ~ "Manipulated") %>% factor(levels = c("Observational", "Manipulated"))) 
+
+# make table
+fun_tab <- prevdat %>%
+  group_by(taxonomy, observed.host.species, status) %>%
+  summarise(otus = sum(present)) %>%
+  spread(key = status, value = otus) %>%
+  rename(native.abundance = native, exotic.abundance = exotic)
+
+tab_df(fun_tab)
 
 
 #### scaled density plots ####
@@ -168,23 +212,6 @@ dev.off()
 
 
 #### infection prevalence ####
-
-# otu's and code names
-otus <- tibble(pathogen = c("ainf", "pcha", "plol", "ptri", "dres", "pave"),
-               otu.id = c(1, 4, 5, 8, 2, 7),
-               path.abb = c("A. inf.", "P. cha.", "P. lol.", "P. tri.", "Dres.", "P. ave.")) %>%
-  left_join(select(fun, otu.id, taxonomy) %>% unique())
-
-
-# edit data
-prevdat <- idatT %>%
-  select(experiment, origin, ainf, pcha, plol, ptri, dres, pave) %>%
-  full_join(idatC %>% select(experiment, origin, ainf, pcha, plol, ptri, dres, pave)) %>%
-  gather(key = pathogen, value = present, -c(experiment, origin)) %>%
-  left_join(otus) %>%
-  mutate(status = recode(origin, "non-native" = "invasive") %>% factor(levels = c("native", "invasive")),
-         exp.type = case_when(experiment == "transect" ~ "Observational",
-                              experiment == "competition" ~ "Manipulated") %>% factor(levels = c("Observational", "Manipulated"))) 
 
 # figure
 pdf("./output/pathogen_species_prevalence_host_status.pdf", width = 6, height = 6)
