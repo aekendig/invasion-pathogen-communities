@@ -1,0 +1,34 @@
+mean	man				
+	Estimate	Std. error	z value	Pr(>|z|)	
+cond((Int))	-4.369757	0.074892	58.168	<2e-16	***
+cond(nonnative)	-0.191569	0.117415	1.628	0.104	
+cond(nondens.s)	-0.026845	0.042696	0.627	0.53	
+cond(natdens.s)	0.00891	0.037365	0.238	0.812	
+cond(natdens.s:nonnative)	-0.029103	0.075213	0.386	0.699	
+cond(nondens.s:nonnative)	-0.007461	0.04319	0.172	0.863	
+					
+mean	obs				
+	Estimate	Std. error	z value	Pr(>|z|)	
+cond((Int))	-3.343959	0.152534	21.804	<2e-16	***
+cond(nonnative)	-0.067291	0.125727	0.533	0.594	
+cond(natdens.s)	0.024705	0.05433	0.453	0.65	
+cond(nondens.s)	0.022445	0.053139	0.421	0.674	
+cond(nondens.s:nonnative)	0.006425	0.040073	0.16	0.873	
+					
+prop	man				
+	Estimate	Std. error	z value	Pr(>|z|)	
+cond((Int))	1.606098	0.142563	11.254	<2e-16	***
+cond(nonnative)	-1.329409	0.202374	6.562	<2e-16	***
+cond(natdens.s)	-0.031611	0.074232	0.426	0.67	
+cond(nondens.s)	-0.009247	0.059294	0.156	0.876	
+cond(natdens.s:nonnative)	0.00381	0.055836	0.068	0.946	
+cond(nondens.s:nonnative)	0.01407	0.075436	0.186	0.852	
+					
+prop	obs				
+	Estimate	Std. error	z value	Pr(>|z|)	
+cond((Int))	2.4525	0.238443	10.272	<2e-16	***
+cond(natdens.s)	0.29189	0.21752	1.341	0.18	
+cond(nondens.s)	0.165312	0.178268	0.927	0.354	
+cond(nonnative)	-2.689474	0.263684	10.187	<2e-16	***
+cond(natdens.s:nonnative)	-0.027943	0.138438	0.202	0.84	
+cond(nondens.s:nonnative)	-0.001402	0.079689	0.018	0.986	

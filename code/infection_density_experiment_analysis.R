@@ -1,6 +1,6 @@
 ## Goal: look at infection prevalence across density gradient
 
-# notes: updated of infection_experiment_analysis.R
+# notes: updated version of infection_experiment_analysis.R
 
 
 #### set up ####
@@ -136,21 +136,29 @@ sum(datC$rpro) # 1
 # check host type
 filter(datT, rpro == 1) %>% select(year, nonnative, natdens.s, nondens.s) %>% unique() # lots of combinations, but only two are from 2016
 
+# subset data
+datT15 <- filter(datT, year == 2015)
+
 # transect, absolute abundance
 rpamodT <- glmmTMB(rpro ~ nonnative * (natdens.s + nondens.s) + (1|year/subplot), data = datT, family = binomial)
 summary(rpamodT) # none
 plot(simulateResiduals(rpamodT))
 rpamodTa <- model.avg(get.models(dredge(rpamodT), subset = cumsum(weight) <= .95))
-summary(rpamodTa) # covergence issue (didn't exist when year was left out)
-rpamodTb <- glmmTMB(rpro ~ nonnative + natdens.s + nondens.s + (1|year/subplot), data = datT, family = binomial) # convergence issue
+summary(rpamodTa) # covergence issue
+
+# remove 2016
+rpamodT2 <- glmmTMB(rpro ~ nonnative * (natdens.s + nondens.s) + (1|subplot), data = datT15, family = binomial)
+summary(rpamodT2) #none
+plot(simulateResiduals(rpamodT2))
+rpamodT2a <- model.avg(get.models(dredge(rpamodT2), subset = cumsum(weight) <= .95))
+summary(rpamodT2a) # nat density most influential
 
 # transect, relative abundance
-rprmodT <- glmmTMB(rpro ~ nonnative * nonnative.rel + (1|year/subplot), data = datT, family = binomial) # convergence issue (didn't exist when year was left out)
-rprmodTb <- glmmTMB(rpro ~ nonnative + nonnative.rel + (1|year/subplot), data = datT, family = binomial) 
-summary(rprmodTb) # none
-plot(simulateResiduals(rprmodTb))
-rprmodTa <- model.avg(get.models(dredge(rprmodTb), subset = cumsum(weight) <= .95)) # convergence issue
-
+rprmodT <- glmmTMB(rpro ~ nonnative * nonnative.rel + (1|subplot), data = datT15, family = binomial)
+summary(rprmodT) #none
+plot(simulateResiduals(rprmodT))
+rprmodTa <- model.avg(get.models(dredge(rprmodT), subset = cumsum(weight) <= .95))
+summary(rprmodTa) # relative abundance and origin similar
 
 #### pcha ####
 
@@ -390,6 +398,9 @@ summary(parmodCa) # origin
 
 write_csv(datT, "./output/infect_density_experiment_transect_data.csv")
 write_csv(datC, "./output/infect_density_experiment_competition_data.csv")
+
+save(rpamodT2a, file = "./output/infection_density_experiment_rpro_absolute_transect_avg_model.rda")
+save(rprmodTa, file = "./output/infection_density_experiment_rpro_relative_transect_avg_model.rda")
 
 save(aiamodTa, file = "./output/infection_density_experiment_ainf_absolute_transect_avg_model.rda")
 save(airmodTa, file = "./output/infection_density_experiment_ainf_relative_transect_avg_model.rda")

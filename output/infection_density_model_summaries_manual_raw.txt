@@ -1,0 +1,75 @@
+dres	obs						
+	Estimate	Std.	Adjusted	SE	z	value	Pr(>|z|)
+cond((Int))	-6.3398	2.6697	2.362	0.0182	*		
+cond(nondens.s)	0.319	0.6126	0.519	0.6038			
+cond(natdens.s)	-0.5728	0.9466	0.603	0.5462			
+cond(nonnative)	-0.337	0.7809	0.43	0.6674			
+pa	obs						
+	Estimate	Std.	Adjusted	SE	z	value	Pr(>|z|)
+cond((Int))	-2.3272	0.55741	4.146	3.38E-05	***		
+cond(nonnative)	-2.53682	1.08529	2.321	0.0203	*		
+cond(natdens.s)	0.12365	0.28728	0.429	0.6682			
+cond(nondens.s)	-0.05958	0.22859	0.259	0.7954			
+pc	obs						
+	Estimate	Std.	Adjusted	SE	z	value	Pr(>|z|)
+cond((Int))	-2.40747	0.74806	3.172	0.00152	**		
+cond(nondens.s)	0.0766	0.21935	0.346	0.72942			
+cond(natdens.s)	0.04389	0.23011	0.188	0.85061			
+pl	obs						
+	Estimate	Std.	Adjusted	SE	z	value	Pr(>|z|)
+cond((Int))	-2.35428	0.49678	4.713	2.40E-06	***		
+cond(natdens.s)	-0.34546	0.43419	0.793	0.428			
+cond(nonnative)	0.55158	0.57708	0.952	0.341			
+cond(natdens.s:nonnative)	0.1075	0.3526	0.304	0.761			
+cond(nondens.s)	0.06687	0.16922	0.393	0.694			
+pt	obs						
+	Estimate	Std.	Adjusted	SE	z	value	Pr(>|z|)
+cond((Int))	-3.32839	2.45634	1.336	0.181			
+cond(natdens.s)	0.04845	0.28733	0.167	0.868			
+cond(nondens.s)	0.01279	0.19164	0.066	0.948			
+rp	obs						
+	Estimate	Std.	Adjusted	SE	z	value	Pr(>|z|)
+cond((Int))	-2.07018	0.34134	6.011	<2e-16	***		
+cond(natdens.s)	0.58289	0.55519	1.045	0.296			
+cond(nondens.s)	-0.06236	0.21557	0.287	0.774			
+cond(nonnative)	0.01307	0.32469	0.04	0.968			
+cond(natdens.s:nonnative)	0.05595	0.31167	0.179	0.858			
+ai	man						
+	Estimate	Std.	Adjusted	SE	z	value	Pr(>|z|)
+cond((Int))	-1.8229	0.22004	8.237	<2e-16	***		
+cond(natdens.s)	-0.04608	0.15633	0.293	0.769			
+cond(nonnative)	-0.01071	0.59655	0.018	0.986			
+cond(nondens.s)	-0.02174	0.11806	0.183	0.855			
+cond(natdens.s:nonnative)	-0.20489	1.57382	0.13	0.897			
+pc	man						
+	Estimate	Std.	Adjusted	SE	z	value	Pr(>|z|)
+cond((Int))	-6.515	3.277	1.965	0.0494	*		
+cond(natdens.s)	-8.661	10.074	0.853	0.3936			
+cond(nondens.s)	-5.997	5.293	1.118	0.2637			
+pl	man						
+	Estimate	Std.	Adjusted	SE	z	value	Pr(>|z|)
+cond((Int))	-8.3333	3.552	2.337	0.0194	*		
+cond(natdens.s)	-19.2743	13.3811	1.435	0.1512			
+cond(nonnative)	-1.8837	1.9101	0.983	0.3255			
+cond(nondens.s)	0.0669	0.2447	0.272	0.7854			
+pt	man						
+	Estimate	Std.	Adjusted	SE	z	value	Pr(>|z|)
+cond((Int))	-7.61423	4.25502	1.773	0.0762	.		
+cond(natdens.s)	0.07242	0.46306	0.155	0.8767			
+cond(nondens.s)	0.30992	6.24354	0.049	0.9608			
+dres	man						
+	Estimate	Std.	Adjusted	SE	z	value	Pr(>|z|)
+cond((Int))	-0.5507	0.7643	0.719	0.472			
+cond(natdens.s)	0.25	0.2156	1.155	0.248			
+cond(nondens.s)	1.1763	2.0682	0.568	0.57			
+cond(nonnative)	1.1139	2.0667	0.538	0.591			
+cond(natdens.s:nonnative)	3.5878	5.6002	0.639	0.523			
+cond(nondens.s:nonnative)	-0.9184	2.0329	0.451	0.652			
+pa	man						
+	Estimate	Std.	Adjusted	SE	z	value	Pr(>|z|)
+cond((Int))	-2.56202	1.22402	2.088	0.0368	*		
+cond(nonnative)	-0.91256	1.87636	0.485	0.628			
+cond(nondens.s)	-1.51666	3.15297	0.48	0.6312			
+cond(nondens.s:nonnative)	1.59673	3.23527	0.493	0.6223			
+cond(natdens.s)	-0.03824	0.18243	0.209	0.8348			
+cond(natdens.s:nonnative)	-0.34811	3.36113	0.103	0.9179			
