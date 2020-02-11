@@ -127,12 +127,12 @@ fun2 <- fun %>%
   group_by(pathogen, otu.id, host.num) %>%
   summarise(observed.host.species = toString(host.species)) %>%
   ungroup() %>%
-  mutate(observed.host.species = case_when(otu.id == 1 ~ "Ab, Af, Bd, Bh, Eg, Fp, Pa, Sp",
+  mutate(observed.host.species = case_when(otu.id == 1 ~ "Ab, Af, Bd, Bh, Eg, Sp",
                                            otu.id == 2 ~ "Ab, Bd, Bh, Eg, Sp",
                                            otu.id == 7 ~ "Bd, Bh, Eg, Sp",
-                                           otu.id == 4 ~ "Ab, Af, Bd, Bh, Eg, Fp, Sp",
-                                           otu.id == 5 ~ "Ab, Af, Bd, Bh, Eg, Fp, Sp",
-                                           otu.id == 3 ~ "Ab, Bd, Bh, Eg, Fp, Pa, Sp",
+                                           otu.id == 4 ~ "Ab, Af, Bd, Bh, Eg, Sp",
+                                           otu.id == 5 ~ "Ab, Af, Bd, Bh, Eg, Sp",
+                                           otu.id == 3 ~ "Ab, Bd, Bh, Eg, Sp",
                                            TRUE ~ observed.host.species)) %>% 
   rename(taxonomy = pathogen)
 
@@ -149,25 +149,33 @@ prevdat <- idatT %>%
   full_join(idatC %>% select(experiment, origin, ainf, pcha, plol, ptri, dres, pave, rpro)) %>%
   gather(key = pathogen, value = present, -c(experiment, origin)) %>%
   left_join(otus) %>%
-  mutate(status = recode(origin, "non-native" = "exotic") %>% factor(levels = c("native", "exotic")),
+  mutate(status = recode(origin, "non-native" = "non-native\nannual", "native" = "native\nperennial"),
          exp.type = case_when(experiment == "transect" ~ "Observational",
                               experiment == "competition" ~ "Manipulated") %>% factor(levels = c("Observational", "Manipulated"))) 
 
 # make table
 fun_tab <- prevdat %>%
   group_by(taxonomy, observed.host.species, host.num, status) %>%
-  summarise(otus = sum(present)) %>%
-  spread(key = status, value = otus) %>%
-  rename(native.abundance = native, exotic.abundance = exotic)
+  summarise(otus = sum(present),
+            prop = round(otus/length(present), 2)) %>%
+  mutate(out = paste(otus, prop, sep = " (")) %>%
+  select(-c(otus, prop)) %>%
+  spread(key = status, value = out) 
 
 tab_df(fun_tab)
 
-# total number of isolates per group
+# transect design
 idatT %>%
-  select(isolate.id, origin) %>%
-  full_join(idatC %>% select(isolate.id, origin)) %>%
-  group_by(origin) %>%
-  summarise(n = n())
+  group_by(plot) %>%
+  summarise(n = length(unique(subplot)))
+
+idatT %>%
+  group_by(year) %>%
+  summarise(n = length(unique(subplot)))
+
+idatT %>%
+  group_by(year, origin) %>%
+  summarise(n = length(unique(isolate.id)))
 
 
 #### density plots ####

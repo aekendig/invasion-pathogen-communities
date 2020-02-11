@@ -24,20 +24,28 @@ fun <- read_csv("./output/taxonomy_species_origin_data.csv")
 
 #### edit data ####
 
+# edit fungal data
+dat1 <- dat %>%
+  filter(experiment != "JEF transect" & 
+           host %in% c("AB", "AF", "BRAD", "BD", "BH", "EG", "SP")) %>%
+  mutate(grass_group = recode(grass.status, native = "native\nperennial", "non-native" = "non-native\nannual"),
+         host_sp = recode(host, AB = "Avena barbata", AF = "Avena fatua", BRAD = "Brachypodium distachyonm", BD = "Bromus diandrus", BH = "Bromus hordeaceus", EG = "Elymus glaucus", SP = "Stipa pulchra"),
+         host_sp = fct_relevel(host_sp, "Avena barbata", "Avena fatua", "Brachypodium distachyonm"))
+
 # list of fungi to analyze
-select(fun, taxonomy, otu.id) %>% unique()
+select(fun, pathogen, otu.id) %>% unique()
 
 # combine transect background
 bgT <- full_join(bg15T, bg16T)
 
 # transect data
-datT <- dat %>%
+datT <- dat1 %>%
   inner_join(bgT) %>%
   mutate(nonnative = ifelse(host %in% c("EG", "SP"), 0, 1),
-         origin = ifelse(nonnative == 1, "non-native", "native"),
-         total.density = native.density + nonnative.density,
+         total.density = native.density + nonnative.density + other.density,
          natdens.s = scale(native.density)[,1],
          nondens.s = scale(nonnative.density)[,1],
+         othdens.s = scale(other.density)[,1],
          nonnative.rel = nonnative.density / total.density,
          ainf = ifelse(otu.id == 1, 1, 0),
          rpro = ifelse(otu.id == 3, 1, 0),
@@ -53,10 +61,9 @@ filter(dat, subplot %in% subplotT)
 filter(dat, subplot == "transect_7A") # checked the ones that weren't B and D
 
 # competition data
-datC <- dat %>%
+datC <- dat1 %>%
   inner_join(bgC) %>%
   mutate(nonnative = ifelse(host %in% c("EG", "SP"), 0, 1),
-         origin = ifelse(nonnative == 1, "non-native", "native"),
          total.density = native.density + nonnative.density,
          natdens.s = scale(native.density)[,1],
          nondens.s = scale(nonnative.density)[,1],
@@ -92,73 +99,89 @@ datC %>%
   cor.test(~ log(native.density + 1) + log(nonnative.density + 1), data = .) 
 
 
+#### sample sizes ####
+
+# transect plots
+datT %>%
+  group_by(year) %>%
+  summarise(n = length(unique(subplot)))
+
+# transect isolates
+datT %>%
+  group_by(year, grass_group) %>%
+  summarise(n = length(unique(isolate.id)))
+
+# competition plots
+datC %>%
+  group_by(bg.species, competition.density, competition.type) %>%
+  summarise(n = length(unique(subplot)))
+
+# competition isolates
+datC %>%
+  group_by(grass_group) %>%
+  summarise(n = length(unique(isolate.id)))
+
+
 #### ainf ####
 
 # check for presence
-sum(datT$ainf) # 33
+sum(datT$ainf) # 32
 sum(datC$ainf) # 30
 
 # transect, absolute abundance
-aiamodT <- glmmTMB(ainf ~ nonnative * (natdens.s + nondens.s) + (1|year/subplot), data = datT, family = binomial)
-summary(aiamodT) # non-native origin increases
+aiamodT <- glmmTMB(ainf ~ nonnative * (natdens.s + nondens.s + othdens.s) + (1|year/subplot), data = datT, family = binomial)
+summary(aiamodT) 
 plot(simulateResiduals(aiamodT))
 aiamodTa <- model.avg(get.models(dredge(aiamodT), subset = cumsum(weight) <= .95))
-summary(aiamodTa) # origin, 2/3 by nat and nonnat dens
+summary(aiamodTa) 
 
 # transect, relative abundance
 airmodT <- glmmTMB(ainf ~ nonnative * nonnative.rel + (1|year/subplot), data = datT, family = binomial)
-summary(airmodT) # none
+summary(airmodT) 
 plot(simulateResiduals(airmodT))
 airmodTa <- model.avg(get.models(dredge(airmodT), subset = cumsum(weight) <= .95))
-summary(airmodTa) # 1/3 by rel. ab, origin sig
+summary(airmodTa) 
 
 # competition, absolute abundance
 aiamodC <- glmmTMB(ainf ~ nonnative * (natdens.s + nondens.s) + (1|subplot), data = datC, family = binomial)
-summary(aiamodC) # none
+summary(aiamodC) 
 plot(simulateResiduals(aiamodC))
 aiamodCa <- model.avg(get.models(dredge(aiamodC), subset = cumsum(weight) <= .95))
-summary(aiamodCa) # main effects ~ 1/3
+summary(aiamodCa) 
 
 # competition, relative abundance
 airmodC <- glmmTMB(ainf ~ nonnative * nonnative.rel + (1|subplot), data = datC, family = binomial)
-summary(airmodC) # none
+summary(airmodC) 
 plot(simulateResiduals(airmodC))
 airmodCa <- model.avg(get.models(dredge(airmodC), subset = cumsum(weight) <= .95))
-summary(airmodCa) # main ~ 1/4
+summary(airmodCa) 
 
 
 #### rpro ####
 
 # check for presence
-sum(datT$rpro) # 18
+sum(datT$rpro) # 16
 sum(datC$rpro) # 1
 
 # check host type
-filter(datT, rpro == 1) %>% select(year, nonnative, natdens.s, nondens.s) %>% unique() # lots of combinations, but only two are from 2016
+filter(datT, rpro == 1) %>% select(year, nonnative, natdens.s, nondens.s, othdens.s) %>% unique() # lots of combinations, but only two are from 2016
 
-# subset data
+# subset data if needed
 datT15 <- filter(datT, year == 2015)
 
 # transect, absolute abundance
-rpamodT <- glmmTMB(rpro ~ nonnative * (natdens.s + nondens.s) + (1|year/subplot), data = datT, family = binomial)
-summary(rpamodT) # none
-plot(simulateResiduals(rpamodT))
-rpamodTa <- model.avg(get.models(dredge(rpamodT), subset = cumsum(weight) <= .95))
-summary(rpamodTa) # covergence issue
-
-# remove 2016
-rpamodT2 <- glmmTMB(rpro ~ nonnative * (natdens.s + nondens.s) + (1|subplot), data = datT15, family = binomial)
-summary(rpamodT2) #none
+rpamodT <- glmmTMB(rpro ~ nonnative * (natdens.s + nondens.s + othdens.s) + (1|year/subplot), data = datT, family = binomial) # model convergence error
+rpamodT2 <- glmmTMB(rpro ~ nonnative * (natdens.s + nondens.s) + othdens.s + (1|year/subplot), data = datT, family = binomial)
+summary(rpamodT2) 
 plot(simulateResiduals(rpamodT2))
-rpamodT2a <- model.avg(get.models(dredge(rpamodT2), subset = cumsum(weight) <= .95))
-summary(rpamodT2a) # nat density most influential
+rpamodTa <- model.avg(get.models(dredge(rpamodT2), subset = cumsum(weight) <= .95))
+summary(rpamodTa)
 
 # transect, relative abundance
-rprmodT <- glmmTMB(rpro ~ nonnative * nonnative.rel + (1|subplot), data = datT15, family = binomial)
-summary(rprmodT) #none
+rprmodT <- glmmTMB(rpro ~ nonnative * nonnative.rel + (1|year/subplot), data = datT, family = binomial)
+summary(rprmodT) 
 plot(simulateResiduals(rprmodT))
-rprmodTa <- model.avg(get.models(dredge(rprmodT), subset = cumsum(weight) <= .95))
-summary(rprmodTa) # relative abundance and origin similar
+
 
 #### pcha ####
 
@@ -167,38 +190,36 @@ sum(datT$pcha) # 11
 sum(datC$pcha) # 8
 
 # nonnative only?
-filter(datT, pcha == 1) %>% select(origin) %>% unique() # yes
-filter(datC, pcha == 1) %>% select(origin) %>% unique() # yes
+filter(datT, pcha == 1) %>% select(grass_group) %>% unique() # yes
+filter(datC, pcha == 1) %>% select(grass_group) %>% unique() # yes
 
 # subset data
-nondatT <- filter(datT, origin == "non-native")
-nondatC <- filter(datC, origin == "non-native")
+nondatT <- filter(datT, grass_group == "non-native\nannual")
+nondatC <- filter(datC, grass_group == "non-native\nannual")
 
 # transect, absolute abundance
-pcamodT <- glmmTMB(pcha ~ nonnative * (natdens.s + nondens.s) + (1|year/subplot), data = datT, family = binomial)
-summary(pcamodT) # output is unreliable - all z-values are 0
-pcamodTb <- glmmTMB(pcha ~ natdens.s + nondens.s + (1|year/subplot), data = nondatT, family = binomial)
-summary(pcamodTb) # none
-plot(simulateResiduals(pcamodTb))
-pcamodTa <- model.avg(get.models(dredge(pcamodTb), subset = cumsum(weight) <= .95))
-summary(pcamodTa) # nondens 1/4, natdens close
+pcamodT <- glmmTMB(pcha ~ natdens.s + nondens.s + othdens.s + (1|year/subplot), data = nondatT, family = binomial)
+summary(pcamodT)
+plot(simulateResiduals(pcamodT))
+pcamodTa <- model.avg(get.models(dredge(pcamodT), subset = cumsum(weight) <= .95))
+summary(pcamodTa)
 
 # transect, relative abundance
-pcrmodTb <- glmmTMB(pcha ~ nonnative.rel + (1|year/subplot), data = nondatT, family = binomial)
-summary(pcrmodTb) # none, value for rel kind of high (-2)
-plot(simulateResiduals(pcrmodTb))
+pcrmodT <- glmmTMB(pcha ~ nonnative.rel + (1|year/subplot), data = nondatT, family = binomial)
+summary(pcrmodT) 
+plot(simulateResiduals(pcrmodT))
 
 # competition, absolute abundance
-pcamodCb <- glmmTMB(pcha ~ natdens.s + nondens.s + (1|subplot), data = nondatC, family = binomial)
-summary(pcamodCb) # none
-plot(simulateResiduals(pcamodCb))
-pcamodCa <- model.avg(get.models(dredge(pcamodCb), subset = cumsum(weight) <= .95))
-summary(pcamodCa) # nondens = 1
+pcamodC <- glmmTMB(pcha ~ natdens.s + nondens.s + (1|subplot), data = nondatC, family = binomial)
+summary(pcamodC)
+plot(simulateResiduals(pcamodC))
+pcamodCa <- model.avg(get.models(dredge(pcamodC), subset = cumsum(weight) <= .95))
+summary(pcamodCa) 
 
 # competition, relative abundance
-pcrmodCb <- glmmTMB(pcha ~ nonnative.rel + (1|subplot), data = nondatC, family = binomial)
-summary(pcrmodCb) # none
-plot(simulateResiduals(pcrmodCb))
+pcrmodC <- glmmTMB(pcha ~ nonnative.rel + (1|subplot), data = nondatC, family = binomial)
+summary(pcrmodC) 
+plot(simulateResiduals(pcrmodC))
 
 # species-specific?
 nondatT %>%
@@ -221,35 +242,31 @@ sum(datT$plol) # 24
 sum(datC$plol) # 7
 
 # transect, absolute abundance
-plamodT <- glmmTMB(plol ~ nonnative * (natdens.s + nondens.s) + (1|year/subplot), data = datT, family = binomial)
-summary(plamodT) # none
-plot(simulateResiduals(plamodT))
-plamodTa <- model.avg(get.models(dredge(plamodT), subset = cumsum(weight) <= .95))
-summary(plamodTa) # origin, then native density
+plamodT <- glmmTMB(plol ~ nonnative * (natdens.s + nondens.s + othdens.s) + (1|year/subplot), data = datT, family = binomial) # convergence issue
+plamodT2 <- glmmTMB(plol ~ nonnative * (natdens.s + nondens.s) + othdens.s + (1|year/subplot), data = datT, family = binomial) 
+summary(plamodT2)
+plot(simulateResiduals(plamodT2))
+plamodTa <- model.avg(get.models(dredge(plamodT2), subset = cumsum(weight) <= .95))
+summary(plamodTa)
 
 # transect, relative abundance
 plrmodT <- glmmTMB(plol ~ nonnative * nonnative.rel + (1|year/subplot), data = datT, family = binomial)
-summary(plrmodT) # none
+summary(plrmodT)
 plot(simulateResiduals(plrmodT))
-plrmodTa <- model.avg(get.models(dredge(plrmodT), subset = cumsum(weight) <= .95))
-summary(plrmodTa) # origin
 
 # competition, absolute abundance
-plamodC <- glmmTMB(plol ~ nonnative * (natdens.s + nondens.s) + (1|subplot), data = datC, family = binomial)
-# model convergence error
+plamodC <- glmmTMB(plol ~ nonnative * (natdens.s + nondens.s) + (1|subplot), data = datC, family = binomial) # model convergence error
 filter(datC, plol == 1) %>% select(nonnative, natdens.s, nondens.s) # unclear what the issue is
-plamodCb <- glmmTMB(plol ~ nonnative + natdens.s + nondens.s + (1|subplot), data = datC, family = binomial)
-summary(plamodCb) # natdens
-plot(simulateResiduals(plamodCb))
-plamodCa <- model.avg(get.models(dredge(plamodCb), subset = cumsum(weight) <= .95))
-summary(plamodCa) # natdens
+plamodC2 <- glmmTMB(plol ~ nonnative + natdens.s + nondens.s + (1|subplot), data = datC, family = binomial)
+summary(plamodC2)
+plot(simulateResiduals(plamodC2))
+plamodCa <- model.avg(get.models(dredge(plamodC2), subset = cumsum(weight) <= .95))
+summary(plamodCa)
 
 # competition, relative abundance
 plrmodC <- glmmTMB(plol ~ nonnative * nonnative.rel + (1|subplot), data = datC, family = binomial)
-summary(plrmodC) # none
+summary(plrmodC)
 plot(simulateResiduals(plrmodC))
-plrmodCa <- model.avg(get.models(dredge(plrmodC), subset = cumsum(weight) <= .95))
-summary(plrmodCa) # main effects 0.22
 
 
 #### ptri ####
@@ -259,38 +276,36 @@ sum(datT$ptri) # 20
 sum(datC$ptri) # 3
 
 # native only?
-filter(datT, ptri == 1) %>% select(origin) %>% unique() # yes
-filter(datC, ptri == 1) %>% select(origin) %>% unique() # yes
+filter(datT, ptri == 1) %>% select(grass_group) %>% unique() # yes
+filter(datC, ptri == 1) %>% select(grass_group) %>% unique() # yes
 
 # subset data
-natdatT <- filter(datT, origin == "native")
-natdatC <- filter(datC, origin == "native")
+natdatT <- filter(datT, grass_group == "native\nperennial")
+natdatC <- filter(datC, grass_group == "native\nperennial")
 
 # transect, absolute abundance
-ptamodT <- glmmTMB(ptri ~ nonnative * (natdens.s + nondens.s) + (1|year/subplot), data = datT, family = binomial)
-summary(ptamodT) # none, z values are zero
-ptamodTb <- glmmTMB(ptri ~ natdens.s + nondens.s + (1|year/subplot), data = natdatT, family = binomial)
-summary(ptamodTb) # none
-plot(simulateResiduals(ptamodTb))
-ptamodTa <- model.avg(get.models(dredge(ptamodTb), subset = cumsum(weight) <= .95))
-summary(ptamodTa) # each density ~ 1/3
+ptamodT <- glmmTMB(ptri ~ natdens.s + nondens.s + othdens.s + (1|year/subplot), data = natdatT, family = binomial)
+summary(ptamodT) 
+plot(simulateResiduals(ptamodT))
+ptamodTa <- model.avg(get.models(dredge(ptamodT), subset = cumsum(weight) <= .95))
+summary(ptamodTa)
 
 # transect, relative abundance
-ptrmodTb <- glmmTMB(ptri ~ nonnative.rel + (1|year/subplot), data = natdatT, family = binomial)
-summary(ptrmodTb) # none
-plot(simulateResiduals(ptrmodTb))
+ptrmodT <- glmmTMB(ptri ~ nonnative.rel + (1|year/subplot), data = natdatT, family = binomial)
+summary(ptrmodT) 
+plot(simulateResiduals(ptrmodT))
 
 # competition, absolute abundance
-ptamodCb <- glmmTMB(ptri ~ natdens.s + nondens.s + (1|subplot), data = natdatC, family = binomial)
-summary(ptamodCb) # none
-plot(simulateResiduals(ptamodCb))
-ptamodCa <- model.avg(get.models(dredge(ptamodCb), subset = cumsum(weight) <= .95))
-summary(ptamodCa) # each density ~ 1/5
+ptamodC <- glmmTMB(ptri ~ natdens.s + nondens.s + (1|subplot), data = natdatC, family = binomial)
+summary(ptamodC)
+plot(simulateResiduals(ptamodC))
+ptamodCa <- model.avg(get.models(dredge(ptamodC), subset = cumsum(weight) <= .95))
+summary(ptamodCa) 
 
 # competition, relative abundance
-ptrmodCb <- glmmTMB(ptri ~ nonnative.rel + (1|subplot), data = natdatC, family = binomial)
-summary(ptrmodCb) # none
-plot(simulateResiduals(ptrmodCb))
+ptrmodC <- glmmTMB(ptri ~ nonnative.rel + (1|subplot), data = natdatC, family = binomial)
+summary(ptrmodC)
+plot(simulateResiduals(ptrmodC))
 
 # check host specificity
 natdatT %>%
@@ -309,51 +324,45 @@ natdatC %>%
 #### dres ####
 
 # check for presence
-sum(datT$dres) # 8
+sum(datT$dres) # 7
 sum(datC$dres) # 68
 
 # check year difference
 datT %>% 
-  group_by(year, origin) %>% 
+  group_by(year, grass_group) %>% 
   summarise(dr = sum(dres),
             n = length(dres),
             dr.prop = dr/n) # only in natives in 2016, but in both in 2015
 
 # transect, absolute abundance
-dramodT <- glmmTMB(dres ~ nonnative * (natdens.s + nondens.s) + (1|year/subplot), data = datT, family = binomial)
-summary(dramodT) # origin:natdens, origin, nondens - only working with a few points to get interaction
-plot(simulateResiduals(dramodT))
-dramodTa <- model.avg(get.models(dredge(dramodT), subset = cumsum(weight) <= .95)) # convergence issue
-dramodTb <- glmmTMB(dres ~ nonnative + natdens.s + nondens.s + (1|year/subplot), data = datT, family = binomial)
-summary(dramodTb) # none
-plot(simulateResiduals(dramodTb))
-dramodTa <- model.avg(get.models(dredge(dramodTb), subset = cumsum(weight) <= .95)) 
-summary(dramodTa) # main effects ~ 1/3
+dramodT <- glmmTMB(dres ~ nonnative * (natdens.s + nondens.s + othdens.s) + (1|year/subplot), data = datT, family = binomial) # convergence problem
+dramodT2 <- glmmTMB(dres ~ nonnative * (natdens.s + nondens.s) + othdens.s + (1|year/subplot), data = datT, family = binomial) 
+summary(dramodT2)
+plot(simulateResiduals(dramodT2))
+dramodTa <- model.avg(get.models(dredge(dramodT2), subset = cumsum(weight) <= .95)) # convergence issue
+dramodT3 <- glmmTMB(dres ~ nonnative + natdens.s + nondens.s + othdens.s + (1|year/subplot), data = datT, family = binomial) 
+summary(dramodT3)
+plot(simulateResiduals(dramodT3))
+dramodTa <- model.avg(get.models(dredge(dramodT3), subset = cumsum(weight) <= .95))
+summary(dramodTa)
 
 # transect, relative abundance
 drrmodT <- glmmTMB(dres ~ nonnative * nonnative.rel + (1|year/subplot), data = datT, family = binomial)
 # convergence error
 filter(datT, dres == 1) %>% select(nonnative.rel) %>% unique() # all very high nonnative rel abu.
-drrmodTb <- glmmTMB(dres ~ nonnative + nonnative.rel + (1|year/subplot), data = datT, family = binomial)
-summary(drrmodTb) # none
-plot(simulateResiduals(drrmodTb))
-drrmodTa <- model.avg(get.models(dredge(drrmodTb), subset = cumsum(weight) <= .95))
-summary(drrmodTa) # nonnative rel 1/3
+drrmodT2 <- glmmTMB(dres ~ nonnative + nonnative.rel + (1|year/subplot), data = datT, family = binomial) # still a convergence problem
 
 # competition, absolute abundance
 dramodC <- glmmTMB(dres ~ nonnative * (natdens.s + nondens.s) + (1|subplot), data = datC, family = binomial)
-summary(dramodC) # nonnative-natdens int
+summary(dramodC)
 plot(simulateResiduals(dramodC))
 dramodCa <- model.avg(get.models(dredge(dramodC), subset = cumsum(weight) <= .95))
-summary(dramodCa) # nat dens and nondens highly impt, followed by origin
+summary(dramodCa) 
 
 # competition, relative abundance
 drrmodC <- glmmTMB(dres ~ nonnative * nonnative.rel + (1|subplot), data = datC, family = binomial)
-summary(drrmodC) # none
-filter(datC, dres == 1) %>% select(nonnative.rel) %>% unique() # pretty high, but not exclusively
+summary(drrmodC) 
 plot(simulateResiduals(drrmodC))
-drrmodCa <- model.avg(get.models(dredge(drrmodC), subset = cumsum(weight) <= .95))
-summary(drrmodCa) # origin > rel
 
 
 #### pave ####
@@ -363,35 +372,30 @@ sum(datT$pave) # 12
 sum(datC$pave) # 24
 
 # transect, absolute abundance
-paamodT <- glmmTMB(pave ~ nonnative * (natdens.s + nondens.s) + (1|year/subplot), data = datT, family = binomial)
-summary(paamodT) # none
-plot(simulateResiduals(paamodT))
-paamodTa <- model.avg(get.models(dredge(paamodT), subset = cumsum(weight) <= .95)) # convergence
-paamodTb <- glmmTMB(pave ~ nonnative + natdens.s + nondens.s + (1|year/subplot), data = datT, family = binomial)
-summary(paamodTb) # origin
-paamodTa <- model.avg(get.models(dredge(paamodTb), subset = cumsum(weight) <= .95))
-summary(paamodTa) # origin
+paamodT <- glmmTMB(pave ~ nonnative * (natdens.s + nondens.s + othdens.s) + (1|year/subplot), data = datT, family = binomial) # convergence issue
+paamodT2 <- glmmTMB(pave ~ nonnative * (natdens.s + nondens.s) + othdens.s + (1|year/subplot), data = datT, family = binomial) # convergence issue
+paamodT3 <- glmmTMB(pave ~ nonnative + natdens.s + nondens.s + (1|year/subplot), data = datT, family = binomial)
+summary(paamodT3) 
+plot(simulateResiduals(paamodT3))
+paamodTa <- model.avg(get.models(dredge(paamodT3), subset = cumsum(weight) <= .95))
+summary(paamodTa) 
 
 # transect, relative abundance
 parmodT <- glmmTMB(pave ~ nonnative * nonnative.rel + (1|year/subplot), data = datT, family = binomial)
-summary(parmodT) # none
+summary(parmodT)
 plot(simulateResiduals(parmodT))
-parmodTa <- model.avg(get.models(dredge(parmodT), subset = cumsum(weight) <= .95))
-summary(parmodTa) # origin
 
 # competition, absolute abundance
 paamodC <- glmmTMB(pave ~ nonnative * (natdens.s + nondens.s) + (1|subplot), data = datC, family = binomial)
-summary(paamodC) # none
+summary(paamodC)
 plot(simulateResiduals(paamodC))
 paamodCa <- model.avg(get.models(dredge(paamodC), subset = cumsum(weight) <= .95))
-summary(paamodCa) # origin
+summary(paamodCa)
 
 # competition, relative abundance
 parmodC <- glmmTMB(pave ~ nonnative * nonnative.rel + (1|subplot), data = datC, family = binomial)
-summary(parmodC) # none
+summary(parmodC)
 plot(simulateResiduals(parmodC))
-parmodCa <- model.avg(get.models(dredge(parmodC), subset = cumsum(weight) <= .95))
-summary(parmodCa) # origin
 
 
 #### outputs ####
@@ -399,35 +403,16 @@ summary(parmodCa) # origin
 write_csv(datT, "./output/infect_density_experiment_transect_data.csv")
 write_csv(datC, "./output/infect_density_experiment_competition_data.csv")
 
-save(rpamodT2a, file = "./output/infection_density_experiment_rpro_absolute_transect_avg_model.rda")
-save(rprmodTa, file = "./output/infection_density_experiment_rpro_relative_transect_avg_model.rda")
-
+save(rpamodTa, file = "./output/infection_density_experiment_rpro_absolute_transect_avg_model.rda")
 save(aiamodTa, file = "./output/infection_density_experiment_ainf_absolute_transect_avg_model.rda")
-save(airmodTa, file = "./output/infection_density_experiment_ainf_relative_transect_avg_model.rda")
 save(aiamodCa, file = "./output/infection_density_experiment_ainf_absolute_competition_avg_model.rda")
-save(airmodCa, file = "./output/infection_density_experiment_ainf_relative_competition_avg_model.rda")
-
 save(pcamodTa, file = "./output/infection_density_experiment_pcha_absolute_transect_avg_model.rda")
-save(pcrmodTb, file = "./output/infection_density_experiment_pcha_relative_transect_avg_model.rda")
 save(pcamodCa, file = "./output/infection_density_experiment_pcha_absolute_competition_avg_model.rda")
-save(pcrmodCb, file = "./output/infection_density_experiment_pcha_relative_competition_avg_model.rda")
-
 save(plamodTa, file = "./output/infection_density_experiment_plol_absolute_transect_avg_model.rda")
-save(plrmodTa, file = "./output/infection_density_experiment_plol_relative_transect_avg_model.rda")
 save(plamodCa, file = "./output/infection_density_experiment_plol_absolute_competition_avg_model.rda")
-save(plrmodCa, file = "./output/infection_density_experiment_plol_relative_competition_avg_model.rda")
-
 save(ptamodTa, file = "./output/infection_density_experiment_ptri_absolute_transect_avg_model.rda")
-save(ptrmodTb, file = "./output/infection_density_experiment_ptri_relative_transect_avg_model.rda")
 save(ptamodCa, file = "./output/infection_density_experiment_ptri_absolute_competition_avg_model.rda")
-save(ptrmodCb, file = "./output/infection_density_experiment_ptri_relative_competition_avg_model.rda")
-
 save(dramodTa, file = "./output/infection_density_experiment_dres_absolute_transect_avg_model.rda")
-save(drrmodTa, file = "./output/infection_density_experiment_dres_relative_transect_avg_model.rda")
 save(dramodCa, file = "./output/infection_density_experiment_dres_absolute_competition_avg_model.rda")
-save(drrmodCa, file = "./output/infection_density_experiment_dres_relative_competition_avg_model.rda")
-
 save(paamodTa, file = "./output/infection_density_experiment_pave_absolute_transect_avg_model.rda")
-save(parmodTa, file = "./output/infection_density_experiment_pave_relative_transect_avg_model.rda")
 save(paamodCa, file = "./output/infection_density_experiment_pave_absolute_competition_avg_model.rda")
-save(parmodCa, file = "./output/infection_density_experiment_pave_relative_competition_avg_model.rda")
