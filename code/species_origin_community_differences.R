@@ -336,6 +336,15 @@ nmds1b <- metaMDS(cdat1, distance = "bray", halfchange = F, expand = F, trymax =
 gof1 <- goodness(nmds1)
 gof1b <- goodness(nmds1b)
 
+# stress plot
+stressplot(nmds1)
+stressplot(nmds1b)
+
+# species scores
+scores1 <- scores(nmds1, display = "species") %>% 
+  mutate(species = row.names) %>%
+  as_tibble()
+
 # extract data scores from nmds
 ndat1 <- as.data.frame(scores(nmds1)) %>%
   cbind(edat1) %>%
@@ -381,7 +390,29 @@ lab1 <- ndat1 %>%
 
 # abbreviate genus
 ndat1 <- ndat1 %>%
-  mutate(grass_sp = recode(host_sp, "Avena barbata" = "A. barbata", "Avena fatua" = "A. fatua", "Brachypodium distachyonm" = "B. distachyonm", "Bromus diandrus" = "B. diandrus", "Bromus hordeaceus" = "B. hordeaceus", "Elymus glaucus" = "E. glaucus", "Stipa pulchra" = "S. pulchra"))
+  mutate(grass_sp = recode(host_sp, "Avena barbata" = "A. barbata", "Avena fatua" = "A. fatua", "Brachypodium distachyonm" = "B. distachyon", "Bromus diandrus" = "B. diandrus", "Bromus hordeaceus" = "B. hordeaceus", "Elymus glaucus" = "E. glaucus", "Stipa pulchra" = "S. pulchra"))
+
+
+#### bar plot ####
+
+# summarize by proportion
+# add abbreviated genus
+dat1_sum <- dat1 %>%
+  mutate(grass_sp = recode(host_sp, "Avena barbata" = "A. barbata", "Avena fatua" = "A. fatua", "Brachypodium distachyonm" = "B. distachyon", "Bromus diandrus" = "B. diandrus", "Bromus hordeaceus" = "B. hordeaceus", "Elymus glaucus" = "E. glaucus", "Stipa pulchra" = "S. pulchra")) %>%
+  group_by(grass.status, grass_group, grass_sp, otu.id, taxonomy) %>%
+  summarise(isolates = n()) %>%
+  ungroup() %>%
+  group_by(grass.status, grass_group, grass_sp) %>%
+  mutate(tot = sum(isolates),
+         prop = isolates / tot)
+
+# native plot
+dat1_sum %>%
+  ggplot(aes(x = grass_sp, y = prop, fill = taxonomy)) +
+  geom_bar(stat = "identity") +
+  facet_wrap(~grass_group, scales = "free", ncol = 1) +
+  coord_flip() +
+  theme(legend.position = "none")
 
 
 #### visualize ####

@@ -99,29 +99,6 @@ datC %>%
   cor.test(~ log(native.density + 1) + log(nonnative.density + 1), data = .) 
 
 
-#### sample sizes ####
-
-# transect plots
-datT %>%
-  group_by(year) %>%
-  summarise(n = length(unique(subplot)))
-
-# transect isolates
-datT %>%
-  group_by(year, grass_group) %>%
-  summarise(n = length(unique(isolate.id)))
-
-# competition plots
-datC %>%
-  group_by(bg.species, competition.density, competition.type) %>%
-  summarise(n = length(unique(subplot)))
-
-# competition isolates
-datC %>%
-  group_by(grass_group) %>%
-  summarise(n = length(unique(isolate.id)))
-
-
 #### ainf ####
 
 # check for presence
