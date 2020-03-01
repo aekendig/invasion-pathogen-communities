@@ -20,7 +20,7 @@ library(ggrepel)
 
 # figure settings
 pal <- c(park_palette("Everglades")[1:5], "black", "mediumpurple3", "olivedrab4")
-shapes <- c(0, 1, 2, 5, 13, 19, 17)
+shapes <- c(0, 1, 2, 5, 19, 17)
 axisText = 12
 axisTitle = 14
 legendText = 12
@@ -35,10 +35,10 @@ dat <- read.csv("./data/fungal_pathogens_2015_2017.csv")
 # remove JEF to make numbers between native and non-native more comparable
 dat1 <- dat %>%
   filter(experiment != "JEF transect" & 
-           host %in% c("AB", "AF", "BRAD", "BD", "BH", "EG", "SP")) %>%
+           host %in% c("AB", "AF", "BD", "BH", "EG", "SP")) %>%
   mutate(grass_group = recode(grass.status, native = "native\nperennial", "non-native" = "non-native\nannual"),
-         host_sp = recode(host, AB = "Avena barbata", AF = "Avena fatua", BRAD = "Brachypodium distachyonm", BD = "Bromus diandrus", BH = "Bromus hordeaceus", EG = "Elymus glaucus", SP = "Stipa pulchra"),
-           host_sp = fct_relevel(host_sp, "Avena barbata", "Avena fatua", "Brachypodium distachyonm"))
+         host_sp = recode(host, AB = "Avena barbata", AF = "Avena fatua", BD = "Bromus diandrus", BH = "Bromus hordeaceus", EG = "Elymus glaucus", SP = "Stipa pulchra"),
+           host_sp = fct_relevel(host_sp, "Avena barbata", "Avena fatua", "Bromus diandrus"))
 
 # sample sizes
 nrow(dat1)
@@ -74,17 +74,45 @@ dat2 <- edat1 %>%
 # same number of observations - can use dat1
 
 # sample sizes by group
-dat2 %>%
+dat1 %>%
   group_by(year.f, grass_group) %>%
   summarise(n = n())
 
 # sample sizes by species 
-(sp_table <- dat2 %>%
+(sp_table <- dat1 %>%
     group_by(year, grass_group, host_sp) %>%
     summarise(n = n()) %>%
     arrange(year, grass_group, host_sp))
 
 write_csv(sp_table, "./output/host_species_sample_sizes.csv")
+
+# shared isolates
+overlap <- dat1 %>%
+  mutate(native = ifelse(grass.status == "native", 1, 0),
+         non = ifelse(grass.status == "non-native", 1, 0)) %>%
+  group_by(otu.id, taxonomy) %>%
+  summarise(native = sum(native) > 0,
+            non = sum(non) > 0) %>%
+  mutate(native_only = ifelse(native == T & non == F, 1, 0),
+         non_only = ifelse(native == F & non == T, 1, 0),
+         both = ifelse(native == T & non == T, 1, 0))
+
+length(unique(dat1$otu.id)) # 83 OTU's
+sum(overlap$native_only)
+sum(overlap$non_only)
+sum(overlap$both)
+
+# merge overlap data back with isolate data
+dat1 %>%
+  left_join(select(overlap, otu.id, taxonomy, native_only, non_only, both)) %>%
+  group_by(grass_group) %>%
+  summarise(tot = n(),
+            native_only = sum(native_only),
+            non_only = sum(non_only),
+            both = sum(both)) %>%
+  mutate(nat_prop = native_only/tot,
+         non_prop = non_only/tot,
+         both_prop = both/tot)
 
 
 #### host specificity analysis ####
@@ -107,14 +135,27 @@ filter(pdat, species == F) %>%
 
 # number of unique pathogens
 paths <- pdat %>%
-  group_by(pathogen, species) %>%
+  group_by(otu.id, taxonomy, pathogen, species) %>%
   summarise(abundance = sum(abundance)) %>%
+  ungroup() %>%
   unique()
-# 58 unique
+# 83 unique
 
 sum(paths$species)
-# 29 species
+# 36 species
 
+filter(paths, species == 1) %>%
+  select(pathogen) %>%
+  unique()
+# 29 species names
+
+# see where the collapse comes from
+filter(paths, species == 1) %>%
+  group_by(pathogen) %>%
+  summarise(taxa = paste(taxonomy, collapse  = ", ")) %>%
+  data.frame()
+
+# total isolates
 paths %>%
   group_by(species) %>%
   summarise(abu = sum(abundance))
@@ -385,37 +426,14 @@ ell1 <- ndat1 %>%
 lab1 <- ndat1 %>%
   select(grass_group) %>%
   unique() %>%
-  mutate(NMDS1 = c(0.37, 0.3),
-         NMDS2 = c(-0.17, 0.15))
+  mutate(NMDS1 = c(0, -0.18),
+         NMDS2 = c(-0.2, 0.25))
 
 # abbreviate genus
 ndat1 <- ndat1 %>%
-  mutate(grass_sp = recode(host_sp, "Avena barbata" = "A. barbata", "Avena fatua" = "A. fatua", "Brachypodium distachyonm" = "B. distachyon", "Bromus diandrus" = "B. diandrus", "Bromus hordeaceus" = "B. hordeaceus", "Elymus glaucus" = "E. glaucus", "Stipa pulchra" = "S. pulchra"))
+  mutate(grass_sp = recode(host_sp, "Avena barbata" = "A. barbata", "Avena fatua" = "A. fatua", "Bromus diandrus" = "B. diandrus", "Bromus hordeaceus" = "B. hordeaceus", "Elymus glaucus" = "E. glaucus", "Stipa pulchra" = "S. pulchra"))
 
-
-#### bar plot ####
-
-# summarize by proportion
-# add abbreviated genus
-dat1_sum <- dat1 %>%
-  mutate(grass_sp = recode(host_sp, "Avena barbata" = "A. barbata", "Avena fatua" = "A. fatua", "Brachypodium distachyonm" = "B. distachyon", "Bromus diandrus" = "B. diandrus", "Bromus hordeaceus" = "B. hordeaceus", "Elymus glaucus" = "E. glaucus", "Stipa pulchra" = "S. pulchra")) %>%
-  group_by(grass.status, grass_group, grass_sp, otu.id, taxonomy) %>%
-  summarise(isolates = n()) %>%
-  ungroup() %>%
-  group_by(grass.status, grass_group, grass_sp) %>%
-  mutate(tot = sum(isolates),
-         prop = isolates / tot)
-
-# native plot
-dat1_sum %>%
-  ggplot(aes(x = grass_sp, y = prop, fill = taxonomy)) +
-  geom_bar(stat = "identity") +
-  facet_wrap(~grass_group, scales = "free", ncol = 1) +
-  coord_flip() +
-  theme(legend.position = "none")
-
-
-#### visualize ####
+#### visualize NMDS ####
 
 # Chao nmds
 # for presentation
@@ -427,7 +445,7 @@ ndat1 %>%
   geom_text(data = lab1, aes(label = grass_group)) +
   scale_fill_manual(values = pal, name = "Grass species") +
   scale_shape_manual(values = c(22, 25), name = "Grass group") +
-  guides(fill=guide_legend(override.aes=list(shape=c(rep(25, 5), 22, 22)), label.theme = element_text(angle = 0, face = "italic")), linetype = "none") +
+  guides(fill=guide_legend(override.aes=list(shape=c(rep(25, 4), 22, 22)), label.theme = element_text(angle = 0, face = "italic")), linetype = "none") +
   theme_bw() +
   theme(axis.text = element_text(size = axisText, color="black"),
         axis.title = element_text(size = axisTitle),
@@ -455,15 +473,97 @@ nmdsplot <- ndat1 %>%
         panel.grid.minor = element_blank(),
         legend.text = element_text(size=10),
         legend.title = element_text(size=12),
-        legend.spacing.y = unit(-0.03, "cm"))
+        legend.spacing.y = unit(-0.01, "cm"))
 
 # bray-curtis nmds
 ndat1b %>%
   ggplot(aes(x = NMDS1, y = NMDS2)) +
-  geom_point(aes(color = host, shape = grass.status, size = year.f))
+  geom_point(aes(color = host_sp, shape = grass_group, size = year.f))
 
+
+#### bar plot ####
+
+# focal pathogens
+fabb <- tibble(otu.id = c(1, 4, 5, 8, 2, 7, 3),
+               path.abb = c("A. inf.", "P. cha.", "P. lol.", "P. tri.", "Drec.", "P. ave.", "R. pro."))
+
+# summarize by proportion
+# add abbreviated genus
+# add pathogen name
+dat1_sum <- dat1 %>%
+  mutate(grass_sp = recode(host_sp, "Avena barbata" = "A. barbata", "Avena fatua" = "A. fatua", "Bromus diandrus" = "B. diandrus", "Bromus hordeaceus" = "B. hordeaceus", "Elymus glaucus" = "E. glaucus", "Stipa pulchra" = "S. pulchra")) %>%
+  group_by(grass.status, grass_group, grass_sp, otu.id, taxonomy) %>%
+  summarise(isolates = n()) %>%
+  ungroup() %>%
+  group_by(grass.status, grass_group, grass_sp) %>%
+  mutate(tot = sum(isolates),
+         prop = isolates / tot) %>%
+  ungroup() %>%
+  mutate(otu.f = as.factor(otu.id),
+         grass_sp = fct_rev(grass_sp)) %>%
+  left_join(fabb) %>%
+  arrange(otu.f)
+
+# random colors
+n = length(unique(dat1_sum$otu.id))
+set.seed(800)
+color_pal = sample(colors()[grep('gr(a|e)y', grDevices::colors(), invert = T)], n)
+
+# color palette
+# replace focal pathogens with color palette
+coldat <- tibble(otu.f = levels(dat1_sum$otu.f)) %>%
+  mutate(otu.id = as.numeric(as.character(otu.f)),
+         color = color_pal) %>%
+  left_join(fabb)
+
+# bar plot
+barplot <- dat1_sum %>%
+  ggplot(aes(x = grass_sp, y = prop, fill = otu.f)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = tot), check_overlap = T, y = 1.025, size = 3) +
+  facet_grid(grass_group ~ ., scales = "free", space = "free") +
+  coord_flip() +
+  theme_bw() +
+  theme(axis.text.x = element_text(size = 10, color="black"),
+        axis.text.y = element_text(size = 10, color="black", face = "italic"),
+        axis.title.x = element_text(size = 12),
+        axis.title.y = element_blank(),
+        panel.background = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        strip.text = element_text(size = 12),
+        strip.background = element_blank(),
+        legend.position = "none") +
+  ylim(0, 1.025) +
+  ylab("Proportion of isolates") +
+  scale_fill_manual(values = coldat$color)
+barplot
+
+# legend for barplot
+barplot_leg <-  dat1_sum_sub %>%
+  ggplot(aes(x = grass_sp, y = prop, fill = path.abb)) +
+  geom_bar(stat = "identity") +
+  facet_grid(grass_group ~ ., scales = "free", space = "free") +
+  coord_flip() +
+  theme(legend.position = "top",
+        legend.direction = "horizontal",
+        legend.text = element_text(size = 9),
+        legend.title = element_text(size = 10),
+        legend.margin = margin(0, 0, 0, 0, unit="cm")) +
+  scale_fill_manual(values = filter(coldat, !is.na(path.abb))$color,
+                    name = "Pathogen") +
+  guides(fill = guide_legend(nrow = 1))
+barplot_leg
 
 #### combine figures for manuscript
-pdf("./output/figure1_pathogen_communities_host_status.pdf", width = 7.0, height = 3.5)
-cowplot::plot_grid(nmdsplot, hostplot, nrow = 1, rel_widths = c(1, 0.4), labels = c("A", "B"), label_size = 12, hjust = c(-0.5, 1))
+
+# lower plots
+lowplots <- cowplot::plot_grid(nmdsplot, hostplot, nrow = 1, rel_widths = c(1, 0.4), labels = c("B", "C"), label_size = 12, hjust = c(-0.5, 1))
+
+# upper plots
+upleg <- get_legend(barplot_leg)
+upplots <- cowplot::plot_grid(upleg, barplot, nrow = 2, rel_widths = c(0.08, 1), rel_heights = c(0.08, 1), axis = "l", align = "v")
+
+pdf("./output/figure1_pathogen_communities_host_status.pdf", width = 7.0, height = 7)
+cowplot::plot_grid(upplots, lowplots, nrow = 2, labels = c("A", "", ""), label_size = 12, hjust = c(-0.5, 1))
 dev.off()
