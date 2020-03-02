@@ -1,5 +1,5 @@
 pathogen,year,host.species,abundance,native.abundance,nonnative.abundance,rank,host.num,otu.id
-Alternaria infectoria,2015,"Ab, Af, Bd, Bh, Eg, Sp",24,8,16,2,50,1
+Alternaria infectoria,2015,"Ab, Af, Bd, Bh, Eg, Sp",24,8,16,1,50,1
 Alternaria infectoria,2016,"Ab, Bd, Bh, Eg, Sp",51,27,24,2,50,1
 Alternaria infectoria,2017,"Ab, Bd, Bh, Eg, Sp",90,63,27,1,50,1
 Drechslera sp.,2016,"Ab, Bd, Bh, Eg, Sp",216,112,104,1,NA,2
@@ -7,7 +7,7 @@ Parastagonospora avenae,2016,"Bd, Bh, Eg, Sp",28,24,4,5,54,7
 Pyrenophora chaetomioides,2015,"Ab, Af, Bd, Bh, Sp",18,1,17,5,7,4
 Pyrenophora chaetomioides,2016,"Ab, Bd, Eg, Sp",36,3,33,3,7,4
 Pyrenophora chaetomioides,2017,"Ab, Eg, Sp",36,7,29,2,7,4
-Pyrenophora lolii,2015,"Ab, Af, Bd, Bh, Eg, Sp",24,7,17,1,11,5
+Pyrenophora lolii,2015,"Ab, Af, Bd, Bh, Eg, Sp",24,7,17,2,11,5
 Pyrenophora lolii,2016,"Ab, Bd, Bh, Eg, Sp",31,13,18,4,11,5
 Pyrenophora lolii,2017,"Ab, Bh, Eg, Sp",31,11,20,3,11,5
 Pyrenophora tritici-repentis,2015,"Eg, Sp",20,20,0,3,63,8

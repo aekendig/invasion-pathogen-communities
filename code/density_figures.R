@@ -192,10 +192,6 @@ idatT %>%
   group_by(year) %>%
   summarise(n = length(unique(subplot)))
 
-idatT %>%
-  group_by(year, grass.status) %>%
-  summarise(n = length(unique(isolate.id)))
-
 # pathogens in group vs. rarer pathogens
 idatT %>%
   select(grass.status, otu.id) %>%

@@ -17,6 +17,7 @@ library(rusda)
 library(mgsub)
 library(cowplot)
 library(ggrepel)
+library(dichromat)
 
 # figure settings
 pal <- c(park_palette("Everglades")[1:5], "black", "mediumpurple3", "olivedrab4")
@@ -484,8 +485,9 @@ ndat1b %>%
 #### bar plot ####
 
 # focal pathogens
-fabb <- tibble(otu.id = c(1, 4, 5, 8, 2, 7, 3),
-               path.abb = c("A. inf.", "P. cha.", "P. lol.", "P. tri.", "Drec.", "P. ave.", "R. pro."))
+fabb <- tibble(otu.id = c(1, 2, 7, 4, 5, 8, 3),
+               path.abb = c("A. inf.", "Drec.", "P. ave.", "P. cha.", "P. lol.", "P. tri.", "R. pro."),
+               color_color = c("#000000", "#56B4E9", "#009E73", "#F0E442", "gray50", "#81ffff", "#00edad"))
 
 # summarize by proportion
 # add abbreviated genus
@@ -499,26 +501,19 @@ dat1_sum <- dat1 %>%
   mutate(tot = sum(isolates),
          prop = isolates / tot) %>%
   ungroup() %>%
-  mutate(otu.f = as.factor(otu.id),
-         grass_sp = fct_rev(grass_sp)) %>%
+  mutate(grass_sp = fct_rev(grass_sp)) %>%
   left_join(fabb) %>%
-  arrange(otu.f)
+  mutate(path.abb = fct_rev(ifelse(is.na(path.abb), paste("z", otu.id, sep = ""), path.abb))) %>%
+  arrange(path.abb)
 
 # random colors
-n = length(unique(dat1_sum$otu.id))
-set.seed(800)
-color_pal = sample(colors()[grep('gr(a|e)y', grDevices::colors(), invert = T)], n)
-
-# color palette
-# replace focal pathogens with color palette
-coldat <- tibble(otu.f = levels(dat1_sum$otu.f)) %>%
-  mutate(otu.id = as.numeric(as.character(otu.f)),
-         color = color_pal) %>%
-  left_join(fabb)
+n = length(unique(dat1_sum$otu.id)) - nrow(fabb)
+reds <- colorRampPalette(c("#E69F00", "#6b2f00"))
+color_red <- reds(n)
 
 # bar plot
 barplot <- dat1_sum %>%
-  ggplot(aes(x = grass_sp, y = prop, fill = otu.f)) +
+  ggplot(aes(x = grass_sp, y = prop, fill = path.abb)) +
   geom_bar(stat = "identity") +
   geom_text(aes(label = tot), check_overlap = T, y = 1.025, size = 3) +
   facet_grid(grass_group ~ ., scales = "free", space = "free") +
@@ -533,37 +528,25 @@ barplot <- dat1_sum %>%
         panel.grid.minor = element_blank(),
         strip.text = element_text(size = 12),
         strip.background = element_blank(),
-        legend.position = "none") +
-  ylim(0, 1.025) +
-  ylab("Proportion of isolates") +
-  scale_fill_manual(values = coldat$color)
-barplot
-
-# legend for barplot
-barplot_leg <-  dat1_sum_sub %>%
-  ggplot(aes(x = grass_sp, y = prop, fill = path.abb)) +
-  geom_bar(stat = "identity") +
-  facet_grid(grass_group ~ ., scales = "free", space = "free") +
-  coord_flip() +
-  theme(legend.position = "top",
+        legend.position = "top",
         legend.direction = "horizontal",
         legend.text = element_text(size = 9),
         legend.title = element_text(size = 10),
         legend.margin = margin(0, 0, 0, 0, unit="cm")) +
-  scale_fill_manual(values = filter(coldat, !is.na(path.abb))$color,
+  ylim(0, 1.025) +
+  ylab("Proportion of isolates") +
+  scale_fill_manual(breaks = fabb$path.abb,
+                    values = c(color_red, rev(fabb$color_color)),
                     name = "Pathogen") +
   guides(fill = guide_legend(nrow = 1))
-barplot_leg
+barplot
+
 
 #### combine figures for manuscript
 
 # lower plots
 lowplots <- cowplot::plot_grid(nmdsplot, hostplot, nrow = 1, rel_widths = c(1, 0.4), labels = c("B", "C"), label_size = 12, hjust = c(-0.5, 1))
 
-# upper plots
-upleg <- get_legend(barplot_leg)
-upplots <- cowplot::plot_grid(upleg, barplot, nrow = 2, rel_widths = c(0.08, 1), rel_heights = c(0.08, 1), axis = "l", align = "v")
-
 pdf("./output/figure1_pathogen_communities_host_status.pdf", width = 7.0, height = 7)
-cowplot::plot_grid(upplots, lowplots, nrow = 2, labels = c("A", "", ""), label_size = 12, hjust = c(-0.5, 1))
+cowplot::plot_grid(barplot, lowplots, nrow = 2, labels = c("A", "", ""), label_size = 12, hjust = c(-0.5, 1))
 dev.off()
