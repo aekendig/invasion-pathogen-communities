@@ -27,10 +27,10 @@ fun <- read_csv("./output/taxonomy_species_origin_data.csv")
 # edit fungal data
 dat1 <- dat %>%
   filter(experiment != "JEF transect" & 
-           host %in% c("AB", "AF", "BRAD", "BD", "BH", "EG", "SP")) %>%
+           host %in% c("AB", "AF", "BD", "BH", "EG", "SP")) %>%
   mutate(grass_group = recode(grass.status, native = "native\nperennial", "non-native" = "non-native\nannual"),
-         host_sp = recode(host, AB = "Avena barbata", AF = "Avena fatua", BRAD = "Brachypodium distachyonm", BD = "Bromus diandrus", BH = "Bromus hordeaceus", EG = "Elymus glaucus", SP = "Stipa pulchra"),
-         host_sp = fct_relevel(host_sp, "Avena barbata", "Avena fatua", "Brachypodium distachyonm"))
+         host_sp = recode(host, AB = "Avena barbata", AF = "Avena fatua", BD = "Bromus diandrus", BH = "Bromus hordeaceus", EG = "Elymus glaucus", SP = "Stipa pulchra"),
+         host_sp = fct_relevel(host_sp, "Avena barbata", "Avena fatua", "Bromus diandrus"))
 
 # list of fungi to analyze
 select(fun, pathogen, otu.id) %>% unique()
@@ -128,10 +128,10 @@ summary(aiamodCa)
 
 # competition, relative abundance
 airmodC <- glmmTMB(ainf ~ nonnative * nonnative.rel + (1|subplot), data = datC, family = binomial)
-summary(airmodC) 
+summary(airmodC)
 plot(simulateResiduals(airmodC))
 airmodCa <- model.avg(get.models(dredge(airmodC), subset = cumsum(weight) <= .95))
-summary(airmodCa) 
+summary(airmodCa)
 
 
 #### rpro ####
@@ -156,7 +156,7 @@ summary(rpamodTa)
 
 # transect, relative abundance
 rprmodT <- glmmTMB(rpro ~ nonnative * nonnative.rel + (1|year/subplot), data = datT, family = binomial)
-summary(rprmodT) 
+summary(rprmodT)
 plot(simulateResiduals(rprmodT))
 
 
@@ -183,7 +183,7 @@ summary(pcamodTa)
 
 # transect, relative abundance
 pcrmodT <- glmmTMB(pcha ~ nonnative.rel + (1|year/subplot), data = nondatT, family = binomial)
-summary(pcrmodT) 
+summary(pcrmodT)
 plot(simulateResiduals(pcrmodT))
 
 # competition, absolute abundance
@@ -195,7 +195,7 @@ summary(pcamodCa)
 
 # competition, relative abundance
 pcrmodC <- glmmTMB(pcha ~ nonnative.rel + (1|subplot), data = nondatC, family = binomial)
-summary(pcrmodC) 
+summary(pcrmodC)
 plot(simulateResiduals(pcrmodC))
 
 # species-specific?
@@ -269,7 +269,7 @@ summary(ptamodTa)
 
 # transect, relative abundance
 ptrmodT <- glmmTMB(ptri ~ nonnative.rel + (1|year/subplot), data = natdatT, family = binomial)
-summary(ptrmodT) 
+summary(ptrmodT)
 plot(simulateResiduals(ptrmodT))
 
 # competition, absolute abundance
@@ -338,7 +338,7 @@ summary(dramodCa)
 
 # competition, relative abundance
 drrmodC <- glmmTMB(dres ~ nonnative * nonnative.rel + (1|subplot), data = datC, family = binomial)
-summary(drrmodC) 
+summary(drrmodC)
 plot(simulateResiduals(drrmodC))
 
 
@@ -369,7 +369,7 @@ plot(simulateResiduals(paamodC))
 paamodCa <- model.avg(get.models(dredge(paamodC), subset = cumsum(weight) <= .95))
 summary(paamodCa)
 
-# competition, relative abundance
+# # competition, relative abundance
 parmodC <- glmmTMB(pave ~ nonnative * nonnative.rel + (1|subplot), data = datC, family = binomial)
 summary(parmodC)
 plot(simulateResiduals(parmodC))
