@@ -80,7 +80,8 @@ datTplant <- full_join(dat15plant, dat16Tplant) %>%
   mutate(natdens.s = scale(native.density)[,1],
          nondens.s = scale(nonnative.density)[,1],
          othdens.s = scale(other.density)[,1],
-         nonnative.rel = nonnative.density / total.density)
+         nonnative.rel = nonnative.density / total.density,
+         leaves.healthy = leaves.tot - leaves.dam)
 
 datTleaf <- full_join(dat15leaf, dat16Tleaf) %>%
   mutate(natdens.s = scale(native.density)[,1],
@@ -100,7 +101,8 @@ datCplant <- dam16Cplant %>%
          total.density = native.density + nonnative.density,
          natdens.s = scale(native.density)[,1],
          nondens.s = scale(nonnative.density)[,1],
-         nonnative.rel = nonnative.density / total.density)
+         nonnative.rel = nonnative.density / total.density,
+         leaves.healthy = leaves.tot - leaves.dam)
 
 datCleaf <- dam16Cleaf %>%
   left_join(bg16C %>% mutate(bg.species = recode(bg.species, "EG adults" = "EG adult"))) %>%
@@ -218,7 +220,7 @@ pamodTa <- model.avg(get.models(dredge(pamodT), subset = cumsum(weight) <= .95))
 summary(pamodTa)
 
 # alternate form of model
-pamodTb <- glmer(cbind(leaves.dam, leaves.tot) ~ nonnative * (natdens.s + nondens.s + othdens.s) + (1|year/subplot), data = datTplant, family = binomial) # singular fit
+pamodTb <- glmer(cbind(leaves.dam, leaves.healthy) ~ nonnative * (natdens.s + nondens.s + othdens.s) + (1|year/subplot), data = datTplant, family = binomial) # failed to converge
 
 # transect, relative abundance
 prmodT <- glmmTMB(infected ~ nonnative * nonnative.rel + (1|year/subplot/plant), data = datTleaf, family = binomial)
