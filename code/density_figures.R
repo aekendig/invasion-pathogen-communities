@@ -42,11 +42,8 @@ ggtheme <- theme_bw() +
 idatT <- read_csv("./output/infect_density_experiment_transect_data.csv")
 idatC <- read_csv("./output/infect_density_experiment_competition_data.csv")
 
-mdatT <- read_csv("./output/damage_density_experiment_meandam_transect16_data.csv")
+mdatT <- read_csv("./output/damage_density_experiment_meandam_transect_data.csv")
 mdatC <- read_csv("./output/damage_density_experiment_meandam_competition_data.csv")
-
-ldatT <- read_csv("./output/damage_density_experiment_propdam_transect_data.csv")
-ldatC <- read_csv("./output/damage_density_experiment_propdam_competition_data.csv")
 
 pdatT <- read_csv("./output/damage_density_experiment_plant_transect_data.csv")
 pdatC <- read_csv("./output/damage_density_experiment_plant_competition_data.csv")
@@ -76,7 +73,7 @@ load("./output/damage_density_experiment_meandam_absolute_competition_avg_amodel
 load("./output/damage_density_experiment_propdam_absolute_transect_avg_amodel.rda")
 load("./output/damage_density_experiment_propdam_absolute_competition_avg_amodel.rda")
 
-# functions
+# function to convert logit to probability
 logit2prob <- function(logit){
   odds <- exp(logit)
   prob <- odds / (1 + odds)
@@ -389,11 +386,12 @@ ind_p <- 50
 ind_a <- 5000
 
 # density table
-inddens <- tibble(natdens.s = c(-natmuT/natsdT, (ind_p-natmuT)/natsdT, -natmuC/natsdC, (ind_p-natmuC)/natsdC),
-                nondens.s = c(-nonmuT/nonsdT, (ind_a-nonmuT)/nonsdT, -nonmuC/nonsdC, (ind_a-nonmuC)/nonsdC),
-                native.density = rep(c(0, ind_p), 2),
-                nonnative.density = rep(c(0, ind_a), 2),
-                exp.type = c(rep("Observational", 2), rep("Manipulated", 2)))
+inddens <- tibble(natdens.s = c(-natmuT/natsdT, (ind_p-natmuT)/natsdT, -natmuT/natsdT, -natmuC/natsdC, (ind_p-natmuC)/natsdC, -natmuC/natsdC),
+                nondens.s = c(-nonmuT/nonsdT, -nonmuT/nonsdT,(ind_a-nonmuT)/nonsdT, -nonmuC/nonsdC, -nonmuC/nonsdC, (ind_a-nonmuC)/nonsdC),
+                native.density = c(0, ind_p, 0, 0, ind_p, 0),
+                nonnative.density = c(0, 0, ind_a, 0, 0, ind_a),
+                exp.type = c(rep("Observational", 3), rep("Manipulated", 3)),
+                increase = rep(c("none", "nat", "non"), 2))
 
 # check values
 filter(idatC, native.density == min(native.density)) %>% select(native.density, natdens.s) %>% unique()
@@ -406,32 +404,29 @@ aind <- rbind(coef_fun(rpamodTa, "rpro", "Observational"), coef_fun(aiamodTa, "a
   spread(key = coef, value = value) %>%
   replace(is.na(.), 0) %>%
   full_join(inddens) %>%
-  mutate(nat_dens_nat_prev = logit2prob(`cond((Int))` + `cond(natdens.s)` * natdens.s),
-         nat_dens_non_prev = logit2prob(`cond((Int))`+ `cond(nonnative)` + `cond(natdens.s)` * natdens.s + `cond(natdens.s:nonnative)` * natdens.s),
-         non_dens_nat_prev = logit2prob(`cond((Int))` + `cond(nondens.s)` * nondens.s),
-         non_dens_non_prev = logit2prob(`cond((Int))`+ `cond(nonnative)` + `cond(nondens.s)` * nondens.s + `cond(nondens.s:nonnative)` * nondens.s)) %>%
-  select(exp.type, pathogen, native.density, nonnative.density, nat_dens_nat_prev:non_dens_non_prev) %>%
-  gather(key = dens_status, value = prev, -c(pathogen, exp.type, native.density, nonnative.density)) %>%
-  mutate(status = substring(dens_status, 10, 12) %>% recode(nat = "Native perennial\nhosts", non = "Non-native\nannual hosts") %>% factor(levels = c("Native perennial\nhosts", "Non-native\nannual hosts")),
-         density = substring(dens_status, 1, 3),
+  mutate(nat_prev = logit2prob(`cond((Int))` + `cond(natdens.s)` * natdens.s + `cond(nondens.s)` * nondens.s),
+         non_prev = logit2prob(`cond((Int))`+ `cond(nonnative)` + `cond(natdens.s)` * natdens.s + `cond(nondens.s)` * nondens.s + `cond(natdens.s:nonnative)` * natdens.s + `cond(nondens.s:nonnative)` * nondens.s)) %>%
+  select(exp.type, pathogen, increase, native.density, nonnative.density, nat_prev, non_prev) %>%
+  gather(key = host_status, value = prev, -c(pathogen, exp.type, increase, native.density, nonnative.density)) %>%
+  mutate(status = recode(host_status, nat_prev = "Native perennial\nhosts", non_prev = "Non-native\nannual hosts") %>% factor(levels = c("Native perennial\nhosts", "Non-native\nannual hosts")),
          exp.type = factor(exp.type, levels = c("Observational", "Manipulated"))) %>%
   left_join(otus)
 
 # split by density and calculate change in prevalence, remove specialists
-aindnat <- filter(aind, density == "nat") %>% 
-  select(-nonnative.density) %>%
+aindnat <- filter(aind, increase != "non") %>% 
+  select(-c(nonnative.density, increase)) %>%
   spread(key = native.density, value = prev) %>%
   mutate(prev_change = `50` - `0`) %>%
   filter(!(pathogen == "pcha" & status == "Native perennial\nhosts") & !(pathogen == "ptri" & status == "Non-native\nannual hosts"))
 
-aindinv <- filter(aind, density == "non") %>% 
-  select(-native.density) %>%
+aindnon <- filter(aind, increase != "nat") %>% 
+  select(-c(native.density, increase)) %>%
   spread(key = nonnative.density, value = prev) %>%
   mutate(prev_change = `5000` - `0`) %>%
   filter(!(pathogen == "pcha" & status == "Native perennial\nhosts") & !(pathogen == "ptri" & status == "Non-native\nannual hosts"))
 
 # labels
-indlabels <- tibble(dens.type = rep(c("native perennial", "non-native annual"), each = 2), exp.type = c("Observational", "Manipulated", "Observational", "Manipulated"), x = rep(0.5, 4), y = rep(0.93, 4), labels = c("A", "C", "B", "D")) %>%
+indlabels <- tibble(dens.type = rep(c("native perennial", "non-native annual"), each = 2), exp.type = c("Observational", "Manipulated", "Observational", "Manipulated"), x = rep(0.5, 4), y = rep(0.97, 4), labels = c("A", "C", "B", "D")) %>%
   mutate(exp.type = factor(exp.type, levels = c("Observational", "Manipulated")))
 
 # figure
@@ -447,9 +442,9 @@ changeplotnat <- ggplot(aindnat, aes(x = status, y = prev_change)) +
   theme(axis.title.x = element_blank(),
         legend.position = "none",
         strip.text = element_blank()) +
-  ylim(-0.55, 0.95)
+  ylim(-0.8, 1)
 
-changeplotnon <- ggplot(aindinv, aes(x = status, y = prev_change)) +
+changeplotnon <- ggplot(aindnon, aes(x = status, y = prev_change)) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "gray") +
   geom_point(aes(fill = path.abb, shape = path.abb), position = position_jitterdodge(dodge.width = 0.1, jitter.width = 0.1, seed = 8), size = 3) +
   geom_text(data = filter(indlabels, dens.type == "non-native annual"), aes(x = x, y = y, label = labels), size = 4, fontface = "bold") +
@@ -458,10 +453,11 @@ changeplotnon <- ggplot(aindinv, aes(x = status, y = prev_change)) +
   scale_fill_manual(values = col_pal, name = "Pathogen") +
   scale_shape_manual(values = rep(c(21, 24), each = 4), name = "Pathogen") +
   ggtheme +
-  theme(axis.title.x = element_blank()) +
-  ylim(-0.55, 0.95)
+  theme(axis.title.x = element_blank(),
+        axis.title.y = element_text(size = axisTitle, hjust = 0.7)) +
+  ylim(-0.8, 1)
 
-pdf("./output/figure3_prevalence_change_density.pdf", width = 7, height = 4)
+pdf("./output/figure4_prevalence_change_density.pdf", width = 7, height = 4)
 cowplot::plot_grid(changeplotnat, changeplotnon, rel_widths = c(0.7, 1))
 dev.off()
 
@@ -680,7 +676,7 @@ dens.plot <- cowplot::plot_grid(natdens.plot.fin, nondens.plot.fin, nrow = 2)
 leg.dens.plot <- cowplot::plot_grid(leg.dens.plot1, leg.dens.plot2, align = "v", nrow = 2) 
 dens.plot.fin <- cowplot::plot_grid(dens.plot, leg.dens.plot, rel_heights = c(1, 0.08), rel_widths = c(1, 0.08), align = "v", nrow = 2)
 
-pdf("./output/figure2_pathogen_relative_abundance_density.pdf", width = 7, height = 10.5)
+pdf("./output/figure3_pathogen_relative_abundance_density.pdf", width = 7, height = 10.5)
 grid.arrange(arrangeGrob(dens.plot.fin, left = textGrob("Pathogen relative abundance", gp=gpar(fontsize = 13), rot = 90)))
 dev.off()
 
@@ -816,10 +812,10 @@ damlabels <- tibble(dens.type = rep(c("native perennial", "non-native annual"), 
 natdamplot <- ggplot(dsimnat, aes(x = density, y = dam)) +
   geom_line(size = 1, aes(linetype = status,color = dam.type)) +
   geom_point(data = rawdamdatnat, alpha = 0.5, aes(shape = status, color = dam.type)) +
-  geom_text(data = filter(damlabels, dens.type == "native"), aes(x = x, y = y, label = labels), size = 4, fontface = "bold") +
+  geom_text(data = filter(damlabels, dens.type == "native perennial"), aes(x = x, y = y, label = labels), size = 4, fontface = "bold") +
   facet_rep_wrap(~ exp.type, scales = "free_x") +
-  scale_linetype_manual(values = c("solid", "dashed"), name = "Grass group") +
-  scale_shape_manual(values = c(19, 21), name = "Grass group") +
+  scale_linetype_manual(values = c("solid", "dashed"), name = "Host group") +
+  scale_shape_manual(values = c(19, 21), name = "Host group") +
   scale_color_manual(values = col_pal[1:2], name = "Metric") +
   xlab(expression(paste("Native perennial grass density (individuals ", m^-2, ")", sep = ""))) +
   ylab("Disease severity") +
@@ -827,14 +823,14 @@ natdamplot <- ggplot(dsimnat, aes(x = density, y = dam)) +
   ggtheme +
   theme(legend.position = "none")
 
-# exotic density plot  
+# non-native density plot  
 nondamplot <- ggplot(dsimnon, aes(x = density, y = dam)) +
   geom_line(size = 1, aes(linetype = status, color = dam.type)) +
   geom_point(data = rawdamdatinv, alpha = 0.5, aes(shape = status, color = dam.type)) +
-  geom_text(data = filter(damlabels, dens.type == "exotic"), aes(x = x, y = y, label = labels), size = 4, fontface = "bold") +
+  geom_text(data = filter(damlabels, dens.type == "non-native annual"), aes(x = x, y = y, label = labels), size = 4, fontface = "bold") +
   facet_rep_wrap(~ exp.type, scales = "free_x") +
-  scale_linetype_manual(values = c("solid", "dashed"), name = "Grass group") +
-  scale_shape_manual(values = c(19, 21), name = "Grass group") +
+  scale_linetype_manual(values = c("solid", "dashed"), name = "Host group") +
+  scale_shape_manual(values = c(19, 21), name = "Host group") +
   scale_color_manual(values = col_pal[1:2], name = "Metric") +
   xlab(expression(paste("Non-native annual grass density (individuals ", m^-2, ")", sep = ""))) +
   ylab("Disease severity") +
@@ -845,16 +841,18 @@ nondamplot <- ggplot(dsimnon, aes(x = density, y = dam)) +
         legend.title = element_text(size = 10),
         legend.key.size = unit(2.5, "lines"),
         legend.position = "bottom",
+        legend.box = "vertical",
         legend.margin = margin(0, 0, 0, 0),
+        legend.spacing.y = unit(-0.5, "cm"),
         legend.box.margin = margin(-10, -10, -10, -10),
         plot.margin = margin(3, 3, 3, 3)) +
   guides(shape = guide_legend(override.aes = list(alpha = 1)), 
          color = guide_legend(override.aes = list(alpha = 1)))
 
 # combine plots
-dam.plot <- cowplot::plot_grid(natdamplot, nondamplot, nrow = 2, rel_heights = c(0.96, 1))
+dam.plot <- cowplot::plot_grid(natdamplot, nondamplot, nrow = 2, rel_heights = c(0.95, 1))
 
-pdf("./output/figure4_pathogen_damage_density.pdf", width = 7, height = 7)
+pdf("./output/figure5_pathogen_damage_density.pdf", width = 5, height = 6)
 dam.plot
 dev.off()
 
@@ -910,6 +908,16 @@ prop_obs_non <- exp(pamodTa$coefficients["full",1] + pamodTa$coefficients["full"
 prop_man_nat <- exp(pamodCa$coefficients["full",1]) / (1 + exp(pamodCa$coefficients["full",1]))
 prop_man_non <- exp(pamodCa$coefficients["full",1] + pamodCa$coefficients["full",2]) / (1 + exp(pamodCa$coefficients["full",1] + pamodCa$coefficients["full",2]))
 (prop_man_nat - prop_man_non) / prop_man_non
+
+# surface, observational
+surf_obs_nat <- exp(mamodTa$coefficients["full",1]) / (1 + exp(mamodTa$coefficients["full",1]))
+surf_obs_non <- exp(mamodTa$coefficients["full",1] + mamodTa$coefficients["full",4]) / (1 + exp(mamodTa$coefficients["full",1] + mamodTa$coefficients["full",4]))
+(surf_obs_nat - surf_obs_non) / surf_obs_non
+
+# surface, manipulated
+surf_man_nat <- exp(mamodCa$coefficients["full",1]) / (1 + exp(mamodCa$coefficients["full",1]))
+surf_man_non <- exp(mamodCa$coefficients["full",1] + mamodCa$coefficients["full",2]) / (1 + exp(mamodCa$coefficients["full",1] + mamodCa$coefficients["full",2]))
+(surf_man_nat - surf_man_non) / surf_man_non
 
 # proportion with native dens, observational
 prop_obs_natdens_0 <- exp(pamodTa$coefficients["full",1]) / (1 + exp(pamodTa$coefficients["full",1]))

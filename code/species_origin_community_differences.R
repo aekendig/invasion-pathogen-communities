@@ -445,7 +445,7 @@ ndat1 %>%
   geom_path(data = ell1, aes(linetype = grass_group), size=1) +  
   geom_text(data = lab1, aes(label = grass_group)) +
   scale_fill_manual(values = pal, name = "Grass species") +
-  scale_shape_manual(values = c(22, 25), name = "Grass group") +
+  scale_shape_manual(values = c(22, 25), name = "Host group") +
   guides(fill=guide_legend(override.aes=list(shape=c(rep(25, 4), 22, 22)), label.theme = element_text(angle = 0, face = "italic")), linetype = "none") +
   theme_bw() +
   theme(axis.text = element_text(size = axisText, color="black"),
@@ -463,7 +463,7 @@ nmdsplot <- ndat1 %>%
   geom_point(aes(fill = grass_group, shape = grass_sp, group = year.f), size = 3) +
   geom_path(data = ell1, aes(linetype = grass_group), size=1) +  
   geom_text(data = lab1, aes(label = grass_group)) +
-  scale_fill_manual(values = c("black", "white"), name = "Grass group") +
+  scale_fill_manual(values = c("black", "white"), name = "Host group") +
   scale_shape_manual(values = shapes, name = "Grass species") +
   guides(fill = guide_legend(override.aes = list(shape = 21)), linetype = "none", shape = guide_legend(label.theme = element_text(size = 10, angle = 0, face = "italic"))) +
   theme_bw() +
@@ -474,7 +474,7 @@ nmdsplot <- ndat1 %>%
         panel.grid.minor = element_blank(),
         legend.text = element_text(size=10),
         legend.title = element_text(size=12),
-        legend.spacing.y = unit(-0.01, "cm"))
+        legend.spacing.y = unit(0.05, "cm"))
 
 # bray-curtis nmds
 ndat1b %>%
