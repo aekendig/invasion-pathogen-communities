@@ -8,6 +8,9 @@ rm(list=ls())
 # load libraries
 library(tidyverse)
 library(cowplot)
+library(glmmTMB)
+library(DHARMa) # plot glmmTMB
+library(MuMIn) # dredge
 
 # import data
 
@@ -23,90 +26,87 @@ ldatC <- read_csv("./output/damage_density_experiment_propdam_competition_data.c
 pdatT <- read_csv("./output/damage_density_experiment_plant_transect_data.csv")
 pdatC <- read_csv("./output/damage_density_experiment_plant_competition_data.csv")
 
-# models
-load("./output/damage_density_experiment_meandam_absolute_transect_avg_amodel.rda")
-load("./output/damage_density_experiment_meandam_absolute_competition_avg_amodel.rda")
-load("./output/damage_density_experiment_propdam_absolute_transect_avg_amodel.rda")
-load("./output/damage_density_experiment_propdam_absolute_competition_avg_amodel.rda")
-
 
 #### edit raw data ####
 
 # combine experiments
 # add severity type
 mdat <- mdatT %>%
-  select(year:mean.dam, origin) %>%
+  select(year:mean.dam, nonnative, origin) %>%
   full_join(mdatC %>% 
-              select(year:subplot, host, mean.dam, origin)) %>%
+              select(year:subplot, host, mean.dam, nonnative, origin)) %>%
   rename(severity = mean.dam) %>%
   mutate(sev.type = "surface")
 
 pdat <- pdatT %>%
-  select(year:host, prop.dam, origin) %>%
+  select(year:host, prop.dam, nonnative, origin) %>%
   full_join(pdatC %>% 
-              select(year:subplot, host, prop.dam, origin)) %>%
+              select(year:subplot, host, prop.dam, nonnative, origin)) %>%
   rename(severity = prop.dam) %>%
   mutate(sev.type = "leaves")  
+
+ldat <- ldatT %>%
+  select(year:infected, nonnative, origin) %>%
+  full_join(ldatC %>% 
+              select(year:subplot, host, plant, leaf, infected, nonnative, origin))
   
-# combine data
+# combine data for figure
 # add life history and experiment type
 dat <- full_join(mdat, pdat) %>%
   mutate(status = recode(origin, "non-native" = "non-native\nannual", "native" = "native\nperennial"),
          exp.type = case_when(experiment == "transect" ~ "Observational",
                               TRUE ~ "Manipulated") %>% 
-           factor(levels = c("Observational", "Manipulated")),
-         sev.type = fct_relevel(sev.type, "surface"))
+           factor(levels = c("Observational", "Manipulated")))
+
+
+#### statistical models ####
+
+lmod <- glmmTMB(infected ~ nonnative + (1|year/experiment/subplot/plant), data = ldat, family = binomial)
+summary(lmod)
+plot(simulateResiduals(lmod))
+
+mmod <- glmmTMB(severity ~ nonnative + (1|year/experiment/subplot), data = mdat, family = beta_family)
+summary(mmod)
+plot(simulateResiduals(mmod))
 
 
 #### extract model values ####
 
 # prediction function
-pred_fun <- function(dat, mod, exp.type, sev.type){
-  
-  # change the density values to average
-  dat_new <- dat %>%
-    mutate(natdens.s = 0,
-           nondens.s = 0,
-           othdens.s = 0)
+pred_fun <- function(dat, mod, sev.type){
   
   # predict mean
-  dat_new$pred <- predict(mod, newdata = dat_new, re.form = NA, type = "response")
+  dat$pred <- predict(mod, newdata = dat, re.form = NA, type = "response")
   
   # predict SE
-  dat_new$pred.se <- predict(mod, newdata = dat_new, re.form = NA, se.fit = T, type = "response")$se.fit
+  dat$pred.se <- predict(mod, newdata = dat, re.form = NA, se.fit = T, type = "response")$se.fit
   
   # simplify data
-  dat_out <- dat_new %>%
+  dat_out <- dat %>%
     select(origin, pred, pred.se) %>%
     unique() %>%
-    mutate(exp.type = exp.type,
-           sev.type = sev.type)
+    mutate(sev.type = sev.type)
   
   # export
   return(dat_out)
 }
 
 # evaluate models
-mdatTM <- pred_fun(mdatT, mamodTa, "Observational", "surface")
-mdatCM <- pred_fun(mdatC, mamodCa, "Manipulated", "surface")
-ldatTM <- pred_fun(ldatT, pamodTa, "Observational", "leaves")
-ldatCM <- pred_fun(ldatC, pamodCa, "Manipulated", "leaves")
+ldatP <- pred_fun(ldat, lmod, "leaves")
+mdatP <- pred_fun(mdat, mmod, "surface")
 
 # combine
-mod_dat <- rbind(mdatTM, mdatCM, ldatTM, ldatCM) %>%
-  mutate(status = recode(origin, "non-native" = "non-native\nannual", "native" = "native\nperennial"),
-         exp.type = fct_relevel(exp.type, "Observational"),
-         sev.type = fct_relevel(sev.type, "surface")) %>%
+mod_dat <- rbind(mdatP, ldatP) %>%
+  mutate(status = recode(origin, "non-native" = "non-native\nannual", "native" = "native\nperennial")) %>%
   rename(severity = pred)
 
 
 #### figure ####
 
 # labels
-labs <- tibble(let = LETTERS[1:4], 
-               sev.type = c("surface", "surface", "leaves", "leaves") %>% fct_relevel("surface"), 
-               exp.type = c("Observational", "Manipulated", "Observational", "Manipulated") %>% fct_relevel("Observational"), 
-               status = rep("native\nperennial", 4))
+labs <- tibble(let = LETTERS[1:2], 
+               sev.type = c("leaves", "surface"), 
+               status = rep("native\nperennial", 2))
 
 # figure settings
 axisText = 10
@@ -121,7 +121,7 @@ fig_raw <- ggplot(mod_dat, aes(x = status, y = severity, fill = status)) +
   geom_point(size = 3, shape = 21) +
   scale_fill_manual(values = c("black", "white"), guide = F) +
   scale_color_manual(values = c("gray80", "gray80"), guide = F) +
-  facet_grid(sev.type ~ exp.type, scales = "free") + 
+  facet_wrap(~ sev.type, ncol = 1, scales = "free") + 
   geom_text(data = labs,
             mapping = aes(x = -Inf, y = Inf, label = let),
             hjust = -0.3, vjust = 1.5,
@@ -143,7 +143,7 @@ fig <- ggplot(mod_dat, aes(x = status, y = severity, fill = status)) +
   geom_errorbar(aes(ymin = severity - 2*pred.se, ymax = severity + 2*pred.se), width = 0.1) +
   geom_point(size = 3, shape = 21) +
   scale_fill_manual(values = c("black", "white"), guide = F) +
-  facet_grid(sev.type ~ exp.type, scales = "free") + 
+  facet_wrap(~sev.type, ncol = 1, scales = "free") + 
   geom_text(data = labs,
             mapping = aes(x = -Inf, y = Inf, label = let),
             hjust = -0.3, vjust = 1.5,
@@ -162,6 +162,6 @@ fig <- ggplot(mod_dat, aes(x = status, y = severity, fill = status)) +
   ylab("Disease severity")
 
 # save
-pdf("./output/figure2_damage.pdf", width = 4, height = 4)
+pdf("./output/figure2_damage.pdf", width = 2.5, height = 4)
 fig
 dev.off()
