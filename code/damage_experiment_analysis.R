@@ -63,11 +63,11 @@ dat <- full_join(mdat, pdat) %>%
 
 lmod <- glmmTMB(infected ~ nonnative + (1|year/experiment/subplot/plant), data = ldat, family = binomial)
 summary(lmod)
-plot(simulateResiduals(lmod))
+# plot(simulateResiduals(lmod))
 
 mmod <- glmmTMB(severity ~ nonnative + (1|year/experiment/subplot), data = mdat, family = beta_family)
 summary(mmod)
-plot(simulateResiduals(mmod))
+# plot(simulateResiduals(mmod))
 
 
 #### extract model values ####
@@ -165,3 +165,16 @@ fig <- ggplot(mod_dat, aes(x = status, y = severity, fill = status)) +
 pdf("./output/figure2_damage.pdf", width = 2.5, height = 4)
 fig
 dev.off()
+
+
+#### percent change ####
+
+# leaves
+leaf_nat <- exp(fixef(lmod)$cond[1]) / (1 + exp(fixef(lmod)$cond[1]))
+leaf_non <- exp(fixef(lmod)$cond[1] + fixef(lmod)$cond[2]) / (1 + exp(fixef(lmod)$cond[1] + fixef(lmod)$cond[2]))
+(leaf_nat - leaf_non) / leaf_non
+
+# surface
+surf_nat <- exp(fixef(mmod)$cond[1]) / (1 + exp(fixef(mmod)$cond[1]))
+surf_non <- exp(fixef(mmod)$cond[1] + fixef(mmod)$cond[2]) / (1 + exp(fixef(mmod)$cond[1] + fixef(mmod)$cond[2]))
+(surf_nat - surf_non) / surf_non
