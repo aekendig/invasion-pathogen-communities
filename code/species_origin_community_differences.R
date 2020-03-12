@@ -45,6 +45,9 @@ dat1 <- dat %>%
 nrow(dat1)
 unique(dat1$experiment)
 unique(dat1$host)
+unique(select(dat1, experiment, subplot)) %>% 
+  arrange(experiment, subplot) %>%
+  data.frame()
 
 # set minimum isolate number
 min.iso <- 3
