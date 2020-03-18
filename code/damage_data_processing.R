@@ -1,5 +1,7 @@
 ## Goal: format damage data
 
+# notes: updated 3/13/20 to include damage in the leaf datasets
+
 
 #### set up ####
 
@@ -60,14 +62,20 @@ dam15.1 <- dam15 %>%
   select(Transect, Plot, Species, leaf1, leaf2, leaf3, leaf4, leaf5, leaf6) %>%
   rowwise() %>%
   mutate(mean.dam = mean(c(leaf1, leaf2, leaf3, leaf4, leaf5, leaf6), na.rm = T)/100,
-         leaf1f = as.numeric(leaf1 > 0),
-         leaf2f = as.numeric(leaf2 > 0),
-         leaf3f = as.numeric(leaf3 > 0),
-         leaf4f = as.numeric(leaf4 > 0),
-         leaf5f = as.numeric(leaf5 > 0),
-         leaf6f = as.numeric(leaf6 > 0),
-         leaves.dam = sum(c(leaf1f, leaf2f, leaf3f, leaf4f, leaf5f, leaf6f), na.rm = T),
-         leaves.tot = sum(!is.na(c(leaf1f, leaf2f, leaf3f, leaf4f, leaf5f, leaf6f))),
+         leaf.i.1 = as.numeric(leaf1 > 0),
+         leaf.i.2 = as.numeric(leaf2 > 0),
+         leaf.i.3 = as.numeric(leaf3 > 0),
+         leaf.i.4 = as.numeric(leaf4 > 0),
+         leaf.i.5 = as.numeric(leaf5 > 0),
+         leaf.i.6 = as.numeric(leaf6 > 0),
+         leaf.s.1 = leaf1 / 100,
+         leaf.s.2 = leaf2 / 100,
+         leaf.s.3 = leaf3 / 100,
+         leaf.s.4 = leaf4 / 100,
+         leaf.s.5 = leaf5 / 100,
+         leaf.s.6 = leaf6 / 100,
+         leaves.dam = sum(c(leaf.i.1, leaf.i.2, leaf.i.3, leaf.i.4, leaf.i.5, leaf.i.6), na.rm = T),
+         leaves.tot = sum(!is.na(c(leaf.i.1, leaf.i.2, leaf.i.3, leaf.i.4, leaf.i.5, leaf.i.6))),
          prop.dam = leaves.dam/leaves.tot) %>%
   filter(!is.na(mean.dam)) %>%
   mutate(year = 2015,
@@ -81,10 +89,16 @@ dam15plant <- dam15.1 %>%
   select(year, experiment, plot, subplot, host, mean.dam, leaves.dam, leaves.tot, prop.dam)
 
 dam15leaf <- dam15.1 %>%
-  select(year, experiment, plot, subplot, host, leaf1f:leaf6f) %>%
+  select(year, experiment, plot, subplot, host, leaf.s.1:leaf.s.6, leaf.i.1:leaf.i.6) %>%
   mutate(plant = 1:nrow(dam15.1)) %>%
-  gather(key = leaf, value = infected, -c(year:host, plant))
-  
+  gather(key, value, -c(year:host, plant)) %>%
+  extract(key, c("metric", "leaf"), "(leaf\\..)\\.(.)") %>%
+  spread(metric, value) %>%
+  rename(infected = leaf.i, surface = leaf.s)
+
+# check for unique subplots
+unique(dam15.1$subplot)
+
 # separate 2016 data by experiment
 dam16C <- filter(dam16, Experiment == "Competition")
 dam16T <- filter(dam16, Experiment == "Transect")
@@ -108,14 +122,20 @@ dam16T.1 <- dam16T %>%
   select(Transect, Plot, Species, leaf1, leaf2, leaf3, leaf4, leaf5, leaf6) %>%
   rowwise() %>%
   mutate(mean.dam = mean(c(leaf1, leaf2, leaf3, leaf4, leaf5, leaf6), na.rm = T)/100,
-         leaf1f = as.numeric(leaf1 > 0),
-         leaf2f = as.numeric(leaf2 > 0),
-         leaf3f = as.numeric(leaf3 > 0),
-         leaf4f = as.numeric(leaf4 > 0),
-         leaf5f = as.numeric(leaf5 > 0),
-         leaf6f = as.numeric(leaf6 > 0),
-         leaves.dam = sum(c(leaf1f, leaf2f, leaf3f, leaf4f, leaf5f, leaf6f), na.rm = T),
-         leaves.tot = sum(!is.na(c(leaf1f, leaf2f, leaf3f, leaf4f, leaf5f, leaf6f))),
+         leaf.i.1 = as.numeric(leaf1 > 0),
+         leaf.i.2 = as.numeric(leaf2 > 0),
+         leaf.i.3 = as.numeric(leaf3 > 0),
+         leaf.i.4 = as.numeric(leaf4 > 0),
+         leaf.i.5 = as.numeric(leaf5 > 0),
+         leaf.i.6 = as.numeric(leaf6 > 0),
+         leaf.s.1 = leaf1 / 100,
+         leaf.s.2 = leaf2 / 100,
+         leaf.s.3 = leaf3 / 100,
+         leaf.s.4 = leaf4 / 100,
+         leaf.s.5 = leaf5 / 100,
+         leaf.s.6 = leaf6 / 100,
+         leaves.dam = sum(c(leaf.i.1, leaf.i.2, leaf.i.3, leaf.i.4, leaf.i.5, leaf.i.6), na.rm = T),
+         leaves.tot = sum(!is.na(c(leaf.i.1, leaf.i.2, leaf.i.3, leaf.i.4, leaf.i.5, leaf.i.6))),
          prop.dam = leaves.dam/leaves.tot) %>%
   filter(!is.na(mean.dam)) %>%
   mutate(year = 2016,
@@ -129,9 +149,15 @@ dam16Tplant <- dam16T.1 %>%
   select(year, experiment, plot, subplot, host, mean.dam, leaves.dam, leaves.tot, prop.dam)
 
 dam16Tleaf <- dam16T.1 %>%
-  select(year, experiment, plot, subplot, host, leaf1f:leaf6f) %>%
+  select(year, experiment, plot, subplot, host, leaf.s.1:leaf.s.6, leaf.i.1:leaf.i.6) %>%
   mutate(plant = 1:nrow(dam16T.1)) %>%
-  gather(key = leaf, value = infected, -c(year:host, plant))
+  gather(key, value, -c(year:host, plant)) %>%
+  extract(key, c("metric", "leaf"), "(leaf\\..)\\.(.)") %>%
+  spread(metric, value) %>%
+  rename(infected = leaf.i, surface = leaf.s)
+
+# check for unique subplots
+unique(dam16T.1$subplot)
 
 # 2016 competition data
 # calculate mean damage and prop damage
@@ -143,14 +169,20 @@ dam16C.1 <- dam16C %>%
   select(Plot, BackgroundSpecies, Density, Species, leaf1, leaf2, leaf3, leaf4, leaf5, leaf6) %>%
   rowwise() %>%
   mutate(mean.dam = mean(c(leaf1, leaf2, leaf3, leaf4, leaf5, leaf6), na.rm = T)/100,
-         leaf1f = as.numeric(leaf1 > 0),
-         leaf2f = as.numeric(leaf2 > 0),
-         leaf3f = as.numeric(leaf3 > 0),
-         leaf4f = as.numeric(leaf4 > 0),
-         leaf5f = as.numeric(leaf5 > 0),
-         leaf6f = as.numeric(leaf6 > 0),
-         leaves.dam = sum(c(leaf1f, leaf2f, leaf3f, leaf4f, leaf5f, leaf6f), na.rm = T),
-         leaves.tot = sum(!is.na(c(leaf1f, leaf2f, leaf3f, leaf4f, leaf5f, leaf6f))),
+         leaf.i.1 = as.numeric(leaf1 > 0),
+         leaf.i.2 = as.numeric(leaf2 > 0),
+         leaf.i.3 = as.numeric(leaf3 > 0),
+         leaf.i.4 = as.numeric(leaf4 > 0),
+         leaf.i.5 = as.numeric(leaf5 > 0),
+         leaf.i.6 = as.numeric(leaf6 > 0),
+         leaf.s.1 = leaf1 / 100,
+         leaf.s.2 = leaf2 / 100,
+         leaf.s.3 = leaf3 / 100,
+         leaf.s.4 = leaf4 / 100,
+         leaf.s.5 = leaf5 / 100,
+         leaf.s.6 = leaf6 / 100,
+         leaves.dam = sum(c(leaf.i.1, leaf.i.2, leaf.i.3, leaf.i.4, leaf.i.5, leaf.i.6), na.rm = T),
+         leaves.tot = sum(!is.na(c(leaf.i.1, leaf.i.2, leaf.i.3, leaf.i.4, leaf.i.5, leaf.i.6))),
          prop.dam = leaves.dam/leaves.tot) %>%
   filter(!is.na(mean.dam)) %>%
   mutate(year = 2016,
@@ -166,11 +198,17 @@ dam16Cplant <- dam16C.1 %>%
   select(year, experiment, plot, subplot, bg.species, competition.density, host, mean.dam, leaves.dam, leaves.tot, prop.dam)
 
 dam16Cleaf <- dam16C.1 %>%
-  select(year, experiment, plot, subplot, bg.species, competition.density, host, leaf1f:leaf6f) %>%
+  select(year, experiment, plot, subplot, bg.species, competition.density, host, leaf.s.1:leaf.s.6, leaf.i.1:leaf.i.6) %>%
   mutate(plant = 1:nrow(dam16C.1)) %>%
-  gather(key = leaf, value = infected, -c(year:host, plant))
+  gather(key, value, -c(year:host, plant)) %>%
+  extract(key, c("metric", "leaf"), "(leaf\\..)\\.(.)") %>%
+  spread(metric, value) %>%
+  rename(infected = leaf.i, surface = leaf.s)
 
-  
+# check for unique subplots
+sort(unique(dam16C.1$subplot))
+
+
 #### outputs ####
 write_csv(dam15plant, "./data/damage_plant_transect_2015.csv")
 write_csv(dam16Tplant, "./data/damage_plant_transect_2016.csv")
