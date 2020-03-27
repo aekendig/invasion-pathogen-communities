@@ -1,6 +1,3 @@
-## Goal: format background plant data
-
-
 #### set up ####
 
 # clear everything except final data
@@ -16,7 +13,7 @@ plant16C <- read_csv("./data/competition_plot_seeds_composition_damage.csv")
 compPlot <- read_csv("./data/2016ExperimentPlotList_26Apr16_PlotAssignments.csv")
 bgPlants <- read_csv("./data/BgPlantSizeStatus_JepsonCalFloraJRBP_021120.csv")
 dat <- read_csv("./data/fungal_pathogens_2015_2017.csv") # ignore warnings if not using sentinel bin
-dato <- read.csv("../Data/Data File 3 - Full Dataset.csv")
+dato <- read.csv("./data/Data File 3 - Full Dataset.csv")
 
 
 #### edit data ####
@@ -24,7 +21,7 @@ dato <- read.csv("../Data/Data File 3 - Full Dataset.csv")
 # select fungal data used in analyses
 dat1 <- dat %>%
   filter(experiment != "JEF transect" & 
-           host %in% c("AB", "AF", "BRAD", "BD", "BH", "EG", "SP"))
+           host %in% c("AB", "AF", "BD", "BH", "EG", "SP"))
 
 # need it to match dat
 dat1
@@ -37,6 +34,7 @@ unique(dat1$competition.density)
 # examine data
 plant15
 unique(plant15$Transect) # transect only
+unique(plant15$Plot)
 # transect number = plot, Plot = subplot
 plant16T
 unique(plant16T$Transect)
@@ -53,7 +51,11 @@ plant16C %>%
   summarise(treatments = paste(unique(Treatment), collapse = "_"),
             BG = paste(unique(BG.spp), collapse = "_"),
             density = paste(unique(Density), collapse = "_")) %>%
-  data.frame() # multiple treatments per plot number, only one bg sp and density, 46 plots
+  data.frame() 
+# multiple treatments per plot number, only one bg sp and density, 46 plots
+
+# number of competition plots
+length(unique(plant16C$Plot)) # 240
 
 # original fungal data (before ambient removed)
 dato %>%
@@ -134,7 +136,7 @@ filter(plant15.1, is.na(grass_group)) # yes
 # combine with native/non-native info
 plant16T.1 <- plant16T %>% 
   filter(Treatment == "ambient") %>%
-  select(Transect,Plot,EG.adult:POA) %>%
+  select(Transect, Plot, EG.adult:POA) %>%
   unique()  %>%
   mutate(year = 2016,
          experiment = "transect",
@@ -158,7 +160,8 @@ plant16C.1 <- plant16C %>%
               rename(Plot = Number, PlantingType = Plot.type.code, Treatment2 = Treatment) %>%
               select(Plot, Treatment2, PlantingType))
 
-filter(plant16C.1, Treatment != Treatment2 | (is.na(Treatment) & !is.na(Treatment2))) # 50 plots, makes sense because 4 of the plots have 3 treatments
+filter(plant16C.1, Treatment != Treatment2 | (is.na(Treatment) & !is.na(Treatment2)) | (is.na(Treatment2) & !is.na(Treatment))) 
+# 50 plots, makes sense because of the 46 plots, 4 have 3 treatments
 
 plant16C.1 %>%
   group_by(Plot) %>%
@@ -194,7 +197,7 @@ plant16C.2 <- plant16C.1 %>%
 
 # make sure plots match data
 plant16C.2 %>% 
-  select(year, experiment, plot, bg.species, competition.density) %>%
+  select(year, experiment, subplot, bg.species, competition.density) %>%
   mutate(check = "yes") %>%
   right_join(dat) %>%
   filter(year == 2016 & experiment == "competition" & is.na(check)) # merges
@@ -237,18 +240,26 @@ bgdat <- full_join(plant15.1, plant16T.1) %>%
 
 # table of species
 bgsptab <- bgdat %>%
-  mutate(invasive = ifelse(CalfloraInvasive == 1, "yes", "no")) %>%
-  group_by(experiment, year, species, grass_group, invasive) %>%
+  group_by(experiment, year, species, grass_group) %>%
   summarise(abundance = round(sum(abundance))) %>%
   ungroup() %>%
-  select(experiment, year, species, abundance, grass_group, invasive)
+  mutate(experiment = case_when(experiment == "competition" ~ "manipulated",
+                                TRUE ~ "observational") %>% fct_relevel("observational"),
+         grass_group = case_when(grass_group == "non.ann" ~ "non-native annual",
+                                 grass_group == "nat.per" ~ "native perennial",
+                                 species %in% c("Festuca perennis", "Phalaris aquatica") ~ "other grass (non-native perennial)",
+                                 TRUE ~ "other grass")) %>%
+  select(experiment, year, species, abundance, grass_group) %>%
+  filter(abundance > 0) %>%
+  arrange(experiment, year, species) %>%
+  rename(Study = experiment, Year = year, "Grass species" = species, Abundance = abundance, "Host group" = grass_group)
 
 filter(bgsptab, species == "unidentified grass")
 
 # summarise by origin
 bgsum15 <- plant15.1 %>%
   filter(!is.na(grass_group)) %>%
-  group_by(year, experiment, plot, subplot, grass_group) %>%
+  group_by(year, experiment, subplot, grass_group) %>%
   summarise(abundance = sum(abundance)) %>%
   ungroup() %>%
   spread(key = grass_group, value = abundance) %>%
@@ -256,7 +267,7 @@ bgsum15 <- plant15.1 %>%
 
 bgsum16T <- plant16T.1 %>%
   filter(!is.na(grass_group)) %>%
-  group_by(year, experiment, plot, subplot, grass_group) %>%
+  group_by(year, experiment, subplot, grass_group) %>%
   summarise(abundance = sum(abundance)) %>%
   ungroup() %>%
   spread(key = grass_group, value = abundance) %>%
@@ -264,16 +275,16 @@ bgsum16T <- plant16T.1 %>%
 
 bgsum16C <- plant16C.2 %>%
   filter(!is.na(grass_group)) %>%
-  group_by(year, experiment, plot, subplot, bg.species, competition.density, grass_group) %>%
+  group_by(year, experiment, subplot, bg.species, competition.density, grass_group) %>%
   summarise(abundance = sum(abundance)) %>%
   ungroup() %>%
   spread(key = grass_group, value = abundance) %>%
-  rename(native.density = nat.per, nonnative.density = non.ann, other.density = other)
+  rename(native.density = nat.per, nonnative.density = non.ann)
 
 # merge with fungal data to check
 bgsum <- bgdat %>%
   filter(!is.na(grass_group)) %>%
-  group_by(year, experiment, plot, subplot, grass_group) %>%
+  group_by(year, experiment, subplot, grass_group) %>%
   summarise(abundance = sum(abundance)) %>%
   ungroup() %>%
   spread(key = grass_group, value = abundance) %>%

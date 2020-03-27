@@ -58,6 +58,11 @@ dat <- full_join(mdat, pdat) %>%
                               TRUE ~ "Manipulated") %>% 
            factor(levels = c("Observational", "Manipulated")))
 
+# sample sizes
+pdat %>%
+  group_by(year, experiment, origin) %>%
+  summarise(n = n())
+
 
 #### statistical models ####
 

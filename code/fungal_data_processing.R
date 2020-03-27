@@ -1,16 +1,13 @@
-## Goal: select data to be used in analyses
-
-
 #### set up ####
 
 # clear everything except final data
 rm(list = ls())
 
-# load libraries
+# load packages
 library(tidyverse)
 
 # import data
-dat <- read.csv("../Data/Data File 3 - Full Dataset.csv") # see metadata file for full information
+dat <- read.csv("./data/Data File 3 - Full Dataset.csv") # see metadata file for full information
 
 
 #### edit data ####
@@ -51,7 +48,8 @@ dat2 <- dat %>%
          grass.status = ifelse(host %in% c("SP","EG"), "native", "non-native"),
          native = ifelse(grass.status == "native", 1, 0),
          year.s = year - 2014,
-         year.f = paste("year", year.s, sep = " ")) %>%
+         year.f = paste("year", year.s, sep = " "),
+         grass.group = recode(grass.status, native = "native\nperennial", "non-native" = "non-native\nannual")) %>%
   filter(!is.na(isolate.id) & 
            (environmental.treatment == "ambient" | is.na(environmental.treatment)) & 
            soil.type == "non-serpentine" & 
@@ -59,7 +57,34 @@ dat2 <- dat %>%
            !is.na(host) & !(host %in% c("?", "SSP", "BRAC", "BRMA"))) %>%
   as_tibble()
 
+# look at subplots
+dat2 %>%
+  select(experiment, subplot) %>%
+  unique() %>%
+  arrange(experiment, subplot) %>%
+  data.frame()
+
+# check year of transects with spaces
+dat2 %>%
+  filter(subplot %in% c("transect_1C ", "transect_3C ", "transect_5C ", "transect_6C ", "transect_8C ")) %>%
+  select(year) %>%
+  unique()
+# all 2017
+
+# edit some subplot names for consistency
+dat3 <- dat2 %>%
+  mutate(subplot = case_when(subplot == "sentinel_FSP2" ~ "sentinel_FS_P2",
+                             subplot == "sentinel_RIDGE_NS P1" ~ "sentinel_RIDGE_P1",
+                             subplot == "sentinel_RIDGE_NS P2" ~ "sentinel_RIDGE_P2",
+                             subplot == "transect_1C " ~ "transect_1C",
+                             subplot == "transect_3C " ~ "transect_3C",
+                             subplot == "transect_5C " ~ "transect_5C",
+                             subplot == "transect_6C " ~ "transect_6C",
+                             subplot == "transect_8C " ~ "transect_8C",
+                             TRUE ~ as.character(subplot)))
+sort(unique(dat3$subplot))
+
 
 #### save data ####
 
-write_csv(dat2, "./data/fungal_pathogens_2015_2017.csv")
+write_csv(dat3, "./data/fungal_pathogens_2015_2017.csv")
