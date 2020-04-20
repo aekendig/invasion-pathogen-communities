@@ -170,7 +170,7 @@ sdat3 <- pdat2 %>%
 # summarise by using whole dataset
 hostplot <- sdat3 %>%
   ggplot(aes(x = grass.group, y = host.num, fill = grass.group)) +
-  stat_summary(geom = "errorbar", fun.data = "mean_cl_boot", width = 0.1) +
+  stat_summary(geom = "errorbar", fun.data = "mean_se", width = 0.1) +
   stat_summary(geom = "point", fun.y = "mean", size = 5, shape = 21) +
   scale_fill_manual(values = c("black", "white"), guide = F) +
   ylab("Host range of associated pathogens") +
@@ -428,7 +428,7 @@ barplot <- dat1sum %>%
         strip.background = element_blank(),
         legend.position = "top",
         legend.direction = "horizontal",
-        legend.text = element_text(size = 9),
+        legend.text = element_text(size = 9, face = "italic"),
         legend.title = element_text(size = 10),
         legend.margin = margin(0, 0, 0, 0, unit="cm")) +
   ylim(0, 1.025) +
@@ -438,7 +438,6 @@ barplot <- dat1sum %>%
                     name = "Pathogen") +
   guides(fill = guide_legend(nrow = 1))
 barplot
-
 
 #### outputs ####
 

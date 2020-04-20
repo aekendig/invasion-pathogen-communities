@@ -69,47 +69,48 @@ load("./output/damage_host_density_surface_march_transect_model.rda")
 load("./output/damage_host_density_surface_april_transect_model.rda")
 load("./output/damage_host_density_surface_competition_model.rda")
 
-# function to convert logit to probability
-logit2prob <- function(logit){
-  odds <- exp(logit)
-  prob <- odds / (1 + odds)
-  return(prob)
-}
-
-# function for extracting coefficients from pathogen models
-path_coef_fun <- function(mod, pathogen, exp.type){
-  out <- tibble(coef = names(mod$coefficients["full",]), value = mod$coefficients["full",]) %>% 
-    mutate(pathogen = pathogen,
-           exp.type = exp.type)
-}
-
-# table for converting coefficient names
-coef_name_conv <- tibble(coef_names = c("cond((Int))", "cond(nonnative)", "cond(natdens.s)", "cond(nondens.s)", "cond(othdens.s)", "cond(natdens.s:nonnative)", "cond(nondens.s:nonnative)", "cond(othdens.s:nonnative)"),
-                         orig_names = c("(Intercept)", "nonnative", "natdens.s", "nondens.s", "othdens.s", "nonnative:natdens.s", "nonnative:nondens.s", "nonnative:othdens.s"))
-
-# function for extracting coefficients from damage models
-dam_coef_fun <- function(mod, dam.type, exp.type, avg){
-  
-  if(avg == T){
-    coef_names = names(mod$coefficients["full",])
-    coef_values = mod$coefficients["full",]
-  }
-
-  else{
-    out_names = tibble(orig_names = rownames(summary(mod)$coefficients[[1]])) %>%
-      left_join(coef_name_conv)
-    coef_names = out_names$coef_names
-    coef_values = as.numeric(summary(mod)$coefficients[[1]][ ,1])
-  }
-  
-  out <- tibble(coef = coef_names, 
-                value = coef_values) %>% 
-    mutate(dam.type = dam.type,
-           exp.type = exp.type)
-  
-  return(out)
-}
-
+#### maybe delete below ####
+# # function to convert logit to probability
+# logit2prob <- function(logit){
+#   odds <- exp(logit)
+#   prob <- odds / (1 + odds)
+#   return(prob)
+# }
+# 
+# # function for extracting coefficients from pathogen models
+# path_coef_fun <- function(mod, pathogen, exp.type){
+#   out <- tibble(coef = names(mod$coefficients["full",]), value = mod$coefficients["full",]) %>% 
+#     mutate(pathogen = pathogen,
+#            exp.type = exp.type)
+# }
+# 
+# # table for converting coefficient names
+# coef_name_conv <- tibble(coef_names = c("cond((Int))", "cond(nonnative)", "cond(natdens.s)", "cond(nondens.s)", "cond(othdens.s)", "cond(natdens.s:nonnative)", "cond(nondens.s:nonnative)", "cond(othdens.s:nonnative)"),
+#                          orig_names = c("(Intercept)", "nonnative", "natdens.s", "nondens.s", "othdens.s", "nonnative:natdens.s", "nonnative:nondens.s", "nonnative:othdens.s"))
+# 
+# # function for extracting coefficients from damage models
+# dam_coef_fun <- function(mod, dam.type, exp.type, avg){
+#   
+#   if(avg == T){
+#     coef_names = names(mod$coefficients["full",])
+#     coef_values = mod$coefficients["full",]
+#   }
+# 
+#   else{
+#     out_names = tibble(orig_names = rownames(summary(mod)$coefficients[[1]])) %>%
+#       left_join(coef_name_conv)
+#     coef_names = out_names$coef_names
+#     coef_values = as.numeric(summary(mod)$coefficients[[1]][ ,1])
+#   }
+#   
+#   out <- tibble(coef = coef_names, 
+#                 value = coef_values) %>% 
+#     mutate(dam.type = dam.type,
+#            exp.type = exp.type)
+#   
+#   return(out)
+# }
+#### maybe delete above ####
 
 #### table of pathogens ####
 
@@ -266,75 +267,149 @@ inddens <- tibble(natdens.s = c(-natmuT/natsdT, (ind_p-natmuT)/natsdT, -natmuT/n
                 nondens.s = c(-nonmuT/nonsdT, -nonmuT/nonsdT,(ind_a-nonmuT)/nonsdT, -nonmuC/nonsdC, -nonmuC/nonsdC, (ind_a-nonmuC)/nonsdC),
                 native.density = c(0, ind_p, 0, 0, ind_p, 0),
                 nonnative.density = c(0, 0, ind_a, 0, 0, ind_a),
-                exp.type = c(rep("Observational", 3), rep("Manipulated", 3)),
-                increase = rep(c("none", "nat", "non"), 2))
+                exp.type = c(rep("Observational", 3), rep("Manipulated", 3)) %>% 
+                  factor(levels = c("Observational", "Manipulated")),
+                increase = rep(c("none", "nat", "non"), 2)) %>%
+  mutate(othdens.s = 0,
+         year = NA,
+         subplot = NA) %>%
+  merge(tibble(nonnative = c(0, 1)), all = T) %>%
+  as_tibble()
 inddens
 
 # check values
 filter(idatC, native.density == min(native.density)) %>% select(native.density, natdens.s) %>% unique()
 filter(idatT, native.density == min(native.density)) %>% select(native.density, natdens.s) %>% unique()
 filter(idatC, nonnative.density == min(nonnative.density)) %>% select(nonnative.density, nondens.s) %>% unique()
-filter(idatT, nonnative.density == min(nonnative.density)) %>% select(nonnative.density, nondens.s) %>% unique() # seem similar
+filter(idatT, nonnative.density == min(nonnative.density)) %>% select(nonnative.density, nondens.s) %>% unique() 
+# seem similar
 
-# extract coefficients for absolute abundance
-aind <- rbind(path_coef_fun(rpamodTa, "rpro", "Observational"), path_coef_fun(aiamodTa, "ainf", "Observational"), path_coef_fun(pcamodTa, "pcha", "Observational"), path_coef_fun(plamodTa, "plol", "Observational"), path_coef_fun(ptamodTa, "ptri", "Observational"), path_coef_fun(dramodTa, "dres", "Observational"), path_coef_fun(paamodTa, "pave", "Observational"), path_coef_fun(aiamodCa, "ainf", "Manipulated"), path_coef_fun(pcamodCa, "pcha", "Manipulated"), path_coef_fun(plamodCa, "plol", "Manipulated"), path_coef_fun(ptamodCa, "ptri", "Manipulated"), path_coef_fun(dramodCa, "dres", "Manipulated"), path_coef_fun(paamodCa, "pave", "Manipulated")) %>%
-  spread(key = coef, value = value) %>%
-  replace(is.na(.), 0) %>%
-  full_join(inddens) %>%
-  mutate(nat_prev = logit2prob(`cond((Int))` + `cond(natdens.s)` * natdens.s + `cond(nondens.s)` * nondens.s),
-         non_prev = logit2prob(`cond((Int))`+ `cond(nonnative)` + `cond(natdens.s)` * natdens.s + `cond(nondens.s)` * nondens.s + `cond(natdens.s:nonnative)` * natdens.s + `cond(nondens.s:nonnative)` * nondens.s)) %>%
-  select(exp.type, pathogen, increase, native.density, nonnative.density, nat_prev, non_prev) %>%
-  gather(key = host_status, value = prev, -c(pathogen, exp.type, increase, native.density, nonnative.density)) %>%
-  mutate(status = recode(host_status, nat_prev = "Native perennial\nhosts", non_prev = "Non-native\nannual hosts") %>% factor(levels = c("Native perennial\nhosts", "Non-native\nannual hosts")),
-         exp.type = factor(exp.type, levels = c("Observational", "Manipulated"))) %>%
-  left_join(otus)
+# model prediction function
+fmod_pred_fun <- function(dat) {
+  asim <- dat %>%
+    merge(otus, all = T) %>%
+    mutate(prev = case_when(pathogen == "rpro" & exp.type == "Observational" ~ 
+                              predict(rpamodTa, newdata = ., re.form = NA, type = "response"),
+                            pathogen == "ainf" & exp.type == "Observational" ~ 
+                              predict(aiamodTa, newdata = ., re.form = NA, type = "response"),
+                            pathogen == "pcha" & exp.type == "Observational" ~ 
+                              predict(pcamodTa, newdata = ., re.form = NA, type = "response"),
+                            pathogen == "plol" & exp.type == "Observational" ~ 
+                              predict(plamodTa, newdata = ., re.form = NA, type = "response"),
+                            pathogen == "ptri" & exp.type == "Observational" ~ 
+                              predict(ptamodTa, newdata = ., re.form = NA, type = "response"),
+                            pathogen == "dres" & exp.type == "Observational" ~ 
+                              predict(dramodTa, newdata = ., re.form = NA, type = "response"),
+                            pathogen == "pave" & exp.type == "Observational" ~ 
+                              predict(paamodTa, newdata = ., re.form = NA, type = "response"),
+                            pathogen == "ainf" & exp.type == "Manipulated" ~ 
+                              predict(aiamodCa, newdata = ., re.form = NA, type = "response"),
+                            pathogen == "pcha" & exp.type == "Manipulated" ~ 
+                              predict(pcamodCa, newdata = ., re.form = NA, type = "response"),
+                            pathogen == "plol" & exp.type == "Manipulated" ~ 
+                              predict(plamodCa, newdata = ., re.form = NA, type = "response"),
+                            pathogen == "ptri" & exp.type == "Manipulated" ~ 
+                              predict(ptamodCa, newdata = ., re.form = NA, type = "response"),
+                            pathogen == "dres" & exp.type == "Manipulated" ~ 
+                              predict(dramodCa, newdata = ., re.form = NA, type = "response"),
+                            pathogen == "pave" & exp.type == "Manipulated" ~ 
+                              predict(paamodCa, newdata = ., re.form = NA, type = "response"),
+                            TRUE ~ NA_real_),
+           prev.se = case_when(pathogen == "rpro" & exp.type == "Observational" ~ 
+                                 predict(rpamodTa, newdata = ., re.form = NA, type = "response", se.fit = T)$se.fit,
+                               pathogen == "ainf" & exp.type == "Observational" ~ 
+                                 predict(aiamodTa, newdata = ., re.form = NA, type = "response", se.fit = T)$se.fit,
+                               pathogen == "pcha" & exp.type == "Observational" ~ 
+                                 predict(pcamodTa, newdata = ., re.form = NA, type = "response", se.fit = T)$se.fit,
+                               pathogen == "plol" & exp.type == "Observational" ~ 
+                                 predict(plamodTa, newdata = ., re.form = NA, type = "response", se.fit = T)$se.fit,
+                               pathogen == "ptri" & exp.type == "Observational" ~ 
+                                 predict(ptamodTa, newdata = ., re.form = NA, type = "response", se.fit = T)$se.fit,
+                               pathogen == "dres" & exp.type == "Observational" ~ 
+                                 predict(dramodTa, newdata = ., re.form = NA, type = "response", se.fit = T)$se.fit,
+                               pathogen == "pave" & exp.type == "Observational" ~ 
+                                 predict(paamodTa, newdata = ., re.form = NA, type = "response", se.fit = T)$se.fit,
+                               pathogen == "ainf" & exp.type == "Manipulated" ~ 
+                                 predict(aiamodCa, newdata = ., re.form = NA, type = "response", se.fit = T)$se.fit,
+                               pathogen == "pcha" & exp.type == "Manipulated" ~ 
+                                 predict(pcamodCa, newdata = ., re.form = NA, type = "response", se.fit = T)$se.fit,
+                               pathogen == "plol" & exp.type == "Manipulated" ~ 
+                                 predict(plamodCa, newdata = ., re.form = NA, type = "response", se.fit = T)$se.fit,
+                               pathogen == "ptri" & exp.type == "Manipulated" ~ 
+                                 predict(ptamodCa, newdata = ., re.form = NA, type = "response", se.fit = T)$se.fit,
+                               pathogen == "dres" & exp.type == "Manipulated" ~ 
+                                 predict(dramodCa, newdata = ., re.form = NA, type = "response", se.fit = T)$se.fit,
+                               pathogen == "pave" & exp.type == "Manipulated" ~ 
+                                 predict(paamodCa, newdata = ., re.form = NA, type = "response", se.fit = T)$se.fit,
+                               TRUE ~ NA_real_)) %>%
+    as_tibble() %>%
+    filter(!(pathogen == "pcha" & nonnative == 0) & !(pathogen == "ptri" & nonnative == 1) & !(pathogen == "rpro" & exp.type == "Manipulated")) %>%
+    mutate(grass.group = case_when(nonnative == 0 ~ "native\nperennial",
+                                   nonnative == 1 ~ "non-native\nannual"))
+  
+  return(asim)
+}
+
+# predict prevalence values
+aind <- fmod_pred_fun(inddens) 
+
+# select zero values
+aind0 <- filter(aind, increase == "none") %>%
+  rename(prev0 = prev, prev0.se = prev.se) %>%
+  select(exp.type, pathogen, path.abb, grass.group, prev0, prev0.se)
 
 # split by density and calculate change in prevalence, remove specialists
-aindnat <- filter(aind, increase != "non") %>% 
-  select(-c(nonnative.density, increase)) %>%
-  spread(key = native.density, value = prev) %>%
-  mutate(prev_change = `50` - `0`) %>%
-  filter(!(pathogen == "pcha" & status == "Native perennial\nhosts") & !(pathogen == "ptri" & status == "Non-native\nannual hosts"))
+aindnat <- filter(aind, increase == "nat") %>% 
+  select(exp.type, pathogen, path.abb, grass.group, prev, prev.se) %>%
+  full_join(aind0) %>%
+  mutate(prev.change = prev - prev0,
+         prev.change.se = sqrt(prev.se^2 + prev0.se^2))
 
-aindnon <- filter(aind, increase != "nat") %>% 
-  select(-c(native.density, increase)) %>%
-  spread(key = nonnative.density, value = prev) %>%
-  mutate(prev_change = `5000` - `0`) %>%
-  filter(!(pathogen == "pcha" & status == "Native perennial\nhosts") & !(pathogen == "ptri" & status == "Non-native\nannual hosts"))
+aindnon <- filter(aind, increase == "non") %>% 
+  select(exp.type, pathogen, path.abb, grass.group, prev, prev.se) %>%
+  full_join(aind0) %>%
+  mutate(prev.change = prev - prev0,
+         prev.change.se = sqrt(prev.se^2 + prev0.se^2))
 
 # labels
-indlabels <- tibble(dens.type = rep(c("native perennial", "non-native annual"), each = 2), exp.type = c("Observational", "Manipulated", "Observational", "Manipulated"), x = rep(0.5, 4), y = rep(0.97, 4), labels = c("A", "B", "C", "D")) %>%
+indlabels <- tibble(dens.type = rep(c("native perennial", "non-native annual"), each = 2), exp.type = c("Observational", "Manipulated", "Observational", "Manipulated"), x = rep(0.5, 4), y = rep(1, 4), labels = c("A", "B", "C", "D")) %>%
   mutate(exp.type = factor(exp.type, levels = c("Observational", "Manipulated")))
 
 # figure
-changeplotnat <- ggplot(aindnat, aes(x = status, y = prev_change)) +
+changeplotnat <- ggplot(aindnat, aes(x = grass.group, y = prev.change)) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "gray") +
-  geom_point(aes(fill = path.abb, shape = path.abb), position = position_jitterdodge(dodge.width = 0.1, jitter.width = 0.1, seed = 8), size = 3) +
+  geom_errorbar(aes(ymin = prev.change - prev.change.se, ymax = prev.change + prev.change.se, shape = path.abb), color = "black", position = position_dodge(width = 0.6), width = 0, show.legend = F) +
+  geom_point(aes(fill = path.abb, shape = path.abb), position = position_dodge(width = 0.6), size = 3) +
   geom_text(data = filter(indlabels, dens.type == "native perennial"), aes(x = x, y = y, label = labels), size = 4, fontface = "bold") +
   facet_wrap(~ exp.type, strip.position = "right", nrow = 2) +
   ylab(expression(paste("Response to 50 native perennial grasses ", m^-2, sep = ""))) +
   scale_fill_manual(values = col_pal2, name = "Pathogen") +
+  scale_color_manual(values = col_pal2, name = "Pathogen") +
   scale_shape_manual(values = rep(c(21, 24), each = 4), name = "Pathogen") +
   ggtheme +
   theme(axis.title.x = element_blank(),
         legend.position = "none",
         strip.text = element_blank()) +
-  ylim(-0.8, 1)
+  ylim(-1, 1.05)
 
-changeplotnon <- ggplot(aindnon, aes(x = status, y = prev_change)) +
+changeplotnon <- ggplot(aindnon, aes(x = grass.group, y = prev.change)) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "gray") +
-  geom_point(aes(fill = path.abb, shape = path.abb), position = position_jitterdodge(dodge.width = 0.1, jitter.width = 0.1, seed = 8), size = 3) +
+  geom_errorbar(aes(ymin = prev.change - prev.change.se, ymax = prev.change + prev.change.se, shape = path.abb), color = "black", position = position_dodge(width = 0.6), width = 0, show.legend = F) +
+  geom_point(aes(fill = path.abb, shape = path.abb), position = position_dodge(width = 0.6), size = 3) +
   geom_text(data = filter(indlabels, dens.type == "non-native annual"), aes(x = x, y = y, label = labels), size = 4, fontface = "bold") +
   facet_wrap(~ exp.type, strip.position = "right", nrow = 2) +
   ylab(expression(paste("Response to 5000 non-native annual grasses ", m^-2, sep = ""))) +
   scale_fill_manual(values = col_pal2, name = "Pathogen") +
+  scale_color_manual(values = col_pal2, name = "Pathogen") +
   scale_shape_manual(values = rep(c(21, 24), each = 4), name = "Pathogen") +
   ggtheme +
   theme(axis.title.x = element_blank(),
-        axis.title.y = element_text(size = axisTitle, hjust = 0.7)) +
-  ylim(-0.8, 1)
+        axis.title.y = element_text(size = axisTitle, hjust = 0.7),
+        legend.text = element_text(size = 9, face = "italic"),
+        legend.title = element_text(size = 10),) +
+  ylim(-1, 1.05)
 
-pdf("./output/figure4_prevalence_change_density.pdf", width = 7, height = 4)
+pdf("./output/figure3_prevalence_change_density.pdf", width = 7, height = 4)
 cowplot::plot_grid(changeplotnat, changeplotnon, rel_widths = c(0.7, 1))
 dev.off()
 
@@ -345,26 +420,40 @@ dev.off()
 idatFnat <- idatT %>%
   select(isolate.id, experiment, grass.group, native.density, ainf, pcha, plol, ptri, dres, pave, rpro) %>%
   full_join(idatC %>% select(isolate.id, experiment, grass.group, native.density, ainf, pcha, plol, ptri, dres, pave, rpro)) %>%
-  group_by(experiment, grass.group, native.density) %>%
-  summarise(ainf = mean(ainf), pcha = mean(pcha), plol = mean(plol), ptri = mean(ptri), dres = mean(dres), pave = mean(pave), rpro = mean(rpro)) %>%
+  group_by(experiment, grass.group) %>%
+  mutate(native.density.bins = cut_interval(native.density, n = 5)) %>%
+  group_by(experiment, grass.group, native.density.bins) %>%
+  mutate(min_interval = parse_number(strsplit(native.density.bins, ",")[[1]])[1],
+         max_interval = parse_number(strsplit(native.density.bins, ",")[[1]])[2],
+         density = (max_interval + min_interval) / 2) %>%
   ungroup() %>%
-  gather(key = pathogen, value = prev, -c(experiment:native.density)) %>%
+  gather(key = "pathogen", value = "present", -c(isolate.id:native.density, native.density.bins:density)) %>%
+  group_by(experiment, grass.group, native.density.bins, density, pathogen) %>%
+  summarise(prev = mean(present),
+            prev.se = sd(present) / sqrt(length(present))) %>%
+  ungroup() %>%
   left_join(otus) %>%
   mutate(exp.type = case_when(experiment == "transect" ~ "Observational",
-                              experiment == "competition" ~ "Manipulated") %>% factor(levels = c("Observational", "Manipulated"))) %>%
-  rename(density = native.density)
+                              experiment == "competition" ~ "Manipulated") %>% factor(levels = c("Observational", "Manipulated")))
 
 idatFnon <- idatT %>%
   select(isolate.id, experiment, grass.group, nonnative.density, ainf, pcha, plol, ptri, dres, pave, rpro) %>%
   full_join(idatC %>% select(isolate.id, experiment, grass.group, nonnative.density, ainf, pcha, plol, ptri, dres, pave, rpro)) %>%
-  group_by(experiment, grass.group, nonnative.density) %>%
-  summarise(ainf = mean(ainf), pcha = mean(pcha), plol = mean(plol), ptri = mean(ptri), dres = mean(dres), pave = mean(pave), rpro = mean(rpro)) %>%
+  group_by(experiment, grass.group) %>%
+  mutate(nonnative.density.bins = cut_interval(nonnative.density, n = 5)) %>%
+  group_by(experiment, grass.group, nonnative.density.bins) %>%
+  mutate(min_interval = parse_number(strsplit(nonnative.density.bins, ",")[[1]])[1],
+         max_interval = parse_number(strsplit(nonnative.density.bins, ",")[[1]])[2],
+         density = (max_interval + min_interval) / 2) %>%
   ungroup() %>%
-  gather(key = pathogen, value = prev, -c(experiment:nonnative.density)) %>%
+  gather(key = "pathogen", value = "present", -c(isolate.id:nonnative.density, nonnative.density.bins:density)) %>%
+  group_by(experiment, grass.group, nonnative.density.bins, density, pathogen) %>%
+  summarise(prev = mean(present),
+            prev.se = sd(present) / sqrt(length(present))) %>%
+  ungroup() %>%
   left_join(otus) %>%
   mutate(exp.type = case_when(experiment == "transect" ~ "Observational",
-                              experiment == "competition" ~ "Manipulated") %>% factor(levels = c("Observational", "Manipulated"))) %>%
-  rename(density = nonnative.density)
+                              experiment == "competition" ~ "Manipulated") %>% factor(levels = c("Observational", "Manipulated")))
 
 # idat by grass.status
 idatT.nat = filter(idatT, grass.group == "native\nperennial")
@@ -373,57 +462,57 @@ idatC.nat = filter(idatC, grass.group == "native\nperennial")
 idatC.non = filter(idatC, grass.group == "non-native\nannual")
 
 # density table
-idens <- tibble(nat.natdens.s = c(seq(min(idatT.nat$natdens.s), max(idatT.nat$natdens.s), length.out = 100), seq(min(idatC.nat$natdens.s), max(idatC.nat$natdens.s), length.out = 100)),
-                nat.nondens.s = c(seq(min(idatT.nat$nondens.s), max(idatT.nat$nondens.s), length.out = 100), seq(min(idatC.nat$nondens.s), max(idatC.nat$nondens.s), length.out = 100)),
-                nat.native.density = c(seq(min(idatT.nat$native.density), max(idatT.nat$native.density), length.out = 100), seq(min(idatC.nat$native.density), max(idatC.nat$native.density), length.out = 100)),
-                nat.nonnative.density = c(seq(min(idatT.nat$nonnative.density), max(idatT.nat$nonnative.density), length.out = 100), seq(min(idatC.nat$nonnative.density), max(idatC.nat$nonnative.density), length.out = 100)),
-                non.natdens.s = c(seq(min(idatT.non$natdens.s), max(idatT.non$natdens.s), length.out = 100), seq(min(idatC.non$natdens.s), max(idatC.non$natdens.s), length.out = 100)),
-                non.nondens.s = c(seq(min(idatT.non$nondens.s), max(idatT.non$nondens.s), length.out = 100), seq(min(idatC.non$nondens.s), max(idatC.non$nondens.s), length.out = 100)),
-                non.native.density = c(seq(min(idatT.non$native.density), max(idatT.non$native.density), length.out = 100), seq(min(idatC.non$native.density), max(idatC.non$native.density), length.out = 100)),
-                non.nonnative.density = c(seq(min(idatT.non$nonnative.density), max(idatT.non$nonnative.density), length.out = 100), seq(min(idatC.non$nonnative.density), max(idatC.non$nonnative.density), length.out = 100)),
-                exp.type = c(rep("Observational", 100), rep("Manipulated", 100)))
+idens <- tibble(nonnative = rep(c(0, 1), each = 200),
+                exp.type = rep(rep(c("Observational", "Manipulated"), each = 100), 2),
+                natdens.s = c(seq(min(idatT.nat$natdens.s), max(idatT.nat$natdens.s), length.out = 100), 
+                              seq(min(idatC.nat$natdens.s), max(idatC.nat$natdens.s), length.out = 100),
+                              seq(min(idatT.non$natdens.s), max(idatT.non$natdens.s), length.out = 100), 
+                              seq(min(idatC.non$natdens.s), max(idatC.non$natdens.s), length.out = 100)),
+                nondens.s = c(seq(min(idatT.nat$nondens.s), max(idatT.nat$nondens.s), length.out = 100), 
+                              seq(min(idatC.nat$nondens.s), max(idatC.nat$nondens.s), length.out = 100),
+                              seq(min(idatT.non$nondens.s), max(idatT.non$nondens.s), length.out = 100), 
+                              seq(min(idatC.non$nondens.s), max(idatC.non$nondens.s), length.out = 100)),
+                native.density = c(seq(min(idatT.nat$native.density), max(idatT.nat$native.density), length.out = 100), 
+                                   seq(min(idatC.nat$native.density), max(idatC.nat$native.density), length.out = 100),
+                                   seq(min(idatT.non$native.density), max(idatT.non$native.density), length.out = 100), 
+                                   seq(min(idatC.non$native.density), max(idatC.non$native.density), length.out = 100)),
+                nonnative.density = c(seq(min(idatT.nat$nonnative.density), max(idatT.nat$nonnative.density), length.out = 100), 
+                                      seq(min(idatC.nat$nonnative.density), max(idatC.nat$nonnative.density), length.out = 100),
+                                      seq(min(idatT.non$nonnative.density), max(idatT.non$nonnative.density), length.out = 100), 
+                                      seq(min(idatC.non$nonnative.density), max(idatC.non$nonnative.density), length.out = 100))) %>%
+  mutate(othdens.s = 0,
+         year = NA,
+         subplot = NA)
 
-# extract coefficients
-asim <- rbind(path_coef_fun(rpamodTa, "rpro", "Observational"), path_coef_fun(aiamodTa, "ainf", "Observational"), path_coef_fun(pcamodTa, "pcha", "Observational"), path_coef_fun(plamodTa, "plol", "Observational"), path_coef_fun(ptamodTa, "ptri", "Observational"), path_coef_fun(dramodTa, "dres", "Observational"), path_coef_fun(paamodTa, "pave", "Observational"), path_coef_fun(aiamodCa, "ainf", "Manipulated"), path_coef_fun(pcamodCa, "pcha", "Manipulated"), path_coef_fun(plamodCa, "plol", "Manipulated"), path_coef_fun(ptamodCa, "ptri", "Manipulated"), path_coef_fun(dramodCa, "dres", "Manipulated"), path_coef_fun(paamodCa, "pave", "Manipulated")) %>%
-  spread(key = coef, value = value) %>%
-  replace(is.na(.), 0) %>%
-  full_join(idens) %>%
-  mutate(nat_dens_nat_prev = logit2prob(`cond((Int))` + `cond(natdens.s)` * nat.natdens.s),
-         nat_dens_non_prev = logit2prob(`cond((Int))`+ `cond(nonnative)` + `cond(natdens.s)` * non.natdens.s + `cond(natdens.s:nonnative)` * non.natdens.s),
-         non_dens_nat_prev = logit2prob(`cond((Int))` + `cond(nondens.s)` * nat.nondens.s),
-         non_dens_non_prev = logit2prob(`cond((Int))`+ `cond(nonnative)` + `cond(nondens.s)` * non.nondens.s + `cond(nondens.s:nonnative)` * non.nondens.s)) %>%
-  select(exp.type, pathogen, nat.native.density, non.native.density, nat.nonnative.density, non.nonnative.density, nat_dens_nat_prev:non_dens_non_prev) %>%
-  gather(key = dens_status, value = prev, -c(pathogen, exp.type, nat.native.density, non.native.density, nat.nonnative.density, non.nonnative.density)) %>%
-  mutate(grass.group = substring(dens_status, 10, 12) %>% recode(nat = "native\nperennial", non = "non-native\nannual"),
-         dens.type = substring(dens_status, 1, 3),
-         exp.type = factor(exp.type, levels = c("Observational", "Manipulated"))) %>%
-  left_join(otus) %>%
-  filter(!(pathogen == "pcha" & grass.group == "native\nperennial") & !(pathogen == "ptri" & grass.group == "non-native\nannual"))
-
-# split by density
-asimnat <- filter(asim, dens.type == "nat") %>%
-  mutate(native.density = case_when(grass.group == "native\nperennial" ~ nat.native.density,
-                                    grass.group == "non-native\nannual" ~ non.native.density)) %>%
-  rename(density = native.density)
-
-asimnon <- filter(asim, dens.type == "non") %>%
-  mutate(nonnative.density = case_when(grass.group == "native\nperennial" ~ nat.nonnative.density,
-                                       grass.group == "non-native\nannual" ~ non.nonnative.density)) %>%
-  rename(density = nonnative.density)
+# predict by density
+asimnat <- idens %>%
+  mutate(nondens.s = 0,
+         nonnative.density = NA) %>%
+  rename(density = native.density) %>%
+  fmod_pred_fun(.)
+  
+asimnon <- idens %>%
+  mutate(natdens.s = 0,
+         native.density = NA) %>%
+  rename(density = nonnative.density) %>%
+  fmod_pred_fun(.)
 
 # manuscript figure function
-dens_fig_fun <- function(rawdat, preddat, stat, exp){
+dens_fig_fun <- function(rawdat, preddat, stat, exp, dodge_width){
   
   rawdat2 <- filter(rawdat, grass.group == stat & exp.type == exp)
   preddat2 <- filter(preddat, grass.group == stat & exp.type == exp)
   
-  out_plot <- ggplot(rawdat2, aes(x = density, y = prev, color = path.abb, linetype = path.abb, shape = path.abb)) +
-    geom_point(alpha = 0.5) +
+  out_plot <- ggplot(rawdat2, aes(x = density, y = prev, ymin = prev - prev.se, ymax = prev + prev.se, color = path.abb, fill = path.abb, linetype = path.abb, shape = path.abb)) +
+    geom_ribbon(data = preddat2, color = NA, alpha = 0.1) +
     geom_line(data = preddat2) +
+    geom_errorbar(width = 0.1, position = position_dodge(dodge_width)) +
+    geom_point(size = 2, position = position_dodge(dodge_width)) +
     scale_color_manual(values = col_pal, name = "Pathogen") +
+    scale_fill_manual(values = col_pal, name = "Pathogen") +
     scale_linetype_manual(values = rep(c("solid", "dashed"), each = 4), name = "Pathogen") +
     scale_shape_manual(values = rep(c(19, 17), each = 4), name = "Pathogen") +
-    scale_y_continuous(breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1), limits = c(0, 1)) +
+    #scale_y_continuous(breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1), limits = c(-0.05, 1)) +
     theme_bw() +
     theme(axis.text = element_text(size = axisText, color="black"),
           axis.title = element_blank(),
@@ -438,14 +527,14 @@ dens_fig_fun <- function(rawdat, preddat, stat, exp){
 }
 
 # save plots
-obs.nat.natdens.plot <- dens_fig_fun(idatFnat, asimnat, "native\nperennial", "Observational")
-obs.non.natdens.plot <- dens_fig_fun(idatFnat, asimnat, "non-native\nannual", "Observational")
-obs.nat.nondens.plot <- dens_fig_fun(idatFnon, asimnon, "native\nperennial", "Observational")
-obs.non.nondens.plot <- dens_fig_fun(idatFnon, asimnon, "non-native\nannual", "Observational")
-man.nat.natdens.plot <- dens_fig_fun(idatFnat, asimnat, "native\nperennial", "Manipulated")
-man.non.natdens.plot <- dens_fig_fun(idatFnat, asimnat, "non-native\nannual", "Manipulated")
-man.nat.nondens.plot <- dens_fig_fun(idatFnon, asimnon, "native\nperennial", "Manipulated")
-man.non.nondens.plot <- dens_fig_fun(idatFnon, asimnon, "non-native\nannual", "Manipulated")
+obs.nat.natdens.plot <- dens_fig_fun(idatFnat, asimnat, "native\nperennial", "Observational", 0.3)
+obs.non.natdens.plot <- dens_fig_fun(idatFnat, asimnat, "non-native\nannual", "Observational", 0.3)
+obs.nat.nondens.plot <- dens_fig_fun(idatFnon, asimnon, "native\nperennial", "Observational", 30)
+obs.non.nondens.plot <- dens_fig_fun(idatFnon, asimnon, "non-native\nannual", "Observational", 30)
+man.nat.natdens.plot <- dens_fig_fun(idatFnat, asimnat, "native\nperennial", "Manipulated", 3)
+man.non.natdens.plot <- dens_fig_fun(idatFnat, asimnat, "non-native\nannual", "Manipulated", 0.3)
+man.nat.nondens.plot <- dens_fig_fun(idatFnon, asimnon, "native\nperennial", "Manipulated", 3)
+man.non.nondens.plot <- dens_fig_fun(idatFnon, asimnon, "non-native\nannual", "Manipulated", 30)
 
 # max values
 filter(idatFnat, grass.group == "native\nperennial" & exp.type == "Manipulated") %>% select(density) %>% max()
@@ -467,7 +556,7 @@ leg.dens.plot1 <- get_legend(
     scale_color_manual(values = col_pal, name = "Pathogen") +
     scale_linetype_manual(values = rep(c("solid", "dashed"), each = 4), name = "Pathogen") +
     scale_shape_manual(values = rep(c(19, 17), each = 4), name = "Pathogen") +
-    theme(legend.text = element_text(size = 9),
+    theme(legend.text = element_text(size = 9, face = "italic"),
           legend.title = element_text(size = 10),
           legend.key.size = unit(3, "lines"),
           legend.position = "bottom",
@@ -483,7 +572,7 @@ leg.dens.plot2 <- get_legend(
     scale_linetype_manual(values = rep(c("solid", "dashed"), each = 4)[4:7], name = "Pathogen") +
     scale_shape_manual(values = rep(c(19, 17), each = 4)[4:7], name = "Pathogen") +
     ggtheme +
-    theme(legend.text = element_text(size = 9),
+    theme(legend.text = element_text(size = 9, face = "italic"),
           legend.title = element_blank(),
           legend.key.size = unit(3, "lines"),
           legend.position = "bottom",
@@ -551,7 +640,7 @@ dens.plot <- cowplot::plot_grid(natdens.plot.fin, nondens.plot.fin, nrow = 2)
 leg.dens.plot <- cowplot::plot_grid(leg.dens.plot1, leg.dens.plot2, align = "v", nrow = 2) 
 dens.plot.fin <- cowplot::plot_grid(dens.plot, leg.dens.plot, rel_heights = c(1, 0.08), rel_widths = c(1, 0.08), align = "v", nrow = 2)
 
-pdf("./output/figure3_pathogen_relative_abundance_density.pdf", width = 7, height = 10.5)
+pdf("./output/figureS5_pathogen_relative_abundance_density.pdf", width = 7, height = 10.5)
 grid.arrange(arrangeGrob(dens.plot.fin, left = textGrob("Pathogen relative abundance", gp=gpar(fontsize = 13), rot = 90)))
 dev.off()
 
@@ -561,8 +650,8 @@ dev.off()
 # ran the following code twice: once with March data and models and once with April, saved output separately
 
 # change month
-pdatT <- pdatTm
-# pdatT <- pdatTa
+# pdatT <- pdatTm
+pdatT <- pdatTa
 
 # use plant-scale data because it's the same dataset as that used for mean.dam, but it includes the zeros
 pdatT.nat <- filter(pdatT, grass.group == "native\nperennial")
@@ -571,52 +660,80 @@ pdatC.nat <- filter(pdatC, grass.group == "native\nperennial")
 pdatC.non <- filter(pdatC, grass.group == "non-native\nannual")
 
 # density table
-ddens <- tibble(nat.natdens.s = c(seq(min(pdatT.nat$natdens.s), max(pdatT.nat$natdens.s), length.out = 100), seq(min(pdatC.nat$natdens.s), max(pdatC.nat$natdens.s), length.out = 100)),
-                nat.nondens.s = c(seq(min(pdatT.nat$nondens.s), max(pdatT.nat$nondens.s), length.out = 100), seq(min(pdatC.nat$nondens.s), max(pdatC.nat$nondens.s), length.out = 100)),
-                nat.native.density = c(seq(min(pdatT.nat$native.density), max(pdatT.nat$native.density), length.out = 100), seq(min(pdatC.nat$native.density), max(pdatC.nat$native.density), length.out = 100)),
-                nat.nonnative.density = c(seq(min(pdatT.nat$nonnative.density), max(pdatT.nat$nonnative.density), length.out = 100), seq(min(pdatC.nat$nonnative.density), max(pdatC.nat$nonnative.density), length.out = 100)),
-                non.natdens.s = c(seq(min(pdatT.non$natdens.s), max(pdatT.non$natdens.s), length.out = 100), seq(min(pdatC.non$natdens.s), max(pdatC.non$natdens.s), length.out = 100)),
-                non.nondens.s = c(seq(min(pdatT.non$nondens.s), max(pdatT.non$nondens.s), length.out = 100), seq(min(pdatC.non$nondens.s), max(pdatC.non$nondens.s), length.out = 100)),
-                non.native.density = c(seq(min(pdatT.non$native.density), max(pdatT.non$native.density), length.out = 100), seq(min(pdatC.non$native.density), max(pdatC.non$native.density), length.out = 100)),
-                non.nonnative.density = c(seq(min(pdatT.non$nonnative.density), max(pdatT.non$nonnative.density), length.out = 100), seq(min(pdatC.non$nonnative.density), max(pdatC.non$nonnative.density), length.out = 100)),
-                exp.type = c(rep("Observational", 100), rep("Manipulated", 100)))
+ddens <- tibble(nonnative = rep(c(0, 1), each = 200),
+                exp.type = rep(rep(c("Observational", "Manipulated"), each = 100), 2),
+                natdens.s = c(seq(min(pdatT.nat$natdens.s), max(pdatT.nat$natdens.s), length.out = 100), 
+                              seq(min(pdatC.nat$natdens.s), max(pdatC.nat$natdens.s), length.out = 100),
+                              seq(min(pdatT.non$natdens.s), max(pdatT.non$natdens.s), length.out = 100), 
+                              seq(min(pdatC.non$natdens.s), max(pdatC.non$natdens.s), length.out = 100)),
+                nondens.s = c(seq(min(pdatT.nat$nondens.s), max(pdatT.nat$nondens.s), length.out = 100), 
+                              seq(min(pdatC.nat$nondens.s), max(pdatC.nat$nondens.s), length.out = 100),
+                              seq(min(pdatT.non$nondens.s), max(pdatT.non$nondens.s), length.out = 100), 
+                              seq(min(pdatC.non$nondens.s), max(pdatC.non$nondens.s), length.out = 100)),
+                native.density = c(seq(min(pdatT.nat$native.density), max(pdatT.nat$native.density), length.out = 100), 
+                                   seq(min(pdatC.nat$native.density), max(pdatC.nat$native.density), length.out = 100),
+                                   seq(min(pdatT.non$native.density), max(pdatT.non$native.density), length.out = 100), 
+                                   seq(min(pdatC.non$native.density), max(pdatC.non$native.density), length.out = 100)),
+                nonnative.density = c(seq(min(pdatT.nat$nonnative.density), max(pdatT.nat$nonnative.density), length.out = 100), 
+                                      seq(min(pdatC.nat$nonnative.density), max(pdatC.nat$nonnative.density), length.out = 100),
+                                      seq(min(pdatT.non$nonnative.density), max(pdatT.non$nonnative.density), length.out = 100), 
+                                      seq(min(pdatC.non$nonnative.density), max(pdatC.non$nonnative.density), length.out = 100))) %>%
+  mutate(othdens.s = 0,
+         year = NA,
+         subplot = NA,
+         plant = NA)
 
 # change models depending on March or April
-smodT <- smodTM
-mod.avg <- F
-imodT <- imodTMa
+# smodT <- smodTM
+# imodT <- imodTMa
 
-# smodT <- smodTAa
-# mod.avg <- T
-# imodT <- imodTAa
+smodT <- smodTAa
+imodT <- imodTAa
 
-# extract coefficients
-dsim <- rbind(dam_coef_fun(smodT, "surface", "Observational", mod.avg), dam_coef_fun(smodCa, "surface", "Manipulated", T), dam_coef_fun(imodT, "leaves", "Observational", T), dam_coef_fun(imodCa, "leaves", "Manipulated", T)) %>%
-  spread(key = coef, value = value) %>%
-  replace(is.na(.), 0) %>%
-  full_join(ddens) %>%
-  mutate(nat_dens_nat_dam = logit2prob(`cond((Int))` + `cond(natdens.s)` * nat.natdens.s),
-         nat_dens_non_dam = logit2prob(`cond((Int))`+ `cond(nonnative)` + `cond(natdens.s)` * non.natdens.s + `cond(natdens.s:nonnative)` * non.natdens.s),
-         non_dens_nat_dam = logit2prob(`cond((Int))` + `cond(nondens.s)` * nat.nondens.s),
-         non_dens_non_dam = logit2prob(`cond((Int))`+ `cond(nonnative)` + `cond(nondens.s)` * non.nondens.s + `cond(nondens.s:nonnative)` * non.nondens.s)) %>%
-  select(exp.type, dam.type, nat.native.density, nat.nonnative.density, non.native.density, non.nonnative.density, nat_dens_nat_dam:non_dens_non_dam) %>%
-  gather(key = dens_status, value = dam, -c(dam.type, exp.type, nat.native.density:non.nonnative.density)) %>%
-  mutate(grass.group = substring(dens_status, 10, 12) %>% recode(nat = "native\nperennial", non = "non-native\nannual"),
-         dens.type = substring(dens_status, 1, 3),
-         exp.type = factor(exp.type, levels = c("Observational", "Manipulated")))
+# function for predicting damage from models
+dmod_pred_fun <- function(dat) {
+  dsim <- dat %>%
+    merge(tibble(dam.type = c("surface", "leaves")), all = T) %>%
+    mutate(dam = case_when(dam.type == "surface" & exp.type == "Observational" ~ 
+                             predict(smodT, newdata = ., re.form = NA, type = "response"),
+                           dam.type == "surface" & exp.type == "Manipulated" ~ 
+                             predict(smodCa, newdata = ., re.form = NA, type = "response"),
+                           dam.type == "leaves" & exp.type == "Observational" ~ 
+                             predict(imodT, newdata = ., re.form = NA, type = "response"),
+                           dam.type == "leaves" & exp.type == "Manipulated" ~ 
+                             predict(imodCa, newdata = ., re.form = NA, type = "response"),
+                           TRUE ~ NA_real_),
+           dam.se = case_when(dam.type == "surface" & exp.type == "Observational" ~ 
+                                 predict(smodT, newdata = ., re.form = NA, type = "response", se.fit = T)$se.fit,
+                               dam.type == "surface" & exp.type == "Manipulated" ~ 
+                                 predict(smodCa, newdata = ., re.form = NA, type = "response", se.fit = T)$se.fit,
+                               dam.type == "leaves" & exp.type == "Observational" ~ 
+                                 predict(imodT, newdata = ., re.form = NA, type = "response", se.fit = T)$se.fit,
+                               dam.type == "leaves" & exp.type == "Manipulated" ~ 
+                                 predict(imodCa, newdata = ., re.form = NA, type = "response", se.fit = T)$se.fit,
+                               TRUE ~ NA_real_)) %>%
+    as_tibble() %>%
+    mutate(grass.group = case_when(nonnative == 0 ~ "native\nperennial",
+                                   nonnative == 1 ~ "non-native\nannual"),
+           host.group = recode(grass.group, "native\nperennial" = "native perennial", "non-native\nannual" = "non-native annual"),
+           exp.type = factor(exp.type, levels = c("Observational", "Manipulated")))
+  
+  return(dsim)
+}
 
-# split by density
-dsimnat <- filter(dsim, dens.type == "nat")  %>%
-  mutate(native.density = case_when(grass.group == "native\nperennial" ~ nat.native.density,
-                                    grass.group == "non-native\nannual" ~ non.native.density),
-         host.group = recode(grass.group, "native\nperennial" = "native perennial", "non-native\nannual" = "non-native annual")) %>%
-  rename(density = native.density)
 
-dsimnon <- filter(dsim, dens.type == "non")  %>%
-  mutate(nonnative.density = case_when(grass.group == "native\nperennial" ~ nat.nonnative.density,
-                                       grass.group == "non-native\nannual" ~ non.nonnative.density),
-         host.group = recode(grass.group, "native\nperennial" = "native perennial", "non-native\nannual" = "non-native annual")) %>%
-  rename(density = nonnative.density)
+# predict by density
+dsimnat <- ddens %>%
+  mutate(nondens.s = 0,
+         nonnative.density = NA) %>%
+  rename(density = native.density) %>%
+  dmod_pred_fun(.)
+
+dsimnon <- ddens %>%
+  mutate(natdens.s = 0,
+         native.density = NA) %>%
+  rename(density = nonnative.density) %>%
+  dmod_pred_fun(.)
 
 # change month data
 ldatT <- ldatTm
@@ -625,21 +742,12 @@ ldatT <- ldatTm
 # raw data: surface area
 surfdat <- ldatT %>%
   filter(surface > 0) %>%
-  group_by(year, experiment, subplot, host, grass.group, native.density, nonnative.density, plant) %>%
-  summarise(mean.dam = mean(surface)) %>%
-  ungroup() %>%
-  select(experiment, grass.group, native.density, nonnative.density, mean.dam) %>%
+  select(experiment, grass.group, native.density, nonnative.density, surface) %>%
   full_join(ldatC %>%
               filter(surface > 0) %>%
-              group_by(experiment, subplot, host, grass.group, native.density, nonnative.density, plant) %>%
-              summarise(mean.dam = mean(surface)) %>%
-              ungroup() %>%
-              select(experiment, grass.group, native.density, nonnative.density, mean.dam)) %>%
-    rename(dam = mean.dam) %>%
-    mutate(exp.type = case_when(experiment == "transect" ~ "Observational",
-                                experiment == "competition" ~ "Manipulated") %>%
-             factor(levels = c("Observational", "Manipulated")),
-           dam.type = "surface")
+              select(experiment, grass.group, native.density, nonnative.density, surface)) %>%
+  rename(dam = surface) %>%
+  mutate(dam.type = "surface")
 
 # raw data: leaves
 leafdat <- pdatT %>%
@@ -647,53 +755,85 @@ leafdat <- pdatT %>%
   full_join(pdatC %>%
               select(experiment, grass.group, native.density, nonnative.density, prop.dam)) %>%
   rename(dam = prop.dam) %>%
+  mutate(dam.type = "leaves")
+
+# combine raw data
+leafsurfdat <- rbind(leafdat, surfdat) %>%
   mutate(exp.type = case_when(experiment == "transect" ~ "Observational",
                               experiment == "competition" ~ "Manipulated") %>%
-           factor(levels = c("Observational", "Manipulated")),
-         dam.type = "leaves")
+           factor(levels = c("Observational", "Manipulated")))
 
-# split by density
-rawdamdatnat <- full_join(surfdat, leafdat) %>%
-  select(-nonnative.density) %>%
-  rename(density = native.density) %>%
-  mutate(host.group = recode(grass.group, "native\nperennial" = "native perennial", "non-native\nannual" = "non-native annual"))
+# split by density and calculate averages
+rawdamdatnat <- leafsurfdat %>%
+  select(-nonnative.density) %>% 
+  group_by(exp.type) %>%
+  mutate(native.density.bins = cut_interval(native.density, n = 5)) %>%
+  group_by(exp.type, native.density.bins) %>%
+  mutate(min_interval = parse_number(strsplit(native.density.bins, ",")[[1]])[1],
+         max_interval = parse_number(strsplit(native.density.bins, ",")[[1]])[2],
+         density = (max_interval + min_interval) / 2) %>%
+  ungroup() %>%
+  mutate(host.group = recode(grass.group, "native\nperennial" = "native perennial", "non-native\nannual" = "non-native annual")) %>%
+  group_by(exp.type, grass.group, host.group, native.density.bins, density, dam.type) %>%
+  summarise(dam.se = sd(dam) / sqrt(length(dam)),
+            dam = mean(dam)) %>%
+  ungroup()
 
-rawdamdatnon <- full_join(surfdat, leafdat) %>%
-  select(-native.density) %>%
-  rename(density = nonnative.density) %>%
-  mutate(host.group = recode(grass.group, "native\nperennial" = "native perennial", "non-native\nannual" = "non-native annual"))
+rawdamdatnon <- leafsurfdat %>%
+  select(-native.density) %>% 
+  group_by(exp.type) %>%
+  mutate(nonnative.density.bins = cut_interval(nonnative.density, n = 5)) %>%
+  group_by(exp.type, nonnative.density.bins) %>%
+  mutate(min_interval = parse_number(strsplit(nonnative.density.bins, ",")[[1]])[1],
+         max_interval = parse_number(strsplit(nonnative.density.bins, ",")[[1]])[2],
+         density = (max_interval + min_interval) / 2) %>%
+  ungroup() %>%
+  mutate(host.group = recode(grass.group, "native\nperennial" = "native perennial", "non-native\nannual" = "non-native annual")) %>%
+  group_by(exp.type, grass.group, host.group, nonnative.density.bins, density, dam.type) %>%
+  summarise(dam.se = sd(dam) / sqrt(length(dam)),
+            dam = mean(dam)) %>%
+  ungroup()
 
 # labels
-damlabels <- tibble(dens.type = rep(c("native perennial", "non-native annual"), each = 2), exp.type = c("Observational", "Manipulated", "Observational", "Manipulated"), x = rep(0.5, 4), y = rep(1.1, 4), labels = c("A", "B", "C", "D")) %>%
-  mutate(exp.type = factor(exp.type, levels = c("Observational", "Manipulated")))
+damlabels <- tibble(dens.type = rep(c("native perennial", "non-native annual"), each = 2), 
+                    exp.type = c("Observational", "Manipulated", "Observational", "Manipulated"), 
+                    density = rep(0.5, 4), dam = rep(1.1, 4), 
+                    labels = c("A", "B", "C", "D")) %>%
+  mutate(exp.type = factor(exp.type, levels = c("Observational", "Manipulated")),
+         host.group = "native perennial",
+         dam.type = "leaves")
 
 # native density plot 
 natdamplot <- ggplot(dsimnat, aes(x = density, y = dam)) +
-  geom_line(size = 1, aes(linetype = host.group, color = dam.type)) +
-  geom_point(data = rawdamdatnat, alpha = 0.5, aes(shape = host.group, color = dam.type)) +
-  geom_text(data = filter(damlabels, dens.type == "native perennial"), aes(x = x, y = y, label = labels), size = 4, fontface = "bold") +
+  geom_ribbon(alpha = 0.1, color = NA, aes(ymin = dam - dam.se, ymax = dam + dam.se, fill = dam.type, size = host.group)) +
+  geom_line(aes(linetype = host.group, color = dam.type)) +
+  geom_errorbar(data = rawdamdatnat, width = 0.1, position = position_dodge(0.7), aes(ymin = dam - dam.se, ymax = dam + dam.se, fill = host.group, color = dam.type)) +
+  geom_point(data = rawdamdatnat, size = 2, position = position_dodge(0.7), aes(shape = host.group, fill = host.group, color = dam.type)) +
+  geom_text(data = filter(damlabels, dens.type == "native perennial"), aes(label = labels), size = 4, fontface = "bold") +
   facet_rep_wrap(~ exp.type, scales = "free_x") +
   scale_linetype_manual(values = c("solid", "dashed"), name = "Host group") +
   scale_shape_manual(values = c(19, 21), name = "Host group") +
   scale_color_manual(values = col_pal[1:2], name = "Metric") +
+  scale_fill_manual(values = c("black", "black", "white", "white"), name = "Metric") +
   xlab(expression(paste("Native perennial grass density (individuals ", m^-2, ")", sep = ""))) +
   ylab("Disease severity") +
-  scale_y_continuous(breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1)) +
   ggtheme +
   theme(legend.position = "none")
 
 # non-native density plot  
 nondamplot <- ggplot(dsimnon, aes(x = density, y = dam)) +
-  geom_line(size = 1, aes(linetype = host.group, color = dam.type)) +
-  geom_point(data = rawdamdatnon, alpha = 0.5, aes(shape = host.group, color = dam.type)) +
-  geom_text(data = filter(damlabels, dens.type == "non-native annual"), aes(x = x, y = y, label = labels), size = 4, fontface = "bold") +
+  geom_ribbon(alpha = 0.1, color = NA, aes(ymin = dam - dam.se, ymax = dam + dam.se, fill = dam.type, size = host.group), show.legend = F) +
+  geom_line(aes(linetype = host.group, color = dam.type)) +
+  geom_errorbar(data = rawdamdatnon, width = 0.1, position = position_dodge(0.7), aes(ymin = dam - dam.se, ymax = dam + dam.se, fill = host.group, color = dam.type), show.legend = F) +
+  geom_point(data = rawdamdatnon, size = 2, position = position_dodge(0.7), aes(shape = host.group, fill = host.group, color = dam.type)) +
+  geom_text(data = filter(damlabels, dens.type == "non-native annual"), aes(label = labels), size = 4, fontface = "bold", show.legend = F) +
   facet_rep_wrap(~ exp.type, scales = "free_x") +
   scale_linetype_manual(values = c("solid", "dashed"), name = "Host group") +
   scale_shape_manual(values = c(19, 21), name = "Host group") +
   scale_color_manual(values = col_pal[1:2], name = "Metric") +
+  scale_fill_manual(values = c("black", "black", "white", "white"), name = "Metric", guide = F) +
   xlab(expression(paste("Non-native annual grass density (individuals ", m^-2, ")", sep = ""))) +
   ylab("Disease severity") +
-  scale_y_continuous(breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1)) +
   ggtheme +
   theme(strip.text = element_blank(),
         legend.text = element_text(size = 9),
@@ -710,14 +850,15 @@ nondamplot <- ggplot(dsimnon, aes(x = density, y = dam)) +
 
 # combine plots
 dam.plot <- cowplot::plot_grid(natdamplot, nondamplot, nrow = 2, rel_heights = c(0.95, 1))
+# note: The ribbons are lost on the surface lines and there are errors about size, but the plots are accurate. You can't see the ribbons on the surface lines even when they're shaded.
 
-pdf("./output/figure5_pathogen_damage_density_march.pdf", width = 5, height = 6)
-dam.plot
-dev.off()
-
-# pdf("./output/figureS5_pathogen_damage_density_april.pdf", width = 5, height = 6)
+# pdf("./output/figure4_pathogen_damage_density_march.pdf", width = 5, height = 6)
 # dam.plot
 # dev.off()
+
+pdf("./output/figureS6_pathogen_damage_density_april.pdf", width = 5, height = 6)
+dam.plot
+dev.off()
 
 
 #### model summary tables ####
@@ -837,7 +978,7 @@ relplot2 <- ggplot(plots, aes(native.rel, nonnative.rel)) +
 
 leg2 <- get_legend(relplot2 + theme(legend.background = element_blank(), legend.box.background = element_rect(color = "black")) + guides(fill = guide_legend(override.aes = list(shape=21))))
 
-pdf("./output/figureS3_plant_community_density.pdf", width = 7, height = 7)
+pdf("./output/figureS4_plant_community_density.pdf", width = 7, height = 7)
 cowplot::plot_grid(densplot, relplot2 + theme(legend.position = "none"), leg2,
                    nrow = 3,
                    rel_heights = c(1, 1, 0.15))

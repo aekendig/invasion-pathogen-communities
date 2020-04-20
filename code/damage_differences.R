@@ -190,7 +190,7 @@ legendTitle = 10
 
 # figure
 figM <- ggplot(fdatM, aes(x = grass.group, y = pred, fill = grass.group)) +
-  geom_errorbar(aes(ymin = pred - 2*pred.se, ymax = pred + 2*pred.se), width = 0.1) +
+  geom_errorbar(aes(ymin = pred - pred.se, ymax = pred + pred.se), width = 0.1) +
   geom_point(size = 3, shape = 21) +
   scale_fill_manual(values = c("black", "white"), guide = F) +
   facet_wrap(~sev.type, ncol = 1, scales = "free") + 
@@ -221,7 +221,7 @@ pdf("./output/figure2_damage_march.pdf", width = 3.15, height = 5.5)
 figM
 dev.off()
 
-pdf("./output/figureS4_damage_april.pdf", width = 3.15, height = 5.5)
+pdf("./output/figureS3_damage_april.pdf", width = 3.15, height = 5.5)
 figA
 dev.off()
 
