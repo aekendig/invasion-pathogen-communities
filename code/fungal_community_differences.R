@@ -258,7 +258,7 @@ fdat <- tdat %>%
   left_join(breakdat) %>%
   filter(rank < rank.break) %>%
   select(pathogen, year, host.species, abundance, native.abundance, nonnative.abundance, rank, host.num, otu.id) %>%
-  mutate(pathogen = case_when(pathogen == "Drechslera" ~ "Drechslera sp.",
+  mutate(pathogen = case_when(pathogen == "Drechslera" ~ "Pyrenophora sp.",
                               TRUE ~ pathogen),
          host.species = mgsub(host.species, c("AB", "BH", "SP", "BD", "EG", "AF"), c("Ab", "Bh", "Sp", "Bd", "Eg", "Af"))) %>%
   arrange(pathogen, year, rank)
@@ -383,8 +383,8 @@ ndat1b %>%
 #### bar plot ####
 
 # focal pathogens
-fabb <- tibble(otu.id = c(1, 2, 7, 4, 5, 8, 3),
-               path.abb = c("A. inf.", "Drec.", "P. ave.", "P. cha.", "P. lol.", "P. tri.", "R. pro."),
+fabb <- tibble(otu.id = c(1, 7, 4, 5, 8, 2, 3),
+               path.abb = c("A. inf.", "P. ave.", "P. cha.", "P. lol.", "P. tri.", "Pyr. sp.", "R. pro."),
                color.pal = c("#000000", "#56B4E9", "#009E73", "#F0E442", "gray50", "#81ffff", "#00edad"))
 
 # summarize by proportion
@@ -429,7 +429,7 @@ barplot <- dat1sum %>%
         legend.position = "top",
         legend.direction = "horizontal",
         legend.text = element_text(size = 9, face = "italic"),
-        legend.title = element_text(size = 10),
+        legend.title = element_text(size = 12),
         legend.margin = margin(0, 0, 0, 0, unit="cm")) +
   ylim(0, 1.025) +
   ylab("Proportion of isolates") +

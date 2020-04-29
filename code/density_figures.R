@@ -131,7 +131,7 @@ fun2 <- fun %>%
 # otu's and code names
 otus <- tibble(pathogen = c("ainf", "dres", "pave", "pcha", "plol", "ptri", "rpro"),
                otu.id = c(1, 2, 7, 4, 5, 8, 3),
-               path.abb = c("A. inf.", "Drec.", "P. ave.", "P. cha.", "P. lol.", "P. tri.", "R. pro.")) %>%
+               path.abb = c("A. inf.", "Pyr. sp.", "P. ave.", "P. cha.", "P. lol.", "P. tri.", "R. pro.")) %>%
   left_join(select(fun2, otu.id, taxonomy, observed.host.species, host.num))
 
 # edit data
@@ -544,7 +544,7 @@ filter(idatFnon, grass.group == "non-native\nannual" & exp.type == "Manipulated"
 
 # plot settings
 ymarg = 20
-pathlist1 <- c("ainf", "dres", "pave")
+pathlist1 <- c("ainf", "pave", "pcha")
 topLabel = 10
 sideLabel = 3
 
