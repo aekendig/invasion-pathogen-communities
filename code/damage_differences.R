@@ -221,7 +221,7 @@ pdf("./output/figure2_damage_march.pdf", width = 3.15, height = 5.5)
 figM
 dev.off()
 
-pdf("./output/figureS3_damage_april.pdf", width = 3.15, height = 5.5)
+pdf("./output/figureS4_damage_april.pdf", width = 3.15, height = 5.5)
 figA
 dev.off()
 

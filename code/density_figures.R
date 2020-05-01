@@ -978,7 +978,7 @@ relplot2 <- ggplot(plots, aes(native.rel, nonnative.rel)) +
 
 leg2 <- get_legend(relplot2 + theme(legend.background = element_blank(), legend.box.background = element_rect(color = "black")) + guides(fill = guide_legend(override.aes = list(shape=21))))
 
-pdf("./output/figureS4_plant_community_density.pdf", width = 7, height = 7)
+pdf("./output/figureS3_plant_community_density.pdf", width = 7, height = 7)
 cowplot::plot_grid(densplot, relplot2 + theme(legend.position = "none"), leg2,
                    nrow = 3,
                    rel_heights = c(1, 1, 0.15))
