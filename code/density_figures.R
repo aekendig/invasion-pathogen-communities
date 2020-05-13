@@ -13,8 +13,7 @@ library(lemon)
 library(MuMIn)
 
 # figure settings
-col_pal <- c("#000000", "#56B4E9", "#009E73", "#F0E442", "#000000", "#56B4E9", "#009E73")
-col_pal2 <- c("#000000", "#56B4E9", "#009E73", "#F0E442", "gray50", "#81ffff", "#00edad")
+col_pal <- c("#000000", "#56B4E9", "#CC79A7", "#009E73", "#D55E00", "#0072B2", "#F0E442")
 
 axisText = 10
 axisTitle = 12
@@ -69,48 +68,6 @@ load("./output/damage_host_density_surface_march_transect_model.rda")
 load("./output/damage_host_density_surface_april_transect_model.rda")
 load("./output/damage_host_density_surface_competition_model.rda")
 
-#### maybe delete below ####
-# # function to convert logit to probability
-# logit2prob <- function(logit){
-#   odds <- exp(logit)
-#   prob <- odds / (1 + odds)
-#   return(prob)
-# }
-# 
-# # function for extracting coefficients from pathogen models
-# path_coef_fun <- function(mod, pathogen, exp.type){
-#   out <- tibble(coef = names(mod$coefficients["full",]), value = mod$coefficients["full",]) %>% 
-#     mutate(pathogen = pathogen,
-#            exp.type = exp.type)
-# }
-# 
-# # table for converting coefficient names
-# coef_name_conv <- tibble(coef_names = c("cond((Int))", "cond(nonnative)", "cond(natdens.s)", "cond(nondens.s)", "cond(othdens.s)", "cond(natdens.s:nonnative)", "cond(nondens.s:nonnative)", "cond(othdens.s:nonnative)"),
-#                          orig_names = c("(Intercept)", "nonnative", "natdens.s", "nondens.s", "othdens.s", "nonnative:natdens.s", "nonnative:nondens.s", "nonnative:othdens.s"))
-# 
-# # function for extracting coefficients from damage models
-# dam_coef_fun <- function(mod, dam.type, exp.type, avg){
-#   
-#   if(avg == T){
-#     coef_names = names(mod$coefficients["full",])
-#     coef_values = mod$coefficients["full",]
-#   }
-# 
-#   else{
-#     out_names = tibble(orig_names = rownames(summary(mod)$coefficients[[1]])) %>%
-#       left_join(coef_name_conv)
-#     coef_names = out_names$coef_names
-#     coef_values = as.numeric(summary(mod)$coefficients[[1]][ ,1])
-#   }
-#   
-#   out <- tibble(coef = coef_names, 
-#                 value = coef_values) %>% 
-#     mutate(dam.type = dam.type,
-#            exp.type = exp.type)
-#   
-#   return(out)
-# }
-#### maybe delete above ####
 
 #### table of pathogens ####
 
@@ -383,8 +340,8 @@ changeplotnat <- ggplot(aindnat, aes(x = grass.group, y = prev.change)) +
   geom_text(data = filter(indlabels, dens.type == "native perennial"), aes(x = x, y = y, label = labels), size = 4, fontface = "bold") +
   facet_wrap(~ exp.type, strip.position = "right", nrow = 2) +
   ylab(expression(paste("Response to 50 native perennial grasses ", m^-2, sep = ""))) +
-  scale_fill_manual(values = col_pal2, name = "Pathogen") +
-  scale_color_manual(values = col_pal2, name = "Pathogen") +
+  scale_fill_manual(values = col_pal, name = "Pathogen") +
+  scale_color_manual(values = col_pal, name = "Pathogen") +
   scale_shape_manual(values = rep(c(21, 24), each = 4), name = "Pathogen") +
   ggtheme +
   theme(axis.title.x = element_blank(),
@@ -399,14 +356,15 @@ changeplotnon <- ggplot(aindnon, aes(x = grass.group, y = prev.change)) +
   geom_text(data = filter(indlabels, dens.type == "non-native annual"), aes(x = x, y = y, label = labels), size = 4, fontface = "bold") +
   facet_wrap(~ exp.type, strip.position = "right", nrow = 2) +
   ylab(expression(paste("Response to 5000 non-native annual grasses ", m^-2, sep = ""))) +
-  scale_fill_manual(values = col_pal2, name = "Pathogen") +
-  scale_color_manual(values = col_pal2, name = "Pathogen") +
+  scale_fill_manual(values = col_pal, name = "Pathogen") +
+  scale_color_manual(values = col_pal, name = "Pathogen") +
   scale_shape_manual(values = rep(c(21, 24), each = 4), name = "Pathogen") +
   ggtheme +
   theme(axis.title.x = element_blank(),
         axis.title.y = element_text(size = axisTitle, hjust = 0.7),
         legend.text = element_text(size = 9, face = "italic"),
-        legend.title = element_text(size = 10),) +
+        legend.title = element_text(size = 10)) +
+  guides(fill = guide_legend(override.aes = list(size = 5))) +
   ylim(-1, 1.05)
 
 pdf("./output/figure3_prevalence_change_density.pdf", width = 7, height = 4)

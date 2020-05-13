@@ -169,9 +169,10 @@ sdat3 <- pdat2 %>%
 
 # summarise by using whole dataset
 hostplot <- sdat3 %>%
+  filter(!is.na(host.num)) %>%
   ggplot(aes(x = grass.group, y = host.num, fill = grass.group)) +
   stat_summary(geom = "errorbar", fun.data = "mean_se", width = 0.1) +
-  stat_summary(geom = "point", fun.y = "mean", size = 5, shape = 21) +
+  stat_summary(geom = "point", fun = "mean", size = 3, shape = 21) +
   scale_fill_manual(values = c("black", "white"), guide = F) +
   ylab("Host range of associated pathogens") +
   xlab("Host group") +
@@ -180,7 +181,8 @@ hostplot <- sdat3 %>%
         axis.title = element_text(size = axisTitle),
         panel.background = element_blank(),
         panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank())
+        panel.grid.minor = element_blank()) +
+  coord_cartesian(ylim = c(0, 40))
 hostplot
 
 # t-test
@@ -385,7 +387,7 @@ ndat1b %>%
 # focal pathogens
 fabb <- tibble(otu.id = c(1, 7, 4, 5, 8, 2, 3),
                path.abb = c("A. inf.", "P. ave.", "P. cha.", "P. lol.", "P. tri.", "Pyr. sp.", "R. pro."),
-               color.pal = c("#000000", "#56B4E9", "#009E73", "#F0E442", "gray50", "#81ffff", "#00edad"))
+               color.pal = c("#000000", "#56B4E9", "#CC79A7", "#009E73", "#D55E00", "#0072B2", "#F0E442"))
 
 # summarize by proportion
 # add abbreviated genus

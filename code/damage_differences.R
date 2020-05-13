@@ -209,7 +209,8 @@ figM <- ggplot(fdatM, aes(x = grass.group, y = pred, fill = grass.group)) +
         strip.background = element_blank(),
         strip.text = element_text(size = axisText)) +
   xlab("Host group") +
-  ylab("Disease severity")
+  ylab("Disease severity") +
+  coord_cartesian(ylim = c(0, 1))
 figM
 
 figA <- figM %+%
