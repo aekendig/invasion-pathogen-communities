@@ -39,8 +39,15 @@ dat1 <- dat %>%
 nrow(dat1)
 unique(dat1$experiment)
 unique(dat1$host)
+dat1 %>%
+  mutate(plant_type = case_when(experiment %in% c("sentinel plants", "sentinel sites") ~ "sentinel",
+                          experiment %in% c("competition", "toothpick") ~ "planted",
+                          experiment == "transect" & year > 2015 ~ "maybe planted",
+                          TRUE ~ "occurring")) %>%
+  group_by(plant_type) %>%
+  count()
 
-# subplots for labelling map
+# subplots for labeling map
 unique(select(dat1, experiment, subplot)) %>% 
   arrange(experiment, subplot) %>%
   data.frame()
@@ -57,6 +64,10 @@ datw1 <- dat1 %>%
   filter(isolates >= min.iso) %>%
   ungroup() %>%
   spread(otu.id, abundance)
+
+# see which data were excluded
+# set min.iso <- 0
+# none, hosts with fewer than 4 were removed when creating dat1
 
 # community matrix
 cdat1 <- datw1 %>%

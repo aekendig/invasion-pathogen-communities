@@ -111,6 +111,17 @@ unique(dam16Tplant$subplot)
 unique(dam16Cplant$subplot)
 
 
+#### visualize ####
+
+# March surface
+ggplot(ldatM, aes(x = surface)) +
+  geom_histogram()
+
+# April surface
+ggplot(ldatA, aes(x = surface)) +
+  geom_histogram()
+
+
 #### statistical models ####
 
 # March infection
