@@ -26,9 +26,18 @@ legendText = 10
 legendTitle = 10
 
 
-#### edit data ####
+#### edit data for host range ####
 
-# remove JEF to make numbers between native and non-native more comparable
+# hosts and samples
+dat %>%
+  group_by(host) %>%
+  count()
+# PA is a non-native perennial
+# FP can either be perennial or annual
+# BRAD only has four samples
+
+# remove JEF experiment to make numbers between native and non-native more comparable
+# select focal hosts
 dat1 <- dat %>%
   filter(experiment != "JEF transect" & 
            host %in% c("AB", "AF", "BD", "BH", "EG", "SP")) %>%
@@ -38,12 +47,13 @@ dat1 <- dat %>%
 # sample sizes
 nrow(dat1)
 unique(dat1$experiment)
+unique(dat1$transect)
 unique(dat1$host)
 dat1 %>%
   mutate(plant_type = case_when(experiment %in% c("sentinel plants", "sentinel sites") ~ "sentinel",
-                          experiment %in% c("competition", "toothpick") ~ "planted",
-                          experiment == "transect" & year > 2015 ~ "maybe planted",
-                          TRUE ~ "occurring")) %>%
+                                experiment %in% c("competition", "toothpick") ~ "planted",
+                                experiment == "transect" & year > 2015 ~ "maybe planted",
+                                TRUE ~ "occurring")) %>%
   group_by(plant_type) %>%
   count()
 
@@ -52,32 +62,6 @@ unique(select(dat1, experiment, subplot)) %>%
   arrange(experiment, subplot) %>%
   data.frame()
 
-# set minimum isolate number
-min.iso <- 4
-
-# create wide data
-datw1 <- dat1 %>%
-  group_by(year, year.f, host.sp, grass.group, otu.id) %>%
-  summarise(abundance = length(isolate.id)) %>%
-  group_by(year, year.f, host.sp, grass.group) %>%
-  mutate(isolates = sum(abundance)) %>%
-  filter(isolates >= min.iso) %>%
-  ungroup() %>%
-  spread(otu.id, abundance)
-
-# see which data were excluded
-# set min.iso <- 0
-# none, hosts with fewer than 4 were removed when creating dat1
-
-# community matrix
-cdat1 <- datw1 %>%
-  select(-c(year:isolates)) %>%
-  data.frame()
-cdat1[is.na(cdat1)] = 0
-cdat1 <- as.matrix(cdat1)
-
-# environmental matrix
-edat1 <- datw1 %>% select(c(year:grass.group))
 
 
 #### host range ####
@@ -154,6 +138,16 @@ filter(sdat2, host.num == 1)
 # associations("Anthostomella proteae", database = "FH", spec_type = "fungus") # not a host we have
 # associations("Cladosporium antarcticum", database = "FH", spec_type = "fungus") # not a host we have
 
+# host range based on full ambient dataset (use dat rather than dat1)
+rdat <- dat %>%
+  group_by(otu.id) %>%
+  summarise(amb.host.num = length(unique(host)))
+
+# sample sizes for host range
+dat %>%
+  group_by(host) %>%
+  count()
+
 # total abundance by group
 gdat <- dat1 %>%
   group_by(grass.group) %>%
@@ -161,44 +155,61 @@ gdat <- dat1 %>%
 
 # merge host range data back with pathogen data
 pdat2 <- full_join(pdat, sdat2) %>%
+  left_join(rdat) %>%
   mutate(prop.abundance = case_when(grass.group == "native\nperennial" ~ abundance/gdat$n[1],
                                     grass.group == "non-native\nannual"  ~ abundance/gdat$n[2]),
-         host.num.scaled = host.num * prop.abundance)
+         host.num.scaled = host.num * prop.abundance,
+         amb.host.num.scaled = amb.host.num * prop.abundance)
   
 # visualize
 pdat2 %>%
   ggplot(aes(x = grass.group, y = host.num.scaled)) +
-  stat_summary(geom = "point", fun.y = "mean") +
-  stat_summary(geom = "errorbar", fun.data = "mean_se")
+  stat_summary(geom = "point", fun = "mean") +
+  stat_summary(geom = "errorbar", fun.data = "mean_se", width = 0.1)
+
+pdat2 %>%
+  ggplot(aes(x = grass.group, y = amb.host.num.scaled)) +
+  stat_summary(geom = "point", fun = "mean") +
+  stat_summary(geom = "errorbar", fun.data = "mean_se", width = 0.1)
 
 # merge host range data with full dataset
 sdat3 <- pdat2 %>%
-  select(taxonomy, pathogen, host.num, species) %>%
+  select(otu.id, taxonomy, pathogen, host.num, amb.host.num, species) %>%
   unique() %>%
   right_join(dat1) %>%
   mutate(species.known = as.numeric(species))
 
+# make long by data source
+sdat4 <- sdat3 %>%
+  pivot_longer(cols = c("host.num", "amb.host.num"),
+               names_to = "data.source",
+               values_to = "host.num") %>%
+  mutate(data.source = recode(data.source, "host.num" = "Database", "amb.host.num" = "JRBP compilation"))
+
 # summarise by using whole dataset
-hostplot <- sdat3 %>%
-  filter(!is.na(host.num)) %>%
+hostplot <- sdat4 %>%
   ggplot(aes(x = grass.group, y = host.num, fill = grass.group)) +
-  stat_summary(geom = "errorbar", fun.data = "mean_se", width = 0.1) +
-  stat_summary(geom = "point", fun = "mean", size = 3, shape = 21) +
+  stat_summary(geom = "errorbar", fun.data = "mean_se", width = 0.1, na.rm = T) +
+  stat_summary(geom = "point", fun = "mean", size = 3, shape = 21, na.rm = T) +
   scale_fill_manual(values = c("black", "white"), guide = F) +
+  facet_grid(rows = vars(data.source), scales = "free") +
   ylab("Host range of associated pathogens") +
   xlab("Host group") +
   theme_bw() +
   theme(axis.text = element_text(size = axisText, color="black"),
         axis.title = element_text(size = axisTitle),
+        strip.text = element_text(size = axisText),
+        strip.background = element_blank(),
         panel.background = element_blank(),
         panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank()) +
-  coord_cartesian(ylim = c(0, 40))
+        panel.grid.minor = element_blank())
 hostplot
 
 # t-test
-smod <- t.test(host.num ~ grass.group, data = filter(sdat3, !is.na(host.num)))
-smod
+smod1 <- t.test(host.num ~ grass.group, data = filter(sdat3, !is.na(host.num)))
+smod1
+smod2 <- t.test(amb.host.num ~ grass.group, data = sdat3)
+smod2
 
 
 #### select focal pathogens ####
@@ -213,9 +224,9 @@ adat <- sdat3 %>%
 
 # taxonomy data
 tdat <- sdat3 %>%
-  group_by(year, year.f, otu.id, taxonomy, pathogen, host.num) %>%
+  group_by(year, year.f, otu.id, taxonomy, pathogen, host.num, amb.host.num) %>%
   summarise(abundance = length(isolate.id),
-            host.species = paste(unique(host), collapse = ", ")) %>%
+            host.species = paste(sort(unique(host)), collapse = ", ")) %>%
   ungroup() %>%
   group_by(year, year.f) %>%
   mutate(rank = rank(-abundance, ties.method = "random")) %>%
@@ -270,10 +281,9 @@ breakdat <- tibble(year = c(2015, 2016, 2017), rank.break = c(5.5, 5.5, 4.5))
 fdat <- tdat %>%
   left_join(breakdat) %>%
   filter(rank < rank.break) %>%
-  select(pathogen, year, host.species, abundance, native.abundance, nonnative.abundance, rank, host.num, otu.id) %>%
+  select(pathogen, year, rank, abundance, native.abundance, nonnative.abundance, host.num, amb.host.num, otu.id) %>%
   mutate(pathogen = case_when(pathogen == "Drechslera" ~ "Pyrenophora sp.",
-                              TRUE ~ pathogen),
-         host.species = mgsub(host.species, c("AB", "BH", "SP", "BD", "EG", "AF"), c("Ab", "Bh", "Sp", "Bd", "Eg", "Af"))) %>%
+                              TRUE ~ pathogen)) %>%
   arrange(pathogen, year, rank)
 
 # number of fungal species
@@ -281,11 +291,10 @@ length(unique(fdat$otu.id)) # 7
 
 # fungal taxonomy figure for presentations and manuscripts
 set.seed(4)
-taxplot <- tdat %>%
-  ggplot(aes(x = rank, y = abundance)) +
+taxplot <- ggplot(tdat, aes(x = rank, y = abundance)) +
   geom_vline(data = breakdat, aes(xintercept = rank.break), linetype = "dashed", size = 0.2) +
   geom_text_repel(data = fdat, aes(x = rank, label = pathogen), fontface = "italic", size = 3, segment.color = "gray", min.segment.length = 0, hjust = 0, nudge_x = 1, direction = "y") +
-  facet_wrap(~year, scales = "free")  +  
+  facet_wrap(~year, ncol = 1, scales = "free", strip.position = "right")  +  
   geom_point(size = 0.5, color = "red") +
   xlab("Rank") +
   ylab("Abundance") +
@@ -299,18 +308,55 @@ taxplot <- tdat %>%
         strip.text = element_text(size = 10, color="black"))
 
 
+#### edit data for community analysis ####
+
+# set minimum isolate number
+min.iso <- 5
+
+# create wide data
+datw1 <- dat1 %>%
+  group_by(year, year.f, host.sp, grass.group, otu.id) %>%
+  summarise(abundance = length(isolate.id)) %>%
+  group_by(year, year.f, host.sp, grass.group) %>%
+  mutate(isolates = sum(abundance)) %>%
+  filter(isolates >= min.iso) %>%
+  ungroup() %>%
+  spread(otu.id, abundance) %>%
+  mutate(precip = case_when(year == 2015 ~ 579,
+                            year == 2016 ~ 728,
+                            year == 2017 ~ 1139))
+
+# see which data were excluded
+# set min.iso <- 0
+# none, hosts with fewer than 4 were removed when creating dat1
+
+# community matrix
+cdat1 <- datw1 %>%
+  select(-c(year:isolates, precip)) %>%
+  data.frame()
+cdat1[is.na(cdat1)] = 0
+cdat1 <- as.matrix(cdat1)
+
+# environmental matrix
+edat1 <- datw1 %>% select(c(year:grass.group, precip))
+
+
 #### PERMANOVA ####
 pmod1 <- adonis(cdat1 ~ grass.group + host.sp + year.f, data = edat1, method="chao")
 pmod1$aov.tab
-# all three are sig, status is the least important
-
-
+# all three are sig
+pmod2 <- adonis(cdat1 ~ grass.group + host.sp + precip, data = edat1, method="chao")
+pmod2$aov.tab
+# only grass group is sig (residuals are large compared to when year is included)
+pmod3 <- adonis(cdat1 ~ grass.group + host.sp + precip + year.f, data = edat1, method="chao")
+pmod3$aov.tab
+# all are sig
 
 
 #### NMDS ####
 
 # models
-nmds1 <- metaMDS(cdat1, distance = "chao", halfchange = F, expand = F, trymax = 100) # error: results may be meaningless with non-integer data in method “chao” (every value is an integer)
+nmds1 <- metaMDS(cdat1, distance = "chao", halfchange = F, expand = F, trymax = 100) # warning: results may be meaningless with non-integer data in method “chao” (every value is an integer)
 nmds1b <- metaMDS(cdat1, distance = "bray", halfchange = F, expand = F, trymax = 100)
 
 # goodness of fit
@@ -330,18 +376,31 @@ head(ndat1)
 ndat1b <- as.data.frame(scores(nmds1b)) %>%
   cbind(edat1) %>%
   cbind(gof1b)
-head(ndat1b) 
+head(ndat1b)
 
-# function to extract ellipses
-# edited version of : https://stackoverflow.com/questions/13794419/plotting-ordiellipse-function-from-vegan-package-onto-nmds-plot-created-in-ggplot
-veganCovEllipse <- function (df){
-  scale <- 1
-  npoints <- 100
-  cov <- with(df, cov.wt(cbind(NMDS1, NMDS2), wt=rep(1/length(NMDS1), length(NMDS1)))$cov)
-  center <- with(df, c(mean(NMDS1), mean(NMDS2)))
+# ellipse parameters
+plot.new()
+ord1 <- ordiellipse(nmds1, edat1$grass.group, display = "sites", 
+                    kind = "se", conf = 0.95, label = T)
+
+# ellipse function (hidden in vegan, provided by: https://stackoverflow.com/questions/13794419/plotting-ordiellipse-function-from-vegan-package-onto-nmds-plot-created-in-ggplot)
+veganCovEllipse<-function (cov, center, scale, npoints = 100){
   theta <- (0:npoints) * 2 * pi/npoints
   Circle <- cbind(cos(theta), sin(theta))
   t(center + scale * t(Circle %*% chol(cov)))
+}
+
+# function to extract ellipses
+extractEllipse <- function (df){
+  
+  # identify grass group
+  g.group <- ifelse("Elymus glaucus" %in% df$host.sp, "native\nperennial", "non-native\nannual")
+  
+  # subset parameters for grass group
+  ord <- ord1[[g.group]]
+  
+  # input into vegan function
+  veganCovEllipse(ord$cov,ord$center,ord$scale)
 }
 
 # extract ellipses
@@ -349,7 +408,7 @@ veganCovEllipse <- function (df){
 ell1 <- ndat1 %>%
   group_by(grass.group) %>%
   nest() %>%
-  mutate(out = map(data, veganCovEllipse),
+  mutate(out = map(data, extractEllipse),
          tidied = map(out, as_tibble)) %>%
   unnest(tidied)
 
@@ -358,6 +417,8 @@ ell1 <- ndat1 %>%
 #   group_by(grass.group) %>%
 #   summarise(NMDS1 = mean(NMDS1),
 #             NMDS2 = mean(NMDS2))
+
+# position labels to avoid points
 lab1 <- ndat1 %>%
   select(grass.group) %>%
   unique() %>%
@@ -469,6 +530,12 @@ dat1 %>%
 
 write_csv(sptable, "./output/host_species_sample_sizes.csv")
 
+# competition experiment sampled
+dat %>%
+  filter(experiment == "competition") %>%
+  select(competition.density) %>%
+  unique()
+
 ### overlapping fungal species ###
 
 # shared isolates
@@ -515,7 +582,7 @@ sdat3 %>%
 
 write_csv(fdat, "./output/fungal_taxonomy_rank.csv")
 
-pdf("./output/figureS2_fungal_taxonomy_rank.pdf", width = 7, height = 3.5)
+pdf("./output/figureS2_fungal_taxonomy_rank.pdf", width = 5, height = 7)
 set.seed(4)
 taxplot
 dev.off()
@@ -526,7 +593,7 @@ tab_df(round(pmod1$aov.tab, 3))
 ### combined figures for manuscript ###
 
 # lower plots
-lowplots <- cowplot::plot_grid(nmdsplot, hostplot, nrow = 1, rel_widths = c(1, 0.4), labels = c("B", "C"), label_size = 12, hjust = c(-0.5, 1))
+lowplots <- cowplot::plot_grid(nmdsplot, hostplot, nrow = 1, rel_widths = c(1, 0.5), labels = c("B", "C"), label_size = 12, hjust = c(-0.5, 1))
 
 pdf("./output/figure1_pathogen_communities_host_status.pdf", width = 7.0, height = 7)
 cowplot::plot_grid(barplot, lowplots, nrow = 2, labels = c("A", "", ""), label_size = 12, hjust = c(-0.5, 1))

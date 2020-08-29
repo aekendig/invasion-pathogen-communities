@@ -27,6 +27,15 @@ dam15aplant <- read_csv("./data/damage_plant_transect_2015_april.csv")
 dam16Tplant <- read_csv("./data/damage_plant_transect_2016.csv")
 dam16Cplant <- read_csv("./data/damage_plant_competition_2016.csv")
 
+# function to transform data to account for 0's and 1's
+transform01 <- function(x) {
+  (x * (length(x) - 1) + 0.5) / (length(x))
+}
+
+backtransform01 <- function(x) {
+  (x * length(x) - 0.5) / (length(x) - 1)
+}  
+
 
 #### edit data ####
 
@@ -92,7 +101,8 @@ filter(dat16Tleaf, is.na(native.density) | is.na(nonnative.density)) # all plots
 # combine 2015 and 2016 transect
 datTmplant <- full_join(dat15mplant, dat16Tplant %>%
                           mutate(month = NA_character_)) %>%
-  mutate(natdens.s = scale(native.density)[,1],
+  mutate(mean.dam.scaled = transform01(mean.dam),
+         natdens.s = scale(native.density)[,1],
          nondens.s = scale(nonnative.density)[,1],
          othdens.s = scale(other.density)[,1],
          nonnative.rel = nonnative.density / total.density,
@@ -100,7 +110,8 @@ datTmplant <- full_join(dat15mplant, dat16Tplant %>%
 
 datTaplant <- full_join(dat15aplant, dat16Tplant %>%
                           mutate(month = NA_character_)) %>%
-  mutate(natdens.s = scale(native.density)[,1],
+  mutate(mean.dam.scaled = transform01(mean.dam),
+         natdens.s = scale(native.density)[,1],
          nondens.s = scale(nonnative.density)[,1],
          othdens.s = scale(other.density)[,1],
          nonnative.rel = nonnative.density / total.density,
@@ -108,15 +119,16 @@ datTaplant <- full_join(dat15aplant, dat16Tplant %>%
 
 datTmleaf <- full_join(dat15mleaf, dat16Tleaf %>%
                          mutate(month = NA_character_)) %>%
-  mutate(natdens.s = scale(native.density)[,1],
+  mutate(surface.scaled = transform01(surface),
+         natdens.s = scale(native.density)[,1],
          nondens.s = scale(nonnative.density)[,1],
          othdens.s = scale(other.density)[,1],
          nonnative.rel = nonnative.density / total.density)
 
-
 datTaleaf <- full_join(dat15aleaf, dat16Tleaf %>%
                          mutate(month = NA_character_)) %>%
-  mutate(natdens.s = scale(native.density)[,1],
+  mutate(surface.scaled = transform01(surface),
+         natdens.s = scale(native.density)[,1],
          nondens.s = scale(nonnative.density)[,1],
          othdens.s = scale(other.density)[,1],
          nonnative.rel = nonnative.density / total.density)
@@ -130,7 +142,8 @@ unique(dam16Cplant$bg.species)
 
 datCplant <- dam16Cplant %>%
   inner_join(bg16C %>% mutate(bg.species = recode(bg.species, "EG adults" = "EG adult"))) %>%
-  mutate(total.density = native.density + nonnative.density,
+  mutate(mean.dam.scaled = transform01(mean.dam),
+         total.density = native.density + nonnative.density,
          natdens.s = scale(native.density)[,1],
          nondens.s = scale(nonnative.density)[,1],
          nonnative.rel = nonnative.density / total.density,
@@ -138,7 +151,8 @@ datCplant <- dam16Cplant %>%
 
 datCleaf <- dam16Cleaf %>%
   inner_join(bg16C %>% mutate(bg.species = recode(bg.species, "EG adults" = "EG adult"))) %>%
-  mutate(total.density = native.density + nonnative.density,
+  mutate(surface.scaled = transform01(surface),
+         total.density = native.density + nonnative.density,
          natdens.s = scale(native.density)[,1],
          nondens.s = scale(nonnative.density)[,1],
          nonnative.rel = nonnative.density / total.density) %>%
@@ -175,15 +189,13 @@ plotadat <- dataplant %>%
 
 # native density and damage
 datmplant %>%
-  filter(mean.dam > 0) %>%
-  ggplot(aes(x = natdens.s, y = mean.dam, color = grass.group)) +
+  ggplot(aes(x = native.density, y = mean.dam.scaled, color = grass.group)) +
   geom_point(alpha = 0.5) +
   stat_smooth(method = "glm") +
   facet_wrap(~experiment, scales = "free")
 
 dataplant %>%
-  filter(mean.dam > 0) %>%
-  ggplot(aes(x = natdens.s, y = mean.dam, color = grass.group)) +
+  ggplot(aes(x = native.density, y = mean.dam.scaled, color = grass.group)) +
   geom_point(alpha = 0.5) +
   stat_smooth(method = "glm") +
   facet_wrap(~experiment, scales = "free")
@@ -202,15 +214,13 @@ dataplant %>%
 
 # non-native density and damage
 datmplant %>%
-  filter(mean.dam > 0) %>%
-  ggplot(aes(x = nondens.s, y = mean.dam, color = grass.group)) +
+  ggplot(aes(x = nonnative.density, y = mean.dam.scaled, color = grass.group)) +
   geom_point(alpha = 0.5) +
   stat_smooth(method = "glm") +
   facet_wrap(~experiment, scales = "free")
 
 dataplant %>%
-  filter(mean.dam > 0) %>%
-  ggplot(aes(x = nondens.s, y = mean.dam, color = grass.group)) +
+  ggplot(aes(x = nonnative.density, y = mean.dam.scaled, color = grass.group)) +
   geom_point(alpha = 0.5) +
   stat_smooth(method = "glm") +
   facet_wrap(~experiment, scales = "free")
@@ -263,7 +273,7 @@ plotmdat %>%
   cor.test(~ natdens.s + nondens.s, data = .)
 
 
-#### prop.dam by density ####
+#### infected by density ####
 
 # transect March
 imodTM <- glmmTMB(infected ~ nonnative * (natdens.s + nondens.s + othdens.s) + (1|year) + (1|subplot/plant), data = datTmleaf, family = binomial)
@@ -289,7 +299,7 @@ imodCa <- model.avg(get.models(dredge(imodC), subset = cumsum(weight) <= .95))
 summary(imodCa)
 
 
-#### mean.dam by density ####
+#### surface by density ####
 
 # transect March
 smodTM <- glmmTMB(surface ~ nonnative * (natdens.s + nondens.s + othdens.s) + (1|year) + (1|subplot/plant), data = datTmleaf2, family = beta_family)
@@ -347,6 +357,114 @@ smodCa <- model.avg(get.models(dredge(smodC), subset = cumsum(weight) <= .95))
 summary(smodCa)
 
 
+#### surface scaled by density ####
+
+# transect March
+scmodTM <- glmmTMB(surface.scaled ~ nonnative * (natdens.s + nondens.s + othdens.s) + (1|year) + (1|subplot/plant), data = datTmleaf, family = beta_family)
+summary(scmodTM)
+plot(simulateResiduals(scmodTM))
+# sig deviation
+scmodTMa <- model.avg(get.models(dredge(scmodTM), subset = cumsum(weight) <= .95))
+# couldn't converge
+
+# transect March, remove other density to simplify model
+scmodTM2 <- glmmTMB(surface.scaled ~ nonnative * (natdens.s + nondens.s) + (1|year) + (1|subplot/plant), data = datTmleaf, family = beta_family)
+summary(scmodTM2)
+plot(simulateResiduals(scmodTM2))
+# sig deviation
+scmodTM2a <- model.avg(get.models(dredge(scmodTM2), subset = cumsum(weight) <= .95))
+summary(scmodTM2a)
+# all NA's
+
+# check model fit
+datTmleaf %>%
+  mutate(pred = predict(scmodTM, type = "response", newdata = datTmleaf)) %>%
+  ggplot(aes(surface.scaled, pred)) +
+  geom_point() +
+  geom_abline(slope = 1, intercept = 0)
+
+# transect April
+scmodTA <- glmmTMB(surface.scaled ~ nonnative * (natdens.s + nondens.s + othdens.s) + (1|year) + (1|subplot/plant), data = datTaleaf, family = beta_family)
+summary(scmodTA)
+# all NA's
+
+# transect April, remove other density to simplify model
+scmodTA2 <- glmmTMB(surface.scaled ~ nonnative * (natdens.s + nondens.s) + (1|year) + (1|subplot/plant), data = datTaleaf, family = beta_family)
+summary(scmodTA2)
+scmodTAa <- model.avg(get.models(dredge(scmodTA2), subset = cumsum(weight) <= .95))
+summary(scmodTAa)
+# a bunch of NA's
+
+# check model fit
+datTaleaf %>%
+  mutate(pred = predict(scmodTA2, type = "response", newdata = datTaleaf)) %>%
+  ggplot(aes(surface.scaled, pred)) +
+  geom_point() +
+  geom_abline(slope = 1, intercept = 0)
+
+# competition
+scmodC <- glmmTMB(surface.scaled ~ nonnative * (natdens.s + nondens.s) + (1|subplot/plant), data = datCleaf, family = beta_family)
+summary(scmodC)
+plot(simulateResiduals(scmodC))
+# sig deviation
+scmodCa <- model.avg(get.models(dredge(scmodC), subset = cumsum(weight) <= .95))
+summary(scmodCa)
+# all NA's
+
+# check model fit
+datCleaf %>%
+  mutate(pred = predict(scmodC, type = "response", newdata = datCleaf)) %>%
+  ggplot(aes(surface.scaled, pred)) +
+  geom_point() +
+  geom_abline(slope = 1, intercept = 0)
+
+
+#### mean damage per plant scaled by density ####
+
+# transect March
+scpmodTM <- glmmTMB(mean.dam.scaled ~ nonnative * (natdens.s + nondens.s + othdens.s) + (1|year) + (1|subplot), data = datTmplant, family = beta_family)
+summary(scpmodTM)
+# estimates similar to leaf-level model
+plot(simulateResiduals(scpmodTM))
+# sig deviation
+scpmodTMa <- model.avg(get.models(dredge(scpmodTM), subset = cumsum(weight) <= .95))
+summary(scpmodTMa)
+# couldn't converge
+
+# check model fit
+datTmplant %>%
+  mutate(pred = predict(scpmodTM, type = "response", newdata = datTmplant)) %>%
+  ggplot(aes(mean.dam.scaled, pred)) +
+  geom_point() +
+  geom_abline(slope = 1, intercept = 0)
+
+# transect April
+scpmodTA <- glmmTMB(mean.dam.scaled ~ nonnative * (natdens.s + nondens.s + othdens.s) + (1|year) + (1|subplot), data = datTaplant, family = beta_family)
+summary(scpmodTA)
+plot(simulateResiduals(scpmodTA))
+# sig deviation
+
+# check model fit
+datTaplant %>%
+  mutate(pred = predict(scpmodTA, type = "response", newdata = datTaplant)) %>%
+  ggplot(aes(mean.dam.scaled, pred)) +
+  geom_point() +
+  geom_abline(slope = 1, intercept = 0)
+
+# competition
+scpmodC <- glmmTMB(mean.dam.scaled ~ nonnative * (natdens.s + nondens.s) + (1|subplot), data = datCplant, family = beta_family)
+summary(scpmodC)
+# estimates similar to leaf-level model
+plot(simulateResiduals(scpmodC))
+# sig deviation
+
+# check model fit
+datCplant %>%
+  mutate(pred = predict(scpmodC, type = "response", newdata = datCplant)) %>%
+  ggplot(aes(mean.dam.scaled, pred)) +
+  geom_point() +
+  geom_abline(slope = 1, intercept = 0)
+
 #### outputs ####
 write_csv(plotmdat, "./output/plot_scale_damage_march_data.csv") 
 write_csv(plotadat, "./output/plot_scale_damage_april_data.csv") 
@@ -366,3 +484,7 @@ save(imodCa, file = "./output/damage_host_density_infection_competition_model.rd
 save(smodTM, file = "./output/damage_host_density_surface_march_transect_model.rda")
 save(smodTAa, file = "./output/damage_host_density_surface_april_transect_model.rda")
 save(smodCa, file = "./output/damage_host_density_surface_competition_model.rda")
+
+save(scmodTM, file = "./output/damage_host_density_surface_scaled_march_transect_model.rda")
+save(scmodTA2, file = "./output/damage_host_density_surface_scaled_april_transect_model.rda")
+save(scmodC, file = "./output/damage_host_density_surface_scaled_competition_model.rda")

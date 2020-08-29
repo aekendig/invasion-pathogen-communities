@@ -12,6 +12,7 @@ library(cowplot)
 library(glmmTMB)
 library(DHARMa) # plot glmmTMB
 library(MuMIn) # dredge
+library(brms)
 
 # import data
 
@@ -27,8 +28,23 @@ dam15aplant <- read_csv("./data/damage_plant_transect_2015_april.csv")
 dam16Tplant <- read_csv("./data/damage_plant_transect_2016.csv")
 dam16Cplant <- read_csv("./data/damage_plant_competition_2016.csv")
 
+# function to transform data to account for 0's and 1's
+transform01 <- function(x) {
+  (x * (length(x) - 1) + 0.5) / (length(x))
+}
+
+backtransform01 <- function(x) {
+  (x * length(x) - 0.5) / (length(x) - 1)
+}
+
 
 #### edit raw data ####
+
+# competition plots sampled
+dam16Cplant %>%
+  group_by(bg.species, competition.density) %>%
+  count() %>%
+  data.frame()
 
 # combine experiments (March transect)
 ldatM <- dam16Cleaf %>%
@@ -36,7 +52,8 @@ ldatM <- dam16Cleaf %>%
   full_join(dam15mleaf  %>%
               filter(host != "PA")) %>%
   full_join(dam16Tleaf %>%
-              mutate(month = NA_character_))
+              mutate(month = NA_character_)) %>%
+  mutate(surface.scaled = transform01(surface))
 
 # filter for positive values
 ldatM2 <- ldatM %>%
@@ -61,7 +78,8 @@ ldatA <- dam16Cleaf %>%
   full_join(dam15aleaf %>%
               filter(host != "PA")) %>%
   full_join(dam16Tleaf %>%
-              mutate(month = NA_character_))
+              mutate(month = NA_character_)) %>%
+  mutate(surface.scaled = transform01(surface))
 
 # filter for positive values
 ldatA2 <- ldatA %>%
@@ -87,14 +105,28 @@ dam15mplant %>%
   group_by(grass.group) %>%
   summarise(n = n())
 
+dam15mplant %>%
+  filter(host != "PA") %>% 
+  select(plot) %>%
+  unique()
+
 dam15aplant %>%
   filter(host != "PA") %>% 
   group_by(grass.group) %>%
   summarise(n = n())
 
+dam15aplant %>%
+  filter(host != "PA") %>% 
+  select(plot) %>%
+  unique()
+
 dam16Tplant %>% 
   group_by(grass.group) %>%
   summarise(n = n())
+
+dam16Tplant %>% 
+  select(plot) %>%
+  unique()
 
 dam16Cplant %>% 
   group_by(grass.group) %>%
@@ -117,9 +149,15 @@ unique(dam16Cplant$subplot)
 ggplot(ldatM, aes(x = surface)) +
   geom_histogram()
 
+ggplot(ldatM, aes(surface, surface.scaled)) +
+  geom_point()
+
 # April surface
 ggplot(ldatA, aes(x = surface)) +
   geom_histogram()
+
+ggplot(ldatA, aes(surface, surface.scaled)) +
+  geom_point()
 
 
 #### statistical models ####
@@ -152,6 +190,31 @@ smodA2 <- glmmTMB(surface ~ nonnative + (1|year) + (1|subplot/plant), data = lda
 summary(smodA2)
 plot(simulateResiduals(smodA2))
 # sig deviation
+
+# March zero-inflated
+# zmodM <- brm(data = ldatM, family = zero_inflated_beta,
+#              surface ~ nonnative + (1|year) + (1|experiment/subplot/plant), zi ~ nonnative,
+#              prior = c(prior(normal(0, 10), class = b)),
+#              iter = 6000, warmup = 1000, chains = 1)
+# suuuuper slow
+
+# March scaled
+scmodM <- glmmTMB(surface.scaled ~ nonnative + (1|year) + (1|experiment/subplot/plant), data = ldatM, family = beta_family)
+summary(scmodM)
+# AIC values are missing - convergence error?
+# variance of experiment is small, remove - accounted for with subplot
+scmodM2 <- glmmTMB(surface.scaled ~ nonnative + (1|year) + (1|subplot/plant), data = ldatM, family = beta_family)
+summary(scmodM2)
+plot(simulateResiduals(scmodM2))
+
+# April surface
+scmodA <- glmmTMB(surface.scaled ~ nonnative + (1|year) + (1|experiment/subplot/plant), data = ldatA, family = beta_family)
+summary(scmodA)
+# no error, but should be comparable to March data
+scmodA2 <- glmmTMB(surface.scaled ~ nonnative + (1|year) + (1|subplot/plant), data = ldatA, family = beta_family)
+summary(scmodA2)
+# doesn't have AIC value
+plot(simulateResiduals(scmodA))
 
 
 #### extract model values ####
@@ -259,26 +322,18 @@ surf_non_a <- exp(fixef(smodA2)$cond[1] + fixef(smodA2)$cond[2]) / (1 + exp(fixe
 (surf_nat_a - surf_non_a) / surf_non_a
 
 
+#### average change ####
 
-#### old code
-
-# 
-# pdata <- pdatT %>%
-#   select(year:host, prop.dam, nonnative, origin) %>%
-#   full_join(pdatC %>% 
-#               select(year:subplot, host, prop.dam, nonnative, origin)) %>%
-#   rename(severity = prop.dam) %>%
-#   mutate(sev.type = "leaves") 
-#   
-# combine data for figure
-# add life history and experiment type
-# dat <- full_join(mdat, pdat) %>%
-#   mutate(status = recode(origin, "non-native" = "non-native\nannual", "native" = "native\nperennial"),
-#          exp.type = case_when(experiment == "transect" ~ "Observational",
-#                               TRUE ~ "Manipulated") %>% 
-#            factor(levels = c("Observational", "Manipulated")))
-
-# # sample sizes
-# pdat %>%
-#   group_by(year, experiment, origin) %>%
-#   summarise(n = n())
+# predicted 
+scdatMpred <- pred_fun(ldatM, scmodM2, "surface scaled")
+(0.0152 - 0.0112)/0.0152 # 0.26
+ldatM %>%
+  group_by(grass.group) %>%
+  summarise(severity = mean(surface))
+(0.0136 - 0.0113)/0.0136 # 0.17
+scdatApred <- pred_fun(ldatA, scmodA2, "surface scaled")
+(0.0317 - 0.0256)/0.0317 # 0.19
+ldatA %>%
+  group_by(grass.group) %>%
+  summarise(severity = mean(surface))
+(0.0202 - 0.0317)/0.0202 # -0.6

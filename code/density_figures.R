@@ -67,29 +67,24 @@ load("./output/damage_host_density_infection_competition_model.rda")
 load("./output/damage_host_density_surface_march_transect_model.rda")
 load("./output/damage_host_density_surface_april_transect_model.rda")
 load("./output/damage_host_density_surface_competition_model.rda")
+load("./output/damage_host_density_surface_scaled_march_transect_model.rda")
+load("./output/damage_host_density_surface_scaled_april_transect_model.rda")
+load("./output/damage_host_density_surface_scaled_competition_model.rda")
 
 
 #### table of pathogens ####
 
 # combine possible host species across years
 fun2 <- fun %>%
-  group_by(pathogen, otu.id, host.num) %>%
-  summarise(observed.host.species = toString(host.species)) %>%
-  ungroup() %>%
-  mutate(observed.host.species = case_when(otu.id == 1 ~ "Ab, Af, Bd, Bh, Eg, Sp",
-                                           otu.id == 2 ~ "Ab, Bd, Bh, Eg, Sp",
-                                           otu.id == 7 ~ "Bd, Bh, Eg, Sp",
-                                           otu.id == 4 ~ "Ab, Af, Bd, Bh, Eg, Sp",
-                                           otu.id == 5 ~ "Ab, Af, Bd, Bh, Eg, Sp",
-                                           otu.id == 8 ~ "Eg, Sp",
-                                           otu.id == 3 ~ "Ab, Bd, Bh, Eg, Sp")) %>% 
-  rename(taxonomy = pathogen)
+  select(pathogen, otu.id, host.num, amb.host.num) %>%
+  rename(taxonomy = pathogen) %>%
+  unique()
 
 # otu's and code names
 otus <- tibble(pathogen = c("ainf", "dres", "pave", "pcha", "plol", "ptri", "rpro"),
                otu.id = c(1, 2, 7, 4, 5, 8, 3),
                path.abb = c("A. inf.", "Pyr. sp.", "P. ave.", "P. cha.", "P. lol.", "P. tri.", "R. pro.")) %>%
-  left_join(select(fun2, otu.id, taxonomy, observed.host.species, host.num))
+  left_join(fun2)
 
 # edit data
 prevdat <- idatT %>%
@@ -102,7 +97,7 @@ prevdat <- idatT %>%
 
 # make table
 fun_tab <- prevdat %>%
-  group_by(taxonomy, observed.host.species, host.num, grass.group) %>%
+  group_by(taxonomy, host.num, amb.host.num, grass.group) %>%
   summarise(otus = sum(present),
             prop = round(otus/length(present), 2)) %>%
   mutate(out = paste(otus, prop, sep = " (")) %>%
@@ -367,7 +362,7 @@ changeplotnon <- ggplot(aindnon, aes(x = grass.group, y = prev.change)) +
   guides(fill = guide_legend(override.aes = list(size = 5))) +
   ylim(-1, 1.05)
 
-pdf("./output/figure3_prevalence_change_density.pdf", width = 7, height = 4)
+pdf("./output/figure2_prevalence_change_density.pdf", width = 7, height = 4)
 cowplot::plot_grid(changeplotnat, changeplotnon, rel_widths = c(0.7, 1))
 dev.off()
 
@@ -379,7 +374,8 @@ idatFnat <- idatT %>%
   select(isolate.id, experiment, grass.group, native.density, ainf, pcha, plol, ptri, dres, pave, rpro) %>%
   full_join(idatC %>% select(isolate.id, experiment, grass.group, native.density, ainf, pcha, plol, ptri, dres, pave, rpro)) %>%
   group_by(experiment, grass.group) %>%
-  mutate(native.density.bins = cut_interval(native.density, n = 5)) %>%
+  mutate(native.density.bins = cut_interval(native.density, n = 5) %>%
+           as.character()) %>%
   group_by(experiment, grass.group, native.density.bins) %>%
   mutate(min_interval = parse_number(strsplit(native.density.bins, ",")[[1]])[1],
          max_interval = parse_number(strsplit(native.density.bins, ",")[[1]])[2],
@@ -398,7 +394,8 @@ idatFnon <- idatT %>%
   select(isolate.id, experiment, grass.group, nonnative.density, ainf, pcha, plol, ptri, dres, pave, rpro) %>%
   full_join(idatC %>% select(isolate.id, experiment, grass.group, nonnative.density, ainf, pcha, plol, ptri, dres, pave, rpro)) %>%
   group_by(experiment, grass.group) %>%
-  mutate(nonnative.density.bins = cut_interval(nonnative.density, n = 5)) %>%
+  mutate(nonnative.density.bins = cut_interval(nonnative.density, n = 5) %>%
+           as.character()) %>%
   group_by(experiment, grass.group, nonnative.density.bins) %>%
   mutate(min_interval = parse_number(strsplit(nonnative.density.bins, ",")[[1]])[1],
          max_interval = parse_number(strsplit(nonnative.density.bins, ",")[[1]])[2],
@@ -514,12 +511,15 @@ leg.dens.plot1 <- get_legend(
     scale_color_manual(values = col_pal, name = "Pathogen") +
     scale_linetype_manual(values = rep(c("solid", "dashed"), each = 4), name = "Pathogen") +
     scale_shape_manual(values = rep(c(19, 17), each = 4), name = "Pathogen") +
+    ggtheme +
     theme(legend.text = element_text(size = 9, face = "italic"),
           legend.title = element_text(size = 10),
+          legend.key = element_blank(),
           legend.key.size = unit(3, "lines"),
           legend.position = "bottom",
           legend.direction = "horizontal",
-          legend.margin = margin(0, 0, 0, 0, unit="cm")) +
+          legend.box.margin = margin(-10, -10, -10, -10),
+          legend.margin = margin(-10, -10, -10, -10)) +
     guides(color = guide_legend(nrow = 1, title.position = "left"), linetype = guide_legend(nrow = 1, title.position = "left"), shape = guide_legend(nrow = 1, title.position = "left")))
 
 leg.dens.plot2 <- get_legend(
@@ -532,10 +532,12 @@ leg.dens.plot2 <- get_legend(
     ggtheme +
     theme(legend.text = element_text(size = 9, face = "italic"),
           legend.title = element_blank(),
+          legend.key = element_blank(),
           legend.key.size = unit(3, "lines"),
           legend.position = "bottom",
           legend.direction = "horizontal",
-          legend.margin = margin(0, 0, 0, 0, unit="cm")) +
+          legend.box.margin = margin(-10, -10, -10, -10),
+          legend.margin = margin(-10, -10, -10, -10)) +
     guides(color = guide_legend(nrow = 1), linetype = guide_legend(nrow = 1), shape = guide_legend(nrow = 1)))
 
 
@@ -596,7 +598,7 @@ nondens.plot.fin <- ggdraw(add_sub(nondens.plot, expression(paste("Non-native an
 
 dens.plot <- cowplot::plot_grid(natdens.plot.fin, nondens.plot.fin, nrow = 2)
 leg.dens.plot <- cowplot::plot_grid(leg.dens.plot1, leg.dens.plot2, align = "v", nrow = 2) 
-dens.plot.fin <- cowplot::plot_grid(dens.plot, leg.dens.plot, rel_heights = c(1, 0.08), rel_widths = c(1, 0.08), align = "v", nrow = 2)
+dens.plot.fin <- cowplot::plot_grid(dens.plot, leg.dens.plot, rel_heights = c(0.8, 0.07), rel_widths = c(1, 0.08), align = "v", nrow = 2)
 
 pdf("./output/figureS5_pathogen_relative_abundance_density.pdf", width = 7, height = 10.5)
 grid.arrange(arrangeGrob(dens.plot.fin, left = textGrob("Pathogen relative abundance", gp=gpar(fontsize = 13), rot = 90)))
@@ -644,14 +646,16 @@ ddens <- tibble(nonnative = rep(c(0, 1), each = 200),
 # change models depending on March or April
 # smodT <- smodTM
 # imodT <- imodTMa
+# scmodT <- scmodTM
 
 smodT <- smodTAa
 imodT <- imodTAa
+scmodT <- scmodTA2
 
 # function for predicting damage from models
 dmod_pred_fun <- function(dat) {
   dsim <- dat %>%
-    merge(tibble(dam.type = c("surface", "leaves")), all = T) %>%
+    merge(tibble(dam.type = c("surface", "leaves", "scaled surface")), all = T) %>%
     mutate(dam = case_when(dam.type == "surface" & exp.type == "Observational" ~ 
                              predict(smodT, newdata = ., re.form = NA, type = "response"),
                            dam.type == "surface" & exp.type == "Manipulated" ~ 
@@ -660,6 +664,10 @@ dmod_pred_fun <- function(dat) {
                              predict(imodT, newdata = ., re.form = NA, type = "response"),
                            dam.type == "leaves" & exp.type == "Manipulated" ~ 
                              predict(imodCa, newdata = ., re.form = NA, type = "response"),
+                           dam.type == "scaled surface" & exp.type == "Observational" ~ 
+                             predict(scmodT, newdata = ., re.form = NA, type = "response"),
+                           dam.type == "scaled surface" & exp.type == "Manipulated" ~ 
+                             predict(scmodC, newdata = ., re.form = NA, type = "response"),
                            TRUE ~ NA_real_),
            dam.se = case_when(dam.type == "surface" & exp.type == "Observational" ~ 
                                  predict(smodT, newdata = ., re.form = NA, type = "response", se.fit = T)$se.fit,
@@ -669,6 +677,10 @@ dmod_pred_fun <- function(dat) {
                                  predict(imodT, newdata = ., re.form = NA, type = "response", se.fit = T)$se.fit,
                                dam.type == "leaves" & exp.type == "Manipulated" ~ 
                                  predict(imodCa, newdata = ., re.form = NA, type = "response", se.fit = T)$se.fit,
+                              dam.type == "scaled surface" & exp.type == "Observational" ~ 
+                                predict(scmodT, newdata = ., re.form = NA, type = "response", se.fit = T)$se.fit,
+                              dam.type == "scaled surface" & exp.type == "Manipulated" ~ 
+                                predict(scmodC, newdata = ., re.form = NA, type = "response", se.fit = T)$se.fit,
                                TRUE ~ NA_real_)) %>%
     as_tibble() %>%
     mutate(grass.group = case_when(nonnative == 0 ~ "native\nperennial",
@@ -684,18 +696,20 @@ dmod_pred_fun <- function(dat) {
 dsimnat <- ddens %>%
   mutate(nondens.s = 0,
          nonnative.density = NA) %>%
-  rename(density = native.density) %>%
-  dmod_pred_fun(.)
+  dmod_pred_fun(.) %>%
+  rename(density = native.density,
+         dens.s = natdens.s) 
 
 dsimnon <- ddens %>%
   mutate(natdens.s = 0,
          native.density = NA) %>%
-  rename(density = nonnative.density) %>%
-  dmod_pred_fun(.)
+  dmod_pred_fun(.) %>%
+  rename(density = nonnative.density,
+         dens.s = nondens.s)
 
 # change month data
-ldatT <- ldatTm
-# ldatT <- ldatTa
+# ldatT <- ldatTm
+ldatT <- ldatTa
 
 # raw data: surface area
 surfdat <- ldatT %>%
@@ -715,6 +729,17 @@ leafdat <- pdatT %>%
   rename(dam = prop.dam) %>%
   mutate(dam.type = "leaves")
 
+# raw data: scaled surface area
+scaledsurfdat <- ldatT %>%
+  select(experiment, grass.group, native.density, natdens.s, nonnative.density, nondens.s, surface.scaled) %>%
+  full_join(ldatC %>%
+              select(experiment, grass.group, native.density, natdens.s, nonnative.density, nondens.s, surface.scaled)) %>%
+  rename(dam = surface.scaled) %>%
+  mutate(dam.type = "scaled surface") %>%
+  mutate(exp.type = case_when(experiment == "transect" ~ "Observational",
+                              experiment == "competition" ~ "Manipulated") %>%
+           factor(levels = c("Observational", "Manipulated")))
+
 # combine raw data
 leafsurfdat <- rbind(leafdat, surfdat) %>%
   mutate(exp.type = case_when(experiment == "transect" ~ "Observational",
@@ -725,7 +750,8 @@ leafsurfdat <- rbind(leafdat, surfdat) %>%
 rawdamdatnat <- leafsurfdat %>%
   select(-nonnative.density) %>% 
   group_by(exp.type) %>%
-  mutate(native.density.bins = cut_interval(native.density, n = 5)) %>%
+  mutate(native.density.bins = cut_interval(native.density, n = 5) %>%
+           as.character()) %>%
   group_by(exp.type, native.density.bins) %>%
   mutate(min_interval = parse_number(strsplit(native.density.bins, ",")[[1]])[1],
          max_interval = parse_number(strsplit(native.density.bins, ",")[[1]])[2],
@@ -740,7 +766,8 @@ rawdamdatnat <- leafsurfdat %>%
 rawdamdatnon <- leafsurfdat %>%
   select(-native.density) %>% 
   group_by(exp.type) %>%
-  mutate(nonnative.density.bins = cut_interval(nonnative.density, n = 5)) %>%
+  mutate(nonnative.density.bins = cut_interval(nonnative.density, n = 5) %>%
+           as.character()) %>%
   group_by(exp.type, nonnative.density.bins) %>%
   mutate(min_interval = parse_number(strsplit(nonnative.density.bins, ",")[[1]])[1],
          max_interval = parse_number(strsplit(nonnative.density.bins, ",")[[1]])[2],
@@ -752,46 +779,146 @@ rawdamdatnon <- leafsurfdat %>%
             dam = mean(dam)) %>%
   ungroup()
 
-# labels
-damlabels <- tibble(dens.type = rep(c("native perennial", "non-native annual"), each = 2), 
-                    exp.type = c("Observational", "Manipulated", "Observational", "Manipulated"), 
-                    density = rep(0.5, 4), dam = rep(1.1, 4), 
-                    labels = c("A", "B", "C", "D")) %>%
-  mutate(exp.type = factor(exp.type, levels = c("Observational", "Manipulated")),
-         host.group = "native perennial",
-         dam.type = "leaves")
+# repeat for scaled surface data
+rawdamdatnatscaled <- scaledsurfdat %>%
+  mutate(host.group = recode(grass.group, "native\nperennial" = "native perennial", "non-native\nannual" = "non-native annual")) %>%
+  select(-c(nondens.s, nonnative.density)) %>% 
+  group_by(exp.type, host.group) %>%
+  mutate(native.density.bins = cut_width(native.density, 1) %>%
+           as.character()) %>%
+  group_by(exp.type, host.group, native.density.bins) %>%
+  summarise(min_interval = parse_number(strsplit(native.density.bins, ",")[[1]])[1],
+         max_interval = parse_number(strsplit(native.density.bins, ",")[[1]])[2],
+         density = (max_interval + min_interval) / 2,
+         dam.se = sd(dam) / sqrt(length(dam)),
+         dam = mean(dam)) %>%
+  ungroup()
 
-# native density plot 
-natdamplot <- ggplot(dsimnat, aes(x = density, y = dam)) +
-  geom_ribbon(alpha = 0.1, color = NA, aes(ymin = dam - dam.se, ymax = dam + dam.se, fill = dam.type, size = host.group)) +
-  geom_line(aes(linetype = host.group, color = dam.type)) +
-  geom_errorbar(data = rawdamdatnat, width = 0.1, position = position_dodge(0.7), aes(ymin = dam - dam.se, ymax = dam + dam.se, fill = host.group, color = dam.type)) +
-  geom_point(data = rawdamdatnat, size = 2, position = position_dodge(0.7), aes(shape = host.group, fill = host.group, color = dam.type)) +
-  geom_text(data = filter(damlabels, dens.type == "native perennial"), aes(label = labels), size = 4, fontface = "bold") +
+rawdamdatnonscaled <- scaledsurfdat %>%
+  mutate(host.group = recode(grass.group, "native\nperennial" = "native perennial", "non-native\nannual" = "non-native annual")) %>%
+  select(-c(natdens.s, native.density)) %>% 
+  group_by(exp.type, host.group) %>%
+  mutate(nonnative.density.bins = cut_width(nonnative.density, 1) %>%
+           as.character()) %>%
+  group_by(exp.type, host.group, nonnative.density.bins) %>%
+  summarise(min_interval = parse_number(strsplit(nonnative.density.bins, ",")[[1]])[1],
+         max_interval = parse_number(strsplit(nonnative.density.bins, ",")[[1]])[2],
+         density = (max_interval + min_interval) / 2,
+         dam.se = sd(dam) / sqrt(length(dam)),
+         dam = mean(dam)) %>%
+  ungroup()
+
+# # labels
+# damlabels <- tibble(dens.type = rep(c("native perennial", "non-native annual"), each = 2), 
+#                     exp.type = c("Observational", "Manipulated", "Observational", "Manipulated"), 
+#                     density = rep(0.5, 4), dam = rep(1.1, 4), 
+#                     labels = c("A", "B", "C", "D")) %>%
+#   mutate(exp.type = factor(exp.type, levels = c("Observational", "Manipulated")),
+#          host.group = "native perennial",
+#          dam.type = "leaves")
+
+# # native density plot 
+# natdamplot <- ggplot(filter(dsimnat, dam.type != "scaled surface"), aes(x = density, y = dam)) +
+#   geom_ribbon(alpha = 0.1, color = NA, aes(ymin = dam - dam.se, ymax = dam + dam.se, fill = dam.type, size = host.group)) +
+#   geom_line(aes(linetype = host.group, color = dam.type)) +
+#   geom_errorbar(data = rawdamdatnat, width = 0.1, position = position_dodge(0.7), aes(ymin = dam - dam.se, ymax = dam + dam.se, fill = host.group, color = dam.type)) +
+#   geom_point(data = rawdamdatnat, size = 2, position = position_dodge(0.7), aes(shape = host.group, fill = host.group, color = dam.type)) +
+#   geom_text(data = filter(damlabels, dens.type == "native perennial"), aes(label = labels), size = 4, fontface = "bold") +
+#   facet_rep_wrap(~ exp.type, scales = "free_x") +
+#   scale_linetype_manual(values = c("solid", "dashed"), name = "Host group") +
+#   scale_shape_manual(values = c(19, 21), name = "Host group") +
+#   scale_color_manual(values = col_pal[1:2], name = "Metric") +
+#   scale_fill_manual(values = c("black", "black", "white", "white"), name = "Metric") +
+#   xlab(expression(paste("Native perennial grass density (individuals ", m^-2, ")", sep = ""))) +
+#   ylab("Disease severity") +
+#   ggtheme +
+#   theme(legend.position = "none")
+# 
+# # non-native density plot  
+# nondamplot <- ggplot(filter(dsimnon, dam.type != "scaled surface"), aes(x = density, y = dam)) +
+#   geom_ribbon(alpha = 0.1, color = NA, aes(ymin = dam - dam.se, ymax = dam + dam.se, fill = dam.type, size = host.group), show.legend = F) +
+#   geom_line(aes(linetype = host.group, color = dam.type)) +
+#   geom_errorbar(data = rawdamdatnon, width = 0.1, position = position_dodge(0.7), aes(ymin = dam - dam.se, ymax = dam + dam.se, fill = host.group, color = dam.type), show.legend = F) +
+#   geom_point(data = rawdamdatnon, size = 2, position = position_dodge(0.7), aes(shape = host.group, fill = host.group, color = dam.type)) +
+#   geom_text(data = filter(damlabels, dens.type == "non-native annual"), aes(label = labels), size = 4, fontface = "bold", show.legend = F) +
+#   facet_rep_wrap(~ exp.type, scales = "free_x") +
+#   scale_linetype_manual(values = c("solid", "dashed"), name = "Host group") +
+#   scale_shape_manual(values = c(19, 21), name = "Host group") +
+#   scale_color_manual(values = col_pal[1:2], name = "Metric") +
+#   scale_fill_manual(values = c("black", "black", "white", "white"), name = "Metric", guide = F) +
+#   xlab(expression(paste("Non-native annual grass density (individuals ", m^-2, ")", sep = ""))) +
+#   ylab("Disease severity") +
+#   ggtheme +
+#   theme(strip.text = element_blank(),
+#         legend.text = element_text(size = 9),
+#         legend.title = element_text(size = 10),
+#         legend.key.size = unit(2.5, "lines"),
+#         legend.position = "bottom",
+#         legend.box = "vertical",
+#         legend.margin = margin(0, 0, 0, 0),
+#         legend.spacing.y = unit(-0.5, "cm"),
+#         legend.box.margin = margin(-10, -10, -10, -10),
+#         plot.margin = margin(3, 3, 3, 3)) +
+#   guides(shape = guide_legend(override.aes = list(alpha = 1)), 
+#          color = guide_legend(override.aes = list(alpha = 1)))
+# 
+# # combine plots
+# dam.plot <- cowplot::plot_grid(natdamplot, nondamplot, nrow = 2, rel_heights = c(0.95, 1))
+# note: The ribbons are lost on the surface lines and there are errors about size, but the plots are accurate. You can't see the ribbons on the surface lines even when they're shaded.
+
+# pdf("./output/figure4_pathogen_damage_density_march.pdf", width = 5, height = 6)
+# dam.plot
+# dev.off()
+
+# pdf("./output/figureS6_pathogen_damage_density_april.pdf", width = 5, height = 6)
+# dam.plot
+# dev.off()
+
+# March labels
+damlabelsscaled <- tibble(dens.type = rep(c("native perennial", "non-native annual"), each = 2), 
+                          exp.type = c("Observational", "Manipulated", "Observational", "Manipulated"), 
+                          density = rep(0.5, 4), dam = c(0.045, 0.045, 0.075, 0.075), 
+                          labels = c("A", "B", "C", "D")) %>%
+  mutate(exp.type = factor(exp.type, levels = c("Observational", "Manipulated")),
+         host.group = "native perennial")
+
+# April labels
+damlabelsscaled <- damlabelsscaled %>%
+  mutate(dam = ifelse(dens.type == "native perennial", dam + 0.06, dam + 0.13))
+
+# native density plot scaled
+natdamplotscaled <- ggplot(filter(dsimnat, dam.type == "scaled surface"), aes(x = density, y = dam)) +
+  geom_ribbon(color = NA, fill = "black", aes(ymin = dam - dam.se, ymax = dam + dam.se, alpha = host.group)) +
+  geom_line(color = "black", aes(linetype = host.group)) +
+  #geom_errorbar(data = rawdamdatnatscaled, width = 0, size = 0.3, aes(ymin = dam - dam.se, ymax = dam + dam.se, color = host.group)) +
+  geom_point(data = rawdamdatnatscaled, size = 2, color = "black", alpha = 0.8, aes(shape = host.group, fill = host.group)) +
+  geom_text(data = filter(damlabelsscaled, dens.type == "native perennial"), aes(label = labels), size = 4, fontface = "bold") +
   facet_rep_wrap(~ exp.type, scales = "free_x") +
+  scale_alpha_manual(values = c(0.1, 0.1), guide = F) +
+  scale_color_manual(values = c("black", "black"), guide = F) +
   scale_linetype_manual(values = c("solid", "dashed"), name = "Host group") +
   scale_shape_manual(values = c(19, 21), name = "Host group") +
-  scale_color_manual(values = col_pal[1:2], name = "Metric") +
-  scale_fill_manual(values = c("black", "black", "white", "white"), name = "Metric") +
+  scale_fill_manual(values = c("black", "white"), name = "Host group") +
   xlab(expression(paste("Native perennial grass density (individuals ", m^-2, ")", sep = ""))) +
-  ylab("Disease severity") +
+  ylab("Scaled disease severity") +
   ggtheme +
   theme(legend.position = "none")
 
-# non-native density plot  
-nondamplot <- ggplot(dsimnon, aes(x = density, y = dam)) +
-  geom_ribbon(alpha = 0.1, color = NA, aes(ymin = dam - dam.se, ymax = dam + dam.se, fill = dam.type, size = host.group), show.legend = F) +
-  geom_line(aes(linetype = host.group, color = dam.type)) +
-  geom_errorbar(data = rawdamdatnon, width = 0.1, position = position_dodge(0.7), aes(ymin = dam - dam.se, ymax = dam + dam.se, fill = host.group, color = dam.type), show.legend = F) +
-  geom_point(data = rawdamdatnon, size = 2, position = position_dodge(0.7), aes(shape = host.group, fill = host.group, color = dam.type)) +
-  geom_text(data = filter(damlabels, dens.type == "non-native annual"), aes(label = labels), size = 4, fontface = "bold", show.legend = F) +
+# non-native density plot
+nondamplotscaled <- ggplot(filter(dsimnon, dam.type == "scaled surface"), aes(x = density, y = dam)) +
+  geom_ribbon(color = NA, fill = "black", aes(ymin = dam - dam.se, ymax = dam + dam.se, alpha = host.group)) +
+  geom_line(color = "black", aes(linetype = host.group)) +
+  #geom_errorbar(data = rawdamdatnonscaled, width = 0, size = 0.3, show.legend = F, aes(ymin = dam - dam.se, ymax = dam + dam.se, color = host.group)) +
+  geom_point(data = rawdamdatnonscaled, size = 2, color = "black", alpha = 0.8, aes(shape = host.group, fill = host.group)) +
+  geom_text(data = filter(damlabelsscaled, dens.type == "non-native annual"), aes(label = labels), size = 4, fontface = "bold") +
   facet_rep_wrap(~ exp.type, scales = "free_x") +
+  scale_alpha_manual(values = c(0.1, 0.1), guide = F) +
+  scale_color_manual(values = c("black", "black"), guide = F) +
   scale_linetype_manual(values = c("solid", "dashed"), name = "Host group") +
   scale_shape_manual(values = c(19, 21), name = "Host group") +
-  scale_color_manual(values = col_pal[1:2], name = "Metric") +
-  scale_fill_manual(values = c("black", "black", "white", "white"), name = "Metric", guide = F) +
+  scale_fill_manual(values = c("black", "white"), name = "Host group", guide = F) +
   xlab(expression(paste("Non-native annual grass density (individuals ", m^-2, ")", sep = ""))) +
-  ylab("Disease severity") +
+  ylab("Scaled disease severity") +
   ggtheme +
   theme(strip.text = element_blank(),
         legend.text = element_text(size = 9),
@@ -807,15 +934,14 @@ nondamplot <- ggplot(dsimnon, aes(x = density, y = dam)) +
          color = guide_legend(override.aes = list(alpha = 1)))
 
 # combine plots
-dam.plot <- cowplot::plot_grid(natdamplot, nondamplot, nrow = 2, rel_heights = c(0.95, 1))
-# note: The ribbons are lost on the surface lines and there are errors about size, but the plots are accurate. You can't see the ribbons on the surface lines even when they're shaded.
+dam.plot.scaled <- cowplot::plot_grid(natdamplotscaled, nondamplotscaled, nrow = 2, rel_heights = c(0.95, 1))
 
-# pdf("./output/figure4_pathogen_damage_density_march.pdf", width = 5, height = 6)
-# dam.plot
+# pdf("./output/figure3_pathogen_damage_scaled_density_march.pdf", width = 5, height = 6)
+# dam.plot.scaled
 # dev.off()
 
-pdf("./output/figureS6_pathogen_damage_density_april.pdf", width = 5, height = 6)
-dam.plot
+pdf("./output/figureS6_pathogen_damage_scaled_density_april.pdf", width = 6, height = 7)
+dam.plot.scaled
 dev.off()
 
 
@@ -841,6 +967,10 @@ summary(smodTM)
 summary(imodTMa)
 summary(smodCa)
 summary(imodCa)
+
+summary(scmodTM)
+summary(scmodTA2)
+summary(scmodC)
 
 importance(aiamodTa)
 importance(dramodTa)
@@ -898,9 +1028,9 @@ plotsC <- full_join(iplotsC, dplotsC) %>%
 
 plots <- full_join(plotsC, plotsT) %>%
   mutate(data.type = case_when(damage == 1 & infection == 1 ~ "both",
-                               damage == 1 & is.na(infection) ~ "damage only",
-                               is.na(damage) & infection == 1 ~ "infection only") %>%
-           factor(levels = c("infection only", "damage only", "both")),
+                               damage == 1 & is.na(infection) ~ "severity only",
+                               is.na(damage) & infection == 1 ~ "isolates only") %>%
+           factor(levels = c("isolates only", "severity only", "both")),
          native.rel = native.density / total.density,
          year.f = as.factor(year),
          exp.type = case_when(experiment == "transect" ~ "Observational",
