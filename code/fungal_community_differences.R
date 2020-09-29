@@ -44,11 +44,14 @@ dat1 <- dat %>%
   mutate(host.sp = recode(host, AB = "Avena barbata", AF = "Avena fatua", BD = "Bromus diandrus", BH = "Bromus hordeaceus", EG = "Elymus glaucus", SP = "Stipa pulchra"),
          host.sp = fct_relevel(host.sp, "Avena barbata", "Avena fatua", "Bromus diandrus"))
 
-# sample sizes
+# dataset characteristics
 nrow(dat1)
 unique(dat1$experiment)
 unique(dat1$transect)
 unique(dat1$host)
+filter(dat1, experiment == "competition") %>%
+  select(competition.density) %>%
+  unique()
 dat1 %>%
   mutate(plant_type = case_when(experiment %in% c("sentinel plants", "sentinel sites") ~ "sentinel",
                                 experiment %in% c("competition", "toothpick") ~ "planted",
@@ -62,6 +65,22 @@ unique(select(dat1, experiment, subplot)) %>%
   arrange(experiment, subplot) %>%
   data.frame()
 
+# experiments by year
+dat1 %>%
+  group_by(year, experiment) %>%
+  count()
+
+# experiments by year and subplot
+dat1 %>%
+  group_by(year, experiment, subplot) %>%
+  count() %>%
+  data.frame()
+
+# A. fatua
+dat1 %>%
+  filter(host == "AF") %>%
+  select(year, experiment, subplot) %>%
+  unique()
 
 
 #### host range ####
