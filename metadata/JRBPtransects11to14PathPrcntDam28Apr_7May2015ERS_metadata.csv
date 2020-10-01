@@ -1,0 +1,21 @@
+﻿column,meaning
+date,date that disease severity was assessed
+observer ,initials of person who performed disease severity assessment
+recorder ,initials of person who recorded disease severity assessment
+Species,"grass species assessed for disease severity (AB = Avena barbata, BD = Bromus diandrus, BH = Bromus hordeaceus, EG = Elymus glaucus, PA = Phalaris aquatica, SP = Stipa pulchra)"
+Transect,transect identification number
+leaf1,disease severity score for one of out up to six leaves per plant (percentage of leaf surface area covered with lesions)
+leaf 1 DTO,
+leaf2,disease severity score for one of out up to six leaves per plant (percentage of leaf surface area covered with lesions)
+leaf 2 DTO,
+leaf3,disease severity score for one of out up to six leaves per plant (percentage of leaf surface area covered with lesions)
+leaf 3 DTO,
+leaf4,disease severity score for one of out up to six leaves per plant (percentage of leaf surface area covered with lesions)
+leaf 4 DTO,
+leaf5,disease severity score for one of out up to six leaves per plant (percentage of leaf surface area covered with lesions)
+leaf 5 DTO,
+leaf6,disease severity score for one of out up to six leaves per plant (percentage of leaf surface area covered with lesions)
+leaf 6 DTO,
+tissue sample number ,identification number for tissue sample collected
+DTO for collected tissue ,
+notes,notes

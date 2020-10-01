@@ -1,0 +1,24 @@
+﻿column,meaning
+species,grass species or non-grass functional group
+abbreviation.2015,species abbreviation used in 2015 data
+abbreviation.2016,species abbreviation used in 2016 data
+perennial,"indicator of whether the species is a perennial (1 = yes, 0 = no)"
+annual_notes,notes about annual/perennial assignment in previous column
+status,indicator of whether the species is native or non-native to California
+grass_group,"grass group combining life history and status: non.ann = non-native annual, nat.per = native perennial, other = neither of the two previous groups"
+CalfloraInvasive,"indicator of whether the species is invasive in California (1 = yes, 0 = no), source: https://www.calflora.org/"
+minHeight.cm,average minimum height in centimeters
+maxHeight.cm,average maximum height in centimeters
+extremeMinHeight.cm,extreme minimum height in centimeters
+extremeMaxHeight.cm,extreme maximum height in centimeters
+source,"source of the height data (Jepson = Jepson Herbarium at UC Berkeley, https://ucjeps.berkeley.edu/eflora/)"
+data,data used for height data
+firstRecordJRBP_year,the year of the first record for the species at Jasper Ridge Biological Preserve
+firstRecordJRBP_month,the month of the first record for the species at Jasper Ridge Biological Preserve
+firstRecordJRBP_day,the day of the first record for the species at Jasper Ridge Biological Preserve
+firstRecordJRBP_source,the website link for the first record for the species at Jasper Ridge Biological Preserve
+arrivalDateJRBP,year the species was estimated to arrive to Jasper Ridge Biological Preserve
+arrivalDate_source,the website link for the estimated arrival for the species at Jasper Ridge Biological Preserve
+earliestConsortiumRecord,the earliest consortium record for the species in a relevant area
+consortium_source,the website link for the earliest consortium record
+consortium_note,the counties for which the cosortium record applies

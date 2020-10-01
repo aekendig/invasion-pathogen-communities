@@ -7,12 +7,11 @@ rm(list = ls())
 library(tidyverse)
 
 # import data
-dam15m <- read_csv("./data/JRBPmidMarPathPrcntDamData_5Apr2015ERS.csv")
-dam15a1 <- read_csv("./data/JRBPmidAprPathPrcntDamCulturesData_25Apr2015ERS.csv") # transect 2015
-dam15a2 <- read_csv("./data/JRBPtransects11to14PathPrcntDam28Apr_7May2015ERS.csv")
-dam16 <- read_csv("./data/JRBP_PathogenDamage_21July2016_Full.csv",
+dam15m <- read_csv("original-data/JRBPmidMarPathPrcntDamData_5Apr2015ERS.csv")
+dam15a1 <- read_csv("original-data/JRBPmidAprPathPrcntDamCulturesData_25Apr2015ERS.csv") # transect 2015
+dam15a2 <- read_csv("original-data/JRBPtransects11to14PathPrcntDam28Apr_7May2015ERS.csv")
+dam16 <- read_csv("original-data/JRBP_PathogenDamage_21July2016_Full.csv",
                   col_types = cols(Transect = col_double(), Plot = col_character())) # transect and competition 2016
-compPlot <- read_csv("./data/2016ExperimentPlotList_26Apr16_PlotAssignments.csv")
 
 
 #### examine data ####
@@ -266,12 +265,12 @@ dam15aleaf = rbind(dam15a1leaf, dam15a2leaf)
 
 #### outputs ####
 
-write_csv(dam15mplant, "./data/damage_plant_transect_2015_march.csv")
-write_csv(dam15aplant, "./data/damage_plant_transect_2015_april.csv")
-write_csv(dam16Tplant, "./data/damage_plant_transect_2016.csv")
-write_csv(dam16Cplant, "./data/damage_plant_competition_2016.csv")
+write_csv(dam15mplant, "intermediate-data/damage_plant_transect_2015_march.csv")
+write_csv(dam15aplant, "intermediate-data/damage_plant_transect_2015_april.csv")
+write_csv(dam16Tplant, "intermediate-data/damage_plant_transect_2016.csv")
+write_csv(dam16Cplant, "intermediate-data/damage_plant_competition_2016.csv")
 
-write_csv(dam15mleaf, "./data/damage_leaf_transect_2015_march.csv")
-write_csv(dam15aleaf, "./data/damage_leaf_transect_2015_april.csv")
-write_csv(dam16Tleaf, "./data/damage_leaf_transect_2016.csv")
-write_csv(dam16Cleaf, "./data/damage_leaf_competition_2016.csv")
+write_csv(dam15mleaf, "intermediate-data/damage_leaf_transect_2015_march.csv")
+write_csv(dam15aleaf, "intermediate-data/damage_leaf_transect_2015_april.csv")
+write_csv(dam16Tleaf, "intermediate-data/damage_leaf_transect_2016.csv")
+write_csv(dam16Cleaf, "intermediate-data/damage_leaf_competition_2016.csv")

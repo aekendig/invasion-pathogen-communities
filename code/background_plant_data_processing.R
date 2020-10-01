@@ -7,13 +7,13 @@ rm(list = ls())
 library(tidyverse)
 
 # import data
-plant15 <- read_csv("./data/JRBP_plant_count_combined_2015-04-10.csv")
-plant16T <- read_csv("./data/transect_seeds_composition_damage.csv")
-plant16C <- read_csv("./data/competition_plot_seeds_composition_damage.csv")
-compPlot <- read_csv("./data/2016ExperimentPlotList_26Apr16_PlotAssignments.csv")
-bgPlants <- read_csv("./data/BgPlantSizeStatus_JepsonCalFloraJRBP_021120.csv")
-dat <- read_csv("./data/fungal_pathogens_2015_2017.csv") # ignore warnings if not using sentinel bin
-dato <- read.csv("./data/Data File 3 - Full Dataset.csv")
+plant15 <- read_csv("original-data/JRBP_plant_count_combined_2015-04-10.csv")
+plant16T <- read_csv("original-data/transect_seeds_composition_damage.csv")
+plant16C <- read_csv("original-data/competition_plot_seeds_composition_damage.csv")
+compPlot <- read_csv("original-data/2016ExperimentPlotList_26Apr16_PlotAssignments.csv")
+bgPlants <- read_csv("original-data/BgPlantSizeStatus_JepsonCalFloraJRBP_021120.csv")
+dat <- read_csv("intermediate-data/fungal_pathogens_2015_2017.csv") # ignore warnings if not using sentinel bin
+dato <- read.csv("original-data/Data File 3 - Full Dataset.csv")
 
 
 #### edit data ####
@@ -305,10 +305,10 @@ dat2 %>%
 
 
 #### outputs ####
-write_csv(bgsptab, "./output/background_species_table.csv")
-write_csv(bgsum15, "./data/background_plants_transect_2015.csv")
-write_csv(bgsum16T, "./data/background_plants_transect_2016.csv")
-write_csv(bgsum16C, "./data/background_plants_competition_2016.csv")
-write_csv(plant15.1, "./data/background_plants_raw_transect_2015.csv")
-write_csv(plant16T.1, "./data/background_plants_raw_transect_2016.csv")
-write_csv(plant16C.3, "./data/background_plants_raw_competition_2016.csv")
+write_csv(bgsptab, "output/background_species_table.csv")
+write_csv(bgsum15, "intermediate-data/background_plants_transect_2015.csv")
+write_csv(bgsum16T, "intermediate-data/background_plants_transect_2016.csv")
+write_csv(bgsum16C, "intermediate-data/background_plants_competition_2016.csv")
+write_csv(plant15.1, "intermediate-data/background_plants_raw_transect_2015.csv")
+write_csv(plant16T.1, "intermediate-data/background_plants_raw_transect_2016.csv")
+write_csv(plant16C.3, "intermediate-data/background_plants_raw_competition_2016.csv")

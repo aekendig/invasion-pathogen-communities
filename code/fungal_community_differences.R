@@ -16,7 +16,7 @@ library(cowplot)
 library(ggrepel)
 
 # import data
-dat <- read.csv("./data/fungal_pathogens_2015_2017.csv")
+dat <- read.csv("intermediate-data/fungal_pathogens_2015_2017.csv")
 
 # figure settings
 shapes <- c(0, 1, 2, 5, 19, 17)
@@ -601,7 +601,7 @@ sdat3 %>%
 
 write_csv(fdat, "./output/fungal_taxonomy_rank.csv")
 
-pdf("./output/figureS2_fungal_taxonomy_rank.pdf", width = 5, height = 7)
+pdf("./output/figureS4_fungal_taxonomy_rank.pdf", width = 5, height = 7)
 set.seed(4)
 taxplot
 dev.off()

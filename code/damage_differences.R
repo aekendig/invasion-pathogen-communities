@@ -17,16 +17,16 @@ library(brms)
 # import data
 
 # leaf-scale data
-dam15mleaf <- read_csv("./data/damage_leaf_transect_2015_march.csv")
-dam15aleaf <- read_csv("./data/damage_leaf_transect_2015_april.csv")
-dam16Tleaf <- read_csv("./data/damage_leaf_transect_2016.csv")
-dam16Cleaf <- read_csv("./data/damage_leaf_competition_2016.csv")
+dam15mleaf <- read_csv("intermediate-data/damage_leaf_transect_2015_march.csv")
+dam15aleaf <- read_csv("intermediate-data/damage_leaf_transect_2015_april.csv")
+dam16Tleaf <- read_csv("intermediate-data/damage_leaf_transect_2016.csv")
+dam16Cleaf <- read_csv("intermediate-data/damage_leaf_competition_2016.csv")
 
 # plant-scale data
-dam15mplant <- read_csv("./data/damage_plant_transect_2015_march.csv")
-dam15aplant <- read_csv("./data/damage_plant_transect_2015_april.csv")
-dam16Tplant <- read_csv("./data/damage_plant_transect_2016.csv")
-dam16Cplant <- read_csv("./data/damage_plant_competition_2016.csv")
+dam15mplant <- read_csv("intermediate-data/damage_plant_transect_2015_march.csv")
+dam15aplant <- read_csv("intermediate-data/damage_plant_transect_2015_april.csv")
+dam16Tplant <- read_csv("intermediate-data/damage_plant_transect_2016.csv")
+dam16Cplant <- read_csv("intermediate-data/damage_plant_competition_2016.csv")
 
 # function to transform data to account for 0's and 1's
 transform01 <- function(x) {
@@ -290,15 +290,6 @@ figM
 figA <- figM %+%
   fdatA
 figA
-
-# save
-pdf("./output/figure2_damage_march.pdf", width = 3.15, height = 5.5)
-figM
-dev.off()
-
-pdf("./output/figureS4_damage_april.pdf", width = 3.15, height = 5.5)
-figA
-dev.off()
 
 
 #### percent change ####

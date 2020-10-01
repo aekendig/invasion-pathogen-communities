@@ -1,0 +1,801 @@
+year,experiment,plot,subplot,sp,abundance,species,grass_group,CalfloraInvasive
+2016,competition,competition_13,competition_13,EG.adult,1.5,Elymus glaucus,nat.per,0
+2016,competition,competition_210,competition_210,EG.adult,15,Elymus glaucus,nat.per,0
+2016,competition,competition_170,competition_170,EG.adult,181,Elymus glaucus,nat.per,0
+2016,competition,competition_162,competition_162,EG.adult,6,Elymus glaucus,nat.per,0
+2016,competition,competition_108,competition_108,EG.adult,9,Elymus glaucus,nat.per,0
+2016,competition,competition_121,competition_121,EG.adult,15,Elymus glaucus,nat.per,0
+2016,competition,competition_220,competition_220,EG.adult,1,Elymus glaucus,nat.per,0
+2016,competition,competition_70,competition_70,EG.adult,33.3333333333333,Elymus glaucus,nat.per,0
+2016,competition,competition_72,competition_72,EG.adult,5,Elymus glaucus,nat.per,0
+2016,competition,competition_32,competition_32,EG.adult,12,Elymus glaucus,nat.per,0
+2016,competition,competition_98,competition_98,EG.adult,2,Elymus glaucus,nat.per,0
+2016,competition,competition_136,competition_136,EG.adult,2,Elymus glaucus,nat.per,0
+2016,competition,competition_88,competition_88,EG.adult,240,Elymus glaucus,nat.per,0
+2016,competition,competition_101,competition_101,EG.adult,15,Elymus glaucus,nat.per,0
+2016,competition,competition_171,competition_171,EG.adult,2,Elymus glaucus,nat.per,0
+2016,competition,competition_74,competition_74,EG.adult,1,Elymus glaucus,nat.per,0
+2016,competition,competition_106,competition_106,EG.adult,1,Elymus glaucus,nat.per,0
+2016,competition,competition_104,competition_104,EG.adult,3,Elymus glaucus,nat.per,0
+2016,competition,competition_31,competition_31,EG.adult,4,Elymus glaucus,nat.per,0
+2016,competition,competition_187,competition_187,EG.adult,6,Elymus glaucus,nat.per,0
+2016,competition,competition_113,competition_113,EG.adult,11,Elymus glaucus,nat.per,0
+2016,competition,competition_107,competition_107,EG.adult,376,Elymus glaucus,nat.per,0
+2016,competition,competition_175,competition_175,EG.adult,4,Elymus glaucus,nat.per,0
+2016,competition,competition_191,competition_191,EG.adult,1,Elymus glaucus,nat.per,0
+2016,competition,competition_167,competition_167,EG.adult,4,Elymus glaucus,nat.per,0
+2016,competition,competition_140,competition_140,EG.adult,22,Elymus glaucus,nat.per,0
+2016,competition,competition_64,competition_64,EG.adult,1,Elymus glaucus,nat.per,0
+2016,competition,competition_80,competition_80,EG.adult,1,Elymus glaucus,nat.per,0
+2016,competition,competition_112,competition_112,EG.adult,6,Elymus glaucus,nat.per,0
+2016,competition,competition_129,competition_129,EG.adult,7,Elymus glaucus,nat.per,0
+2016,competition,competition_43,competition_43,EG.adult,3,Elymus glaucus,nat.per,0
+2016,competition,competition_85,competition_85,EG.adult,9,Elymus glaucus,nat.per,0
+2016,competition,competition_128,competition_128,EG.adult,8,Elymus glaucus,nat.per,0
+2016,competition,competition_86,competition_86,EG.adult,5,Elymus glaucus,nat.per,0
+2016,competition,competition_11,competition_11,EG.adult,2.5,Elymus glaucus,nat.per,0
+2016,competition,competition_130,competition_130,EG.adult,10,Elymus glaucus,nat.per,0
+2016,competition,competition_38,competition_38,EG.adult,6,Elymus glaucus,nat.per,0
+2016,competition,competition_94,competition_94,EG.adult,9,Elymus glaucus,nat.per,0
+2016,competition,competition_143,competition_143,EG.adult,60,Elymus glaucus,nat.per,0
+2016,competition,competition_99,competition_99,EG.adult,7,Elymus glaucus,nat.per,0
+2016,competition,competition_22,competition_22,EG.adult,3,Elymus glaucus,nat.per,0
+2016,competition,competition_17,competition_17,EG.adult,2.5,Elymus glaucus,nat.per,0
+2016,competition,competition_82,competition_82,EG.adult,4,Elymus glaucus,nat.per,0
+2016,competition,competition_157,competition_157,EG.adult,8,Elymus glaucus,nat.per,0
+2016,competition,competition_59,competition_59,EG.adult,2,Elymus glaucus,nat.per,0
+2016,competition,competition_4,competition_4,EG.adult,2,Elymus glaucus,nat.per,0
+2016,competition,competition_41,competition_41,EG.adult,2,Elymus glaucus,nat.per,0
+2016,competition,competition_211,competition_211,EG.adult,35,Elymus glaucus,nat.per,0
+2016,competition,competition_58,competition_58,EG.adult,10,Elymus glaucus,nat.per,0
+2016,competition,competition_138,competition_138,EG.adult,7,Elymus glaucus,nat.per,0
+2016,competition,competition_5,competition_5,EG.adult,3,Elymus glaucus,nat.per,0
+2016,competition,competition_15,competition_15,EG.adult,2,Elymus glaucus,nat.per,0
+2016,competition,competition_188,competition_188,EG.adult,3,Elymus glaucus,nat.per,0
+2016,competition,competition_24,competition_24,EG.adult,1.5,Elymus glaucus,nat.per,0
+2016,competition,competition_84,competition_84,EG.adult,9,Elymus glaucus,nat.per,0
+2016,competition,competition_147,competition_147,EG.adult,2,Elymus glaucus,nat.per,0
+2016,competition,competition_196,competition_196,EG.adult,2,Elymus glaucus,nat.per,0
+2016,competition,competition_199,competition_199,EG.adult,1,Elymus glaucus,nat.per,0
+2016,competition,competition_68,competition_68,EG.adult,5,Elymus glaucus,nat.per,0
+2016,competition,competition_172,competition_172,EG.adult,31,Elymus glaucus,nat.per,0
+2016,competition,competition_114,competition_114,EG.adult,7,Elymus glaucus,nat.per,0
+2016,competition,competition_149,competition_149,EG.adult,4,Elymus glaucus,nat.per,0
+2016,competition,competition_81,competition_81,EG.adult,1,Elymus glaucus,nat.per,0
+2016,competition,competition_152,competition_152,EG.adult,15,Elymus glaucus,nat.per,0
+2016,competition,competition_53,competition_53,EG.adult,2,Elymus glaucus,nat.per,0
+2016,competition,competition_2,competition_2,EG.adult,2.5,Elymus glaucus,nat.per,0
+2016,competition,competition_8,competition_8,EG.adult,4,Elymus glaucus,nat.per,0
+2016,competition,competition_111,competition_111,EG.adult,6,Elymus glaucus,nat.per,0
+2016,competition,competition_127,competition_127,EG.adult,7,Elymus glaucus,nat.per,0
+2016,competition,competition_224,competition_224,EG.adult,2,Elymus glaucus,nat.per,0
+2016,competition,competition_47,competition_47,EG.adult,1,Elymus glaucus,nat.per,0
+2016,competition,competition_212,competition_212,EG.adult,2,Elymus glaucus,nat.per,0
+2016,competition,competition_213,competition_213,EG.adult,3,Elymus glaucus,nat.per,0
+2016,competition,competition_221,competition_221,EG.adult,4,Elymus glaucus,nat.per,0
+2016,competition,competition_225,competition_225,EG.adult,1,Elymus glaucus,nat.per,0
+2016,competition,competition_232,competition_232,EG.adult,6,Elymus glaucus,nat.per,0
+2016,competition,competition_52,competition_52,EG.adult,2,Elymus glaucus,nat.per,0
+2016,competition,competition_218,competition_218,EG.adult,2,Elymus glaucus,nat.per,0
+2016,competition,competition_230,competition_230,EG.adult,6,Elymus glaucus,nat.per,0
+2016,competition,competition_231,competition_231,EG.adult,5,Elymus glaucus,nat.per,0
+2016,competition,competition_13,competition_13,SP.adult,0.5,Stipa pulchra,nat.per,0
+2016,competition,competition_210,competition_210,SP.adult,1,Stipa pulchra,nat.per,0
+2016,competition,competition_170,competition_170,SP.adult,2,Stipa pulchra,nat.per,0
+2016,competition,competition_162,competition_162,SP.adult,2,Stipa pulchra,nat.per,0
+2016,competition,competition_108,competition_108,SP.adult,4,Stipa pulchra,nat.per,0
+2016,competition,competition_121,competition_121,SP.adult,3,Stipa pulchra,nat.per,0
+2016,competition,competition_220,competition_220,SP.adult,0,Stipa pulchra,nat.per,0
+2016,competition,competition_70,competition_70,SP.adult,2,Stipa pulchra,nat.per,0
+2016,competition,competition_72,competition_72,SP.adult,6,Stipa pulchra,nat.per,0
+2016,competition,competition_32,competition_32,SP.adult,13,Stipa pulchra,nat.per,0
+2016,competition,competition_98,competition_98,SP.adult,2,Stipa pulchra,nat.per,0
+2016,competition,competition_136,competition_136,SP.adult,2,Stipa pulchra,nat.per,0
+2016,competition,competition_88,competition_88,SP.adult,8,Stipa pulchra,nat.per,0
+2016,competition,competition_101,competition_101,SP.adult,3,Stipa pulchra,nat.per,0
+2016,competition,competition_171,competition_171,SP.adult,1,Stipa pulchra,nat.per,0
+2016,competition,competition_74,competition_74,SP.adult,1,Stipa pulchra,nat.per,0
+2016,competition,competition_106,competition_106,SP.adult,1,Stipa pulchra,nat.per,0
+2016,competition,competition_104,competition_104,SP.adult,12,Stipa pulchra,nat.per,0
+2016,competition,competition_31,competition_31,SP.adult,13,Stipa pulchra,nat.per,0
+2016,competition,competition_187,competition_187,SP.adult,1,Stipa pulchra,nat.per,0
+2016,competition,competition_113,competition_113,SP.adult,7,Stipa pulchra,nat.per,0
+2016,competition,competition_107,competition_107,SP.adult,2,Stipa pulchra,nat.per,0
+2016,competition,competition_175,competition_175,SP.adult,4,Stipa pulchra,nat.per,0
+2016,competition,competition_191,competition_191,SP.adult,2,Stipa pulchra,nat.per,0
+2016,competition,competition_167,competition_167,SP.adult,2,Stipa pulchra,nat.per,0
+2016,competition,competition_140,competition_140,SP.adult,1,Stipa pulchra,nat.per,0
+2016,competition,competition_64,competition_64,SP.adult,1,Stipa pulchra,nat.per,0
+2016,competition,competition_80,competition_80,SP.adult,4,Stipa pulchra,nat.per,0
+2016,competition,competition_112,competition_112,SP.adult,1,Stipa pulchra,nat.per,0
+2016,competition,competition_129,competition_129,SP.adult,11,Stipa pulchra,nat.per,0
+2016,competition,competition_43,competition_43,SP.adult,8,Stipa pulchra,nat.per,0
+2016,competition,competition_85,competition_85,SP.adult,8,Stipa pulchra,nat.per,0
+2016,competition,competition_128,competition_128,SP.adult,8,Stipa pulchra,nat.per,0
+2016,competition,competition_86,competition_86,SP.adult,5,Stipa pulchra,nat.per,0
+2016,competition,competition_11,competition_11,SP.adult,1,Stipa pulchra,nat.per,0
+2016,competition,competition_130,competition_130,SP.adult,2,Stipa pulchra,nat.per,0
+2016,competition,competition_38,competition_38,SP.adult,8,Stipa pulchra,nat.per,0
+2016,competition,competition_94,competition_94,SP.adult,7,Stipa pulchra,nat.per,0
+2016,competition,competition_143,competition_143,SP.adult,2,Stipa pulchra,nat.per,0
+2016,competition,competition_99,competition_99,SP.adult,5,Stipa pulchra,nat.per,0
+2016,competition,competition_22,competition_22,SP.adult,0.5,Stipa pulchra,nat.per,0
+2016,competition,competition_17,competition_17,SP.adult,0.5,Stipa pulchra,nat.per,0
+2016,competition,competition_82,competition_82,SP.adult,1,Stipa pulchra,nat.per,0
+2016,competition,competition_157,competition_157,SP.adult,3,Stipa pulchra,nat.per,0
+2016,competition,competition_59,competition_59,SP.adult,6,Stipa pulchra,nat.per,0
+2016,competition,competition_4,competition_4,SP.adult,3,Stipa pulchra,nat.per,0
+2016,competition,competition_41,competition_41,SP.adult,9,Stipa pulchra,nat.per,0
+2016,competition,competition_211,competition_211,SP.adult,1,Stipa pulchra,nat.per,0
+2016,competition,competition_58,competition_58,SP.adult,2,Stipa pulchra,nat.per,0
+2016,competition,competition_138,competition_138,SP.adult,2,Stipa pulchra,nat.per,0
+2016,competition,competition_5,competition_5,SP.adult,1.5,Stipa pulchra,nat.per,0
+2016,competition,competition_15,competition_15,SP.adult,0.5,Stipa pulchra,nat.per,0
+2016,competition,competition_188,competition_188,SP.adult,2,Stipa pulchra,nat.per,0
+2016,competition,competition_24,competition_24,SP.adult,0,Stipa pulchra,nat.per,0
+2016,competition,competition_84,competition_84,SP.adult,2,Stipa pulchra,nat.per,0
+2016,competition,competition_147,competition_147,SP.adult,1,Stipa pulchra,nat.per,0
+2016,competition,competition_196,competition_196,SP.adult,1,Stipa pulchra,nat.per,0
+2016,competition,competition_199,competition_199,SP.adult,6,Stipa pulchra,nat.per,0
+2016,competition,competition_68,competition_68,SP.adult,1,Stipa pulchra,nat.per,0
+2016,competition,competition_172,competition_172,SP.adult,2,Stipa pulchra,nat.per,0
+2016,competition,competition_114,competition_114,SP.adult,9,Stipa pulchra,nat.per,0
+2016,competition,competition_149,competition_149,SP.adult,8,Stipa pulchra,nat.per,0
+2016,competition,competition_81,competition_81,SP.adult,4,Stipa pulchra,nat.per,0
+2016,competition,competition_152,competition_152,SP.adult,3,Stipa pulchra,nat.per,0
+2016,competition,competition_53,competition_53,SP.adult,1,Stipa pulchra,nat.per,0
+2016,competition,competition_2,competition_2,SP.adult,3.5,Stipa pulchra,nat.per,0
+2016,competition,competition_8,competition_8,SP.adult,3.5,Stipa pulchra,nat.per,0
+2016,competition,competition_111,competition_111,SP.adult,3,Stipa pulchra,nat.per,0
+2016,competition,competition_127,competition_127,SP.adult,2,Stipa pulchra,nat.per,0
+2016,competition,competition_224,competition_224,SP.adult,2,Stipa pulchra,nat.per,0
+2016,competition,competition_47,competition_47,SP.adult,6,Stipa pulchra,nat.per,0
+2016,competition,competition_212,competition_212,SP.adult,3,Stipa pulchra,nat.per,0
+2016,competition,competition_213,competition_213,SP.adult,6,Stipa pulchra,nat.per,0
+2016,competition,competition_221,competition_221,SP.adult,2,Stipa pulchra,nat.per,0
+2016,competition,competition_225,competition_225,SP.adult,2,Stipa pulchra,nat.per,0
+2016,competition,competition_232,competition_232,SP.adult,2,Stipa pulchra,nat.per,0
+2016,competition,competition_52,competition_52,SP.adult,6,Stipa pulchra,nat.per,0
+2016,competition,competition_218,competition_218,SP.adult,8,Stipa pulchra,nat.per,0
+2016,competition,competition_230,competition_230,SP.adult,1,Stipa pulchra,nat.per,0
+2016,competition,competition_231,competition_231,SP.adult,0,Stipa pulchra,nat.per,0
+2016,competition,competition_13,competition_13,BH,17.5,Bromus hordeaceus,non.ann,1
+2016,competition,competition_210,competition_210,BH,6,Bromus hordeaceus,non.ann,1
+2016,competition,competition_170,competition_170,BH,14,Bromus hordeaceus,non.ann,1
+2016,competition,competition_162,competition_162,BH,32,Bromus hordeaceus,non.ann,1
+2016,competition,competition_108,competition_108,BH,53.3333333333333,Bromus hordeaceus,non.ann,1
+2016,competition,competition_121,competition_121,BH,250,Bromus hordeaceus,non.ann,1
+2016,competition,competition_220,competition_220,BH,8,Bromus hordeaceus,non.ann,1
+2016,competition,competition_70,competition_70,BH,40,Bromus hordeaceus,non.ann,1
+2016,competition,competition_72,competition_72,BH,4,Bromus hordeaceus,non.ann,1
+2016,competition,competition_32,competition_32,BH,12,Bromus hordeaceus,non.ann,1
+2016,competition,competition_98,competition_98,BH,14,Bromus hordeaceus,non.ann,1
+2016,competition,competition_136,competition_136,BH,1140,Bromus hordeaceus,non.ann,1
+2016,competition,competition_88,competition_88,BH,40,Bromus hordeaceus,non.ann,1
+2016,competition,competition_101,competition_101,BH,33.3333333333333,Bromus hordeaceus,non.ann,1
+2016,competition,competition_171,competition_171,BH,990,Bromus hordeaceus,non.ann,1
+2016,competition,competition_74,competition_74,BH,3,Bromus hordeaceus,non.ann,1
+2016,competition,competition_106,competition_106,BH,18,Bromus hordeaceus,non.ann,1
+2016,competition,competition_104,competition_104,BH,30,Bromus hordeaceus,non.ann,1
+2016,competition,competition_31,competition_31,BH,25,Bromus hordeaceus,non.ann,1
+2016,competition,competition_187,competition_187,BH,12,Bromus hordeaceus,non.ann,1
+2016,competition,competition_113,competition_113,BH,33.3333333333333,Bromus hordeaceus,non.ann,1
+2016,competition,competition_107,competition_107,BH,120,Bromus hordeaceus,non.ann,1
+2016,competition,competition_175,competition_175,BH,18,Bromus hordeaceus,non.ann,1
+2016,competition,competition_191,competition_191,BH,420,Bromus hordeaceus,non.ann,1
+2016,competition,competition_167,competition_167,BH,9,Bromus hordeaceus,non.ann,1
+2016,competition,competition_140,competition_140,BH,22.2222222222222,Bromus hordeaceus,non.ann,1
+2016,competition,competition_64,competition_64,BH,2,Bromus hordeaceus,non.ann,1
+2016,competition,competition_80,competition_80,BH,31.1111111111111,Bromus hordeaceus,non.ann,1
+2016,competition,competition_112,competition_112,BH,1235,Bromus hordeaceus,non.ann,1
+2016,competition,competition_129,competition_129,BH,11,Bromus hordeaceus,non.ann,1
+2016,competition,competition_43,competition_43,BH,75,Bromus hordeaceus,non.ann,1
+2016,competition,competition_85,competition_85,BH,73.8888888888889,Bromus hordeaceus,non.ann,1
+2016,competition,competition_128,competition_128,BH,6,Bromus hordeaceus,non.ann,1
+2016,competition,competition_86,competition_86,BH,80,Bromus hordeaceus,non.ann,1
+2016,competition,competition_11,competition_11,BH,33.3333333333333,Bromus hordeaceus,non.ann,1
+2016,competition,competition_130,competition_130,BH,9,Bromus hordeaceus,non.ann,1
+2016,competition,competition_38,competition_38,BH,27,Bromus hordeaceus,non.ann,1
+2016,competition,competition_94,competition_94,BH,18,Bromus hordeaceus,non.ann,1
+2016,competition,competition_143,competition_143,BH,120,Bromus hordeaceus,non.ann,1
+2016,competition,competition_99,competition_99,BH,9,Bromus hordeaceus,non.ann,1
+2016,competition,competition_22,competition_22,BH,15,Bromus hordeaceus,non.ann,1
+2016,competition,competition_17,competition_17,BH,9,Bromus hordeaceus,non.ann,1
+2016,competition,competition_82,competition_82,BH,15,Bromus hordeaceus,non.ann,1
+2016,competition,competition_157,competition_157,BH,22,Bromus hordeaceus,non.ann,1
+2016,competition,competition_59,competition_59,BH,16.6666666666667,Bromus hordeaceus,non.ann,1
+2016,competition,competition_4,competition_4,BH,8,Bromus hordeaceus,non.ann,1
+2016,competition,competition_41,competition_41,BH,8,Bromus hordeaceus,non.ann,1
+2016,competition,competition_211,competition_211,BH,8,Bromus hordeaceus,non.ann,1
+2016,competition,competition_58,competition_58,BH,24,Bromus hordeaceus,non.ann,1
+2016,competition,competition_138,competition_138,BH,2470,Bromus hordeaceus,non.ann,1
+2016,competition,competition_5,competition_5,BH,40,Bromus hordeaceus,non.ann,1
+2016,competition,competition_15,competition_15,BH,8,Bromus hordeaceus,non.ann,1
+2016,competition,competition_188,competition_188,BH,10,Bromus hordeaceus,non.ann,1
+2016,competition,competition_24,competition_24,BH,7.5,Bromus hordeaceus,non.ann,1
+2016,competition,competition_84,competition_84,BH,35.5555555555556,Bromus hordeaceus,non.ann,1
+2016,competition,competition_147,competition_147,BH,6,Bromus hordeaceus,non.ann,1
+2016,competition,competition_196,competition_196,BH,1020,Bromus hordeaceus,non.ann,1
+2016,competition,competition_199,competition_199,BH,0,Bromus hordeaceus,non.ann,1
+2016,competition,competition_68,competition_68,BH,1330,Bromus hordeaceus,non.ann,1
+2016,competition,competition_172,competition_172,BH,10,Bromus hordeaceus,non.ann,1
+2016,competition,competition_114,competition_114,BH,35.5555555555556,Bromus hordeaceus,non.ann,1
+2016,competition,competition_149,competition_149,BH,9,Bromus hordeaceus,non.ann,1
+2016,competition,competition_81,competition_81,BH,960,Bromus hordeaceus,non.ann,1
+2016,competition,competition_152,competition_152,BH,16,Bromus hordeaceus,non.ann,1
+2016,competition,competition_53,competition_53,BH,10,Bromus hordeaceus,non.ann,1
+2016,competition,competition_2,competition_2,BH,55.5555555555556,Bromus hordeaceus,non.ann,1
+2016,competition,competition_8,competition_8,BH,400,Bromus hordeaceus,non.ann,1
+2016,competition,competition_111,competition_111,BH,9,Bromus hordeaceus,non.ann,1
+2016,competition,competition_127,competition_127,BH,12,Bromus hordeaceus,non.ann,1
+2016,competition,competition_224,competition_224,BH,2550,Bromus hordeaceus,non.ann,1
+2016,competition,competition_47,competition_47,BH,0,Bromus hordeaceus,non.ann,1
+2016,competition,competition_212,competition_212,BH,7,Bromus hordeaceus,non.ann,1
+2016,competition,competition_213,competition_213,BH,5,Bromus hordeaceus,non.ann,1
+2016,competition,competition_221,competition_221,BH,0,Bromus hordeaceus,non.ann,1
+2016,competition,competition_225,competition_225,BH,7,Bromus hordeaceus,non.ann,1
+2016,competition,competition_232,competition_232,BH,0,Bromus hordeaceus,non.ann,1
+2016,competition,competition_52,competition_52,BH,6,Bromus hordeaceus,non.ann,1
+2016,competition,competition_218,competition_218,BH,16,Bromus hordeaceus,non.ann,1
+2016,competition,competition_230,competition_230,BH,20,Bromus hordeaceus,non.ann,1
+2016,competition,competition_231,competition_231,BH,800,Bromus hordeaceus,non.ann,1
+2016,competition,competition_13,competition_13,BD,0.5,Bromus diandrus,non.ann,1
+2016,competition,competition_210,competition_210,BD,0,Bromus diandrus,non.ann,1
+2016,competition,competition_170,competition_170,BD,2,Bromus diandrus,non.ann,1
+2016,competition,competition_162,competition_162,BD,2,Bromus diandrus,non.ann,1
+2016,competition,competition_108,competition_108,BD,6,Bromus diandrus,non.ann,1
+2016,competition,competition_121,competition_121,BD,26.6666666666667,Bromus diandrus,non.ann,1
+2016,competition,competition_220,competition_220,BD,0,Bromus diandrus,non.ann,1
+2016,competition,competition_70,competition_70,BD,1,Bromus diandrus,non.ann,1
+2016,competition,competition_72,competition_72,BD,1,Bromus diandrus,non.ann,1
+2016,competition,competition_32,competition_32,BD,8,Bromus diandrus,non.ann,1
+2016,competition,competition_98,competition_98,BD,2,Bromus diandrus,non.ann,1
+2016,competition,competition_136,competition_136,BD,0,Bromus diandrus,non.ann,1
+2016,competition,competition_88,competition_88,BD,5,Bromus diandrus,non.ann,1
+2016,competition,competition_101,competition_101,BD,11,Bromus diandrus,non.ann,1
+2016,competition,competition_171,competition_171,BD,1,Bromus diandrus,non.ann,1
+2016,competition,competition_74,competition_74,BD,3,Bromus diandrus,non.ann,1
+2016,competition,competition_106,competition_106,BD,61.1111111111111,Bromus diandrus,non.ann,1
+2016,competition,competition_104,competition_104,BD,1,Bromus diandrus,non.ann,1
+2016,competition,competition_31,competition_31,BD,1,Bromus diandrus,non.ann,1
+2016,competition,competition_187,competition_187,BD,66.1111111111111,Bromus diandrus,non.ann,1
+2016,competition,competition_113,competition_113,BD,22.2222222222222,Bromus diandrus,non.ann,1
+2016,competition,competition_107,competition_107,BD,1,Bromus diandrus,non.ann,1
+2016,competition,competition_175,competition_175,BD,3,Bromus diandrus,non.ann,1
+2016,competition,competition_191,competition_191,BD,240,Bromus diandrus,non.ann,1
+2016,competition,competition_167,competition_167,BD,4,Bromus diandrus,non.ann,1
+2016,competition,competition_140,competition_140,BD,1,Bromus diandrus,non.ann,1
+2016,competition,competition_64,competition_64,BD,0,Bromus diandrus,non.ann,1
+2016,competition,competition_80,competition_80,BD,0,Bromus diandrus,non.ann,1
+2016,competition,competition_112,competition_112,BD,1,Bromus diandrus,non.ann,1
+2016,competition,competition_129,competition_129,BD,1,Bromus diandrus,non.ann,1
+2016,competition,competition_43,competition_43,BD,17,Bromus diandrus,non.ann,1
+2016,competition,competition_85,competition_85,BD,4,Bromus diandrus,non.ann,1
+2016,competition,competition_128,competition_128,BD,0,Bromus diandrus,non.ann,1
+2016,competition,competition_86,competition_86,BD,1,Bromus diandrus,non.ann,1
+2016,competition,competition_11,competition_11,BD,3,Bromus diandrus,non.ann,1
+2016,competition,competition_130,competition_130,BD,2,Bromus diandrus,non.ann,1
+2016,competition,competition_38,competition_38,BD,1,Bromus diandrus,non.ann,1
+2016,competition,competition_94,competition_94,BD,4,Bromus diandrus,non.ann,1
+2016,competition,competition_143,competition_143,BD,5,Bromus diandrus,non.ann,1
+2016,competition,competition_99,competition_99,BD,26.6666666666667,Bromus diandrus,non.ann,1
+2016,competition,competition_22,competition_22,BD,0.5,Bromus diandrus,non.ann,1
+2016,competition,competition_17,competition_17,BD,3,Bromus diandrus,non.ann,1
+2016,competition,competition_82,competition_82,BD,0,Bromus diandrus,non.ann,1
+2016,competition,competition_157,competition_157,BD,8,Bromus diandrus,non.ann,1
+2016,competition,competition_59,competition_59,BD,5,Bromus diandrus,non.ann,1
+2016,competition,competition_4,competition_4,BD,0.5,Bromus diandrus,non.ann,1
+2016,competition,competition_41,competition_41,BD,0,Bromus diandrus,non.ann,1
+2016,competition,competition_211,competition_211,BD,1,Bromus diandrus,non.ann,1
+2016,competition,competition_58,competition_58,BD,1,Bromus diandrus,non.ann,1
+2016,competition,competition_138,competition_138,BD,2,Bromus diandrus,non.ann,1
+2016,competition,competition_5,competition_5,BD,2,Bromus diandrus,non.ann,1
+2016,competition,competition_15,competition_15,BD,0.5,Bromus diandrus,non.ann,1
+2016,competition,competition_188,competition_188,BD,5,Bromus diandrus,non.ann,1
+2016,competition,competition_24,competition_24,BD,0.5,Bromus diandrus,non.ann,1
+2016,competition,competition_84,competition_84,BD,8,Bromus diandrus,non.ann,1
+2016,competition,competition_147,competition_147,BD,6,Bromus diandrus,non.ann,1
+2016,competition,competition_196,competition_196,BD,3,Bromus diandrus,non.ann,1
+2016,competition,competition_199,competition_199,BD,10,Bromus diandrus,non.ann,1
+2016,competition,competition_68,competition_68,BD,2,Bromus diandrus,non.ann,1
+2016,competition,competition_172,competition_172,BD,3,Bromus diandrus,non.ann,1
+2016,competition,competition_114,competition_114,BD,10,Bromus diandrus,non.ann,1
+2016,competition,competition_149,competition_149,BD,1,Bromus diandrus,non.ann,1
+2016,competition,competition_81,competition_81,BD,0,Bromus diandrus,non.ann,1
+2016,competition,competition_152,competition_152,BD,8,Bromus diandrus,non.ann,1
+2016,competition,competition_53,competition_53,BD,0,Bromus diandrus,non.ann,1
+2016,competition,competition_2,competition_2,BD,2,Bromus diandrus,non.ann,1
+2016,competition,competition_8,competition_8,BD,2,Bromus diandrus,non.ann,1
+2016,competition,competition_111,competition_111,BD,11.1111111111111,Bromus diandrus,non.ann,1
+2016,competition,competition_127,competition_127,BD,1,Bromus diandrus,non.ann,1
+2016,competition,competition_224,competition_224,BD,0,Bromus diandrus,non.ann,1
+2016,competition,competition_47,competition_47,BD,0,Bromus diandrus,non.ann,1
+2016,competition,competition_212,competition_212,BD,0,Bromus diandrus,non.ann,1
+2016,competition,competition_213,competition_213,BD,0,Bromus diandrus,non.ann,1
+2016,competition,competition_221,competition_221,BD,6,Bromus diandrus,non.ann,1
+2016,competition,competition_225,competition_225,BD,2,Bromus diandrus,non.ann,1
+2016,competition,competition_232,competition_232,BD,0,Bromus diandrus,non.ann,1
+2016,competition,competition_52,competition_52,BD,0,Bromus diandrus,non.ann,1
+2016,competition,competition_218,competition_218,BD,1,Bromus diandrus,non.ann,1
+2016,competition,competition_230,competition_230,BD,213.333333333333,Bromus diandrus,non.ann,1
+2016,competition,competition_231,competition_231,BD,0,Bromus diandrus,non.ann,1
+2016,competition,competition_13,competition_13,Avena,2.22222222222222,Avena sp.,non.ann,1
+2016,competition,competition_210,competition_210,Avena,53.3333333333333,Avena sp.,non.ann,1
+2016,competition,competition_170,competition_170,Avena,2,Avena sp.,non.ann,1
+2016,competition,competition_162,competition_162,Avena,12,Avena sp.,non.ann,1
+2016,competition,competition_108,competition_108,Avena,17.7777777777778,Avena sp.,non.ann,1
+2016,competition,competition_121,competition_121,Avena,13.3333333333333,Avena sp.,non.ann,1
+2016,competition,competition_220,competition_220,Avena,53.3333333333333,Avena sp.,non.ann,1
+2016,competition,competition_70,competition_70,Avena,9,Avena sp.,non.ann,1
+2016,competition,competition_72,competition_72,Avena,8,Avena sp.,non.ann,1
+2016,competition,competition_32,competition_32,Avena,13,Avena sp.,non.ann,1
+2016,competition,competition_98,competition_98,Avena,47.2222222222222,Avena sp.,non.ann,1
+2016,competition,competition_136,competition_136,Avena,10,Avena sp.,non.ann,1
+2016,competition,competition_88,competition_88,Avena,8,Avena sp.,non.ann,1
+2016,competition,competition_101,competition_101,Avena,3,Avena sp.,non.ann,1
+2016,competition,competition_171,competition_171,Avena,17.7777777777778,Avena sp.,non.ann,1
+2016,competition,competition_74,competition_74,Avena,17,Avena sp.,non.ann,1
+2016,competition,competition_106,competition_106,Avena,20,Avena sp.,non.ann,1
+2016,competition,competition_104,competition_104,Avena,0,Avena sp.,non.ann,1
+2016,competition,competition_31,competition_31,Avena,16.6666666666667,Avena sp.,non.ann,1
+2016,competition,competition_187,competition_187,Avena,5,Avena sp.,non.ann,1
+2016,competition,competition_113,competition_113,Avena,26.6666666666667,Avena sp.,non.ann,1
+2016,competition,competition_107,competition_107,Avena,1,Avena sp.,non.ann,1
+2016,competition,competition_175,competition_175,Avena,5,Avena sp.,non.ann,1
+2016,competition,competition_191,competition_191,Avena,7,Avena sp.,non.ann,1
+2016,competition,competition_167,competition_167,Avena,30,Avena sp.,non.ann,1
+2016,competition,competition_140,competition_140,Avena,7,Avena sp.,non.ann,1
+2016,competition,competition_64,competition_64,Avena,31.1111111111111,Avena sp.,non.ann,1
+2016,competition,competition_80,competition_80,Avena,6.66666666666667,Avena sp.,non.ann,1
+2016,competition,competition_112,competition_112,Avena,66.1111111111111,Avena sp.,non.ann,1
+2016,competition,competition_129,competition_129,Avena,6,Avena sp.,non.ann,1
+2016,competition,competition_43,competition_43,Avena,10,Avena sp.,non.ann,1
+2016,competition,competition_85,competition_85,Avena,16,Avena sp.,non.ann,1
+2016,competition,competition_128,competition_128,Avena,13.3333333333333,Avena sp.,non.ann,1
+2016,competition,competition_86,competition_86,Avena,14,Avena sp.,non.ann,1
+2016,competition,competition_11,competition_11,Avena,40,Avena sp.,non.ann,1
+2016,competition,competition_130,competition_130,Avena,8.88888888888889,Avena sp.,non.ann,1
+2016,competition,competition_38,competition_38,Avena,11,Avena sp.,non.ann,1
+2016,competition,competition_94,competition_94,Avena,22.2222222222222,Avena sp.,non.ann,1
+2016,competition,competition_143,competition_143,Avena,33.3333333333333,Avena sp.,non.ann,1
+2016,competition,competition_99,competition_99,Avena,70,Avena sp.,non.ann,1
+2016,competition,competition_22,competition_22,Avena,5.55555555555556,Avena sp.,non.ann,1
+2016,competition,competition_17,competition_17,Avena,11.1111111111111,Avena sp.,non.ann,1
+2016,competition,competition_82,competition_82,Avena,50,Avena sp.,non.ann,1
+2016,competition,competition_157,competition_157,Avena,12,Avena sp.,non.ann,1
+2016,competition,competition_59,competition_59,Avena,22.2222222222222,Avena sp.,non.ann,1
+2016,competition,competition_4,competition_4,Avena,7.5,Avena sp.,non.ann,1
+2016,competition,competition_41,competition_41,Avena,33.3333333333333,Avena sp.,non.ann,1
+2016,competition,competition_211,competition_211,Avena,40,Avena sp.,non.ann,1
+2016,competition,competition_58,competition_58,Avena,7,Avena sp.,non.ann,1
+2016,competition,competition_138,competition_138,Avena,14,Avena sp.,non.ann,1
+2016,competition,competition_5,competition_5,Avena,5,Avena sp.,non.ann,1
+2016,competition,competition_15,competition_15,Avena,6,Avena sp.,non.ann,1
+2016,competition,competition_188,competition_188,Avena,0,Avena sp.,non.ann,1
+2016,competition,competition_24,competition_24,Avena,16.6666666666667,Avena sp.,non.ann,1
+2016,competition,competition_84,competition_84,Avena,20,Avena sp.,non.ann,1
+2016,competition,competition_147,competition_147,Avena,25,Avena sp.,non.ann,1
+2016,competition,competition_196,competition_196,Avena,26.6666666666667,Avena sp.,non.ann,1
+2016,competition,competition_199,competition_199,Avena,8,Avena sp.,non.ann,1
+2016,competition,competition_68,competition_68,Avena,13,Avena sp.,non.ann,1
+2016,competition,competition_172,competition_172,Avena,9,Avena sp.,non.ann,1
+2016,competition,competition_114,competition_114,Avena,13.3333333333333,Avena sp.,non.ann,1
+2016,competition,competition_149,competition_149,Avena,7,Avena sp.,non.ann,1
+2016,competition,competition_81,competition_81,Avena,38.8888888888889,Avena sp.,non.ann,1
+2016,competition,competition_152,competition_152,Avena,16,Avena sp.,non.ann,1
+2016,competition,competition_53,competition_53,Avena,8,Avena sp.,non.ann,1
+2016,competition,competition_2,competition_2,Avena,26.6666666666667,Avena sp.,non.ann,1
+2016,competition,competition_8,competition_8,Avena,6.5,Avena sp.,non.ann,1
+2016,competition,competition_111,competition_111,Avena,38.8888888888889,Avena sp.,non.ann,1
+2016,competition,competition_127,competition_127,Avena,16.6666666666667,Avena sp.,non.ann,1
+2016,competition,competition_224,competition_224,Avena,26.6666666666667,Avena sp.,non.ann,1
+2016,competition,competition_47,competition_47,Avena,5,Avena sp.,non.ann,1
+2016,competition,competition_212,competition_212,Avena,15,Avena sp.,non.ann,1
+2016,competition,competition_213,competition_213,Avena,10,Avena sp.,non.ann,1
+2016,competition,competition_221,competition_221,Avena,41.6666666666667,Avena sp.,non.ann,1
+2016,competition,competition_225,competition_225,Avena,20,Avena sp.,non.ann,1
+2016,competition,competition_232,competition_232,Avena,50,Avena sp.,non.ann,1
+2016,competition,competition_52,competition_52,Avena,19.4444444444444,Avena sp.,non.ann,1
+2016,competition,competition_218,competition_218,Avena,12,Avena sp.,non.ann,1
+2016,competition,competition_230,competition_230,Avena,41.6666666666667,Avena sp.,non.ann,1
+2016,competition,competition_231,competition_231,Avena,60,Avena sp.,non.ann,1
+2016,competition,competition_13,competition_13,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_210,competition_210,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_170,competition_170,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_162,competition_162,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_108,competition_108,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_121,competition_121,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_220,competition_220,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_70,competition_70,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_72,competition_72,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_32,competition_32,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_98,competition_98,FEMY,6,Festuca myuros,non.ann,1
+2016,competition,competition_136,competition_136,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_88,competition_88,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_101,competition_101,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_171,competition_171,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_74,competition_74,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_106,competition_106,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_104,competition_104,FEMY,25,Festuca myuros,non.ann,1
+2016,competition,competition_31,competition_31,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_187,competition_187,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_113,competition_113,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_107,competition_107,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_175,competition_175,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_191,competition_191,FEMY,10,Festuca myuros,non.ann,1
+2016,competition,competition_167,competition_167,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_140,competition_140,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_64,competition_64,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_80,competition_80,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_112,competition_112,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_129,competition_129,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_43,competition_43,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_85,competition_85,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_128,competition_128,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_86,competition_86,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_11,competition_11,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_130,competition_130,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_38,competition_38,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_94,competition_94,FEMY,20,Festuca myuros,non.ann,1
+2016,competition,competition_143,competition_143,FEMY,8,Festuca myuros,non.ann,1
+2016,competition,competition_99,competition_99,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_22,competition_22,FEMY,20,Festuca myuros,non.ann,1
+2016,competition,competition_17,competition_17,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_82,competition_82,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_157,competition_157,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_59,competition_59,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_4,competition_4,FEMY,50,Festuca myuros,non.ann,1
+2016,competition,competition_41,competition_41,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_211,competition_211,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_58,competition_58,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_138,competition_138,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_5,competition_5,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_15,competition_15,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_188,competition_188,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_24,competition_24,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_84,competition_84,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_147,competition_147,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_196,competition_196,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_199,competition_199,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_68,competition_68,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_172,competition_172,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_114,competition_114,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_149,competition_149,FEMY,5,Festuca myuros,non.ann,1
+2016,competition,competition_81,competition_81,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_152,competition_152,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_53,competition_53,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_2,competition_2,FEMY,40,Festuca myuros,non.ann,1
+2016,competition,competition_8,competition_8,FEMY,15,Festuca myuros,non.ann,1
+2016,competition,competition_111,competition_111,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_127,competition_127,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_224,competition_224,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_47,competition_47,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_212,competition_212,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_213,competition_213,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_221,competition_221,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_225,competition_225,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_232,competition_232,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_52,competition_52,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_218,competition_218,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_230,competition_230,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_231,competition_231,FEMY,0,Festuca myuros,non.ann,1
+2016,competition,competition_13,competition_13,BRADIS,80,Brachypodium distachyon,non.ann,1
+2016,competition,competition_210,competition_210,BRADIS,0,Brachypodium distachyon,non.ann,1
+2016,competition,competition_170,competition_170,BRADIS,200,Brachypodium distachyon,non.ann,1
+2016,competition,competition_162,competition_162,BRADIS,70,Brachypodium distachyon,non.ann,1
+2016,competition,competition_108,competition_108,BRADIS,33.3333333333333,Brachypodium distachyon,non.ann,1
+2016,competition,competition_121,competition_121,BRADIS,0,Brachypodium distachyon,non.ann,1
+2016,competition,competition_220,competition_220,BRADIS,15,Brachypodium distachyon,non.ann,1
+2016,competition,competition_70,competition_70,BRADIS,100,Brachypodium distachyon,non.ann,1
+2016,competition,competition_72,competition_72,BRADIS,240,Brachypodium distachyon,non.ann,1
+2016,competition,competition_32,competition_32,BRADIS,9,Brachypodium distachyon,non.ann,1
+2016,competition,competition_98,competition_98,BRADIS,15,Brachypodium distachyon,non.ann,1
+2016,competition,competition_136,competition_136,BRADIS,50,Brachypodium distachyon,non.ann,1
+2016,competition,competition_88,competition_88,BRADIS,0,Brachypodium distachyon,non.ann,1
+2016,competition,competition_101,competition_101,BRADIS,0,Brachypodium distachyon,non.ann,1
+2016,competition,competition_171,competition_171,BRADIS,100,Brachypodium distachyon,non.ann,1
+2016,competition,competition_74,competition_74,BRADIS,135,Brachypodium distachyon,non.ann,1
+2016,competition,competition_106,competition_106,BRADIS,75,Brachypodium distachyon,non.ann,1
+2016,competition,competition_104,competition_104,BRADIS,0,Brachypodium distachyon,non.ann,1
+2016,competition,competition_31,competition_31,BRADIS,30,Brachypodium distachyon,non.ann,1
+2016,competition,competition_187,competition_187,BRADIS,80,Brachypodium distachyon,non.ann,1
+2016,competition,competition_113,competition_113,BRADIS,225,Brachypodium distachyon,non.ann,1
+2016,competition,competition_107,competition_107,BRADIS,20,Brachypodium distachyon,non.ann,1
+2016,competition,competition_175,competition_175,BRADIS,0,Brachypodium distachyon,non.ann,1
+2016,competition,competition_191,competition_191,BRADIS,2.77777777777778,Brachypodium distachyon,non.ann,1
+2016,competition,competition_167,competition_167,BRADIS,120,Brachypodium distachyon,non.ann,1
+2016,competition,competition_140,competition_140,BRADIS,75,Brachypodium distachyon,non.ann,1
+2016,competition,competition_64,competition_64,BRADIS,200,Brachypodium distachyon,non.ann,1
+2016,competition,competition_80,competition_80,BRADIS,490,Brachypodium distachyon,non.ann,1
+2016,competition,competition_112,competition_112,BRADIS,30,Brachypodium distachyon,non.ann,1
+2016,competition,competition_129,competition_129,BRADIS,120,Brachypodium distachyon,non.ann,1
+2016,competition,competition_43,competition_43,BRADIS,0,Brachypodium distachyon,non.ann,1
+2016,competition,competition_85,competition_85,BRADIS,0,Brachypodium distachyon,non.ann,1
+2016,competition,competition_128,competition_128,BRADIS,150,Brachypodium distachyon,non.ann,1
+2016,competition,competition_86,competition_86,BRADIS,0,Brachypodium distachyon,non.ann,1
+2016,competition,competition_11,competition_11,BRADIS,120,Brachypodium distachyon,non.ann,1
+2016,competition,competition_130,competition_130,BRADIS,0,Brachypodium distachyon,non.ann,1
+2016,competition,competition_38,competition_38,BRADIS,0,Brachypodium distachyon,non.ann,1
+2016,competition,competition_94,competition_94,BRADIS,100,Brachypodium distachyon,non.ann,1
+2016,competition,competition_143,competition_143,BRADIS,0,Brachypodium distachyon,non.ann,1
+2016,competition,competition_99,competition_99,BRADIS,80,Brachypodium distachyon,non.ann,1
+2016,competition,competition_22,competition_22,BRADIS,0,Brachypodium distachyon,non.ann,1
+2016,competition,competition_17,competition_17,BRADIS,90,Brachypodium distachyon,non.ann,1
+2016,competition,competition_82,competition_82,BRADIS,150,Brachypodium distachyon,non.ann,1
+2016,competition,competition_157,competition_157,BRADIS,100,Brachypodium distachyon,non.ann,1
+2016,competition,competition_59,competition_59,BRADIS,13.3333333333333,Brachypodium distachyon,non.ann,1
+2016,competition,competition_4,competition_4,BRADIS,300,Brachypodium distachyon,non.ann,1
+2016,competition,competition_41,competition_41,BRADIS,50,Brachypodium distachyon,non.ann,1
+2016,competition,competition_211,competition_211,BRADIS,0,Brachypodium distachyon,non.ann,1
+2016,competition,competition_58,competition_58,BRADIS,60,Brachypodium distachyon,non.ann,1
+2016,competition,competition_138,competition_138,BRADIS,60,Brachypodium distachyon,non.ann,1
+2016,competition,competition_5,competition_5,BRADIS,225,Brachypodium distachyon,non.ann,1
+2016,competition,competition_15,competition_15,BRADIS,140,Brachypodium distachyon,non.ann,1
+2016,competition,competition_188,competition_188,BRADIS,200,Brachypodium distachyon,non.ann,1
+2016,competition,competition_24,competition_24,BRADIS,80,Brachypodium distachyon,non.ann,1
+2016,competition,competition_84,competition_84,BRADIS,120,Brachypodium distachyon,non.ann,1
+2016,competition,competition_147,competition_147,BRADIS,320,Brachypodium distachyon,non.ann,1
+2016,competition,competition_196,competition_196,BRADIS,5,Brachypodium distachyon,non.ann,1
+2016,competition,competition_199,competition_199,BRADIS,60,Brachypodium distachyon,non.ann,1
+2016,competition,competition_68,competition_68,BRADIS,9,Brachypodium distachyon,non.ann,1
+2016,competition,competition_172,competition_172,BRADIS,120,Brachypodium distachyon,non.ann,1
+2016,competition,competition_114,competition_114,BRADIS,10,Brachypodium distachyon,non.ann,1
+2016,competition,competition_149,competition_149,BRADIS,10,Brachypodium distachyon,non.ann,1
+2016,competition,competition_81,competition_81,BRADIS,23.3333333333333,Brachypodium distachyon,non.ann,1
+2016,competition,competition_152,competition_152,BRADIS,40,Brachypodium distachyon,non.ann,1
+2016,competition,competition_53,competition_53,BRADIS,0,Brachypodium distachyon,non.ann,1
+2016,competition,competition_2,competition_2,BRADIS,55.5555555555556,Brachypodium distachyon,non.ann,1
+2016,competition,competition_8,competition_8,BRADIS,0,Brachypodium distachyon,non.ann,1
+2016,competition,competition_111,competition_111,BRADIS,80,Brachypodium distachyon,non.ann,1
+2016,competition,competition_127,competition_127,BRADIS,150,Brachypodium distachyon,non.ann,1
+2016,competition,competition_224,competition_224,BRADIS,0,Brachypodium distachyon,non.ann,1
+2016,competition,competition_47,competition_47,BRADIS,90,Brachypodium distachyon,non.ann,1
+2016,competition,competition_212,competition_212,BRADIS,30,Brachypodium distachyon,non.ann,1
+2016,competition,competition_213,competition_213,BRADIS,225,Brachypodium distachyon,non.ann,1
+2016,competition,competition_221,competition_221,BRADIS,12,Brachypodium distachyon,non.ann,1
+2016,competition,competition_225,competition_225,BRADIS,25,Brachypodium distachyon,non.ann,1
+2016,competition,competition_232,competition_232,BRADIS,20,Brachypodium distachyon,non.ann,1
+2016,competition,competition_52,competition_52,BRADIS,10,Brachypodium distachyon,non.ann,1
+2016,competition,competition_218,competition_218,BRADIS,75,Brachypodium distachyon,non.ann,1
+2016,competition,competition_230,competition_230,BRADIS,8,Brachypodium distachyon,non.ann,1
+2016,competition,competition_231,competition_231,BRADIS,10,Brachypodium distachyon,non.ann,1
+2016,competition,competition_13,competition_13,Forb,7.5,Forb,NA,NA
+2016,competition,competition_210,competition_210,Forb,90,Forb,NA,NA
+2016,competition,competition_170,competition_170,Forb,46.6666666666667,Forb,NA,NA
+2016,competition,competition_162,competition_162,Forb,10,Forb,NA,NA
+2016,competition,competition_108,competition_108,Forb,19,Forb,NA,NA
+2016,competition,competition_121,competition_121,Forb,18,Forb,NA,NA
+2016,competition,competition_220,competition_220,Forb,8,Forb,NA,NA
+2016,competition,competition_70,competition_70,Forb,10,Forb,NA,NA
+2016,competition,competition_72,competition_72,Forb,4,Forb,NA,NA
+2016,competition,competition_32,competition_32,Forb,25,Forb,NA,NA
+2016,competition,competition_98,competition_98,Forb,30,Forb,NA,NA
+2016,competition,competition_136,competition_136,Forb,8,Forb,NA,NA
+2016,competition,competition_88,competition_88,Forb,13,Forb,NA,NA
+2016,competition,competition_101,competition_101,Forb,2,Forb,NA,NA
+2016,competition,competition_171,competition_171,Forb,5,Forb,NA,NA
+2016,competition,competition_74,competition_74,Forb,11,Forb,NA,NA
+2016,competition,competition_106,competition_106,Forb,16,Forb,NA,NA
+2016,competition,competition_104,competition_104,Forb,160,Forb,NA,NA
+2016,competition,competition_31,competition_31,Forb,30,Forb,NA,NA
+2016,competition,competition_187,competition_187,Forb,41.6666666666667,Forb,NA,NA
+2016,competition,competition_113,competition_113,Forb,14,Forb,NA,NA
+2016,competition,competition_107,competition_107,Forb,300,Forb,NA,NA
+2016,competition,competition_175,competition_175,Forb,36.6666666666667,Forb,NA,NA
+2016,competition,competition_191,competition_191,Forb,8.88888888888889,Forb,NA,NA
+2016,competition,competition_167,competition_167,Forb,4,Forb,NA,NA
+2016,competition,competition_140,competition_140,Forb,9,Forb,NA,NA
+2016,competition,competition_64,competition_64,Forb,8,Forb,NA,NA
+2016,competition,competition_80,competition_80,Forb,12,Forb,NA,NA
+2016,competition,competition_112,competition_112,Forb,12,Forb,NA,NA
+2016,competition,competition_129,competition_129,Forb,23,Forb,NA,NA
+2016,competition,competition_43,competition_43,Forb,13,Forb,NA,NA
+2016,competition,competition_85,competition_85,Forb,50,Forb,NA,NA
+2016,competition,competition_128,competition_128,Forb,40,Forb,NA,NA
+2016,competition,competition_86,competition_86,Forb,240,Forb,NA,NA
+2016,competition,competition_11,competition_11,Forb,41.6666666666667,Forb,NA,NA
+2016,competition,competition_130,competition_130,Forb,40,Forb,NA,NA
+2016,competition,competition_38,competition_38,Forb,50,Forb,NA,NA
+2016,competition,competition_94,competition_94,Forb,12,Forb,NA,NA
+2016,competition,competition_143,competition_143,Forb,120,Forb,NA,NA
+2016,competition,competition_99,competition_99,Forb,120,Forb,NA,NA
+2016,competition,competition_22,competition_22,Forb,66.6666666666667,Forb,NA,NA
+2016,competition,competition_17,competition_17,Forb,17.5,Forb,NA,NA
+2016,competition,competition_82,competition_82,Forb,100,Forb,NA,NA
+2016,competition,competition_157,competition_157,Forb,30,Forb,NA,NA
+2016,competition,competition_59,competition_59,Forb,120,Forb,NA,NA
+2016,competition,competition_4,competition_4,Forb,2.77777777777778,Forb,NA,NA
+2016,competition,competition_41,competition_41,Forb,1,Forb,NA,NA
+2016,competition,competition_211,competition_211,Forb,18,Forb,NA,NA
+2016,competition,competition_58,competition_58,Forb,18,Forb,NA,NA
+2016,competition,competition_138,competition_138,Forb,2,Forb,NA,NA
+2016,competition,competition_5,competition_5,Forb,15,Forb,NA,NA
+2016,competition,competition_15,competition_15,Forb,10,Forb,NA,NA
+2016,competition,competition_188,competition_188,Forb,4,Forb,NA,NA
+2016,competition,competition_24,competition_24,Forb,12.5,Forb,NA,NA
+2016,competition,competition_84,competition_84,Forb,20,Forb,NA,NA
+2016,competition,competition_147,competition_147,Forb,12,Forb,NA,NA
+2016,competition,competition_196,competition_196,Forb,15,Forb,NA,NA
+2016,competition,competition_199,competition_199,Forb,8,Forb,NA,NA
+2016,competition,competition_68,competition_68,Forb,6,Forb,NA,NA
+2016,competition,competition_172,competition_172,Forb,12,Forb,NA,NA
+2016,competition,competition_114,competition_114,Forb,60,Forb,NA,NA
+2016,competition,competition_149,competition_149,Forb,25,Forb,NA,NA
+2016,competition,competition_81,competition_81,Forb,6,Forb,NA,NA
+2016,competition,competition_152,competition_152,Forb,17,Forb,NA,NA
+2016,competition,competition_53,competition_53,Forb,8,Forb,NA,NA
+2016,competition,competition_2,competition_2,Forb,31.1111111111111,Forb,NA,NA
+2016,competition,competition_8,competition_8,Forb,53.3333333333333,Forb,NA,NA
+2016,competition,competition_111,competition_111,Forb,20,Forb,NA,NA
+2016,competition,competition_127,competition_127,Forb,0,Forb,NA,NA
+2016,competition,competition_224,competition_224,Forb,8,Forb,NA,NA
+2016,competition,competition_47,competition_47,Forb,5,Forb,NA,NA
+2016,competition,competition_212,competition_212,Forb,4,Forb,NA,NA
+2016,competition,competition_213,competition_213,Forb,6,Forb,NA,NA
+2016,competition,competition_221,competition_221,Forb,22,Forb,NA,NA
+2016,competition,competition_225,competition_225,Forb,5,Forb,NA,NA
+2016,competition,competition_232,competition_232,Forb,8,Forb,NA,NA
+2016,competition,competition_52,competition_52,Forb,8,Forb,NA,NA
+2016,competition,competition_218,competition_218,Forb,13,Forb,NA,NA
+2016,competition,competition_230,competition_230,Forb,15,Forb,NA,NA
+2016,competition,competition_231,competition_231,Forb,7,Forb,NA,NA
+2016,competition,competition_13,competition_13,Fabaceae,0,Fabaceae,NA,NA
+2016,competition,competition_210,competition_210,Fabaceae,0,Fabaceae,NA,NA
+2016,competition,competition_170,competition_170,Fabaceae,0,Fabaceae,NA,NA
+2016,competition,competition_162,competition_162,Fabaceae,4,Fabaceae,NA,NA
+2016,competition,competition_108,competition_108,Fabaceae,0,Fabaceae,NA,NA
+2016,competition,competition_121,competition_121,Fabaceae,1,Fabaceae,NA,NA
+2016,competition,competition_220,competition_220,Fabaceae,0,Fabaceae,NA,NA
+2016,competition,competition_70,competition_70,Fabaceae,7,Fabaceae,NA,NA
+2016,competition,competition_72,competition_72,Fabaceae,29,Fabaceae,NA,NA
+2016,competition,competition_32,competition_32,Fabaceae,7,Fabaceae,NA,NA
+2016,competition,competition_98,competition_98,Fabaceae,4,Fabaceae,NA,NA
+2016,competition,competition_136,competition_136,Fabaceae,0,Fabaceae,NA,NA
+2016,competition,competition_88,competition_88,Fabaceae,31.1111111111111,Fabaceae,NA,NA
+2016,competition,competition_101,competition_101,Fabaceae,6,Fabaceae,NA,NA
+2016,competition,competition_171,competition_171,Fabaceae,1,Fabaceae,NA,NA
+2016,competition,competition_74,competition_74,Fabaceae,4,Fabaceae,NA,NA
+2016,competition,competition_106,competition_106,Fabaceae,30,Fabaceae,NA,NA
+2016,competition,competition_104,competition_104,Fabaceae,4,Fabaceae,NA,NA
+2016,competition,competition_31,competition_31,Fabaceae,14,Fabaceae,NA,NA
+2016,competition,competition_187,competition_187,Fabaceae,0,Fabaceae,NA,NA
+2016,competition,competition_113,competition_113,Fabaceae,18,Fabaceae,NA,NA
+2016,competition,competition_107,competition_107,Fabaceae,2,Fabaceae,NA,NA
+2016,competition,competition_175,competition_175,Fabaceae,0,Fabaceae,NA,NA
+2016,competition,competition_191,competition_191,Fabaceae,3,Fabaceae,NA,NA
+2016,competition,competition_167,competition_167,Fabaceae,0,Fabaceae,NA,NA
+2016,competition,competition_140,competition_140,Fabaceae,5,Fabaceae,NA,NA
+2016,competition,competition_64,competition_64,Fabaceae,11,Fabaceae,NA,NA
+2016,competition,competition_80,competition_80,Fabaceae,13.3333333333333,Fabaceae,NA,NA
+2016,competition,competition_112,competition_112,Fabaceae,15,Fabaceae,NA,NA
+2016,competition,competition_129,competition_129,Fabaceae,1,Fabaceae,NA,NA
+2016,competition,competition_43,competition_43,Fabaceae,9,Fabaceae,NA,NA
+2016,competition,competition_85,competition_85,Fabaceae,16,Fabaceae,NA,NA
+2016,competition,competition_128,competition_128,Fabaceae,3,Fabaceae,NA,NA
+2016,competition,competition_86,competition_86,Fabaceae,0,Fabaceae,NA,NA
+2016,competition,competition_11,competition_11,Fabaceae,11.1111111111111,Fabaceae,NA,NA
+2016,competition,competition_130,competition_130,Fabaceae,3,Fabaceae,NA,NA
+2016,competition,competition_38,competition_38,Fabaceae,7,Fabaceae,NA,NA
+2016,competition,competition_94,competition_94,Fabaceae,9,Fabaceae,NA,NA
+2016,competition,competition_143,competition_143,Fabaceae,12,Fabaceae,NA,NA
+2016,competition,competition_99,competition_99,Fabaceae,8,Fabaceae,NA,NA
+2016,competition,competition_22,competition_22,Fabaceae,1.5,Fabaceae,NA,NA
+2016,competition,competition_17,competition_17,Fabaceae,0,Fabaceae,NA,NA
+2016,competition,competition_82,competition_82,Fabaceae,5,Fabaceae,NA,NA
+2016,competition,competition_157,competition_157,Fabaceae,0,Fabaceae,NA,NA
+2016,competition,competition_59,competition_59,Fabaceae,0,Fabaceae,NA,NA
+2016,competition,competition_4,competition_4,Fabaceae,11.1111111111111,Fabaceae,NA,NA
+2016,competition,competition_41,competition_41,Fabaceae,0,Fabaceae,NA,NA
+2016,competition,competition_211,competition_211,Fabaceae,2,Fabaceae,NA,NA
+2016,competition,competition_58,competition_58,Fabaceae,0,Fabaceae,NA,NA
+2016,competition,competition_138,competition_138,Fabaceae,0,Fabaceae,NA,NA
+2016,competition,competition_5,competition_5,Fabaceae,11.1111111111111,Fabaceae,NA,NA
+2016,competition,competition_15,competition_15,Fabaceae,0,Fabaceae,NA,NA
+2016,competition,competition_188,competition_188,Fabaceae,0,Fabaceae,NA,NA
+2016,competition,competition_24,competition_24,Fabaceae,0.5,Fabaceae,NA,NA
+2016,competition,competition_84,competition_84,Fabaceae,6,Fabaceae,NA,NA
+2016,competition,competition_147,competition_147,Fabaceae,0,Fabaceae,NA,NA
+2016,competition,competition_196,competition_196,Fabaceae,3,Fabaceae,NA,NA
+2016,competition,competition_199,competition_199,Fabaceae,0,Fabaceae,NA,NA
+2016,competition,competition_68,competition_68,Fabaceae,12,Fabaceae,NA,NA
+2016,competition,competition_172,competition_172,Fabaceae,0,Fabaceae,NA,NA
+2016,competition,competition_114,competition_114,Fabaceae,45,Fabaceae,NA,NA
+2016,competition,competition_149,competition_149,Fabaceae,0,Fabaceae,NA,NA
+2016,competition,competition_81,competition_81,Fabaceae,4,Fabaceae,NA,NA
+2016,competition,competition_152,competition_152,Fabaceae,1,Fabaceae,NA,NA
+2016,competition,competition_53,competition_53,Fabaceae,0,Fabaceae,NA,NA
+2016,competition,competition_2,competition_2,Fabaceae,13.3333333333333,Fabaceae,NA,NA
+2016,competition,competition_8,competition_8,Fabaceae,23.3333333333333,Fabaceae,NA,NA
+2016,competition,competition_111,competition_111,Fabaceae,8,Fabaceae,NA,NA
+2016,competition,competition_127,competition_127,Fabaceae,11,Fabaceae,NA,NA
+2016,competition,competition_224,competition_224,Fabaceae,4,Fabaceae,NA,NA
+2016,competition,competition_47,competition_47,Fabaceae,0,Fabaceae,NA,NA
+2016,competition,competition_212,competition_212,Fabaceae,0,Fabaceae,NA,NA
+2016,competition,competition_213,competition_213,Fabaceae,0,Fabaceae,NA,NA
+2016,competition,competition_221,competition_221,Fabaceae,0,Fabaceae,NA,NA
+2016,competition,competition_225,competition_225,Fabaceae,2,Fabaceae,NA,NA
+2016,competition,competition_232,competition_232,Fabaceae,1,Fabaceae,NA,NA
+2016,competition,competition_52,competition_52,Fabaceae,0,Fabaceae,NA,NA
+2016,competition,competition_218,competition_218,Fabaceae,0,Fabaceae,NA,NA
+2016,competition,competition_230,competition_230,Fabaceae,0,Fabaceae,NA,NA
+2016,competition,competition_231,competition_231,Fabaceae,1,Fabaceae,NA,NA
+2016,competition,competition_13,competition_13,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_210,competition_210,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_170,competition_170,GAST,8.88888888888889,Gastridium phleoides,non.ann,0
+2016,competition,competition_162,competition_162,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_108,competition_108,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_121,competition_121,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_220,competition_220,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_70,competition_70,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_72,competition_72,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_32,competition_32,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_98,competition_98,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_136,competition_136,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_88,competition_88,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_101,competition_101,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_171,competition_171,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_74,competition_74,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_106,competition_106,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_104,competition_104,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_31,competition_31,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_187,competition_187,GAST,4,Gastridium phleoides,non.ann,0
+2016,competition,competition_113,competition_113,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_107,competition_107,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_175,competition_175,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_191,competition_191,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_167,competition_167,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_140,competition_140,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_64,competition_64,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_80,competition_80,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_112,competition_112,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_129,competition_129,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_43,competition_43,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_85,competition_85,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_128,competition_128,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_86,competition_86,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_11,competition_11,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_130,competition_130,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_38,competition_38,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_94,competition_94,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_143,competition_143,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_99,competition_99,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_22,competition_22,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_17,competition_17,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_82,competition_82,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_157,competition_157,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_59,competition_59,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_4,competition_4,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_41,competition_41,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_211,competition_211,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_58,competition_58,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_138,competition_138,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_5,competition_5,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_15,competition_15,GAST,2.22222222222222,Gastridium phleoides,non.ann,0
+2016,competition,competition_188,competition_188,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_24,competition_24,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_84,competition_84,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_147,competition_147,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_196,competition_196,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_199,competition_199,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_68,competition_68,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_172,competition_172,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_114,competition_114,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_149,competition_149,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_81,competition_81,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_152,competition_152,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_53,competition_53,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_2,competition_2,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_8,competition_8,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_111,competition_111,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_127,competition_127,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_224,competition_224,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_47,competition_47,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_212,competition_212,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_213,competition_213,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_221,competition_221,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_225,competition_225,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_232,competition_232,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_52,competition_52,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_218,competition_218,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_230,competition_230,GAST,0,Gastridium phleoides,non.ann,0
+2016,competition,competition_231,competition_231,GAST,0,Gastridium phleoides,non.ann,0

@@ -1,0 +1,81 @@
+year,experiment,subplot,bg.species,competition.density,native.density,nonnative.density
+2016,competition,competition_101,EG adults,8,18,47.3333333333333
+2016,competition,competition_104,SP seed,10,15,56
+2016,competition,competition_106,BD seed,10,2,174.1111111111111
+2016,competition,competition_107,EG seed,100,378,142
+2016,competition,competition_108,AB seed,100,13,110.4444444444444
+2016,competition,competition_11,All,1,3.5,196.33333333333331
+2016,competition,competition_111,BD seed,20,9,139
+2016,competition,competition_112,BH seed,40,7,1332.111111111111
+2016,competition,competition_113,BD seed,20,18,307.2222222222222
+2016,competition,competition_114,AB seed,20,16,68.8888888888889
+2016,competition,competition_121,BD seed,100,18,290
+2016,competition,competition_127,AB seed,80,9,179.66666666666669
+2016,competition,competition_128,SP seed,80,16,169.33333333333331
+2016,competition,competition_129,SP seed,80,18,138
+2016,competition,competition_13,All,1,2,100.22222222222221
+2016,competition,competition_130,EG adults,10,12,19.88888888888889
+2016,competition,competition_136,BH seed,80,4,1200
+2016,competition,competition_138,BH seed,80,9,2546
+2016,competition,competition_140,EG seed,10,23,105.2222222222222
+2016,competition,competition_143,EG seed,20,62,166.33333333333331
+2016,competition,competition_147,BD seed,10,3,357
+2016,competition,competition_149,SP seed,40,12,32
+2016,competition,competition_15,All,1,2.5,156.72222222222223
+2016,competition,competition_152,EG adults,10,18,80
+2016,competition,competition_157,EG adults,6,11,142
+2016,competition,competition_162,EG adults,6,8,116
+2016,competition,competition_167,AB seed,40,6,163
+2016,competition,competition_17,All,1,3,113.1111111111111
+2016,competition,competition_170,EG seed,100,183,226.88888888888889
+2016,competition,competition_171,BH seed,40,3,1108.7777777777778
+2016,competition,competition_172,EG seed,20,33,142
+2016,competition,competition_175,EG adults,2,8,26
+2016,competition,competition_187,BD seed,80,7,167.1111111111111
+2016,competition,competition_188,AB seed,10,5,215
+2016,competition,competition_191,BD seed,80,3,679.7777777777778
+2016,competition,competition_196,BH seed,20,3,1054.6666666666667
+2016,competition,competition_199,BD seed,40,7,78
+2016,competition,competition_2,All,1,6,179.77777777777789
+2016,competition,competition_210,EG seed,40,16,59.3333333333333
+2016,competition,competition_211,EG seed,80,36,49
+2016,competition,competition_212,EG adults,2,5,52
+2016,competition,competition_213,SP seed,20,9,240
+2016,competition,competition_218,SP seed,100,10,104
+2016,competition,competition_22,All,1,3.5,41.05555555555556
+2016,competition,competition_220,AB seed,80,1,76.3333333333333
+2016,competition,competition_221,EG adults,4,6,59.6666666666667
+2016,competition,competition_224,BH seed,100,4,2576.6666666666665
+2016,competition,competition_225,AB seed,10,3,54
+2016,competition,competition_230,BD seed,100,7,282.9999999999997
+2016,competition,competition_231,BH seed,10,5,870
+2016,competition,competition_232,SP seed,20,8,70
+2016,competition,competition_24,All,1,1.5,104.6666666666667
+2016,competition,competition_31,SP adult,10,17,72.6666666666667
+2016,competition,competition_32,SP adult,10,25,42
+2016,competition,competition_38,SP adult,8,14,39
+2016,competition,competition_4,All,1,5,366
+2016,competition,competition_41,SP adult,8,11,91.3333333333333
+2016,competition,competition_43,SP adult,6,11,102
+2016,competition,competition_47,SP adult,6,7,95
+2016,competition,competition_5,All,1,4.5,272
+2016,competition,competition_52,SP adult,4,8,35.4444444444444
+2016,competition,competition_53,SP adult,4,3,18
+2016,competition,competition_58,SP adult,2,12,92
+2016,competition,competition_59,SP adult,2,8,57.2222222222222
+2016,competition,competition_64,AB seed,40,2,233.1111111111111
+2016,competition,competition_68,BH seed,20,6,1354
+2016,competition,competition_70,EG seed,80,35.3333333333333,150
+2016,competition,competition_72,SP seed,40,11,253
+2016,competition,competition_74,EG seed,10,2,158
+2016,competition,competition_8,All,1,7.5,423.5
+2016,competition,competition_80,BH seed,10,5,527.7777777777777
+2016,competition,competition_81,BH seed,100,5,1022.2222222222222
+2016,competition,competition_82,AB seed,100,5,215
+2016,competition,competition_84,EG adults,8,11,183.5555555555556
+2016,competition,competition_85,EG adults,4,17,93.8888888888889
+2016,competition,competition_86,SP seed,10,10,95
+2016,competition,competition_88,EG seed,40,248,53
+2016,competition,competition_94,SP seed,100,16,164.2222222222222
+2016,competition,competition_98,AB seed,20,4,84.2222222222222
+2016,competition,competition_99,BD seed,40,12,185.66666666666669

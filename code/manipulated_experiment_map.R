@@ -7,7 +7,7 @@ rm(list=ls())
 library(tidyverse)
 
 # import data
-dat <- read_csv("data/manipulated_experiment_plot_map.csv")
+dat <- read_csv("original-data/2016ExperimentPlotList_26Apr16_PlotAssignments.csv")
 
 
 #### edit data ####

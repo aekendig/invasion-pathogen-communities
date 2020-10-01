@@ -1,0 +1,11 @@
+﻿column,meaning
+Number,plot number
+Plot.type.code,code that indicates species and density planted (next two columns)
+Species,host group used as the planting treatment
+Density,planting density (percent of monoculture density)
+Treatment,"foliar fungal pathogen treatment (fugnicide, inoculation, ambient)"
+X,horizontal coordinate of plot in planting area
+Y,vertical coordinate of plot in planting area
+Focal.species.missing.noted.during.weeding,"missing focal species (AB = Avena barbata, BD = Bromus diandrus, BH = Bromus hordeaceus, EG = Elymus glaucus, SP = Stipa pulchra)"
+Date(s).missing.plants.noted,date that data in previous column was recorded
+Other.weeding.notes,notes recorded while weeding the plots

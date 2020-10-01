@@ -1,0 +1,22 @@
+﻿column,meaning
+Experiment,"experiment name (Competition = manipulated experiment, Transect = observational study)"
+Transect,transect identification number
+Plot,"plot identification number (for Competition) or letter (for Transect, nested within Transect)"
+Treatment,"foliar fungal pathogen treatment (fugnicide, inoculation, ambient)"
+Species,"grass species assessed for disease severity (AB = Avena barbata, BD = Bromus diandrus, BH = Bromus hordeaceus, EG = Elymus glaucus, SP = Stipa pulchra)"
+HostGroup,combines Species and lifestage (seed or adult) of grass assessed for disease severity
+BackgroundSpecies,host group used as the planting treatment for the Competition experiment
+Density,planting density (percent of monoculture density) for the Competition experiment
+Observer,initials of person who performed disease severity assessment
+DamageDate,date that disease severity was assessed
+SeedCollectionDate,date that seeds were collected
+Plant.ID,a unique plant identification
+leaf1,disease severity score for one of out up to six leaves per plant (percentage of leaf surface area covered with lesions)
+leaf2,disease severity score for one of out up to six leaves per plant (percentage of leaf surface area covered with lesions)
+leaf3,disease severity score for one of out up to six leaves per plant (percentage of leaf surface area covered with lesions)
+leaf4,disease severity score for one of out up to six leaves per plant (percentage of leaf surface area covered with lesions)
+leaf5,disease severity score for one of out up to six leaves per plant (percentage of leaf surface area covered with lesions)
+leaf6,disease severity score for one of out up to six leaves per plant (percentage of leaf surface area covered with lesions)
+Rust?,indicates whether fungal rust was observed on the plant
+SeedCollection,indicates whether seeds were collected from the plant
+Notes,notes

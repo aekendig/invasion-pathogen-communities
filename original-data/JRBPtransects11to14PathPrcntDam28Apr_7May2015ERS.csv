@@ -1,0 +1,77 @@
+﻿date,observer ,recorder ,Species,Transect,leaf1,leaf 1 DTO,leaf2,leaf 2 DTO,leaf3,leaf 3 DTO,leaf4,leaf 4 DTO,leaf5,leaf 5 DTO,leaf6,leaf 6 DTO,tissue sample number ,DTO for collected tissue ,notes
+4/28/15,ERS,ERS,AB,11,0,NA,0,NA,1,"S,R",0,NA,1,S,0.1,J,267,S,S is size 2
+4/28/15,ERS,EAM,AB,11,0.1,K,0,NA,0.1,L,25,"S,R,B",NA,NA,NA,NA,285,B,
+4/28/15,ERS,EAM,AB,11,0,NA,0,NA,1,"L,K,orange round rust ",50,"R,J",0,NA,0.1,K,341,K,"orange, round rust observed"
+4/28/15,ERS,EAM,AB,11,50,R,0.1,K,0,NA,NA,NA,NA,NA,NA,NA,508,R,
+4/28/15,ERS,EAM,AB,11,0.1,K,0.1,J,25,"K,S,R",5,"S, orange & red branching shape",0,NA,25,"S,R,K",515,"orange & red, branching shape",
+4/28/15,ERS,EAM,AB,12,25,"R,K",1,"R,S,orange tubular rust",1,"S,R",0,NA,0,NA,0,NA,516,S,"orange, tubular rust observed"
+4/28/15,ERS,EAM,AB,12,10,"G,R,K",0.1,orange tubular rust,0,NA,0,NA,0.1,K,0.1,K,517,G,"orange, tubular rust observed"
+4/28/15,ERS,EAM,AB,12,0.1,J,0.1,K,10,"K,R",50,"K,R",NA,NA,NA,NA,518,R,
+4/28/15,ERS,EAM,AB,12,0.1,S,0,NA,0,NA,25,"S,K,R",NA,NA,NA,NA,519,S,
+4/28/15,ERS,EAM,AB,12,50,"orange tubular rust,K",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,541,K,"orange, tubular rust observed"
+4/28/15,ERS,EAM,AB,13,0,NA,0,NA,5,R,25,blotchy mix of K and R ,0,NA,0,NA,549,blotchy mix of K and R ,this AB individual was on roadside not along transect
+4/28/15,ERS,EAM,AB,13,0.1,K,0.1,K,0,NA,0.1,K,NA,NA,NA,NA,552,K,this AB individual was on roadside not along transect
+4/28/15,ERS,EAM,AB,13,0,NA,0,NA,0,NA,50,blotchy mix of K and R ,NA,NA,NA,NA,560,blotchy mix of K and R ,this AB individual was on roadside not along transect
+4/28/15,ERS,EAM,AB,13,0,NA,0.1,K,0.1,K,50,blotchy mix of K and R ,0,NA,0,NA,564,K,this AB individual was on roadside not along transect
+4/28/15,ERS,EAM,AB,13,0.1,K,0,NA,25,blotchy mix of K and R ,NA,NA,NA,NA,NA,NA,567,K,this AB individual was on roadside not along transect
+4/28/15,ERS,EAM,BD,11,50,R,75,purple moving in from tip,0.1,R,25,"S,R",0,NA,0,NA,580,purple moving in from tip,
+4/28/15,ERS,EAM,BD,11,0,NA,0,NA,0,NA,0,NA,0,NA,NA,NA,581,healthy,
+4/28/15,ERS,EAM,BD,11,10,I,0,NA,0.1,L,0,NA,0,NA,0,NA,582,I,
+4/28/15,ERS,EAM,BD,11,50,I,5,"K, branching purple",NA,NA,NA,NA,NA,NA,NA,NA,583,branching purple,
+4/28/15,ERS,EAM,BD,11,0,NA,0,NA,0,NA,0,NA,0,NA,NA,NA,584,healthy,
+4/28/15,ERS,EAM,BD,12,25,S,0.1,K with a possible orange tubular rust pustule at center,0,NA,NA,NA,NA,NA,NA,NA,585,S,leaf 2 K had a possible orange tubular rust pustule at center
+4/28/15,ERS,EAM,BD,12,0.1,J with a green halo,5,I,0.1,L,NA,NA,NA,NA,NA,NA,586,L,J  on leaf 1 had a green halo
+4/28/15,ERS,EAM,BD,12,1,K,0.1,L,NA,NA,NA,NA,NA,NA,NA,NA,587,L,
+4/28/15,ERS,EAM,BD,12,0,NA,0.1,R,NA,NA,NA,NA,NA,NA,NA,NA,588,R,
+4/28/15,ERS,EAM,BD,12,0.1,R,10,I,1,K,NA,NA,NA,NA,NA,NA,589,K,
+4/28/15,ERS,EAM,BD,13,1,R,0,NA,75,R,0,NA,NA,NA,NA,NA,590,R,
+4/28/15,ERS,EAM,BD,13,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,591,healthy,
+4/28/15,ERS,EAM,BD,13,0,NA,75,purple moving in from tip,NA,NA,NA,NA,NA,NA,NA,NA,592,purple moving in from tip,
+4/28/15,ERS,EAM,BD,13,50,Q,0.1,J,NA,NA,NA,NA,NA,NA,NA,NA,593,Q,J  on leaf 2 had a green halo
+4/28/15,ERS,EAM,BD,13,25,Q,0,NA,5,Q,0,NA,0,NA,NA,NA,594,Q,
+4/28/15,ERS,EAM,BD,14,0.1,L,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,595,L,
+4/28/15,ERS,EAM,BD,14,0.1,orange rust,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,596,I,orange rust observed; symptomatic tissue piece is from a different individual (not the the individual for which path damage was surveyed)
+4/28/15,ERS,EAM,BD,14,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,597,healthy,
+4/28/15,ERS,EAM,BD,14,0.1,brown dot with green halo,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,plate 598 (the number assigned to this sample) was not found 5/7 so I think that we didn't collect tiss from this indiv
+4/28/15,ERS,EAM,BD,14,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,599,healthy,
+4/28/15,ERS,EAM,BH,11,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,600,healthy,
+4/28/15,ERS,EAM,BH,11,50,I,1,I,NA,NA,NA,NA,NA,NA,NA,NA,601,I,
+4/28/15,ERS,EAM,BH,11,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,"symptomatic tissue piece is from a different, roadside individual (not the the individual for which path damage was surveyed); SEE ""TissSampsFromNonTargetNotSurveyedHosts"" xls"
+4/28/15,ERS,EAM,BH,11,5,"I,J",0.1,I,NA,NA,NA,NA,NA,NA,NA,NA,603,J,
+4/28/15,ERS,EAM,BH,11,1,I,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,604,I,
+4/28/15,ERS,EAM,BH,12,50,I,25,I,NA,NA,NA,NA,NA,NA,NA,NA,605,I,
+4/28/15,ERS,EAM,BH,12,25,I,0.1,R,0,NA,0,NA,25,R,0,NA,606,R,
+4/28/15,ERS,EAM,BH,12,10,I,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,607,I,
+4/28/15,ERS,EAM,BH,12,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,"symptomatic tissue piece is from a different individual (not the the individual for which path damage was surveyed); SEE ""TissSampsFromNonTargetNotSurveyedHosts"" xls"
+4/28/15,ERS,EAM,BH,12,0,NA,0,NA,0,NA,0,NA,0,NA,1,"R,L",609,R,
+4/28/15,ERS,EAM,BH,13,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,610,healthy,
+4/28/15,ERS,EAM,BH,13,50,I,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,611,I,
+4/28/15,ERS,EAM,BH,13,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,612,healthy,
+4/28/15,ERS,EAM,BH,13,0.1,L,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,613,L,
+4/28/15,ERS,EAM,BH,13,0,NA,25,R,NA,NA,NA,NA,NA,NA,NA,NA,614,R,
+4/28/15,ERS,EAM,BH,14,50,R,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,615,R,
+4/28/15,ERS,EAM,BH,14,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,"symptomatic tissue piece is from a different individual (not the the individual for which path damage was surveyed); SEE ""TissSampsFromNonTargetNotSurveyedHosts"" xls"
+4/28/15,ERS,EAM,BH,14,50,I,50,Q,NA,NA,NA,NA,NA,NA,NA,NA,617,I,
+4/28/15,ERS,EAM,BH,14,0,NA,0.1,brown dot with green halo,0,NA,0,NA,NA,NA,NA,NA,NA,NA,"symptomatic tissue piece is from a different individual (not the the individual for which path damage was surveyed); SEE ""TissSampsFromNonTargetNotSurveyedHosts"" xls"
+4/28/15,ERS,EAM,BH,14,0.1,R,50,R,NA,NA,NA,NA,NA,NA,NA,NA,619,R,
+4/28/15,ERS,EAM,EG,14,50,"I,R,""B""",0.1,L,0.1,S,0.1,J,0.1,S,5,green discolored along veins,640,green discolored along veins,
+4/28/15,ERS,EAM,EG,14,0.1,L,0.1,L,0,NA,0.1,L,5,"I,B",0.1,S,641,B,
+4/28/15,ERS,EAM,EG,14,75,ochre rust stripes,50,ochre rust stripes,50,ochre rust stripes,25,ochre rust stripes,25,ochre rust stripes,75,ochre rust stripes,642,healthy,ochre rust stripes observed
+4/28/15,ERS,EAM,EG,14,1,ochre rust stripes,0,NA,0.1,ochre rust stripes,1,ochre rust stripes,1,ochre rust stripes,1,ochre rust stripes,643,healthy,ochre rust stripes observed
+4/28/15,ERS,EAM,EG,14,25,ochre rust stripes,5,ochre rust stripes,0.1,ochre rust stripes,0,NA,0,NA,1,ochre rust stripes,NA,NA,ochre rust stripes observed; plate 644 (the number assigned to this sample) was not found 5/7 so I think that we didn't collect tiss from this indiv
+4/28/15,ERS,EAM,PA,12,0.1,orange round rust size1 ,0,NA,0.1,orange round rust size1 ,0,NA,0,NA,0.1,orange round rust size1 ,NA,NA,shape diff (round not tubular) may be the result of size difference; symptomatic tissue piece is from a different individual (not the the individual for which path damage was surveyed)
+4/28/15,ERS,EAM,PA,12,0,NA,0,NA,1,orange tubular rust,5,orange tubular rust,40,orange tubular rust,25,orange tubular rust,NA,NA,"symptomatic tissue piece is from a different individual (not the the individual for which path damage was surveyed); SEE ""TissSampsFromNonTargetNotSurveyedHosts"" xls"
+4/28/15,ERS,EAM,PA,12,25,"I, orange tubular rust",25,"I, orange tubular rust",10,"I, orange tubular rust",0.1,L,1,orange tubular rust,5,orange tubular rust,663,I,orange tubular rust observed
+4/28/15,ERS,EAM,PA,12,0,NA,0,NA,0,NA,0,NA,5,I,0.1,orange tubular rust,664,I,orange tubular rust observed
+4/28/15,ERS,EAM,PA,12,0.1,orange tubular rust,0.1,orange tubular rust,0.1,S,0,NA,0,NA,0,NA,665,S,orange tubular rust observed
+4/28/15,ERS,EAM,PA,14,5,R,0.1,orange tubular rust,0.1,L,0,NA,0,NA,1,R,666,R,orange tubular rust observed
+4/28/15,ERS,EAM,SP,13,0.1,A,1,A,0.1,"A,L",0.1,A,0.1,A,1,A,620,L,
+4/28/15,ERS,EAM,SP,13,25,"Q,A",0.1,"A,L",0.1,J,5,"A,B,R",0,NA,0.1,A,621,Q,
+4/28/15,ERS,EAM,SP,13,1,"A,B",0.1,A,0.1,J,0.1,"L,J",0.1,L,1,"A,orange tubular rust",622,J,orange tubular rust observed
+4/28/15,ERS,EAM,SP,13,1,A,0.1,"A,J",1,A,5,A,1,A,0.1,A,623,A,
+4/28/15,ERS,EAM,SP,13,0.1,J,50,"A,I",0.1,A,0.1,A,50,I,10,"I,A",624,I,I was in the center of the leaf
+4/28/15,ERS,EAM,SP,14,1,A,0.1,L,0.1,"L,""B""",0.1,V,0.1,L,0.1,A,625,"""B""",
+4/28/15,ERS,EAM,SP,14,0.1,B,0,NA,0.1,B,0.1,L,0.1,"B,A",0.1,L,626,B,
+4/28/15,ERS,EAM,SP,14,0.1,"A,B",1,A,0.1,A,0,NA,1,B,0,NA,627,A,
+4/28/15,ERS,EAM,SP,14,0.1,"A,B",0.1,A,0.1,A,0.1,"A,L",0.1,A,5,"A,B",628,B,
+4/28/15,ERS,EAM,SP,14,0.1,A,0.1,A,0,NA,0,NA,1,"B,L",0.1,A,629,"healthy tissue sampled, but the leaf had damage",

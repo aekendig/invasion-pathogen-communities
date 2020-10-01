@@ -13,11 +13,11 @@ library(DHARMa) # plot glmmTMB
 library(MuMIn) # dredge
 
 # import data
-dat <- read_csv("./data/fungal_pathogens_2015_2017.csv")
-bg15T <- read_csv("./data/background_plants_transect_2015.csv")
-bg16T <- read_csv("./data/background_plants_transect_2016.csv")
-bgC <- read_csv("./data/background_plants_competition_2016.csv")
-fun <- read_csv("./output/fungal_taxonomy_rank.csv")
+dat <- read_csv("intermediate-data/fungal_pathogens_2015_2017.csv")
+bg15T <- read_csv("intermediate-data/background_plants_transect_2015.csv")
+bg16T <- read_csv("intermediate-data/background_plants_transect_2016.csv")
+bgC <- read_csv("intermediate-data/background_plants_competition_2016.csv")
+fun <- read_csv("output/fungal_taxonomy_rank.csv")
 
 
 #### edit data ####

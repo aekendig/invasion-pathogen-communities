@@ -865,14 +865,7 @@ rawdamdatnonscaled <- scaledsurfdat %>%
 # # combine plots
 # dam.plot <- cowplot::plot_grid(natdamplot, nondamplot, nrow = 2, rel_heights = c(0.95, 1))
 # note: The ribbons are lost on the surface lines and there are errors about size, but the plots are accurate. You can't see the ribbons on the surface lines even when they're shaded.
-
-# pdf("./output/figure4_pathogen_damage_density_march.pdf", width = 5, height = 6)
 # dam.plot
-# dev.off()
-
-# pdf("./output/figureS6_pathogen_damage_density_april.pdf", width = 5, height = 6)
-# dam.plot
-# dev.off()
 
 # March labels
 damlabelsscaled <- tibble(dens.type = rep(c("native perennial", "non-native annual"), each = 2), 

@@ -1,0 +1,861 @@
+year,experiment,plot,subplot,bg.species,competition.density,host,grass.group,nonnative,mean.dam,leaf.i.1,leaf.i.2,leaf.i.3,leaf.i.4,leaf.i.5,leaf.i.6,leaf.s.1,leaf.s.2,leaf.s.3,leaf.s.4,leaf.s.5,leaf.s.6,leaves.dam,leaves.tot,prop.dam
+2016,competition,competition_2,competition_2,All,1,AB,"non-native
+annual",1,0.017,1,1,0,NA,NA,NA,0.05,0.001,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_2,competition_2,All,1,BD,"non-native
+annual",1,5e-4,0,1,NA,NA,NA,NA,0,0.001,NA,NA,NA,NA,1,2,0.5
+2016,competition,competition_2,competition_2,All,1,BH,"non-native
+annual",1,0.017,1,0,1,NA,NA,NA,0.05,0,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_2,competition_2,All,1,EG,"native
+perennial",0,6.666666666666666e-4,0,1,1,NA,NA,NA,0,0.001,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_2,competition_2,All,1,SP,"native
+perennial",0,0.017333333333333333,1,1,1,NA,NA,NA,0.001,0.001,0.05,NA,NA,NA,3,3,1
+2016,competition,competition_2,competition_2,All,1,EG,"native
+perennial",0,0.03666666666666667,1,1,1,NA,NA,NA,0.05,0.05,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_2,competition_2,All,1,SP,"native
+perennial",0,0.023333333333333334,1,1,1,NA,NA,NA,0.05,0.01,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_4,competition_4,All,1,AB,"non-native
+annual",1,0.020333333333333332,1,1,1,NA,NA,NA,0.05,0.01,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_4,competition_4,All,1,BH,"non-native
+annual",1,0.020333333333333332,1,1,1,NA,NA,NA,0.01,0.001,0.05,NA,NA,NA,3,3,1
+2016,competition,competition_4,competition_4,All,1,EG,"native
+perennial",0,0.05,1,1,0,NA,NA,NA,0.1,0.05,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_4,competition_4,All,1,SP,"native
+perennial",0,0.017333333333333333,1,1,1,NA,NA,NA,0.05,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_4,competition_4,All,1,SP,"native
+perennial",0,0.08333333333333334,1,1,1,NA,NA,NA,0.1,0.1,0.05,NA,NA,NA,3,3,1
+2016,competition,competition_5,competition_5,All,1,AB,"non-native
+annual",1,0.006999999999999999,1,1,1,NA,NA,NA,0.01,0.01,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_5,competition_5,All,1,BD,"non-native
+annual",1,3.333333333333333e-4,1,0,0,NA,NA,NA,0.001,0,0,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_5,competition_5,All,1,BH,"non-native
+annual",1,0.003333333333333333,0,0,1,NA,NA,NA,0,0,0.01,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_5,competition_5,All,1,EG,"native
+perennial",0,0.003666666666666667,0,1,1,NA,NA,NA,0,0.001,0.01,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_5,competition_5,All,1,SP,"native
+perennial",0,0.003666666666666667,0,1,1,NA,NA,NA,0,0.01,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_5,competition_5,All,1,EG,"native
+perennial",0,0.017333333333333333,1,1,1,NA,NA,NA,0.05,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_5,competition_5,All,1,SP,"native
+perennial",0,0.06666666666666667,1,1,1,NA,NA,NA,0.05,0.05,0.1,NA,NA,NA,3,3,1
+2016,competition,competition_8,competition_8,All,1,AB,"non-native
+annual",1,0.001,1,1,1,NA,NA,NA,0.001,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_8,competition_8,All,1,BD,"non-native
+annual",1,0.004,1,1,1,NA,NA,NA,0.01,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_8,competition_8,All,1,BH,"non-native
+annual",1,0,0,0,0,NA,NA,NA,0,0,0,NA,NA,NA,0,3,0
+2016,competition,competition_8,competition_8,All,1,EG,"native
+perennial",0,3.333333333333333e-4,0,0,1,NA,NA,NA,0,0,0.001,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_8,competition_8,All,1,SP,"native
+perennial",0,0.003666666666666667,1,0,1,NA,NA,NA,0.01,0,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_8,competition_8,All,1,EG,"native
+perennial",0,0.006666666666666666,1,0,1,NA,NA,NA,0.01,0,0.01,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_8,competition_8,All,1,SP,"native
+perennial",0,0.13333333333333333,1,1,1,NA,NA,NA,0.1,0.25,0.05,NA,NA,NA,3,3,1
+2016,competition,competition_11,competition_11,All,1,AB,"non-native
+annual",1,0.004,1,1,1,NA,NA,NA,0.001,0.01,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_11,competition_11,All,1,BD,"non-native
+annual",1,0.017,1,0,1,NA,NA,NA,0.001,0,0.05,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_11,competition_11,All,1,BH,"non-native
+annual",1,3.333333333333333e-4,0,1,0,NA,NA,NA,0,0.001,0,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_11,competition_11,All,1,EG,"native
+perennial",0,0.004,1,1,1,NA,NA,NA,0.01,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_11,competition_11,All,1,SP,"native
+perennial",0,0.017,1,1,0,NA,NA,NA,0.05,0.001,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_11,competition_11,All,1,EG,"native
+perennial",0,0.006666666666666666,1,0,1,NA,NA,NA,0.01,0,0.01,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_11,competition_11,All,1,SP,"native
+perennial",0,0.13333333333333333,1,1,1,NA,NA,NA,0.25,0.05,0.1,NA,NA,NA,3,3,1
+2016,competition,competition_64,competition_64,AB seed,40,AB,"non-native
+annual",1,0.006999999999999999,1,1,1,NA,NA,NA,0.01,0.001,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_64,competition_64,AB seed,40,BH,"non-native
+annual",1,0,0,NA,NA,NA,NA,NA,0,NA,NA,NA,NA,NA,0,1,0
+2016,competition,competition_64,competition_64,AB seed,40,SP,"native
+perennial",0,0.0055000000000000005,1,1,NA,NA,NA,NA,0.01,0.001,NA,NA,NA,NA,2,2,1
+2016,competition,competition_64,competition_64,AB seed,40,EG,"native
+perennial",0,0.003333333333333333,1,0,0,NA,NA,NA,0.01,0,0,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_64,competition_64,AB seed,40,SP,"native
+perennial",0,0.023333333333333334,1,1,1,NA,NA,NA,0.05,0.01,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_68,competition_68,BH seed,20,AB,"non-native
+annual",1,5e-4,1,0,NA,NA,NA,NA,0.001,0,NA,NA,NA,NA,1,2,0.5
+2016,competition,competition_68,competition_68,BH seed,20,BD,"non-native
+annual",1,0.001,1,NA,NA,NA,NA,NA,0.001,NA,NA,NA,NA,NA,1,1,1
+2016,competition,competition_68,competition_68,BH seed,20,BH,"non-native
+annual",1,3.333333333333333e-4,1,0,0,NA,NA,NA,0.001,0,0,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_68,competition_68,BH seed,20,EG,"native
+perennial",0,0.004,1,1,1,NA,NA,NA,0.01,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_68,competition_68,BH seed,20,EG,"native
+perennial",0,0.004,1,1,1,NA,NA,NA,0.001,0.01,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_68,competition_68,BH seed,20,SP,"native
+perennial",0,0.067,1,1,1,NA,NA,NA,0.1,0.1,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_70,competition_70,EG seed,80,AB,"non-native
+annual",1,0.003666666666666667,1,1,0,NA,NA,NA,0.01,0.001,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_70,competition_70,EG seed,80,BH,"non-native
+annual",1,0,0,0,NA,NA,NA,NA,0,0,NA,NA,NA,NA,0,2,0
+2016,competition,competition_70,competition_70,EG seed,80,EG,"native
+perennial",0,0.004,1,1,1,NA,NA,NA,0.01,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_70,competition_70,EG seed,80,SP,"native
+perennial",0,0.017,0,1,1,NA,NA,NA,0,0.05,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_70,competition_70,EG seed,80,EG,"native
+perennial",0,0.006666666666666666,1,1,0,NA,NA,NA,0.01,0.01,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_70,competition_70,EG seed,80,SP,"native
+perennial",0,0.003666666666666667,1,1,0,NA,NA,NA,0.01,0.001,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_72,competition_72,SP seed,40,AB,"non-native
+annual",1,0.003666666666666667,0,1,1,NA,NA,NA,0,0.01,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_72,competition_72,SP seed,40,BD,"non-native
+annual",1,0.001,1,1,NA,NA,NA,NA,0.001,0.001,NA,NA,NA,NA,2,2,1
+2016,competition,competition_72,competition_72,SP seed,40,BH,"non-native
+annual",1,0,0,0,0,NA,NA,NA,0,0,0,NA,NA,NA,0,3,0
+2016,competition,competition_72,competition_72,SP seed,40,EG,"native
+perennial",0,0.006666666666666666,1,1,0,NA,NA,NA,0.01,0.01,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_72,competition_72,SP seed,40,SP,"native
+perennial",0,0.003333333333333333,1,0,0,NA,NA,NA,0.01,0,0,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_72,competition_72,SP seed,40,EG,"native
+perennial",0,0.006999999999999999,1,1,1,NA,NA,NA,0.01,0.01,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_72,competition_72,SP seed,40,SP,"native
+perennial",0,0.006999999999999999,1,1,1,NA,NA,NA,0.001,0.01,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_74,competition_74,EG seed,10,AB,"non-native
+annual",1,3.333333333333333e-4,1,0,0,NA,NA,NA,0.001,0,0,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_74,competition_74,EG seed,10,BD,"non-native
+annual",1,0,0,0,0,NA,NA,NA,0,0,0,NA,NA,NA,0,3,0
+2016,competition,competition_74,competition_74,EG seed,10,BH,"non-native
+annual",1,0,0,0,0,NA,NA,NA,0,0,0,NA,NA,NA,0,3,0
+2016,competition,competition_74,competition_74,EG seed,10,EG,"native
+perennial",0,0.003666666666666667,1,1,0,NA,NA,NA,0.01,0.001,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_74,competition_74,EG seed,10,EG,"native
+perennial",0,0.18366666666666667,1,1,1,NA,NA,NA,0.05,0.5,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_74,competition_74,EG seed,10,SP,"native
+perennial",0,0.023333333333333334,1,1,1,NA,NA,NA,0.05,0.01,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_80,competition_80,BH seed,10,AB,"non-native
+annual",1,0.003666666666666667,1,1,0,NA,NA,NA,0.01,0.001,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_80,competition_80,BH seed,10,BH,"non-native
+annual",1,0.001,1,1,NA,NA,NA,NA,0.001,0.001,NA,NA,NA,NA,2,2,1
+2016,competition,competition_80,competition_80,BH seed,10,EG,"native
+perennial",0,0.003666666666666667,1,0,1,NA,NA,NA,0.01,0,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_80,competition_80,BH seed,10,SP,"native
+perennial",0,0.004,1,1,1,NA,NA,NA,0.01,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_80,competition_80,BH seed,10,EG,"native
+perennial",0,0.001,1,1,1,NA,NA,NA,0.001,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_80,competition_80,BH seed,10,SP,"native
+perennial",0,0.03666666666666667,1,1,1,NA,NA,NA,0.05,0.05,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_81,competition_81,BH seed,100,AB,"non-native
+annual",1,5e-4,0,1,NA,NA,NA,NA,0,0.001,NA,NA,NA,NA,1,2,0.5
+2016,competition,competition_81,competition_81,BH seed,100,BH,"non-native
+annual",1,0.001,1,NA,NA,NA,NA,NA,0.001,NA,NA,NA,NA,NA,1,1,1
+2016,competition,competition_81,competition_81,BH seed,100,EG,"native
+perennial",0,6.666666666666666e-4,1,1,0,NA,NA,NA,0.001,0.001,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_81,competition_81,BH seed,100,SP,"native
+perennial",0,6.666666666666666e-4,1,1,0,NA,NA,NA,0.001,0.001,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_81,competition_81,BH seed,100,EG,"native
+perennial",0,6.666666666666666e-4,1,1,0,NA,NA,NA,0.001,0.001,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_81,competition_81,BH seed,100,SP,"native
+perennial",0,0.05333333333333333,1,1,1,NA,NA,NA,0.05,0.1,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_82,competition_82,AB seed,100,AB,"non-native
+annual",1,0.006999999999999999,1,1,1,NA,NA,NA,0.01,0.001,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_82,competition_82,AB seed,100,BH,"non-native
+annual",1,0,0,0,0,NA,NA,NA,0,0,0,NA,NA,NA,0,3,0
+2016,competition,competition_82,competition_82,AB seed,100,EG,"native
+perennial",0,6.666666666666666e-4,1,0,1,NA,NA,NA,0.001,0,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_82,competition_82,AB seed,100,EG,"native
+perennial",0,0.006666666666666666,1,1,0,NA,NA,NA,0.01,0.01,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_82,competition_82,AB seed,100,SP,"native
+perennial",0,0.033666666666666664,1,1,1,NA,NA,NA,0.05,0.05,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_84,competition_84,EG adult,8,AB,"non-native
+annual",1,0.006666666666666666,1,1,0,NA,NA,NA,0.01,0.01,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_84,competition_84,EG adult,8,BD,"non-native
+annual",1,0,0,0,NA,NA,NA,NA,0,0,NA,NA,NA,NA,0,2,0
+2016,competition,competition_84,competition_84,EG adult,8,BH,"non-native
+annual",1,0,0,0,NA,NA,NA,NA,0,0,NA,NA,NA,NA,0,2,0
+2016,competition,competition_84,competition_84,EG adult,8,EG,"native
+perennial",0,0.003333333333333333,1,0,0,NA,NA,NA,0.01,0,0,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_84,competition_84,EG adult,8,SP,"native
+perennial",0,0.006999999999999999,1,1,1,NA,NA,NA,0.01,0.01,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_84,competition_84,EG adult,8,EG,"native
+perennial",0,0.001,1,1,1,NA,NA,NA,0.001,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_84,competition_84,EG adult,8,SP,"native
+perennial",0,0.017,1,1,0,NA,NA,NA,0.001,0.05,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_85,competition_85,EG adult,4,AB,"non-native
+annual",1,0.003333333333333333,1,0,0,NA,NA,NA,0.01,0,0,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_85,competition_85,EG adult,4,BH,"non-native
+annual",1,5e-4,1,0,NA,NA,NA,NA,0.001,0,NA,NA,NA,NA,1,2,0.5
+2016,competition,competition_85,competition_85,EG adult,4,EG,"native
+perennial",0,3.333333333333333e-4,1,0,0,NA,NA,NA,0.001,0,0,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_85,competition_85,EG adult,4,SP,"native
+perennial",0,3.333333333333333e-4,0,0,1,NA,NA,NA,0,0,0.001,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_85,competition_85,EG adult,4,EG,"native
+perennial",0,0.003333333333333333,1,0,0,NA,NA,NA,0.01,0,0,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_85,competition_85,EG adult,4,SP,"native
+perennial",0,0.023333333333333334,1,1,1,NA,NA,NA,0.01,0.05,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_86,competition_86,SP seed,10,AB,"non-native
+annual",1,0,0,0,0,NA,NA,NA,0,0,0,NA,NA,NA,0,3,0
+2016,competition,competition_86,competition_86,SP seed,10,BD,"non-native
+annual",1,0,0,NA,NA,NA,NA,NA,0,NA,NA,NA,NA,NA,0,1,0
+2016,competition,competition_86,competition_86,SP seed,10,BH,"non-native
+annual",1,0,0,0,0,NA,NA,NA,0,0,0,NA,NA,NA,0,3,0
+2016,competition,competition_86,competition_86,SP seed,10,EG,"native
+perennial",0,3.333333333333333e-4,1,0,0,NA,NA,NA,0.001,0,0,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_86,competition_86,SP seed,10,SP,"native
+perennial",0,0,0,0,0,NA,NA,NA,0,0,0,NA,NA,NA,0,3,0
+2016,competition,competition_86,competition_86,SP seed,10,EG,"native
+perennial",0,6.666666666666666e-4,1,0,1,NA,NA,NA,0.001,0,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_86,competition_86,SP seed,10,SP,"native
+perennial",0,0.003333333333333333,1,0,0,NA,NA,NA,0.01,0,0,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_43,competition_43,SP adult,6,AB,"non-native
+annual",1,0.003666666666666667,1,0,1,NA,NA,NA,0.01,0,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_43,competition_43,SP adult,6,BD,"non-native
+annual",1,3.333333333333333e-4,1,0,0,NA,NA,NA,0.001,0,0,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_43,competition_43,SP adult,6,BH,"non-native
+annual",1,0,0,0,0,NA,NA,NA,0,0,0,NA,NA,NA,0,3,0
+2016,competition,competition_43,competition_43,SP adult,6,EG,"native
+perennial",0,0.006999999999999999,1,1,1,NA,NA,NA,0.01,0.01,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_43,competition_43,SP adult,6,SP,"native
+perennial",0,0.01,1,1,1,NA,NA,NA,0.01,0.01,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_43,competition_43,SP adult,6,SP,"native
+perennial",0,3.333333333333333e-4,0,0,1,NA,NA,NA,0,0,0.001,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_88,competition_88,EG seed,40,AB,"non-native
+annual",1,6.666666666666666e-4,0,1,1,NA,NA,NA,0,0.001,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_88,competition_88,EG seed,40,BD,"non-native
+annual",1,6.666666666666666e-4,0,1,1,NA,NA,NA,0,0.001,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_88,competition_88,EG seed,40,BH,"non-native
+annual",1,3.333333333333333e-4,1,0,0,NA,NA,NA,0.001,0,0,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_88,competition_88,EG seed,40,EG,"native
+perennial",0,0.003666666666666667,1,0,1,NA,NA,NA,0.01,0,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_88,competition_88,EG seed,40,SP,"native
+perennial",0,0.001,1,1,1,NA,NA,NA,0.001,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_88,competition_88,EG seed,40,SP,"native
+perennial",0,0.05,1,1,1,NA,NA,NA,0.05,0.05,0.05,NA,NA,NA,3,3,1
+2016,competition,competition_94,competition_94,SP seed,100,AB,"non-native
+annual",1,0.003666666666666667,1,0,1,NA,NA,NA,0.01,0,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_94,competition_94,SP seed,100,BD,"non-native
+annual",1,5e-4,1,0,NA,NA,NA,NA,0.001,0,NA,NA,NA,NA,1,2,0.5
+2016,competition,competition_94,competition_94,SP seed,100,BH,"non-native
+annual",1,0,0,0,NA,NA,NA,NA,0,0,NA,NA,NA,NA,0,2,0
+2016,competition,competition_94,competition_94,SP seed,100,EG,"native
+perennial",0,0.004,1,1,1,NA,NA,NA,0.001,0.001,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_94,competition_94,SP seed,100,SP,"native
+perennial",0,0,0,0,0,NA,NA,NA,0,0,0,NA,NA,NA,0,3,0
+2016,competition,competition_94,competition_94,SP seed,100,SP,"native
+perennial",0,0.020333333333333332,1,1,1,NA,NA,NA,0.05,0.01,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_98,competition_98,AB seed,20,AB,"non-native
+annual",1,0.006666666666666666,0,1,1,NA,NA,NA,0,0.01,0.01,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_98,competition_98,AB seed,20,BD,"non-native
+annual",1,0,0,0,0,NA,NA,NA,0,0,0,NA,NA,NA,0,3,0
+2016,competition,competition_98,competition_98,AB seed,20,BH,"non-native
+annual",1,0,0,NA,NA,NA,NA,NA,0,NA,NA,NA,NA,NA,0,1,0
+2016,competition,competition_98,competition_98,AB seed,20,EG,"native
+perennial",0,0.006999999999999999,1,1,1,NA,NA,NA,0.01,0.01,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_98,competition_98,AB seed,20,SP,"native
+perennial",0,0.005,0,1,NA,NA,NA,NA,0,0.01,NA,NA,NA,NA,1,2,0.5
+2016,competition,competition_98,competition_98,AB seed,20,EG,"native
+perennial",0,0.01,1,1,1,NA,NA,NA,0.01,0.01,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_98,competition_98,AB seed,20,SP,"native
+perennial",0,0.023333333333333334,1,1,1,NA,NA,NA,0.05,0.01,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_99,competition_99,BD seed,40,AB,"non-native
+annual",1,0.01,1,1,1,NA,NA,NA,0.01,0.01,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_99,competition_99,BD seed,40,EG,"native
+perennial",0,0.003666666666666667,1,0,1,NA,NA,NA,0.01,0,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_99,competition_99,BD seed,40,SP,"native
+perennial",0,0.003666666666666667,1,1,0,NA,NA,NA,0.01,0.001,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_99,competition_99,BD seed,40,EG,"native
+perennial",0,0.006999999999999999,1,1,1,NA,NA,NA,0.01,0.001,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_99,competition_99,BD seed,40,SP,"native
+perennial",0,0.033666666666666664,1,1,1,NA,NA,NA,0.05,0.001,0.05,NA,NA,NA,3,3,1
+2016,competition,competition_101,competition_101,EG adult,8,AB,"non-native
+annual",1,0.004,1,1,1,NA,NA,NA,0.001,0.001,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_101,competition_101,EG adult,8,BD,"non-native
+annual",1,0.01,1,NA,NA,NA,NA,NA,0.01,NA,NA,NA,NA,NA,1,1,1
+2016,competition,competition_101,competition_101,EG adult,8,BH,"non-native
+annual",1,0,0,0,0,NA,NA,NA,0,0,0,NA,NA,NA,0,3,0
+2016,competition,competition_101,competition_101,EG adult,8,EG,"native
+perennial",0,0.08666666666666666,1,1,0,NA,NA,NA,0.25,0.01,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_101,competition_101,EG adult,8,SP,"native
+perennial",0,0.004,1,1,1,NA,NA,NA,0.01,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_101,competition_101,EG adult,8,EG,"native
+perennial",0,0.01,1,1,1,NA,NA,NA,0.01,0.01,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_101,competition_101,EG adult,8,SP,"native
+perennial",0,0.023333333333333334,1,1,1,NA,NA,NA,0.01,0.01,0.05,NA,NA,NA,3,3,1
+2016,competition,competition_31,competition_31,SP adult,10,AB,"non-native
+annual",1,0.087,1,1,1,NA,NA,NA,0.25,0.001,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_31,competition_31,SP adult,10,BD,"non-native
+annual",1,0.05,1,NA,NA,NA,NA,NA,0.05,NA,NA,NA,NA,NA,1,1,1
+2016,competition,competition_31,competition_31,SP adult,10,BH,"non-native
+annual",1,0.001,1,NA,NA,NA,NA,NA,0.001,NA,NA,NA,NA,NA,1,1,1
+2016,competition,competition_31,competition_31,SP adult,10,EG,"native
+perennial",0,0.001,1,1,1,NA,NA,NA,0.001,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_31,competition_31,SP adult,10,SP,"native
+perennial",0,0.001,1,NA,NA,NA,NA,NA,0.001,NA,NA,NA,NA,NA,1,1,1
+2016,competition,competition_31,competition_31,SP adult,10,EG,"native
+perennial",0,0.033666666666666664,1,1,0,NA,NA,NA,0.1,0.001,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_31,competition_31,SP adult,10,SP,"native
+perennial",0,0.020333333333333332,1,1,1,NA,NA,NA,0.05,0.001,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_104,competition_104,SP seed,10,AB,"non-native
+annual",1,6.666666666666666e-4,1,1,0,NA,NA,NA,0.001,0.001,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_104,competition_104,SP seed,10,BD,"non-native
+annual",1,5e-4,1,0,NA,NA,NA,NA,0.001,0,NA,NA,NA,NA,1,2,0.5
+2016,competition,competition_104,competition_104,SP seed,10,BH,"non-native
+annual",1,3.333333333333333e-4,0,0,1,NA,NA,NA,0,0,0.001,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_104,competition_104,SP seed,10,EG,"native
+perennial",0,6.666666666666666e-4,1,0,1,NA,NA,NA,0.001,0,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_104,competition_104,SP seed,10,SP,"native
+perennial",0,3.333333333333333e-4,1,0,0,NA,NA,NA,0.001,0,0,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_104,competition_104,SP seed,10,EG,"native
+perennial",0,0.033666666666666664,1,1,1,NA,NA,NA,0.05,0.05,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_104,competition_104,SP seed,10,SP,"native
+perennial",0,0.05,1,1,1,NA,NA,NA,0.05,0.05,0.05,NA,NA,NA,3,3,1
+2016,competition,competition_106,competition_106,BD seed,10,AB,"non-native
+annual",1,5e-4,1,0,NA,NA,NA,NA,0.001,0,NA,NA,NA,NA,1,2,0.5
+2016,competition,competition_106,competition_106,BD seed,10,BD,"non-native
+annual",1,0.0055000000000000005,1,1,NA,NA,NA,NA,0.01,0.001,NA,NA,NA,NA,2,2,1
+2016,competition,competition_106,competition_106,BD seed,10,BH,"non-native
+annual",1,0,0,0,NA,NA,NA,NA,0,0,NA,NA,NA,NA,0,2,0
+2016,competition,competition_106,competition_106,BD seed,10,EG,"native
+perennial",0,3.333333333333333e-4,0,0,1,NA,NA,NA,0,0,0.001,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_106,competition_106,BD seed,10,EG,"native
+perennial",0,3.333333333333333e-4,1,0,0,NA,NA,NA,0.001,0,0,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_106,competition_106,BD seed,10,SP,"native
+perennial",0,0.01,1,1,1,NA,NA,NA,0.01,0.01,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_107,competition_107,EG seed,100,BD,"non-native
+annual",1,0,0,NA,NA,NA,NA,NA,0,NA,NA,NA,NA,NA,0,1,0
+2016,competition,competition_107,competition_107,EG seed,100,BH,"non-native
+annual",1,5e-4,1,0,NA,NA,NA,NA,0.001,0,NA,NA,NA,NA,1,2,0.5
+2016,competition,competition_107,competition_107,EG seed,100,EG,"native
+perennial",0,0.006666666666666666,1,1,0,NA,NA,NA,0.01,0.01,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_107,competition_107,EG seed,100,SP,"native
+perennial",0,0,0,0,NA,NA,NA,NA,0,0,NA,NA,NA,NA,0,2,0
+2016,competition,competition_107,competition_107,EG seed,100,EG,"native
+perennial",0,0.003666666666666667,1,1,0,NA,NA,NA,0.01,0.001,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_107,competition_107,EG seed,100,SP,"native
+perennial",0,0.023333333333333334,1,1,1,NA,NA,NA,0.05,0.01,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_108,competition_108,AB seed,100,AB,"non-native
+annual",1,6.666666666666666e-4,0,1,1,NA,NA,NA,0,0.001,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_108,competition_108,AB seed,100,BD,"non-native
+annual",1,0.001,1,NA,NA,NA,NA,NA,0.001,NA,NA,NA,NA,NA,1,1,1
+2016,competition,competition_108,competition_108,AB seed,100,BH,"non-native
+annual",1,6.666666666666666e-4,1,1,0,NA,NA,NA,0.001,0.001,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_108,competition_108,AB seed,100,EG,"native
+perennial",0,0.004,1,1,1,NA,NA,NA,0.001,0.001,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_108,competition_108,AB seed,100,SP,"native
+perennial",0,3.333333333333333e-4,1,0,0,NA,NA,NA,0.001,0,0,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_108,competition_108,AB seed,100,EG,"native
+perennial",0,0.004,1,1,1,NA,NA,NA,0.01,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_108,competition_108,AB seed,100,SP,"native
+perennial",0,0.033666666666666664,1,1,1,NA,NA,NA,0.05,0.05,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_32,competition_32,SP adult,10,AB,"non-native
+annual",1,0.006999999999999999,1,1,1,NA,NA,NA,0.01,0.01,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_32,competition_32,SP adult,10,BH,"non-native
+annual",1,0.08333333333333334,0,0,1,NA,NA,NA,0,0,0.25,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_32,competition_32,SP adult,10,EG,"native
+perennial",0,0.003666666666666667,1,1,0,NA,NA,NA,0.01,0.001,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_32,competition_32,SP adult,10,SP,"native
+perennial",0,0.006666666666666666,1,1,0,NA,NA,NA,0.01,0.01,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_32,competition_32,SP adult,10,EG,"native
+perennial",0,6.666666666666666e-4,1,0,1,NA,NA,NA,0.001,0,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_32,competition_32,SP adult,10,SP,"native
+perennial",0,0.020333333333333332,1,1,1,NA,NA,NA,0.01,0.001,0.05,NA,NA,NA,3,3,1
+2016,competition,competition_111,competition_111,BD seed,20,AB,"non-native
+annual",1,0.03666666666666667,1,1,0,NA,NA,NA,0.1,0.01,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_111,competition_111,BD seed,20,BD,"non-native
+annual",1,0.0255,1,1,NA,NA,NA,NA,0.05,0.001,NA,NA,NA,NA,2,2,1
+2016,competition,competition_111,competition_111,BD seed,20,BH,"non-native
+annual",1,0,0,NA,NA,NA,NA,NA,0,NA,NA,NA,NA,NA,0,1,0
+2016,competition,competition_111,competition_111,BD seed,20,EG,"native
+perennial",0,6.666666666666666e-4,1,1,0,NA,NA,NA,0.001,0.001,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_111,competition_111,BD seed,20,SP,"native
+perennial",0,0.005,1,0,NA,NA,NA,NA,0.01,0,NA,NA,NA,NA,1,2,0.5
+2016,competition,competition_111,competition_111,BD seed,20,EG,"native
+perennial",0,6.666666666666666e-4,1,0,1,NA,NA,NA,0.001,0,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_111,competition_111,BD seed,20,SP,"native
+perennial",0,0.023333333333333334,1,1,1,NA,NA,NA,0.05,0.01,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_112,competition_112,BH seed,40,BH,"non-native
+annual",1,0,0,NA,NA,NA,NA,NA,0,NA,NA,NA,NA,NA,0,1,0
+2016,competition,competition_112,competition_112,BH seed,40,EG,"native
+perennial",0,6.666666666666666e-4,1,1,0,NA,NA,NA,0.001,0.001,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_112,competition_112,BH seed,40,EG,"native
+perennial",0,0,0,0,0,NA,NA,NA,0,0,0,NA,NA,NA,0,3,0
+2016,competition,competition_112,competition_112,BH seed,40,SP,"native
+perennial",0,0.01,1,1,1,NA,NA,NA,0.01,0.01,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_113,competition_113,BD seed,20,AB,"non-native
+annual",1,0.006999999999999999,1,1,1,NA,NA,NA,0.01,0.001,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_113,competition_113,BD seed,20,BD,"non-native
+annual",1,0.001,1,NA,NA,NA,NA,NA,0.001,NA,NA,NA,NA,NA,1,1,1
+2016,competition,competition_113,competition_113,BD seed,20,BH,"non-native
+annual",1,6.666666666666666e-4,1,0,1,NA,NA,NA,0.001,0,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_113,competition_113,BD seed,20,EG,"native
+perennial",0,0.001,1,1,1,NA,NA,NA,0.001,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_113,competition_113,BD seed,20,SP,"native
+perennial",0,0.006999999999999999,1,1,1,NA,NA,NA,0.01,0.001,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_113,competition_113,BD seed,20,EG,"native
+perennial",0,0,0,0,0,NA,NA,NA,0,0,0,NA,NA,NA,0,3,0
+2016,competition,competition_113,competition_113,BD seed,20,SP,"native
+perennial",0,0.004,1,1,1,NA,NA,NA,0.001,0.001,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_114,competition_114,AB seed,20,AB,"non-native
+annual",1,0.001,1,1,1,NA,NA,NA,0.001,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_114,competition_114,AB seed,20,BD,"non-native
+annual",1,0,0,0,NA,NA,NA,NA,0,0,NA,NA,NA,NA,0,2,0
+2016,competition,competition_114,competition_114,AB seed,20,BH,"non-native
+annual",1,0,0,NA,NA,NA,NA,NA,0,NA,NA,NA,NA,NA,0,1,0
+2016,competition,competition_114,competition_114,AB seed,20,EG,"native
+perennial",0,0.004,1,1,1,NA,NA,NA,0.01,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_114,competition_114,AB seed,20,SP,"native
+perennial",0,0.005,1,0,NA,NA,NA,NA,0.01,0,NA,NA,NA,NA,1,2,0.5
+2016,competition,competition_114,competition_114,AB seed,20,EG,"native
+perennial",0,6.666666666666666e-4,1,0,1,NA,NA,NA,0.001,0,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_114,competition_114,AB seed,20,SP,"native
+perennial",0,0.01,1,1,1,NA,NA,NA,0.01,0.01,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_121,competition_121,BD seed,100,AB,"non-native
+annual",1,0.003333333333333333,0,0,1,NA,NA,NA,0,0,0.01,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_121,competition_121,BD seed,100,BD,"non-native
+annual",1,0.006999999999999999,1,1,1,NA,NA,NA,0.01,0.001,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_121,competition_121,BD seed,100,BH,"non-native
+annual",1,0,0,0,NA,NA,NA,NA,0,0,NA,NA,NA,NA,0,2,0
+2016,competition,competition_121,competition_121,BD seed,100,EG,"native
+perennial",0,6.666666666666666e-4,0,1,1,NA,NA,NA,0,0.001,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_121,competition_121,BD seed,100,SP,"native
+perennial",0,0.003666666666666667,1,0,1,NA,NA,NA,0.01,0,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_121,competition_121,BD seed,100,EG,"native
+perennial",0,0.003666666666666667,0,1,1,NA,NA,NA,0,0.001,0.01,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_121,competition_121,BD seed,100,SP,"native
+perennial",0,0.003666666666666667,0,1,1,NA,NA,NA,0,0.001,0.01,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_127,competition_127,AB seed,80,AB,"non-native
+annual",1,0.023333333333333334,1,1,1,NA,NA,NA,0.01,0.01,0.05,NA,NA,NA,3,3,1
+2016,competition,competition_127,competition_127,AB seed,80,BH,"non-native
+annual",1,0,0,NA,NA,NA,NA,NA,0,NA,NA,NA,NA,NA,0,1,0
+2016,competition,competition_127,competition_127,AB seed,80,EG,"native
+perennial",0,0.004,1,1,1,NA,NA,NA,0.01,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_127,competition_127,AB seed,80,SP,"native
+perennial",0,3.333333333333333e-4,0,0,1,NA,NA,NA,0,0,0.001,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_127,competition_127,AB seed,80,EG,"native
+perennial",0,0.006999999999999999,1,1,1,NA,NA,NA,0.01,0.01,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_127,competition_127,AB seed,80,SP,"native
+perennial",0,0.004,1,1,1,NA,NA,NA,0.001,0.01,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_128,competition_128,SP seed,80,AB,"non-native
+annual",1,0.01,1,1,NA,NA,NA,NA,0.01,0.01,NA,NA,NA,NA,2,2,1
+2016,competition,competition_128,competition_128,SP seed,80,BH,"non-native
+annual",1,0,0,0,0,NA,NA,NA,0,0,0,NA,NA,NA,0,3,0
+2016,competition,competition_128,competition_128,SP seed,80,EG,"native
+perennial",0,0.004,1,1,1,NA,NA,NA,0.01,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_128,competition_128,SP seed,80,SP,"native
+perennial",0,0.016666666666666666,0,1,0,NA,NA,NA,0,0.05,0,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_128,competition_128,SP seed,80,EG,"native
+perennial",0,0.006999999999999999,1,1,1,NA,NA,NA,0.01,0.01,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_128,competition_128,SP seed,80,SP,"native
+perennial",0,0.05,1,1,1,NA,NA,NA,0.05,0.05,0.05,NA,NA,NA,3,3,1
+2016,competition,competition_129,competition_129,SP seed,80,AB,"non-native
+annual",1,0.05333333333333333,1,1,1,NA,NA,NA,0.05,0.1,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_129,competition_129,SP seed,80,BH,"non-native
+annual",1,3.333333333333333e-4,0,1,0,NA,NA,NA,0,0.001,0,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_129,competition_129,SP seed,80,EG,"native
+perennial",0,0.006999999999999999,1,1,1,NA,NA,NA,0.001,0.01,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_129,competition_129,SP seed,80,SP,"native
+perennial",0,0.006666666666666666,1,0,1,NA,NA,NA,0.01,0,0.01,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_129,competition_129,SP seed,80,EG,"native
+perennial",0,0.006666666666666666,1,1,0,NA,NA,NA,0.01,0.01,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_129,competition_129,SP seed,80,SP,"native
+perennial",0,0.023333333333333334,1,1,1,NA,NA,NA,0.05,0.01,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_38,competition_38,SP adult,8,AB,"non-native
+annual",1,0.006666666666666666,1,1,0,NA,NA,NA,0.01,0.01,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_38,competition_38,SP adult,8,BD,"non-native
+annual",1,0,0,NA,NA,NA,NA,NA,0,NA,NA,NA,NA,NA,0,1,0
+2016,competition,competition_38,competition_38,SP adult,8,BH,"non-native
+annual",1,0.006999999999999999,1,1,1,NA,NA,NA,0.01,0.001,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_38,competition_38,SP adult,8,EG,"native
+perennial",0,0,0,0,0,NA,NA,NA,0,0,0,NA,NA,NA,0,3,0
+2016,competition,competition_38,competition_38,SP adult,8,EG,"native
+perennial",0,0.016666666666666666,0,1,0,NA,NA,NA,0,0.05,0,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_38,competition_38,SP adult,8,SP,"native
+perennial",0,0.020333333333333332,1,1,1,NA,NA,NA,0.001,0.05,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_130,competition_130,EG adult,10,AB,"non-native
+annual",1,0.05,1,1,NA,NA,NA,NA,0.05,0.05,NA,NA,NA,NA,2,2,1
+2016,competition,competition_130,competition_130,EG adult,10,BD,"non-native
+annual",1,0.01,1,NA,NA,NA,NA,NA,0.01,NA,NA,NA,NA,NA,1,1,1
+2016,competition,competition_130,competition_130,EG adult,10,BH,"non-native
+annual",1,0.003333333333333333,1,0,0,NA,NA,NA,0.01,0,0,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_130,competition_130,EG adult,10,EG,"native
+perennial",0,0.004,1,1,1,NA,NA,NA,0.01,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_130,competition_130,EG adult,10,EG,"native
+perennial",0,0.004,1,1,1,NA,NA,NA,0.01,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_130,competition_130,EG adult,10,SP,"native
+perennial",0,0.006666666666666666,1,1,0,NA,NA,NA,0.01,0.01,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_136,competition_136,BH seed,80,AB,"non-native
+annual",1,0.003333333333333333,1,0,0,NA,NA,NA,0.01,0,0,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_136,competition_136,BH seed,80,EG,"native
+perennial",0,5e-4,1,0,NA,NA,NA,NA,0.001,0,NA,NA,NA,NA,1,2,0.5
+2016,competition,competition_136,competition_136,BH seed,80,SP,"native
+perennial",0,0.01,1,1,1,NA,NA,NA,0.01,0.01,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_136,competition_136,BH seed,80,EG,"native
+perennial",0,0.001,1,1,1,NA,NA,NA,0.001,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_136,competition_136,BH seed,80,SP,"native
+perennial",0,0.023333333333333334,1,1,1,NA,NA,NA,0.05,0.01,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_138,competition_138,BH seed,80,AB,"non-native
+annual",1,6.666666666666666e-4,0,1,1,NA,NA,NA,0,0.001,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_138,competition_138,BH seed,80,EG,"native
+perennial",0,0.004,1,1,1,NA,NA,NA,0.001,0.001,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_138,competition_138,BH seed,80,SP,"native
+perennial",0,0.006666666666666666,1,0,1,NA,NA,NA,0.01,0,0.01,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_58,competition_58,SP adult,2,AB,"non-native
+annual",1,0.001,1,1,1,NA,NA,NA,0.001,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_58,competition_58,SP adult,2,BH,"non-native
+annual",1,0,0,0,NA,NA,NA,NA,0,0,NA,NA,NA,NA,0,2,0
+2016,competition,competition_58,competition_58,SP adult,2,EG,"native
+perennial",0,3.333333333333333e-4,1,0,0,NA,NA,NA,0.001,0,0,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_58,competition_58,SP adult,2,SP,"native
+perennial",0,0.003333333333333333,1,0,0,NA,NA,NA,0.01,0,0,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_58,competition_58,SP adult,2,EG,"native
+perennial",0,0.004,1,1,1,NA,NA,NA,0.01,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_140,competition_140,EG seed,10,AB,"non-native
+annual",1,0.004,1,1,1,NA,NA,NA,0.001,0.01,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_140,competition_140,EG seed,10,BD,"non-native
+annual",1,0,0,NA,NA,NA,NA,NA,0,NA,NA,NA,NA,NA,0,1,0
+2016,competition,competition_140,competition_140,EG seed,10,EG,"native
+perennial",0,0.001,1,1,1,NA,NA,NA,0.001,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_140,competition_140,EG seed,10,SP,"native
+perennial",0,0.02,0,1,1,NA,NA,NA,0,0.01,0.05,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_140,competition_140,EG seed,10,EG,"native
+perennial",0,0.020333333333333332,1,1,1,NA,NA,NA,0.05,0.01,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_143,competition_143,EG seed,20,BD,"non-native
+annual",1,3.333333333333333e-4,0,1,0,NA,NA,NA,0,0.001,0,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_143,competition_143,EG seed,20,EG,"native
+perennial",0,0.020333333333333332,1,1,1,NA,NA,NA,0.05,0.01,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_143,competition_143,EG seed,20,SP,"native
+perennial",0,0.020333333333333332,1,1,1,NA,NA,NA,0.05,0.001,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_143,competition_143,EG seed,20,EG,"native
+perennial",0,6.666666666666666e-4,1,0,1,NA,NA,NA,0.001,0,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_147,competition_147,BD seed,10,AB,"non-native
+annual",1,0.003333333333333333,0,1,0,NA,NA,NA,0,0.01,0,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_147,competition_147,BD seed,10,BD,"non-native
+annual",1,0,0,NA,NA,NA,NA,NA,0,NA,NA,NA,NA,NA,0,1,0
+2016,competition,competition_147,competition_147,BD seed,10,EG,"native
+perennial",0,0,0,0,0,NA,NA,NA,0,0,0,NA,NA,NA,0,3,0
+2016,competition,competition_147,competition_147,BD seed,10,EG,"native
+perennial",0,0.004,1,1,1,NA,NA,NA,0.001,0.001,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_147,competition_147,BD seed,10,SP,"native
+perennial",0,0.01,1,1,1,NA,NA,NA,0.01,0.01,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_149,competition_149,SP seed,40,AB,"non-native
+annual",1,0.001,1,1,1,NA,NA,NA,0.001,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_149,competition_149,SP seed,40,BD,"non-native
+annual",1,0.01,1,NA,NA,NA,NA,NA,0.01,NA,NA,NA,NA,NA,1,1,1
+2016,competition,competition_149,competition_149,SP seed,40,BH,"non-native
+annual",1,0,0,NA,NA,NA,NA,NA,0,NA,NA,NA,NA,NA,0,1,0
+2016,competition,competition_149,competition_149,SP seed,40,EG,"native
+perennial",0,0.004,1,1,1,NA,NA,NA,0.01,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_149,competition_149,SP seed,40,SP,"native
+perennial",0,6.666666666666666e-4,0,1,1,NA,NA,NA,0,0.001,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_149,competition_149,SP seed,40,EG,"native
+perennial",0,0.023333333333333334,1,1,1,NA,NA,NA,0.01,0.05,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_149,competition_149,SP seed,40,SP,"native
+perennial",0,0.006666666666666666,1,0,1,NA,NA,NA,0.01,0,0.01,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_152,competition_152,EG adult,10,AB,"non-native
+annual",1,0.03666666666666667,1,1,1,NA,NA,NA,0.01,0.05,0.05,NA,NA,NA,3,3,1
+2016,competition,competition_152,competition_152,EG adult,10,BH,"non-native
+annual",1,0,0,0,NA,NA,NA,NA,0,0,NA,NA,NA,NA,0,2,0
+2016,competition,competition_152,competition_152,EG adult,10,EG,"native
+perennial",0,0.003666666666666667,1,1,0,NA,NA,NA,0.01,0.001,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_152,competition_152,EG adult,10,SP,"native
+perennial",0,3.333333333333333e-4,0,1,0,NA,NA,NA,0,0.001,0,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_152,competition_152,EG adult,10,EG,"native
+perennial",0,0.006999999999999999,1,1,1,NA,NA,NA,0.01,0.01,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_152,competition_152,EG adult,10,SP,"native
+perennial",0,0.004,1,1,1,NA,NA,NA,0.01,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_157,competition_157,EG adult,6,AB,"non-native
+annual",1,0.003333333333333333,0,0,1,NA,NA,NA,0,0,0.01,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_157,competition_157,EG adult,6,BH,"non-native
+annual",1,0,0,NA,NA,NA,NA,NA,0,NA,NA,NA,NA,NA,0,1,0
+2016,competition,competition_157,competition_157,EG adult,6,EG,"native
+perennial",0,0.003666666666666667,0,1,1,NA,NA,NA,0,0.001,0.01,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_157,competition_157,EG adult,6,EG,"native
+perennial",0,0.004,1,1,1,NA,NA,NA,0.01,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_157,competition_157,EG adult,6,SP,"native
+perennial",0,0.050333333333333334,1,1,1,NA,NA,NA,0.001,0.05,0.1,NA,NA,NA,3,3,1
+2016,competition,competition_59,competition_59,SP adult,2,AB,"non-native
+annual",1,0,0,NA,NA,NA,NA,NA,0,NA,NA,NA,NA,NA,0,1,0
+2016,competition,competition_59,competition_59,SP adult,2,BD,"non-native
+annual",1,0,0,NA,NA,NA,NA,NA,0,NA,NA,NA,NA,NA,0,1,0
+2016,competition,competition_59,competition_59,SP adult,2,BH,"non-native
+annual",1,0.003333333333333333,1,0,0,NA,NA,NA,0.01,0,0,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_59,competition_59,SP adult,2,EG,"native
+perennial",0,0.003666666666666667,1,1,0,NA,NA,NA,0.01,0.001,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_59,competition_59,SP adult,2,SP,"native
+perennial",0,0.001,1,1,1,NA,NA,NA,0.001,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_59,competition_59,SP adult,2,SP,"native
+perennial",0,0.08333333333333334,1,1,1,NA,NA,NA,0.1,0.1,0.05,NA,NA,NA,3,3,1
+2016,competition,competition_162,competition_162,EG adult,6,AB,"non-native
+annual",1,0.01,1,NA,NA,NA,NA,NA,0.01,NA,NA,NA,NA,NA,1,1,1
+2016,competition,competition_162,competition_162,EG adult,6,BD,"non-native
+annual",1,5e-4,1,0,NA,NA,NA,NA,0.001,0,NA,NA,NA,NA,1,2,0.5
+2016,competition,competition_162,competition_162,EG adult,6,BH,"non-native
+annual",1,0,0,NA,NA,NA,NA,NA,0,NA,NA,NA,NA,NA,0,1,0
+2016,competition,competition_162,competition_162,EG adult,6,SP,"native
+perennial",0,0.001,1,1,1,NA,NA,NA,0.001,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_162,competition_162,EG adult,6,EG,"native
+perennial",0,0.004,1,1,1,NA,NA,NA,0.001,0.001,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_162,competition_162,EG adult,6,SP,"native
+perennial",0,0.020333333333333332,1,1,1,NA,NA,NA,0.05,0.01,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_167,competition_167,AB seed,40,AB,"non-native
+annual",1,3.333333333333333e-4,1,0,0,NA,NA,NA,0.001,0,0,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_167,competition_167,AB seed,40,BD,"non-native
+annual",1,0.006999999999999999,1,1,1,NA,NA,NA,0.01,0.001,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_167,competition_167,AB seed,40,EG,"native
+perennial",0,6.666666666666666e-4,1,1,0,NA,NA,NA,0.001,0.001,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_167,competition_167,AB seed,40,SP,"native
+perennial",0,0,0,0,0,NA,NA,NA,0,0,0,NA,NA,NA,0,3,0
+2016,competition,competition_167,competition_167,AB seed,40,EG,"native
+perennial",0,6.666666666666666e-4,1,1,0,NA,NA,NA,0.001,0.001,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_167,competition_167,AB seed,40,SP,"native
+perennial",0,0.006999999999999999,1,1,1,NA,NA,NA,0.01,0.001,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_170,competition_170,EG seed,100,AB,"non-native
+annual",1,0.01,1,1,NA,NA,NA,NA,0.01,0.01,NA,NA,NA,NA,2,2,1
+2016,competition,competition_170,competition_170,EG seed,100,EG,"native
+perennial",0,0.023333333333333334,1,1,1,NA,NA,NA,0.01,0.05,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_170,competition_170,EG seed,100,SP,"native
+perennial",0,0,0,0,0,NA,NA,NA,0,0,0,NA,NA,NA,0,3,0
+2016,competition,competition_170,competition_170,EG seed,100,EG,"native
+perennial",0,0.017,0,1,1,NA,NA,NA,0,0.05,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_170,competition_170,EG seed,100,SP,"native
+perennial",0,0.004,1,1,1,NA,NA,NA,0.01,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_171,competition_171,BH seed,40,BD,"non-native
+annual",1,0,0,NA,NA,NA,NA,NA,0,NA,NA,NA,NA,NA,0,1,0
+2016,competition,competition_171,competition_171,BH seed,40,EG,"native
+perennial",0,0.003666666666666667,1,1,0,NA,NA,NA,0.01,0.001,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_171,competition_171,BH seed,40,EG,"native
+perennial",0,0.001,1,1,1,NA,NA,NA,0.001,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_171,competition_171,BH seed,40,SP,"native
+perennial",0,0.03666666666666667,1,1,1,NA,NA,NA,0.01,0.05,0.05,NA,NA,NA,3,3,1
+2016,competition,competition_172,competition_172,EG seed,20,BH,"non-native
+annual",1,0,0,0,NA,NA,NA,NA,0,0,NA,NA,NA,NA,0,2,0
+2016,competition,competition_172,competition_172,EG seed,20,EG,"native
+perennial",0,6.666666666666666e-4,1,1,0,NA,NA,NA,0.001,0.001,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_172,competition_172,EG seed,20,SP,"native
+perennial",0,0,0,NA,NA,NA,NA,NA,0,NA,NA,NA,NA,NA,0,1,0
+2016,competition,competition_172,competition_172,EG seed,20,EG,"native
+perennial",0,0.004,1,1,1,NA,NA,NA,0.001,0.001,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_172,competition_172,EG seed,20,SP,"native
+perennial",0,0.01,1,1,1,NA,NA,NA,0.01,0.01,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_175,competition_175,EG adult,2,AB,"non-native
+annual",1,0.01,1,1,1,NA,NA,NA,0.01,0.01,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_175,competition_175,EG adult,2,BH,"non-native
+annual",1,0.0055000000000000005,1,1,NA,NA,NA,NA,0.01,0.001,NA,NA,NA,NA,2,2,1
+2016,competition,competition_175,competition_175,EG adult,2,EG,"native
+perennial",0,0.001,1,1,1,NA,NA,NA,0.001,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_175,competition_175,EG adult,2,SP,"native
+perennial",0,0.003666666666666667,1,0,1,NA,NA,NA,0.01,0,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_175,competition_175,EG adult,2,EG,"native
+perennial",0,0.001,1,1,1,NA,NA,NA,0.001,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_175,competition_175,EG adult,2,SP,"native
+perennial",0,0.023333333333333334,1,1,1,NA,NA,NA,0.05,0.01,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_13,competition_13,All,1,AB,"non-native
+annual",1,0.006999999999999999,1,1,1,NA,NA,NA,0.001,0.01,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_13,competition_13,All,1,BH,"non-native
+annual",1,0,0,0,0,NA,NA,NA,0,0,0,NA,NA,NA,0,3,0
+2016,competition,competition_13,competition_13,All,1,EG,"native
+perennial",0,6.666666666666666e-4,1,1,0,NA,NA,NA,0.001,0.001,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_13,competition_13,All,1,SP,"native
+perennial",0,0.023333333333333334,1,1,1,NA,NA,NA,0.05,0.01,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_15,competition_15,All,1,AB,"non-native
+annual",1,0.004,1,1,1,NA,NA,NA,0.001,0.01,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_15,competition_15,All,1,BD,"non-native
+annual",1,0,0,0,0,NA,NA,NA,0,0,0,NA,NA,NA,0,3,0
+2016,competition,competition_15,competition_15,All,1,BH,"non-native
+annual",1,3.333333333333333e-4,0,1,0,NA,NA,NA,0,0.001,0,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_15,competition_15,All,1,EG,"native
+perennial",0,0.001,1,1,1,NA,NA,NA,0.001,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_15,competition_15,All,1,EG,"native
+perennial",0,0.020333333333333332,1,1,1,NA,NA,NA,0.05,0.001,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_15,competition_15,All,1,SP,"native
+perennial",0,0.06666666666666667,1,1,1,NA,NA,NA,0.05,0.1,0.05,NA,NA,NA,3,3,1
+2016,competition,competition_17,competition_17,All,1,AB,"non-native
+annual",1,0.003666666666666667,1,1,0,NA,NA,NA,0.01,0.001,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_17,competition_17,All,1,BH,"non-native
+annual",1,5e-4,0,1,NA,NA,NA,NA,0,0.001,NA,NA,NA,NA,1,2,0.5
+2016,competition,competition_17,competition_17,All,1,EG,"native
+perennial",0,0.001,1,1,1,NA,NA,NA,0.001,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_17,competition_17,All,1,EG,"native
+perennial",0,0.004,1,1,1,NA,NA,NA,0.001,0.001,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_17,competition_17,All,1,SP,"native
+perennial",0,0.06666666666666667,1,1,1,NA,NA,NA,0.1,0.05,0.05,NA,NA,NA,3,3,1
+2016,competition,competition_22,competition_22,All,1,AB,"non-native
+annual",1,0.003333333333333333,1,0,0,NA,NA,NA,0.01,0,0,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_22,competition_22,All,1,BD,"non-native
+annual",1,0,0,0,0,NA,NA,NA,0,0,0,NA,NA,NA,0,3,0
+2016,competition,competition_22,competition_22,All,1,BH,"non-native
+annual",1,0,0,NA,NA,NA,NA,NA,0,NA,NA,NA,NA,NA,0,1,0
+2016,competition,competition_22,competition_22,All,1,EG,"native
+perennial",0,0.003666666666666667,1,0,1,NA,NA,NA,0.001,0,0.01,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_22,competition_22,All,1,SP,"native
+perennial",0,3.333333333333333e-4,0,1,0,NA,NA,NA,0,0.001,0,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_22,competition_22,All,1,SP,"native
+perennial",0,0.020333333333333332,1,1,1,NA,NA,NA,0.001,0.01,0.05,NA,NA,NA,3,3,1
+2016,competition,competition_187,competition_187,BD seed,80,AB,"non-native
+annual",1,6.666666666666666e-4,0,1,1,NA,NA,NA,0,0.001,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_187,competition_187,BD seed,80,EG,"native
+perennial",0,0.004,1,1,1,NA,NA,NA,0.001,0.01,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_187,competition_187,BD seed,80,EG,"native
+perennial",0,6.666666666666666e-4,0,1,1,NA,NA,NA,0,0.001,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_187,competition_187,BD seed,80,SP,"native
+perennial",0,0.03666666666666667,1,1,1,NA,NA,NA,0.01,0.05,0.05,NA,NA,NA,3,3,1
+2016,competition,competition_188,competition_188,AB seed,10,BD,"non-native
+annual",1,0.01,1,NA,NA,NA,NA,NA,0.01,NA,NA,NA,NA,NA,1,1,1
+2016,competition,competition_188,competition_188,AB seed,10,BH,"non-native
+annual",1,3.333333333333333e-4,0,0,1,NA,NA,NA,0,0,0.001,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_188,competition_188,AB seed,10,EG,"native
+perennial",0,0.001,1,1,1,NA,NA,NA,0.001,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_188,competition_188,AB seed,10,SP,"native
+perennial",0,0.004,1,1,1,NA,NA,NA,0.01,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_188,competition_188,AB seed,10,SP,"native
+perennial",0,0.020333333333333332,1,1,1,NA,NA,NA,0.01,0.05,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_191,competition_191,BD seed,80,AB,"non-native
+annual",1,6.666666666666666e-4,0,1,1,NA,NA,NA,0,0.001,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_191,competition_191,BD seed,80,SP,"native
+perennial",0,6.666666666666666e-4,1,0,1,NA,NA,NA,0.001,0,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_191,competition_191,BD seed,80,EG,"native
+perennial",0,0.02,1,1,0,NA,NA,NA,0.05,0.01,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_191,competition_191,BD seed,80,SP,"native
+perennial",0,0.03333333333333333,1,1,0,NA,NA,NA,0.05,0.05,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_196,competition_196,BH seed,20,EG,"native
+perennial",0,0.003333333333333333,1,0,0,NA,NA,NA,0.01,0,0,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_196,competition_196,BH seed,20,SP,"native
+perennial",0,0.023333333333333334,1,1,1,NA,NA,NA,0.01,0.05,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_199,competition_199,BD seed,40,EG,"native
+perennial",0,6.666666666666666e-4,0,1,1,NA,NA,NA,0,0.001,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_199,competition_199,BD seed,40,SP,"native
+perennial",0,6.666666666666666e-4,1,0,1,NA,NA,NA,0.001,0,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_199,competition_199,BD seed,40,SP,"native
+perennial",0,0.020333333333333332,1,1,1,NA,NA,NA,0.05,0.01,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_210,competition_210,EG seed,40,AB,"non-native
+annual",1,0.003666666666666667,0,1,1,NA,NA,NA,0,0.01,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_210,competition_210,EG seed,40,EG,"native
+perennial",0,0.006999999999999999,1,1,1,NA,NA,NA,0.01,0.001,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_210,competition_210,EG seed,40,EG,"native
+perennial",0,0.004,1,1,1,NA,NA,NA,0.001,0.01,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_210,competition_210,EG seed,40,SP,"native
+perennial",0,0.033666666666666664,1,1,1,NA,NA,NA,0.05,0.05,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_211,competition_211,EG seed,80,AB,"non-native
+annual",1,0.001,1,1,1,NA,NA,NA,0.001,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_211,competition_211,EG seed,80,BH,"non-native
+annual",1,0,0,0,NA,NA,NA,NA,0,0,NA,NA,NA,NA,0,2,0
+2016,competition,competition_211,competition_211,EG seed,80,EG,"native
+perennial",0,6.666666666666666e-4,1,1,0,NA,NA,NA,0.001,0.001,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_211,competition_211,EG seed,80,SP,"native
+perennial",0,0.01,1,1,1,NA,NA,NA,0.01,0.01,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_52,competition_52,SP adult,4,EG,"native
+perennial",0,6.666666666666666e-4,1,1,0,NA,NA,NA,0.001,0.001,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_52,competition_52,SP adult,4,EG,"native
+perennial",0,0.004,1,1,1,NA,NA,NA,0.01,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_52,competition_52,SP adult,4,SP,"native
+perennial",0,0.020333333333333332,1,1,1,NA,NA,NA,0.05,0.01,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_41,competition_41,SP adult,8,AB,"non-native
+annual",1,0.004,1,1,1,NA,NA,NA,0.001,0.001,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_41,competition_41,SP adult,8,BH,"non-native
+annual",1,5e-4,1,0,NA,NA,NA,NA,0.001,0,NA,NA,NA,NA,1,2,0.5
+2016,competition,competition_41,competition_41,SP adult,8,EG,"native
+perennial",0,5e-4,0,1,NA,NA,NA,NA,0,0.001,NA,NA,NA,NA,1,2,0.5
+2016,competition,competition_41,competition_41,SP adult,8,EG,"native
+perennial",0,0.023333333333333334,1,1,1,NA,NA,NA,0.01,0.05,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_41,competition_41,SP adult,8,SP,"native
+perennial",0,0.006999999999999999,1,1,1,NA,NA,NA,0.01,0.001,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_212,competition_212,EG adult,2,AB,"non-native
+annual",1,0.001,1,1,1,NA,NA,NA,0.001,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_212,competition_212,EG adult,2,SP,"native
+perennial",0,0.003666666666666667,1,1,0,NA,NA,NA,0.01,0.001,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_212,competition_212,EG adult,2,EG,"native
+perennial",0,0.001,1,1,1,NA,NA,NA,0.001,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_212,competition_212,EG adult,2,SP,"native
+perennial",0,0.03666666666666667,1,1,1,NA,NA,NA,0.01,0.05,0.05,NA,NA,NA,3,3,1
+2016,competition,competition_213,competition_213,SP seed,20,AB,"non-native
+annual",1,0.05333333333333333,1,1,1,NA,NA,NA,0.05,0.1,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_213,competition_213,SP seed,20,BH,"non-native
+annual",1,0,0,0,0,NA,NA,NA,0,0,0,NA,NA,NA,0,3,0
+2016,competition,competition_213,competition_213,SP seed,20,EG,"native
+perennial",0,6.666666666666666e-4,1,0,1,NA,NA,NA,0.001,0,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_213,competition_213,SP seed,20,SP,"native
+perennial",0,0.01,1,1,1,NA,NA,NA,0.01,0.01,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_213,competition_213,SP seed,20,EG,"native
+perennial",0,6.666666666666666e-4,0,1,1,NA,NA,NA,0,0.001,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_213,competition_213,SP seed,20,SP,"native
+perennial",0,0.04,1,1,1,NA,NA,NA,0.1,0.01,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_218,competition_218,SP seed,100,AB,"non-native
+annual",1,0.01,1,NA,NA,NA,NA,NA,0.01,NA,NA,NA,NA,NA,1,1,1
+2016,competition,competition_218,competition_218,SP seed,100,BH,"non-native
+annual",1,0,0,NA,NA,NA,NA,NA,0,NA,NA,NA,NA,NA,0,1,0
+2016,competition,competition_218,competition_218,SP seed,100,EG,"native
+perennial",0,0.006999999999999999,1,1,1,NA,NA,NA,0.01,0.001,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_218,competition_218,SP seed,100,SP,"native
+perennial",0,0.003666666666666667,1,1,0,NA,NA,NA,0.001,0.01,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_218,competition_218,SP seed,100,SP,"native
+perennial",0,0.020333333333333332,1,1,1,NA,NA,NA,0.01,0.001,0.05,NA,NA,NA,3,3,1
+2016,competition,competition_220,competition_220,AB seed,80,AB,"non-native
+annual",1,0.02,1,1,0,NA,NA,NA,0.01,0.05,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_220,competition_220,AB seed,80,EG,"native
+perennial",0,3.333333333333333e-4,1,0,0,NA,NA,NA,0.001,0,0,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_220,competition_220,AB seed,80,SP,"native
+perennial",0,0.003666666666666667,0,1,1,NA,NA,NA,0,0.01,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_221,competition_221,EG adult,4,AB,"non-native
+annual",1,0.003666666666666667,1,1,0,NA,NA,NA,0.01,0.001,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_221,competition_221,EG adult,4,BH,"non-native
+annual",1,0.001,1,NA,NA,NA,NA,NA,0.001,NA,NA,NA,NA,NA,1,1,1
+2016,competition,competition_221,competition_221,EG adult,4,EG,"native
+perennial",0,0.003666666666666667,1,1,0,NA,NA,NA,0.01,0.001,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_221,competition_221,EG adult,4,EG,"native
+perennial",0,0.001,1,1,NA,NA,NA,NA,0.001,0.001,NA,NA,NA,NA,2,2,1
+2016,competition,competition_221,competition_221,EG adult,4,SP,"native
+perennial",0,0.033666666666666664,1,1,1,NA,NA,NA,0.001,0.05,0.05,NA,NA,NA,3,3,1
+2016,competition,competition_224,competition_224,BH seed,100,AB,"non-native
+annual",1,0.006999999999999999,1,1,1,NA,NA,NA,0.01,0.01,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_224,competition_224,BH seed,100,EG,"native
+perennial",0,5e-4,1,0,NA,NA,NA,NA,0.001,0,NA,NA,NA,NA,1,2,0.5
+2016,competition,competition_224,competition_224,BH seed,100,SP,"native
+perennial",0,3.333333333333333e-4,1,0,0,NA,NA,NA,0.001,0,0,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_224,competition_224,BH seed,100,EG,"native
+perennial",0,0.004,1,1,1,NA,NA,NA,0.01,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_224,competition_224,BH seed,100,SP,"native
+perennial",0,0.006999999999999999,1,1,1,NA,NA,NA,0.001,0.01,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_225,competition_225,AB seed,10,AB,"non-native
+annual",1,0.004,1,1,1,NA,NA,NA,0.01,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_225,competition_225,AB seed,10,BD,"non-native
+annual",1,0.0055000000000000005,1,1,NA,NA,NA,NA,0.001,0.01,NA,NA,NA,NA,2,2,1
+2016,competition,competition_225,competition_225,AB seed,10,SP,"native
+perennial",0,5e-4,0,1,NA,NA,NA,NA,0,0.001,NA,NA,NA,NA,1,2,0.5
+2016,competition,competition_225,competition_225,AB seed,10,EG,"native
+perennial",0,0.004,1,1,1,NA,NA,NA,0.001,0.001,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_225,competition_225,AB seed,10,SP,"native
+perennial",0,0.001,1,1,1,NA,NA,NA,0.001,0.001,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_230,competition_230,BD seed,100,EG,"native
+perennial",0,0,0,0,0,NA,NA,NA,0,0,0,NA,NA,NA,0,3,0
+2016,competition,competition_230,competition_230,BD seed,100,SP,"native
+perennial",0,3.333333333333333e-4,0,0,1,NA,NA,NA,0,0,0.001,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_230,competition_230,BD seed,100,EG,"native
+perennial",0,3.333333333333333e-4,0,0,1,NA,NA,NA,0,0,0.001,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_231,competition_231,BH seed,10,EG,"native
+perennial",0,0,0,0,0,NA,NA,NA,0,0,0,NA,NA,NA,0,3,0
+2016,competition,competition_231,competition_231,BH seed,10,SP,"native
+perennial",0,5e-4,1,0,NA,NA,NA,NA,0.001,0,NA,NA,NA,NA,1,2,0.5
+2016,competition,competition_231,competition_231,BH seed,10,EG,"native
+perennial",0,6.666666666666666e-4,0,1,1,NA,NA,NA,0,0.001,0.001,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_232,competition_232,SP seed,20,EG,"native
+perennial",0,6.666666666666666e-4,1,1,0,NA,NA,NA,0.001,0.001,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_232,competition_232,SP seed,20,SP,"native
+perennial",0,0.003333333333333333,1,0,0,NA,NA,NA,0.01,0,0,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_232,competition_232,SP seed,20,EG,"native
+perennial",0,0.006999999999999999,1,1,1,NA,NA,NA,0.01,0.001,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_232,competition_232,SP seed,20,SP,"native
+perennial",0,0.006999999999999999,1,1,1,NA,NA,NA,0.001,0.01,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_53,competition_53,SP adult,4,AB,"non-native
+annual",1,0.003666666666666667,1,1,0,NA,NA,NA,0.01,0.001,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_53,competition_53,SP adult,4,EG,"native
+perennial",0,6.666666666666666e-4,1,1,0,NA,NA,NA,0.001,0.001,0,NA,NA,NA,2,3,0.6666666666666666
+2016,competition,competition_53,competition_53,SP adult,4,EG,"native
+perennial",0,0.006999999999999999,1,1,1,NA,NA,NA,0.001,0.01,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_53,competition_53,SP adult,4,SP,"native
+perennial",0,0.020333333333333332,1,1,1,NA,NA,NA,0.01,0.05,0.001,NA,NA,NA,3,3,1
+2016,competition,competition_47,competition_47,SP adult,6,AB,"non-native
+annual",1,0.006999999999999999,1,1,1,NA,NA,NA,0.01,0.001,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_47,competition_47,SP adult,6,EG,"native
+perennial",0,0.05333333333333333,1,1,1,NA,NA,NA,0.1,0.05,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_47,competition_47,SP adult,6,SP,"native
+perennial",0,0.05333333333333333,1,1,1,NA,NA,NA,0.1,0.05,0.01,NA,NA,NA,3,3,1
+2016,competition,competition_24,competition_24,All,1,AB,"non-native
+annual",1,0.025,1,0,NA,NA,NA,NA,0.05,0,NA,NA,NA,NA,1,2,0.5
+2016,competition,competition_24,competition_24,All,1,BH,"non-native
+annual",1,0,0,NA,NA,NA,NA,NA,0,NA,NA,NA,NA,NA,0,1,0
+2016,competition,competition_24,competition_24,All,1,EG,"native
+perennial",0,3.333333333333333e-4,0,0,1,NA,NA,NA,0,0,0.001,NA,NA,NA,1,3,0.3333333333333333
+2016,competition,competition_24,competition_24,All,1,EG,"native
+perennial",0,0.020333333333333332,1,1,1,NA,NA,NA,0.01,0.001,0.05,NA,NA,NA,3,3,1

@@ -1,0 +1,241 @@
+﻿Number,Plot.type.code,Species,Density,Treatment,X,Y,Focal.species.missing.noted.during.weeding,Date(s).missing.plants.noted,Other.weeding.notes
+1,L,All,1,fungicide,2,2,,,SP ID questionable on 3/17/2016
+2,L,All,1,ambient,2,5,,,SP ID questionable on 3/17/2017
+3,L,All,1,fungicide,2,8,BD,4/25/16,SP ID questionable on 3/17/2018
+4,L,All,1,ambient,2,11,BD,4/25/16,SP ID questionable on 3/17/2019; BD died
+5,L,All,1,ambient,2,14,,,SP ID questionable on 3/17/2020
+6,L,All,1,inoculation,2,17,,,SP ID questionable on 3/17/2021
+7,L,All,1,inoculation,2,20,SP,4/5/16,SP ID questionable on 3/17/2022
+8,L,All,1,ambient,2,23,,,SP ID questionable on 3/17/2023
+9,L,All,1,fungicide,2,26,,,SP ID questionable on 3/17/2024
+10,L,All,1,fungicide,2,29,,,SP ID questionable on 3/17/2025
+11,L,All,1,ambient,2,32,,,SP ID questionable on 3/17/2026
+240,X,SP seed,40,inoculation,2,35,,,SP ID questionable on 3/17/2027
+55,E,SP adult,2,inoculation,5,2,,,"lots of Vulpia, maybe only a few SP"
+49,D,SP adult,4,fungicide,5,4,,,"lots of Vulpia, maybe no SP"
+61,X,EG adults,10,inoculation,5,6,,,"lots of Vulpia, maybe just a few SP"
+62,X,BD seed,40,inoculation,5,8,SP,4/5/16,
+63,X,BD seed,10,fungicide,5,10,,,
+37,B,SP adult,8,inoculation,5,12,,,not sure about BH seedlings
+64,X,AB seed,40,ambient,5,14,,,
+65,X,EG seed,100,inoculation,5,16,,,
+66,X,EG adults,8,fungicide,5,18,,,
+67,X,EG adults,6,fungicide,5,20,,,
+68,X,BH seed,20,ambient,5,22,SP,4/5/16,
+69,X,BH seed,10,fungicide,5,24,,,
+70,X,EG seed,80,ambient,5,26,,,
+71,X,BH seed,20,inoculation,5,28,,,
+72,X,SP seed,40,ambient,5,30,,,
+73,X,EG seed,40,fungicide,5,32,,,
+74,X,EG seed,10,ambient,5,34,BD,4/5/16,"SP marker missing, no SP?"
+75,X,BH seed,40,fungicide,7,2,SP,4/5/16,
+76,X,EG seed,20,inoculation,7,4,,,"BD marker missing, no BD?"
+77,X,SP seed,20,fungicide,7,6,,,
+78,X,AB seed,40,inoculation,7,8,,,
+79,X,EG seed,80,fungicide,7,10,,,
+80,X,BH seed,10,ambient,7,12,,,no BD?
+81,X,BH seed,100,ambient,7,14,,,
+82,X,AB seed,100,ambient,7,16,SP,4/7/16,
+83,X,AB seed,40,fungicide,7,18,,,
+84,X,EG adults,8,ambient,7,20,,,
+85,X,EG adults,4,ambient,7,22,,,
+86,X,SP seed,10,ambient,7,24,,,
+87,X,EG adults,8,inoculation,7,26,,,
+43,C,SP adult,6,ambient,7,28,,,ask Teri about photo of fruiting body in plot
+88,X,EG seed,40,ambient,7,30,,,
+89,X,SP seed,10,inoculation,7,32,AB,4/7/16,
+90,X,SP seed,80,fungicide,7,34,,,"BD marker missing, over 50% squirrel disturbance"
+91,X,AB seed,100,inoculation,9,2,,,
+92,X,BH seed,80,inoculation,9,4,,,
+93,X,EG adults,2,fungicide,9,6,,,
+94,X,SP seed,100,ambient,9,8,,,
+95,X,SP seed,40,fungicide,9,10,,,
+96,X,EG seed,10,fungicide,9,12,,,
+97,X,BD seed,80,fungicide,9,14,,,
+98,X,AB seed,20,ambient,9,16,,,
+99,X,BD seed,40,ambient,9,18,,,
+100,X,BD seed,100,fungicide,9,20,,,
+101,X,EG adults,8,ambient,9,22,,,
+102,X,BD seed,100,fungicide,9,24,SP,3/25/16,
+103,X,BD seed,80,inoculation,9,26,,,no AB?
+31,A,SP adult,10,ambient,9,28,"SP, BH",4/7/16,no BH near marker; BD?
+104,X,SP seed,10,ambient,9,30,,,"2 BD markers, marker from #90 got moved?"
+105,X,EG seed,10,inoculation,9,32,,,
+106,X,BD seed,10,ambient,9,34,SP,3/25/16,
+107,X,EG seed,100,ambient,11,2,AB,4/11/16,
+108,X,AB seed,100,ambient,11,4,,,BH tagged (X112) in AB seed plot
+109,X,EG seed,80,fungicide,11,6,,,
+110,X,AB seed,80,fungicide,11,8,,,
+50,D,SP adult,4,inoculation,11,10,,,
+32,A,SP adult,10,ambient,11,12,,,
+111,X,BD seed,20,ambient,11,14,,,
+112,X,BH seed,40,ambient,11,16,,,
+113,X,BD seed,20,ambient,11,18,,,
+114,X,AB seed,20,ambient,11,20,,,
+115,X,BD seed,40,fungicide,11,22,,,
+56,E,SP adult,2,inoculation,11,24,SP,4/11/16,
+116,X,BH seed,100,inoculation,11,26,,,
+117,X,EG adults,4,fungicide,11,28,,,no BH?
+118,X,SP seed,10,fungicide,11,30,BH,3/25/16,plot disturbed by squirrels
+119,X,SP seed,20,inoculation,11,32,,,
+120,X,SP seed,40,inoculation,11,34,,,
+121,X,BD seed,100,ambient,13,2,,,
+122,X,BD seed,20,fungicide,13,4,,,
+123,X,BH seed,10,inoculation,13,6,,,AB?
+124,X,EG seed,10,inoculation,13,8,,,
+125,X,EG adults,6,inoculation,13,10,,,
+126,X,BH seed,20,fungicide,13,12,BD,4/14/16,
+127,X,AB seed,80,ambient,13,14,,,
+128,X,SP seed,80,ambient,13,16,BD,4/14/16,tag X019 is EG not SP
+129,X,SP seed,80,ambient,13,18,,,
+38,B,SP adult,8,ambient,13,20,SP,3/28/16,
+39,B,SP adult,8,fungicide,13,22,,3/28/16,plot disturbed by squirrels
+57,E,SP adult,2,fungicide,13,24,EG,3/28/16,plot disturbed by squirrels
+130,X,EG adults,10,ambient,13,26,SP,,plot disturbed by squirrels
+44,C,SP adult,6,inoculation,13,28,BD,4/14/16,SP and BD markers missing; lots of Lolium
+131,X,EG adults,2,inoculation,13,30,SP,3/28/16,
+132,X,AB seed,10,fungicide,13,32,SP,4/14/16,
+133,X,EG seed,80,inoculation,13,34,,,
+134,X,EG adults,4,inoculation,15,2,,,
+135,X,AB seed,80,inoculation,15,4,,,4/19/2016 SP?
+136,X,BH seed,80,ambient,15,6,,,
+137,X,EG adults,10,fungicide,15,8,,,
+138,X,BH seed,80,ambient,15,10,,,"no AB near marker, but one on other side of plot near BD marker"
+58,E,SP adult,2,ambient,15,12,SP,3/28/16,
+139,X,AB seed,10,inoculation,15,14,,,
+140,X,EG seed,10,ambient,15,16,,,
+141,X,SP seed,100,inoculation,15,18,,,AB just outside plot
+142,X,EG seed,40,fungicide,15,20,"AB, SP",4/19/16,
+51,D,SP adult,4,fungicide,15,22,,,
+143,X,EG seed,20,ambient,15,24,,,
+144,X,AB seed,20,inoculation,15,26,BD,4/19/16,could not separate large rye grass from EG seedlings without pulling out the EG; did not weed the rye grass: 4/19/2016 BD marker missing
+145,X,SP seed,10,fungicide,15,28,,,
+146,X,SP seed,40,fungicide,15,30,,,
+147,X,BD seed,10,ambient,15,32,SP,3/28/16,
+148,X,BH seed,40,inoculation,15,34,,,
+149,X,SP seed,40,ambient,17,2,AB,4/14/16,3/25/2016 AB?
+150,X,AB seed,10,inoculation,17,4,,,
+151,X,BD seed,10,fungicide,17,6,,,
+152,X,EG adults,10,ambient,17,8,,,
+153,X,EG adults,8,inoculation,17,10,SP,4/14/16,no AB near marker
+154,X,BD seed,100,inoculation,17,12,,,
+155,X,BD seed,20,inoculation,17,14,SP,4/14/16,SP died
+156,X,EG adults,10,inoculation,17,16,,,
+157,X,EG adults,6,ambient,17,18,SP,3/29/16,
+158,X,SP seed,10,inoculation,17,20,,,
+59,E,SP adult,2,ambient,17,22,,,
+159,X,BD seed,40,fungicide,17,24,,,
+160,X,AB seed,100,fungicide,17,26,,,
+161,X,EG seed,100,fungicide,17,28,SP,4/19/16,
+162,X,EG adults,6,ambient,17,30,,,
+163,X,EG seed,20,inoculation,17,32,,,EG marker in EG seed plot
+164,X,EG seed,20,fungicide,17,34,,,no AB marker
+165,X,EG adults,2,fungicide,19,2,,,
+166,X,SP seed,100,fungicide,19,4,,,
+167,X,AB seed,40,ambient,19,6,,,
+168,X,BH seed,20,fungicide,19,8,BD,4/19/16,
+169,X,AB seed,40,fungicide,19,10,,,
+170,X,EG seed,100,ambient,19,12,BD,4/19/16,
+171,X,BH seed,40,ambient,19,14,,,"4/19/2016 BD, SP?"
+172,X,EG seed,20,ambient,19,16,BD,3/29/16,
+173,X,BD seed,100,inoculation,19,18,SP,3/29/16,no BD?
+174,X,AB seed,20,fungicide,19,20,SP,4/19/16,
+175,X,EG adults,2,ambient,19,22,,,
+176,X,EG adults,8,fungicide,19,24,,,
+177,X,SP seed,80,inoculation,19,26,,,
+178,X,BH seed,100,fungicide,19,28,,,
+179,X,SP seed,80,inoculation,19,30,,,"lots of Brachypodium in flower, removed"
+45,C,SP adult,6,inoculation,19,32,,,
+180,X,BD seed,20,fungicide,19,34,,,
+12,L,All,1,inoculation,21,2,,,
+13,L,All,1,ambient,21,5,SP,3/29/16,
+14,L,All,1,fungicide,21,8,SP,4/23/16,
+15,L,All,1,ambient,21,11,SP,4/23/16,
+16,L,All,1,inoculation,21,14,,,
+17,L,All,1,ambient,21,17,SP,4/23/16,lots of Brachypodium
+18,L,All,1,inoculation,21,20,,,
+19,L,All,1,inoculation,21,23,,,
+20,L,All,1,fungicide,21,26,,,SP hiding under large Brachypodium
+21,L,All,1,fungicide,21,29,,,
+22,L,All,1,ambient,21,32,,,
+181,X,EG seed,10,fungicide,24,2,"BH, SP",4/25/16,EG at SP marker
+182,X,BH seed,100,fungicide,24,4,,,no AB marker
+183,X,AB seed,80,fungicide,24,6,SP,4/1/16,"no AB marker, looks easy to tell where the marker was"
+184,X,BD seed,80,inoculation,24,8,SP,4/25/16,
+185,X,EG adults,2,inoculation,24,10,BD,4/25/16,BD died?
+186,X,AB seed,10,fungicide,24,12,"BD, SP",4/1/16,only one large AB in AB seed plot
+187,X,BD seed,80,ambient,24,14,SP,4/1/16,
+188,X,AB seed,10,ambient,24,16,,,
+189,X,EG seed,20,fungicide,24,18,SP,4/25/16,
+190,X,BH seed,80,fungicide,24,20,,,
+191,X,BD seed,80,ambient,24,22,"SP, EG","SP 4/1/2016, EG 4/25/2016",
+192,X,BH seed,80,inoculation,24,24,,,SP?
+193,X,BH seed,100,inoculation,24,26,,,
+194,X,BD seed,80,fungicide,24,28,,,
+195,X,EG adults,6,fungicide,24,30,,,
+196,X,BH seed,20,ambient,24,32,SP,4/1/16,
+197,X,AB seed,100,fungicide,24,34,,,
+60,E,SP adult,2,fungicide,27,2,,,
+46,C,SP adult,6,fungicide,27,4,,,
+198,X,EG adults,4,inoculation,27,6,,,
+199,X,BD seed,40,ambient,27,8,,,
+200,X,AB seed,100,inoculation,27,10,,,
+201,X,EG adults,6,inoculation,27,12,,,one small EG
+202,X,SP seed,100,inoculation,27,14,,,
+203,X,SP seed,20,inoculation,27,16,,,
+204,X,BD seed,10,inoculation,27,18,,,
+205,X,BD seed,10,inoculation,27,20,,,
+206,X,AB seed,80,inoculation,27,22,,,
+207,X,BD seed,20,inoculation,27,24,,,
+208,X,AB seed,20,inoculation,27,26,,,
+33,A,SP adult,10,fungicide,27,28,"EG, SP",4/26/16,
+209,X,SP seed,20,fungicide,27,30,,,
+210,X,EG seed,40,ambient,27,32,,,SP?
+211,X,EG seed,80,ambient,27,34,,,SP? Maybe EG
+52,D,SP adult,4,ambient,29,2,,,
+40,B,SP adult,8,inoculation,29,4,"EG, SP",4/1/16,"SP marker fell down hole, no SP near by"
+41,B,SP adult,8,ambient,29,6,,,
+212,X,EG adults,2,ambient,29,8,,,
+213,X,SP seed,20,ambient,29,10,,,
+214,X,BH seed,40,fungicide,29,12,SP,4/1/16,4/25/2016 no BD?
+215,X,SP seed,80,fungicide,29,14,BD,4/1/16,
+216,X,EG seed,100,inoculation,29,16,,,
+217,X,AB seed,20,fungicide,29,18,SP,4/1/16,
+218,X,SP seed,100,ambient,29,20,,,
+219,X,EG seed,100,fungicide,29,22,,,
+220,X,AB seed,80,ambient,29,24,,,
+221,X,EG adults,4,ambient,29,26,SP,3/31/16,
+222,X,SP seed,100,fungicide,29,28,,,
+223,X,BD seed,40,inoculation,29,30,SP,4/1/16,
+224,X,BH seed,100,ambient,29,32,,,
+225,X,AB seed,10,ambient,29,34,,,
+226,X,EG seed,40,inoculation,31,12,,,"no SP, EG seedlings?"
+227,X,BH seed,40,inoculation,31,14,SP,4/2/16,
+228,X,EG adults,4,fungicide,31,16,SP,4/2/16,
+229,X,BH seed,80,fungicide,31,18,,,
+230,X,BD seed,100,ambient,31,20,,,
+231,X,BH seed,10,ambient,31,22,,,
+232,X,SP seed,20,ambient,31,24,,,
+233,X,EG seed,40,inoculation,31,26,,,
+234,X,EG seed,80,inoculation,31,28,,,
+235,X,BH seed,10,fungicide,31,30,"SP, BD",4/25/16,
+236,X,AB seed,40,inoculation,31,32,,,
+237,X,BH seed,10,inoculation,31,34,,,
+53,D,SP adult,4,ambient,32,2,,,
+47,C,SP adult,6,ambient,32,4,,,no EG?
+34,A,SP adult,10,inoculation,32,6,"SP, BD, EG",4/2/16,
+42,B,SP adult,8,fungicide,32,8,"AB, BD",4/2/16,4/25/2016 missing BD not mentioned
+238,X,EG adults,10,fungicide,32,10,SP,4/26/16,no SP marker
+23,L,All,1,fungicide,33,12,,,
+24,L,All,1,ambient,33,15,SP,3/31/16,
+25,L,All,1,inoculation,33,18,,,no SP?
+26,L,All,1,inoculation,33,21,SP,4/2/16,
+27,L,All,1,inoculation,33,24,,,
+28,L,All,1,fungicide,33,27,,,
+29,L,All,1,inoculation,33,30,SP,4/2/16,
+30,L,All,1,fungicide,33,33,SP,4/2/16,
+54,D,SP adult,4,inoculation,34,2,SP,4/2/16,
+35,A,SP adult,10,inoculation,34,4,SP,4/2/16,
+36,A,SP adult,10,fungicide,34,6,"EG, SP, BD","SP 4/2/2016, BD 4/26/2016","no AB near marker, BH no flowers as of 4/25/2016"
+48,C,SP adult,6,fungicide,34,8,"SP, BD","SP 4/2/2016, BD 4/25/2016",
+239,X,BH seed,20,inoculation,34,10,EG,4/2/16,

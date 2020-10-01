@@ -1,0 +1,181 @@
+year,experiment,plot,subplot,sp,abundance,species,grass_group,CalfloraInvasive
+2016,transect,transect_3,transect_3A,EG.adult,1,Elymus glaucus,nat.per,0
+2016,transect,transect_5,transect_5C,EG.adult,8,Elymus glaucus,nat.per,0
+2016,transect,transect_5,transect_5E,EG.adult,0,Elymus glaucus,nat.per,0
+2016,transect,transect_4,transect_4A,EG.adult,0,Elymus glaucus,nat.per,0
+2016,transect,transect_6,transect_6A,EG.adult,11,Elymus glaucus,nat.per,0
+2016,transect,transect_4,transect_4C,EG.adult,1,Elymus glaucus,nat.per,0
+2016,transect,transect_6,transect_6E,EG.adult,1,Elymus glaucus,nat.per,0
+2016,transect,transect_8,transect_8A,EG.adult,6,Elymus glaucus,nat.per,0
+2016,transect,transect_5,transect_5A,EG.adult,22,Elymus glaucus,nat.per,0
+2016,transect,transect_4,transect_4E,EG.adult,0,Elymus glaucus,nat.per,0
+2016,transect,transect_1,transect_1E,EG.adult,1,Elymus glaucus,nat.per,0
+2016,transect,transect_6,transect_6C,EG.adult,8,Elymus glaucus,nat.per,0
+2016,transect,transect_8,transect_8E,EG.adult,1,Elymus glaucus,nat.per,0
+2016,transect,transect_8,transect_8C,EG.adult,9,Elymus glaucus,nat.per,0
+2016,transect,transect_3,transect_3C,EG.adult,1,Elymus glaucus,nat.per,0
+2016,transect,transect_3,transect_3E,EG.adult,0,Elymus glaucus,nat.per,0
+2016,transect,transect_1,transect_1A,EG.adult,0,Elymus glaucus,nat.per,0
+2016,transect,transect_1,transect_1C,EG.adult,0,Elymus glaucus,nat.per,0
+2016,transect,transect_3,transect_3A,SP.adult,9,Stipa pulchra,nat.per,0
+2016,transect,transect_5,transect_5C,SP.adult,1,Stipa pulchra,nat.per,0
+2016,transect,transect_5,transect_5E,SP.adult,0,Stipa pulchra,nat.per,0
+2016,transect,transect_4,transect_4A,SP.adult,12,Stipa pulchra,nat.per,0
+2016,transect,transect_6,transect_6A,SP.adult,5,Stipa pulchra,nat.per,0
+2016,transect,transect_4,transect_4C,SP.adult,9,Stipa pulchra,nat.per,0
+2016,transect,transect_6,transect_6E,SP.adult,1,Stipa pulchra,nat.per,0
+2016,transect,transect_8,transect_8A,SP.adult,8,Stipa pulchra,nat.per,0
+2016,transect,transect_5,transect_5A,SP.adult,0,Stipa pulchra,nat.per,0
+2016,transect,transect_4,transect_4E,SP.adult,3,Stipa pulchra,nat.per,0
+2016,transect,transect_1,transect_1E,SP.adult,1,Stipa pulchra,nat.per,0
+2016,transect,transect_6,transect_6C,SP.adult,1,Stipa pulchra,nat.per,0
+2016,transect,transect_8,transect_8E,SP.adult,1,Stipa pulchra,nat.per,0
+2016,transect,transect_8,transect_8C,SP.adult,2,Stipa pulchra,nat.per,0
+2016,transect,transect_3,transect_3C,SP.adult,7,Stipa pulchra,nat.per,0
+2016,transect,transect_3,transect_3E,SP.adult,1,Stipa pulchra,nat.per,0
+2016,transect,transect_1,transect_1A,SP.adult,20,Stipa pulchra,nat.per,0
+2016,transect,transect_1,transect_1C,SP.adult,3,Stipa pulchra,nat.per,0
+2016,transect,transect_3,transect_3A,BH,5,Bromus hordeaceus,non.ann,1
+2016,transect,transect_5,transect_5C,BH,125,Bromus hordeaceus,non.ann,1
+2016,transect,transect_5,transect_5E,BH,133.3333333,Bromus hordeaceus,non.ann,1
+2016,transect,transect_4,transect_4A,BH,0,Bromus hordeaceus,non.ann,1
+2016,transect,transect_6,transect_6A,BH,320,Bromus hordeaceus,non.ann,1
+2016,transect,transect_4,transect_4C,BH,400,Bromus hordeaceus,non.ann,1
+2016,transect,transect_6,transect_6E,BH,800,Bromus hordeaceus,non.ann,1
+2016,transect,transect_8,transect_8A,BH,100,Bromus hordeaceus,non.ann,1
+2016,transect,transect_5,transect_5A,BH,0,Bromus hordeaceus,non.ann,1
+2016,transect,transect_4,transect_4E,BH,240,Bromus hordeaceus,non.ann,1
+2016,transect,transect_1,transect_1E,BH,100,Bromus hordeaceus,non.ann,1
+2016,transect,transect_6,transect_6C,BH,1000,Bromus hordeaceus,non.ann,1
+2016,transect,transect_8,transect_8E,BH,1,Bromus hordeaceus,non.ann,1
+2016,transect,transect_8,transect_8C,BH,0,Bromus hordeaceus,non.ann,1
+2016,transect,transect_3,transect_3C,BH,0,Bromus hordeaceus,non.ann,1
+2016,transect,transect_3,transect_3E,BH,6,Bromus hordeaceus,non.ann,1
+2016,transect,transect_1,transect_1A,BH,4,Bromus hordeaceus,non.ann,1
+2016,transect,transect_1,transect_1C,BH,1,Bromus hordeaceus,non.ann,1
+2016,transect,transect_3,transect_3A,BD,2,Bromus diandrus,non.ann,1
+2016,transect,transect_5,transect_5C,BD,2,Bromus diandrus,non.ann,1
+2016,transect,transect_5,transect_5E,BD,8,Bromus diandrus,non.ann,1
+2016,transect,transect_4,transect_4A,BD,0,Bromus diandrus,non.ann,1
+2016,transect,transect_6,transect_6A,BD,1,Bromus diandrus,non.ann,1
+2016,transect,transect_4,transect_4C,BD,40,Bromus diandrus,non.ann,1
+2016,transect,transect_6,transect_6E,BD,66.66666667,Bromus diandrus,non.ann,1
+2016,transect,transect_8,transect_8A,BD,1,Bromus diandrus,non.ann,1
+2016,transect,transect_5,transect_5A,BD,53.33333333,Bromus diandrus,non.ann,1
+2016,transect,transect_4,transect_4E,BD,83.33333333,Bromus diandrus,non.ann,1
+2016,transect,transect_1,transect_1E,BD,0,Bromus diandrus,non.ann,1
+2016,transect,transect_6,transect_6C,BD,1,Bromus diandrus,non.ann,1
+2016,transect,transect_8,transect_8E,BD,22.22222222,Bromus diandrus,non.ann,1
+2016,transect,transect_8,transect_8C,BD,700,Bromus diandrus,non.ann,1
+2016,transect,transect_3,transect_3C,BD,0,Bromus diandrus,non.ann,1
+2016,transect,transect_3,transect_3E,BD,0,Bromus diandrus,non.ann,1
+2016,transect,transect_1,transect_1A,BD,2,Bromus diandrus,non.ann,1
+2016,transect,transect_1,transect_1C,BD,0,Bromus diandrus,non.ann,1
+2016,transect,transect_3,transect_3A,Avena,23.33333333,Avena sp.,non.ann,1
+2016,transect,transect_5,transect_5C,Avena,10,Avena sp.,non.ann,1
+2016,transect,transect_5,transect_5E,Avena,53.33333333,Avena sp.,non.ann,1
+2016,transect,transect_4,transect_4A,Avena,30,Avena sp.,non.ann,1
+2016,transect,transect_6,transect_6A,Avena,71.11111111,Avena sp.,non.ann,1
+2016,transect,transect_4,transect_4C,Avena,18,Avena sp.,non.ann,1
+2016,transect,transect_6,transect_6E,Avena,266.6666667,Avena sp.,non.ann,1
+2016,transect,transect_8,transect_8A,Avena,2,Avena sp.,non.ann,1
+2016,transect,transect_5,transect_5A,Avena,6,Avena sp.,non.ann,1
+2016,transect,transect_4,transect_4E,Avena,26,Avena sp.,non.ann,1
+2016,transect,transect_1,transect_1E,Avena,150,Avena sp.,non.ann,1
+2016,transect,transect_6,transect_6C,Avena,25,Avena sp.,non.ann,1
+2016,transect,transect_8,transect_8E,Avena,66.66666667,Avena sp.,non.ann,1
+2016,transect,transect_8,transect_8C,Avena,2,Avena sp.,non.ann,1
+2016,transect,transect_3,transect_3C,Avena,200,Avena sp.,non.ann,1
+2016,transect,transect_3,transect_3E,Avena,100,Avena sp.,non.ann,1
+2016,transect,transect_1,transect_1A,Avena,12,Avena sp.,non.ann,1
+2016,transect,transect_1,transect_1C,Avena,14,Avena sp.,non.ann,1
+2016,transect,transect_3,transect_3A,Forb,80,Forb,NA,NA
+2016,transect,transect_5,transect_5C,Forb,900,Forb,NA,NA
+2016,transect,transect_5,transect_5E,Forb,66.66666667,Forb,NA,NA
+2016,transect,transect_4,transect_4A,Forb,15,Forb,NA,NA
+2016,transect,transect_6,transect_6A,Forb,600,Forb,NA,NA
+2016,transect,transect_4,transect_4C,Forb,200,Forb,NA,NA
+2016,transect,transect_6,transect_6E,Forb,100,Forb,NA,NA
+2016,transect,transect_8,transect_8A,Forb,400,Forb,NA,NA
+2016,transect,transect_5,transect_5A,Forb,53.33333333,Forb,NA,NA
+2016,transect,transect_4,transect_4E,Forb,0,Forb,NA,NA
+2016,transect,transect_1,transect_1E,Forb,70,Forb,NA,NA
+2016,transect,transect_6,transect_6C,Forb,125,Forb,NA,NA
+2016,transect,transect_8,transect_8E,Forb,360,Forb,NA,NA
+2016,transect,transect_8,transect_8C,Forb,240,Forb,NA,NA
+2016,transect,transect_3,transect_3C,Forb,225,Forb,NA,NA
+2016,transect,transect_3,transect_3E,Forb,600,Forb,NA,NA
+2016,transect,transect_1,transect_1A,Forb,200,Forb,NA,NA
+2016,transect,transect_1,transect_1C,Forb,124.4444444,Forb,NA,NA
+2016,transect,transect_3,transect_3A,Fabaceae,0,Fabaceae,NA,NA
+2016,transect,transect_5,transect_5C,Fabaceae,6.666666667,Fabaceae,NA,NA
+2016,transect,transect_5,transect_5E,Fabaceae,15,Fabaceae,NA,NA
+2016,transect,transect_4,transect_4A,Fabaceae,4,Fabaceae,NA,NA
+2016,transect,transect_6,transect_6A,Fabaceae,1,Fabaceae,NA,NA
+2016,transect,transect_4,transect_4C,Fabaceae,75,Fabaceae,NA,NA
+2016,transect,transect_6,transect_6E,Fabaceae,0,Fabaceae,NA,NA
+2016,transect,transect_8,transect_8A,Fabaceae,0,Fabaceae,NA,NA
+2016,transect,transect_5,transect_5A,Fabaceae,0,Fabaceae,NA,NA
+2016,transect,transect_4,transect_4E,Fabaceae,450,Fabaceae,NA,NA
+2016,transect,transect_1,transect_1E,Fabaceae,66.66666667,Fabaceae,NA,NA
+2016,transect,transect_6,transect_6C,Fabaceae,0,Fabaceae,NA,NA
+2016,transect,transect_8,transect_8E,Fabaceae,0,Fabaceae,NA,NA
+2016,transect,transect_8,transect_8C,Fabaceae,0,Fabaceae,NA,NA
+2016,transect,transect_3,transect_3C,Fabaceae,9,Fabaceae,NA,NA
+2016,transect,transect_3,transect_3E,Fabaceae,27.77777778,Fabaceae,NA,NA
+2016,transect,transect_1,transect_1A,Fabaceae,5,Fabaceae,NA,NA
+2016,transect,transect_1,transect_1C,Fabaceae,0,Fabaceae,NA,NA
+2016,transect,transect_3,transect_3A,BRADIS,0,Brachypodium distachyon,non.ann,1
+2016,transect,transect_5,transect_5C,BRADIS,0,Brachypodium distachyon,non.ann,1
+2016,transect,transect_5,transect_5E,BRADIS,0,Brachypodium distachyon,non.ann,1
+2016,transect,transect_4,transect_4A,BRADIS,1,Brachypodium distachyon,non.ann,1
+2016,transect,transect_6,transect_6A,BRADIS,0,Brachypodium distachyon,non.ann,1
+2016,transect,transect_4,transect_4C,BRADIS,0,Brachypodium distachyon,non.ann,1
+2016,transect,transect_6,transect_6E,BRADIS,0,Brachypodium distachyon,non.ann,1
+2016,transect,transect_8,transect_8A,BRADIS,0,Brachypodium distachyon,non.ann,1
+2016,transect,transect_5,transect_5A,BRADIS,0,Brachypodium distachyon,non.ann,1
+2016,transect,transect_4,transect_4E,BRADIS,0,Brachypodium distachyon,non.ann,1
+2016,transect,transect_1,transect_1E,BRADIS,480,Brachypodium distachyon,non.ann,1
+2016,transect,transect_6,transect_6C,BRADIS,0,Brachypodium distachyon,non.ann,1
+2016,transect,transect_8,transect_8E,BRADIS,0,Brachypodium distachyon,non.ann,1
+2016,transect,transect_8,transect_8C,BRADIS,0,Brachypodium distachyon,non.ann,1
+2016,transect,transect_3,transect_3C,BRADIS,300,Brachypodium distachyon,non.ann,1
+2016,transect,transect_3,transect_3E,BRADIS,450,Brachypodium distachyon,non.ann,1
+2016,transect,transect_1,transect_1A,BRADIS,2,Brachypodium distachyon,non.ann,1
+2016,transect,transect_1,transect_1C,BRADIS,300,Brachypodium distachyon,non.ann,1
+2016,transect,transect_3,transect_3A,FEMY,0,Festuca myuros,non.ann,1
+2016,transect,transect_5,transect_5C,FEMY,0,Festuca myuros,non.ann,1
+2016,transect,transect_5,transect_5E,FEMY,0,Festuca myuros,non.ann,1
+2016,transect,transect_4,transect_4A,FEMY,0,Festuca myuros,non.ann,1
+2016,transect,transect_6,transect_6A,FEMY,0,Festuca myuros,non.ann,1
+2016,transect,transect_4,transect_4C,FEMY,0,Festuca myuros,non.ann,1
+2016,transect,transect_6,transect_6E,FEMY,0,Festuca myuros,non.ann,1
+2016,transect,transect_8,transect_8A,FEMY,0,Festuca myuros,non.ann,1
+2016,transect,transect_5,transect_5A,FEMY,0,Festuca myuros,non.ann,1
+2016,transect,transect_4,transect_4E,FEMY,0,Festuca myuros,non.ann,1
+2016,transect,transect_1,transect_1E,FEMY,0,Festuca myuros,non.ann,1
+2016,transect,transect_6,transect_6C,FEMY,0,Festuca myuros,non.ann,1
+2016,transect,transect_8,transect_8E,FEMY,0,Festuca myuros,non.ann,1
+2016,transect,transect_8,transect_8C,FEMY,0,Festuca myuros,non.ann,1
+2016,transect,transect_3,transect_3C,FEMY,0,Festuca myuros,non.ann,1
+2016,transect,transect_3,transect_3E,FEMY,0,Festuca myuros,non.ann,1
+2016,transect,transect_1,transect_1A,FEMY,0,Festuca myuros,non.ann,1
+2016,transect,transect_1,transect_1C,FEMY,0,Festuca myuros,non.ann,1
+2016,transect,transect_3,transect_3A,POA,0,unidentified grass,other,NA
+2016,transect,transect_5,transect_5C,POA,0,unidentified grass,other,NA
+2016,transect,transect_5,transect_5E,POA,0,unidentified grass,other,NA
+2016,transect,transect_4,transect_4A,POA,0,unidentified grass,other,NA
+2016,transect,transect_6,transect_6A,POA,0,unidentified grass,other,NA
+2016,transect,transect_4,transect_4C,POA,0,unidentified grass,other,NA
+2016,transect,transect_6,transect_6E,POA,160,unidentified grass,other,NA
+2016,transect,transect_8,transect_8A,POA,0,unidentified grass,other,NA
+2016,transect,transect_5,transect_5A,POA,0,unidentified grass,other,NA
+2016,transect,transect_4,transect_4E,POA,0,unidentified grass,other,NA
+2016,transect,transect_1,transect_1E,POA,0,unidentified grass,other,NA
+2016,transect,transect_6,transect_6C,POA,0,unidentified grass,other,NA
+2016,transect,transect_8,transect_8E,POA,0,unidentified grass,other,NA
+2016,transect,transect_8,transect_8C,POA,0,unidentified grass,other,NA
+2016,transect,transect_3,transect_3C,POA,0,unidentified grass,other,NA
+2016,transect,transect_3,transect_3E,POA,0,unidentified grass,other,NA
+2016,transect,transect_1,transect_1A,POA,0,unidentified grass,other,NA
+2016,transect,transect_1,transect_1C,POA,0,unidentified grass,other,NA

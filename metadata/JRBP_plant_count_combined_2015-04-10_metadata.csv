@@ -1,0 +1,17 @@
+﻿column,meaning
+Transect,transect identification number
+Date,date that plant density was measured
+Recorder,initials of person who recorded plant density measurement
+PlotID,transect number and plot identification letter
+Plot,plot identification letter (nested within Transect)
+ELYgla,density of Elymus glaucus in the plot
+STIpul,density of Stipa pulchra in the plot
+PHAaqu,density of Phalaris aquatica in the plot
+AVEbar,density of Avena barbata in the plot
+BROdia,density of Bromus diandrus in the plot
+BROhor,density of Bromus hordeaceus in the plot
+FESper,density of Festuca perennis in the plot
+BROste,density of Bromus sterilis in the plot
+FESmyu,density of Festuca myuros in the plot
+BRAdis,density of Brachypodium distachyon in the plot
+AVEfat,density of Avena fatua in the plot

@@ -7,7 +7,7 @@ rm(list = ls())
 library(tidyverse)
 
 # import data
-dat <- read.csv("./data/Data File 3 - Full Dataset.csv") # see metadata file for full information
+dat <- read.csv("original-data/Data File 3 - Full Dataset.csv") # see metadata file for full information
 
 
 #### edit data ####
@@ -87,4 +87,4 @@ sort(unique(dat3$subplot))
 
 #### save data ####
 
-write_csv(dat3, "./data/fungal_pathogens_2015_2017.csv")
+write_csv(dat3, "intermediate-data/fungal_pathogens_2015_2017.csv")
