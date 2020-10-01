@@ -9,7 +9,7 @@ This repository holds the data and code for the manuscript "Native perennial and
 - metadata: metadata for each data file in original-data, see manuscript for details on data collection
 - invasion-pathogen-communities.Rproj: RStudio project for running R scripts
 
-|code                                     |desription                                                                                        |
+|code                                     |desription |
 |:----------------------------------------|:-------------------------------------------------------------------------------------------------|
 |fungal_data_processing.R                 |R script to format foliar fungal pathogen isolate data from JRBP compilation |
 |damage_data_processing.R                 |R script to format disease severity data from JRBP compilation |
@@ -18,17 +18,14 @@ This repository holds the data and code for the manuscript "Native perennial and
 |damage_differences.R                     |R script to assess differences in disease severity between native perennial and non-native annual grasses (Question 1b) |
 |fungal_community_host_density.R          |R script to assess the effects of native perennial and non-native annual grass densities on foliar fungal pathogen communities (Question 2a) |
 |damage_host_density.R                    |R script to assess the effects of native perennial and non-native annual grass densities on disease severity (Question 2b) |
-|density_figures.R                        |R script to create figures for Questions 2a and 2b 
-                                          |
-|manipulated_experiment_map.R             |R script to create Fig. S2
-                                          |
+|density_figures.R                        |R script to create figures for Questions 2a and 2b |
+|manipulated_experiment_map.R             |R script to create Fig. S2 |
                                           
 
-|data                                                   |description                                                                                       |
+|data                                                   |description |
 |:------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |2016ExperimentPlotList_26Apr16_PlotAssignments.csv     |treatments applied to plots in the manipulated experiment at JRBP |
-|BgPlantSizeStatus_JepsonCalFloraJRBP_021120.csv        |species-level data for grasses at JRBP
-                                                        |
+|BgPlantSizeStatus_JepsonCalFloraJRBP_021120.csv        |species-level data for grasses at JRBP |
 |competition_plot_seeds_composition_damage              |plant density data collected from the manipulated experiment at JRBP in 2016 |
 |Data File 3 - Full Dataset.csv                         |foliar fungal isolates, sequences, OTUs, and estimated species identities collected from grasses at Jasper Ridge Biological Preserve (JRBP) in 2015-2017 |
 |JRBP_PathogenDamage_21July2016_Full.csv                |disease severity data collected from grasses in the manipulated experiment and observational study at JRBP in 2016 |
