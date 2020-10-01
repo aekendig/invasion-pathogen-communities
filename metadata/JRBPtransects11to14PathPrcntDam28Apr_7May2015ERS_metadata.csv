@@ -4,18 +4,18 @@ observer ,initials of person who performed disease severity assessment
 recorder ,initials of person who recorded disease severity assessment
 Species,"grass species assessed for disease severity (AB = Avena barbata, BD = Bromus diandrus, BH = Bromus hordeaceus, EG = Elymus glaucus, PA = Phalaris aquatica, SP = Stipa pulchra)"
 Transect,transect identification number
-leaf1,disease severity score for one of out up to six leaves per plant (percentage of leaf surface area covered with lesions)
-leaf 1 DTO,
-leaf2,disease severity score for one of out up to six leaves per plant (percentage of leaf surface area covered with lesions)
-leaf 2 DTO,
-leaf3,disease severity score for one of out up to six leaves per plant (percentage of leaf surface area covered with lesions)
-leaf 3 DTO,
-leaf4,disease severity score for one of out up to six leaves per plant (percentage of leaf surface area covered with lesions)
-leaf 4 DTO,
-leaf5,disease severity score for one of out up to six leaves per plant (percentage of leaf surface area covered with lesions)
-leaf 5 DTO,
-leaf6,disease severity score for one of out up to six leaves per plant (percentage of leaf surface area covered with lesions)
-leaf 6 DTO,
+leaf1,disease severity score for one of up to six leaves per plant (percentage of leaf surface area covered with lesions)
+leaf 1 DTO,damage type observed (DTO) for one of up to sixe leaves per plant (see KeyDamageTypesJRBPGrasses_SpearMar2015.pdf in metadata for key)
+leaf2,disease severity score for one of up to six leaves per plant (percentage of leaf surface area covered with lesions)
+leaf 2 DTO,damage type observed (DTO) for one of up to sixe leaves per plant (see KeyDamageTypesJRBPGrasses_SpearMar2015.pdf in metadata for key)
+leaf3,disease severity score for one of up to six leaves per plant (percentage of leaf surface area covered with lesions)
+leaf 3 DTO,damage type observed (DTO) for one of up to sixe leaves per plant (see KeyDamageTypesJRBPGrasses_SpearMar2015.pdf in metadata for key)
+leaf4,disease severity score for one of up to six leaves per plant (percentage of leaf surface area covered with lesions)
+leaf 4 DTO,damage type observed (DTO) for one of up to sixe leaves per plant (see KeyDamageTypesJRBPGrasses_SpearMar2015.pdf in metadata for key)
+leaf5,disease severity score for one of up to six leaves per plant (percentage of leaf surface area covered with lesions)
+leaf 5 DTO,damage type observed (DTO) for one of up to sixe leaves per plant (see KeyDamageTypesJRBPGrasses_SpearMar2015.pdf in metadata for key)
+leaf6,disease severity score for one of up to six leaves per plant (percentage of leaf surface area covered with lesions)
+leaf 6 DTO,damage type observed (DTO) for one of up to sixe leaves per plant (see KeyDamageTypesJRBPGrasses_SpearMar2015.pdf in metadata for key)
 tissue sample number ,identification number for tissue sample collected
-DTO for collected tissue ,
+DTO for collected tissue ,damage type observed (DTO) for tissue sample collected (see KeyDamageTypesJRBPGrasses_SpearMar2015.pdf in metadata for key)
 notes,notes
