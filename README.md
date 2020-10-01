@@ -36,6 +36,9 @@ This repository holds the data and code for the manuscript "Native perennial and
 |transect_seeds_composition_damage.csv                  |plant density data collected from the observational study at JRBP in 2016 |
 
 
+## Comments
+Please contact me with any questions about raw data if you are interested in using it for your own project.
+
 
 ## Citation
-Kendig, A. E., E. R. Spear, S. C. Daws, S. L. Flory, and E. A. Mordecai. (2020). Data from: Native perennial and non-native annual grasses shape pathogen community composition and disease severity in a California grassland.
+Kendig, A. E., E. R. Spear, S. C. Daws, S. L. Flory, and E. A. Mordecai. (2020). Data from: Native perennial and non-native annual grasses shape pathogen community composition and disease severity in a California grassland. (Version v1.0). Zenodo. http://doi.org/10.5281/zenodo.4062434
