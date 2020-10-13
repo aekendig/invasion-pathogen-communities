@@ -544,22 +544,22 @@ leg.dens.plot2 <- get_legend(
 # paste plots
 obs.natdens.plot <- cowplot::plot_grid(obs.nat.natdens.plot + 
                                          ggtitle("Observational") + 
-                                         annotate(geom = "text", label = "A", x = 0, y = 1, color = "black", size = 4, fontface = "bold") +
+                                         annotate(geom = "text", label = "(a)", x = 0, y = 1, color = "black", size = 4, fontface = "bold") +
                                          theme(plot.title = element_text(size = topLabel, hjust = 0.5)), 
                                   obs.non.natdens.plot + 
-                                    annotate(geom = "text", label = "C", x = 0, y = 1, color = "black", size = 4, fontface = "bold"), 
+                                    annotate(geom = "text", label = "(c)", x = 0, y = 1, color = "black", size = 4, fontface = "bold"), 
                                   ncol = 1)
 
 man.natdens.plot <- cowplot::plot_grid(man.nat.natdens.plot + 
                                     ggtitle("Manipulated") + 
-                                      annotate(geom = "text", label = "B", x = 0, y = 1, color = "black", size = 4, fontface = "bold") + 
+                                      annotate(geom = "text", label = "(b)", x = 0, y = 1, color = "black", size = 4, fontface = "bold") + 
                                    annotate(geom = "text", label = "Native perennial hosts", x = 418.8, y = 0.5, angle = 270, color = "black", size = sideLabel) +
                                     coord_cartesian(xlim = c(0, 379), clip = 'off') + 
                                      theme(plot.title = element_text(size = topLabel, hjust = 0.5),
                                            plot.margin = unit(c(5.5, ymarg, 5.5, 5.5), "pt"),
                                            axis.text.y = element_blank()), 
                                   man.non.natdens.plot + 
-                                    annotate(geom = "text", label = "D", x = 0, y = 1, color = "black", size = 4, fontface = "bold") + 
+                                    annotate(geom = "text", label = "(d)", x = 0, y = 1, color = "black", size = 4, fontface = "bold") + 
                                     annotate(geom = "text", label = "Non-native annual hosts", x = 20, y = 0.5, angle =270, color = "black", size = sideLabel) +
                                     coord_cartesian(xlim = c(0, 18), clip = 'off') + 
                                     theme(plot.margin = unit(c(5.5, ymarg, 5.5, 5.5), "pt"),
@@ -573,13 +573,13 @@ natdens.plot <- cowplot::plot_grid(obs.natdens.plot,
 natdens.plot.fin <- ggdraw(add_sub(natdens.plot, expression(paste("Native perennial grass density (", m^-1, ")", sep = "")), vpadding = grid::unit(0,"lines"), size = axisTitle))
 
 obs.nondens.plot <- cowplot::plot_grid(obs.nat.nondens.plot +
-                                         annotate(geom = "text", label = "E", x = 0, y = 1, color = "black", size = 4, fontface = "bold"),
+                                         annotate(geom = "text", label = "(e)", x = 0, y = 1, color = "black", size = 4, fontface = "bold"),
                                        obs.non.nondens.plot +
-                                         annotate(geom = "text", label = "G", x = 0, y = 1, color = "black", size = 4, fontface = "bold"), 
+                                         annotate(geom = "text", label = "(g)", x = 0, y = 1, color = "black", size = 4, fontface = "bold"), 
                                        ncol = 1)
 
 man.nondens.plot <- cowplot::plot_grid(man.nat.nondens.plot + 
-                                         annotate(geom = "text", label = "F", x = 0, y = 1, color = "black", size = 4, fontface = "bold") + 
+                                         annotate(geom = "text", label = "(f)", x = 0, y = 1, color = "black", size = 4, fontface = "bold") + 
                                          annotate(geom = "text", label = "Native hosts", x = 250.9, y = 0.5, angle = 270, color = "black", size = sideLabel) +
                                          coord_cartesian(xlim = c(0, 227), clip = 'off') + 
                                          theme(plot.margin = unit(c(5.5, ymarg, 5.5, 5.5), "pt"),
@@ -587,7 +587,7 @@ man.nondens.plot <- cowplot::plot_grid(man.nat.nondens.plot +
                                        man.non.nondens.plot + 
                                          theme(plot.margin = unit(c(5.5, ymarg, 5.5, 5.5), "pt"),
                                                axis.text.y = element_blank()) + 
-                                         annotate(geom = "text", label = "H", x = 0, y = 1, color = "black", size = 4, fontface = "bold") + 
+                                         annotate(geom = "text", label = "(h)", x = 0, y = 1, color = "black", size = 4, fontface = "bold") + 
                                          annotate(geom = "text", label = "Non-native annual hosts", x = 2848.3, y = 0.5, angle = 270, color = "black", size = sideLabel) +
                                          coord_cartesian(xlim = c(0, 2577), clip = 'off'), 
                                        ncol = 1)
@@ -868,16 +868,21 @@ rawdamdatnonscaled <- scaledsurfdat %>%
 # dam.plot
 
 # March labels
-damlabelsscaled <- tibble(dens.type = rep(c("native perennial", "non-native annual"), each = 2), 
-                          exp.type = c("Observational", "Manipulated", "Observational", "Manipulated"), 
-                          density = rep(0.5, 4), dam = c(0.045, 0.045, 0.075, 0.075), 
-                          labels = c("A", "B", "C", "D")) %>%
-  mutate(exp.type = factor(exp.type, levels = c("Observational", "Manipulated")),
-         host.group = "native perennial")
+# damlabelsscaled <- tibble(dens.type = rep(c("native perennial", "non-native annual"), each = 2), 
+#                           exp.type = c("Observational", "Manipulated", "Observational", "Manipulated"), 
+#                           density = rep(0.5, 4), dam = c(0.045, 0.045, 0.075, 0.075), 
+#                           labels = c("(a)", "(b)", "(c)", "(d)")) %>%
+#   mutate(exp.type = factor(exp.type, levels = c("Observational", "Manipulated")),
+#          host.group = "native perennial")
 
 # April labels
-damlabelsscaled <- damlabelsscaled %>%
-  mutate(dam = ifelse(dens.type == "native perennial", dam + 0.06, dam + 0.13))
+damlabelsscaled <- tibble(dens.type = rep(c("native perennial", "non-native annual"), each = 2), 
+                          exp.type = c("Observational", "Manipulated", "Observational", "Manipulated"), 
+                          density = c(0.4, 4, 4, 4), 
+                          dam = c(0.11, 0.11, 0.21, 0.21), 
+                          labels = c("(a)", "(b)", "(c)", "(d)")) %>%
+  mutate(exp.type = factor(exp.type, levels = c("Observational", "Manipulated")),
+         host.group = "native perennial")
 
 # native density plot scaled
 natdamplotscaled <- ggplot(filter(dsimnat, dam.type == "scaled surface"), aes(x = density, y = dam)) +
@@ -1030,7 +1035,7 @@ plots <- full_join(plotsC, plotsT) %>%
                               experiment == "competition" ~ "Manipulated") %>% factor(levels = c("Observational", "Manipulated")))
 
 # labels
-denslabels <- tibble(exp.type = c("Observational", "Manipulated", "Observational", "Manipulated"), x = c(0, 0, -0.01, -0.01), y = c(1670, 2720, 1.05, 1.05), plot.type = c("density", "density", "relative", "relative"), labels = c("A", "B", "C", "D")) %>%
+denslabels <- tibble(exp.type = c("Observational", "Manipulated", "Observational", "Manipulated"), x = c(0, 0, -0.01, -0.01), y = c(1670, 2720, 1.05, 1.05), plot.type = c("density", "density", "relative", "relative"), labels = c("(a)", "(b)", "(c)", "(d)")) %>%
   mutate(exp.type = factor(exp.type, levels = c("Observational", "Manipulated")))
 
 # figures for manuscript
